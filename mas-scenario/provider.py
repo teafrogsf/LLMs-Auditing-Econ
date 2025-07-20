@@ -14,6 +14,7 @@ from phybench_evaluation import PHYBenchEvaluator
 MODEL_PRICING = {
     "gpt-4o": {"input": 2.5/1_000_000, "output": 10/1_000_000},
     "gpt-4": {"input": 30/1_000_000, "output": 60/1_000_000},
+     "gpt-4o-mini": {"input": 0.15/1_000_000, "output": 0.6/1_000_000},
     "o1-mini": {"input": 1.1/1_000_000, "output": 4.4/1_000_000},
     "o3-mini": {"input": 1.1/1_000_000, "output": 4.4/1_000_000},
     "gpt-35-turbo-0125-60ktpm": {"input": 0.5/1_000_000, "output": 1.5/1_000_000},
@@ -85,7 +86,7 @@ class Provider:
         """
         normal_models = {
             1: "gpt-4o",
-            2: "o1-mini", 
+            2:  "gpt-4o-mini", 
             3: "deepseek-v3"
         }
         return normal_models.get(self.provider_id, self.model_keys[0])
