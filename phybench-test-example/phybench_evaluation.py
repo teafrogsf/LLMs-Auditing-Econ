@@ -1,6 +1,7 @@
 import os
 import json
 import re
+import random
 from typing import Dict, List, Tuple, Any
 from datasets import load_dataset
 from tqdm import tqdm
@@ -41,7 +42,7 @@ class PHYBenchEvaluator:
         else:
             self.models_to_test = [m for m in models_to_test if m in self.available_models]
             
-        print(f"将测试以下模型: {self.models_to_test}")
+        # print(f"将测试以下模型: {self.models_to_test}")
         
     def load_dataset(self, file_path: str = None, num_samples: int = None) -> List[Dict]:
         """
@@ -55,7 +56,7 @@ class PHYBenchEvaluator:
             数据集样本列表
         """
         if file_path is None:
-            print("正在加载PHYBench-fullques.json (100个完整解答样本)...")
+            # print("正在加载PHYBench-fullques.json (100个完整解答样本)...")
             try:
                 from huggingface_hub import hf_hub_download
                 file_path = hf_hub_download(
@@ -79,7 +80,7 @@ class PHYBenchEvaluator:
             if num_samples is not None:
                 data = data[:num_samples]
                 
-            print(f"成功加载 {len(data)} 个样本")
+            # print(f"成功加载 {len(data)} 个样本")
             return data
         except Exception as e:
             print(f"加载数据集失败: {e}")
@@ -439,6 +440,59 @@ class PHYBenchEvaluator:
             csv_file = f"{filename}_summary.csv"
             df.to_csv(csv_file, index=False, encoding='utf-8')
             print(f"汇总结果已保存到: {csv_file}")
+    
+    def test_random_sample(self, model_name: str, dataset: List[Dict] = None) -> float:
+        """
+        随机选择数据集中的一个样本，测试指定模型并返回EED分数
+        
+        Args:
+            model_name: 要测试的模型名称
+            dataset: 数据集，如果为None则自动加载完整数据集
+            
+        Returns:
+            EED分数 (float)，如果评估失败返回0.0
+        """
+        try:
+            # 如果没有提供数据集，则加载完整数据集
+            if dataset is None:
+                # print("正在加载数据集...")
+                dataset = self.load_dataset(None, None)  # 加载所有样本
+                if not dataset:
+                    print("数据集加载失败")
+                    return 0.0
+            
+            # 检查数据集是否为空
+            if len(dataset) == 0:
+                print("数据集为空")
+                return 0.0
+            
+            # 随机选择一个样本
+            selected_sample = random.choice(dataset)
+            # print(f"随机选择了样本ID: {selected_sample.get('id', 'N/A')}")
+            
+            # 初始化模型
+            # print(f"正在初始化模型: {model_name}")
+            model = ExampleLLM(model_name)
+            
+            # 评估单个样本
+            # print("正在评估样本...")
+            result = self.evaluate_single_sample(model, selected_sample)
+            
+            # 返回EED分数
+            eed_score = result.get('eed_score', 0.0)
+            # print(f"评估完成，EED分数: {eed_score}")
+            
+            # 可选：打印更多详细信息
+            if result.get('success', False) == False:
+                print(f"评估失败: {result.get('error', '未知错误')}")
+            
+            return float(eed_score)
+            
+        except Exception as e:
+            import traceback
+            print(f"随机样本测试失败: {e}")
+            print(f"错误详情: {traceback.format_exc()}")
+            return 0.0
 
 
 def main():
