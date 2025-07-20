@@ -17,11 +17,11 @@ def create_example_scenario():
     provider_settings = [
         # GPT系列
         dict(
-            model_keys=["gpt-4o", "gpt-4", "gpt-35-turbo-0125-60ktpm"],
+            model_keys=["gpt-4","gpt-4o", "gpt-35-turbo-0125-60ktpm"],
         ),
         # Qwen系列
         dict(
-            model_keys=["qwen-max", "o1-mini-1mtpm", "o3-mini-1mtpm"],
+            model_keys=["qwen-max","o3-mini-1mtpm", "o1-mini-1mtpm"],
         ),
         # DeepSeek系列
         dict(
@@ -29,11 +29,15 @@ def create_example_scenario():
         ),
     ]
 
+    # 设置每个服务商的内部能力参数u_value
+    u_values = [3.3, 3.4, 3.1]  # 服务商1: 3.3, 服务商2: 3.4, 服务商3: 3.1
+    
     providers = []
     for i, setting in enumerate(provider_settings):
         config = ProviderConfig(
             provider_id=i + 1,
             price=0.0,
+            mu=u_values[i],
             model_keys=setting["model_keys"],
             model_costs=[],
         )
@@ -60,4 +64,4 @@ def create_example_scenario():
 
 
 if __name__ == "__main__":
-    create_example_scenario() 
+    create_example_scenario()
