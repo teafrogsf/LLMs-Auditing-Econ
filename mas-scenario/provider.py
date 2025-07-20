@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from llm_client import ExampleLLM
 
 # 添加phybench-test目录到路径以导入EED评分功能
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'phybench-test'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'phybench-test-example'))
 from phybench_evaluation import PHYBenchEvaluator
 
 MODEL_PRICING = {

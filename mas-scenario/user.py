@@ -5,7 +5,6 @@ from typing import List, Dict
 import numpy as np
 
 from provider import Provider, MODEL_PRICING
-from twenty_four_game import generate_hard_24_problem, check_24_answer
 
 
 class User:
