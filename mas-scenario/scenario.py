@@ -10,7 +10,7 @@ def create_example_scenario():
     np.random.seed(42)
     random.seed(42)
 
-    T = 100  # 总时间步数
+    T = 3  # 总时间步数
     K = 3     # 服务商数量
 
     # 配置每个服务商的模型
