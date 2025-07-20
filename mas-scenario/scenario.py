@@ -10,18 +10,18 @@ def create_example_scenario():
     np.random.seed(42)
     random.seed(42)
 
-    T = 3  # 总时间步数
+    T = 10  # 总时间步数
     K = 3     # 服务商数量
 
     # 配置每个服务商的模型
     provider_settings = [
         # GPT系列
         dict(
-            model_keys=["gpt-4","gpt-4o", "gpt-35-turbo-0125-60ktpm"],
+            model_keys=["gpt-4","gpt-4o", "gpt-35-turbo"],
         ),
         # Qwen系列
         dict(
-            model_keys=["qwen-max","o3-mini-1mtpm", "o1-mini-1mtpm"],
+            model_keys=["qwen-max", "gpt-4o-mini"],
         ),
         # DeepSeek系列
         dict(

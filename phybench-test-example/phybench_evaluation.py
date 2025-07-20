@@ -173,13 +173,14 @@ class PHYBenchEvaluator:
         
         return latex_str
     
-    def evaluate_single_sample(self, model: ExampleLLM, sample: Dict) -> Dict:
+    def evaluate_single_sample(self, model: ExampleLLM, sample: Dict, _retry_count: int = 0) -> Dict:
         """
         评估单个样本
         
         Args:
             model: LLM模型实例
             sample: 数据集样本
+            _retry_count: 内部重试计数器（私有参数）
             
         Returns:
             评估结果字典
@@ -218,8 +219,8 @@ class PHYBenchEvaluator:
                     pred_latex_eed = self.normalize_latex_brackets(pred_latex_eed)
                     truth_latex_eed = self.normalize_latex_brackets(truth_latex_eed)
                     
-                    # print(f"EED格式预测答案: {pred_latex_eed}")
-                    # print(f"EED格式标准答案: {truth_latex_eed}")
+                    print(f"EED格式预测答案: {pred_latex_eed}")
+                    print(f"EED格式标准答案: {truth_latex_eed}")
                     
                     # 保存传给EED的字符串用于调试
                     eed_predicted_input = pred_latex_eed
@@ -258,6 +259,14 @@ class PHYBenchEvaluator:
             import traceback
             print(f"评估样本时出错: {e}")
             print(f"错误详情: {traceback.format_exc()}")
+            
+            # 如果还有重试次数，则重新调用函数进行重试（最多3次）
+            if _retry_count < 3:
+                print(f"评估失败，还有 {3 - _retry_count} 次重试机会，正在重新评估...")
+                return self.evaluate_single_sample(model, sample, _retry_count + 1)
+            
+            # 重试次数用完，返回失败结果
+            print(f"评估失败，重试次数已用完")
             return {
                 'problem_id': sample.get('id', ''),
                 'problem': problem_text if 'problem_text' in locals() else str(sample),
@@ -487,6 +496,9 @@ class PHYBenchEvaluator:
             # 可选：打印更多详细信息
             if result.get('success', False) == False:
                 print(f"评估失败: {result.get('error', '未知错误')}")
+            else:
+                relative_distance = result.get('relative_distance', -1)
+                print(f"评估成功，相对距离: {relative_distance}")
             
             return float(eed_score), int(prompt_tokens), int(completion_tokens)
             
