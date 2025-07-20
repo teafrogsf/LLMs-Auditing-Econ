@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from llm_client import ExampleLLM
-from twenty_four_game import generate_hard_24_problem, check_24_answer
 
 # 添加phybench-test目录到路径以导入EED评分功能
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'phybench-test'))
