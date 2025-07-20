@@ -16,6 +16,7 @@ Make sure to specify the following key words when running inference:
 1. `--dataset`: test set, which can be `hash`, `multilingual`, and `random_string`
 2. `--model_path`: the local path of LLMs.
 3. `--method`: prompt engineering techniques when prompting LLMs to inference on our test set, which can be `raw` (raw instructions), `pot` (PoT), `cot` (CoT).
+
 for example:`python infer_closed_source_LLMs.py --dataset hash --model_path deepseek-v3 --method raw`
 
 
