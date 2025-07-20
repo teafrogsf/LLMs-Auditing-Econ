@@ -23,11 +23,11 @@ class SingletonClient:
             OpenAI(
             api_key=os.getenv("QWEN_API_KEY"),
             base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"),
-            # OpenAI(
-            # api_key=os.getenv("DEEPSEEK_API_KEY"),
-            # base_url="https://api.lkeap.cloud.tencent.com/v1",
-            # # base_url="https://api.deepseek.com",
-            # ),
+            OpenAI(
+            api_key=os.getenv("DEEPSEEK_API_KEY"),
+            base_url="https://api.lkeap.cloud.tencent.com/v1",
+            # base_url="https://api.deepseek.com",
+            ),
             ]
 
         self.key_client_map = {"gpt-4o-mini": 0,
@@ -100,7 +100,7 @@ class ExampleLLM:
 # 使用示例
 if __name__ == "__main__":
     # 创建LLM客户端实例
-    llm = ExampleLLM("gpt-4o-mini")
+    llm = ExampleLLM("deepseek-v3")
     
     # 测试调用
     response, prompt_tokens, completion_tokens = llm.call_llm("你好，请介绍一下你自己")
