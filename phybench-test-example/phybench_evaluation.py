@@ -441,16 +441,16 @@ class PHYBenchEvaluator:
             df.to_csv(csv_file, index=False, encoding='utf-8')
             print(f"汇总结果已保存到: {csv_file}")
     
-    def test_random_sample(self, model_name: str, dataset: List[Dict] = None) -> float:
+    def test_random_sample(self, model_name: str, dataset: List[Dict] = None) -> Tuple[float, int, int]:
         """
-        随机选择数据集中的一个样本，测试指定模型并返回EED分数
+        随机选择数据集中的一个样本，测试指定模型并返回EED分数和token信息
         
         Args:
             model_name: 要测试的模型名称
             dataset: 数据集，如果为None则自动加载完整数据集
             
         Returns:
-            EED分数 (float)，如果评估失败返回0.0
+            Tuple[float, int, int]: (EED分数, 输入token数, 输出token数)，如果评估失败返回(0.0, 0, 0)
         """
         try:
             # 如果没有提供数据集，则加载完整数据集
@@ -459,12 +459,12 @@ class PHYBenchEvaluator:
                 dataset = self.load_dataset(None, None)  # 加载所有样本
                 if not dataset:
                     print("数据集加载失败")
-                    return 0.0
+                    return 0.0, 0, 0
             
             # 检查数据集是否为空
             if len(dataset) == 0:
                 print("数据集为空")
-                return 0.0
+                return 0.0, 0, 0
             
             # 随机选择一个样本
             selected_sample = random.choice(dataset)
@@ -478,21 +478,23 @@ class PHYBenchEvaluator:
             # print("正在评估样本...")
             result = self.evaluate_single_sample(model, selected_sample)
             
-            # 返回EED分数
+            # 返回EED分数和token信息
             eed_score = result.get('eed_score', 0.0)
-            # print(f"评估完成，EED分数: {eed_score}")
+            prompt_tokens = result.get('prompt_tokens', 0)
+            completion_tokens = result.get('completion_tokens', 0)
+            # print(f"评估完成，EED分数: {eed_score}, 输入tokens: {prompt_tokens}, 输出tokens: {completion_tokens}")
             
             # 可选：打印更多详细信息
             if result.get('success', False) == False:
                 print(f"评估失败: {result.get('error', '未知错误')}")
             
-            return float(eed_score)
+            return float(eed_score), int(prompt_tokens), int(completion_tokens)
             
         except Exception as e:
             import traceback
             print(f"随机样本测试失败: {e}")
             print(f"错误详情: {traceback.format_exc()}")
-            return 0.0
+            return 0.0, 0, 0
 
 
 def main():

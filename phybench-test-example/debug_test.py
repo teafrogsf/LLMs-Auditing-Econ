@@ -17,7 +17,7 @@ def debug_test():
     print("开始调试测试...")
     
     # 创建评估器
-    evaluator = PHYBenchEvaluator(models_to_test=["deepseek-v3"])
+    evaluator = PHYBenchEvaluator(models_to_test=["gpt-4o"])
     
     # 加载数据集
     print("加载数据集...")
@@ -30,7 +30,7 @@ def debug_test():
     
     # 使用test_random_sample函数测试随机样本
     try:
-        model_name = "deepseek-v3"
+        model_name = "gpt-4o"
         print(f"测试模型: {model_name}")
         
         # 自动加载现有数据集，也可以传入上面的dataset
