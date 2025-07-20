@@ -1,50 +1,13 @@
-## Usage
-### Preparation
-We recommend using Anaconda and execute the following commands.
-```
-conda create -n StringLLM python=3.11
-conda activate StringLLM
-pip install vllm
-```
-### Inference
-The example commands for using open-source LLMs to run inference on our test sets are shown below:
-```
-cd inference
-python infer_open_source_LLMs.py --dataset dataset_name --model_path your_model_path --method your_method
-```
-Make sure to specify the following key words when running inference:
-1. `--dataset`: test set, which can be `hash`, `multilingual`, and `random_string`
-2. `--model_path`: the local path of LLMs.
-3. `--method`: prompt engineering techniques when prompting LLMs to inference on our test set, which can be `raw` (raw instructions), `pot` (PoT), `cot` (CoT).
+# PHYbench
 
-for example:`python infer_closed_source_LLMs.py --dataset hash --model_path deepseek-v3 --method raw`
+## 环境
+建议使用linux环境，运行前：`pip install sympy numpy latex2sympy2_extended timeout_decorator`
 
+phybench文件夹是我在ubuntu上使用了venv虚拟环境产生的（如果用conda可以忽略）使用方法为`source phybench/bin/activate`
 
-### Evaluation
-The code in `evaluation` folder is for running evaluation. For `raw` and `cot` method, run the following command:
-```
-cd evaluation
-python compute_acc.py --dataset dataset_name --model_path your_model_path --method your_method
-```
-For `pot` method, run the following command:
-```
-cd evaluation
-python compute_acc_code.py --dataset dataset_name --model_path your_model_path
-```
-for example:`python compute_acc.py --dataset hash --model_path deepseek-v3 --method raw`
-### Fine-tuning LLMs on our datasets
-Use the training sets in the `data/train` folder, and then follow the instruction of [Llama-Factory](https://github.com/hiyouga/LLaMA-Factory).
+## 文件说明
+`debug_test.py` 用于测试数据集中随机一个数据得到的结果，我调试用的文件，因为真的很好用于是保留
+`phybench_evaluation.py` 真正的测试模型的文件，目前输出格式比较混乱，在调整，但是能用
 
-## Citation
-If you find this work useful, please kindly cite
-```
-@article{wang2024stringllm,
-  title={StringLLM: Understanding the string processing capability of large language models},
-  author={Wang, Xilong and Fu, Hao and Wang, Jindong and Gong, Neil Zhenqiang},
-  journal={arXiv preprint arXiv:2410.01208},
-  year={2024}
-}
-```
-
-## Acknowledgement
-This repo benifits from [Llama-Factory](https://github.com/hiyouga/LLaMA-Factory) and the pre-trained models provided by [Hugging Face](https://huggingface.co).
+## 其他
+作者回消息说他们目前在优化并集成，说不定有脚本嗯嗯，我在等待
