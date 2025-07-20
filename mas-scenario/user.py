@@ -19,7 +19,8 @@ class User:
         # 机制参数
         self.B = int(T ** (2 / 3))  # B = T^(2/3)
         self.M = 8 * (T ** (-1 / 3)) * math.log(K * T)  # M = 8T^(-1/3)ln(KT)
-        self.u = 1 + self.M
+        min_mu = min(p.mu for p in providers)
+        self.u = -math.log(min_mu) + 1 + self.M  # u = -log(min_i μ_i) + 1 + M
 
         # 博弈历史
         self.delegation_history = []  # 委托历史
@@ -67,15 +68,19 @@ class User:
                 if self.current_time >= self.T:
                     break
 
-                # 委托服务商
+                # 委托服务商，使用EED评分机制（诚实模式）
+                reward, prompt_tokens, completion_tokens = provider.generate_reward_with_tokens(honest_mode=True)
+                # 根据实际token使用量计算成本
                 cost = provider.set_cost(self.current_time)
-                reward = provider.generate_reward(cost)
 
                 self.delegation_history.append({
                     'time': self.current_time,
                     'provider_id': provider.provider_id,
                     'cost': cost,
-                    'reward': reward
+                    'reward': reward,
+                    'prompt_tokens': prompt_tokens,
+                    'completion_tokens': completion_tokens,
+                    'total_tokens': prompt_tokens + completion_tokens
                 })
 
                 self.current_time += 1
@@ -127,33 +132,24 @@ class User:
         stopped_early = False
 
         while delegation_count < remaining_delegations and self.current_time < self.T:
-            nums = generate_hard_24_problem()
-            can_solve_2 = self.second_best_provider.solve_24(nums) if self.second_best_provider else None
-            if can_solve_2:
-                expr = self.best_provider.solve_24(nums)
-                cost = self.best_provider.set_cost(self.current_time)
-                reward = 1.0 if expr else 0.0
-            else:
-                # 用best_provider最差模型
-                idx = len(self.best_provider.llms) - 1
-                llm = self.best_provider.llms[idx]
-                try:
-                    answer, prompt_tokens, completion_tokens = llm.call_llm(
-                        f"请用加减乘除和括号将{nums}这四个数拼成24，要求每个数只能用一次，返回一个合法表达式。只返回表达式本身。"
-                    )
-                    expr = answer.strip().split('\n')[0]
-                    self.best_provider.last_model_idx = idx
-                    self.best_provider.last_tokens = (prompt_tokens, completion_tokens)
-                    cost = self.best_provider.set_cost(self.current_time)
-                    reward = 1.0 if check_24_answer(nums, expr) else 0.0
-                except Exception:
-                    cost = self.best_provider.price
-                    reward = 0.0
+            # 策略模式：先用次优服务商测试，再让最优服务商选择模型
+            second_best_score = 0.0
+            if self.second_best_provider is not None:
+                # 用次优服务商的正常模型测试
+                second_best_score, _, _ = self.second_best_provider.generate_reward_with_tokens(honest_mode=True)
+            
+            # 最优服务商根据次优服务商的表现选择模型
+            reward, prompt_tokens, completion_tokens = self.best_provider.generate_reward_with_tokens(honest_mode=False, second_best_score=second_best_score)
+            cost = self.best_provider.set_cost(self.current_time)
+            
             self.delegation_history.append({
                 'time': self.current_time,
                 'provider_id': self.best_provider.provider_id,
                 'cost': cost,
-                'reward': reward
+                'reward': reward,
+                'prompt_tokens': prompt_tokens,
+                'completion_tokens': completion_tokens,
+                'total_tokens': prompt_tokens + completion_tokens
             })
             delegation_count += 1
             self.current_time += 1
@@ -168,18 +164,22 @@ class User:
         if not stopped_early and self.current_time < self.T and self.best_provider is not None:
             print(f"  给予奖励，额外委托{self.B}次")
             for _ in range(min(self.B, self.T - self.current_time)):
-                cost = self.best_provider.set_cost(self.current_time, {
-                    'threshold': threshold,
-                    'phase': 2,
-                    'reward': True
-                })
-                reward = self.best_provider.generate_reward(cost)
+                # 奖励轮也使用策略模式
+                second_best_score = 0.0
+                if self.second_best_provider is not None:
+                    second_best_score, _, _ = self.second_best_provider.generate_reward_with_tokens(honest_mode=True)
+                
+                reward, prompt_tokens, completion_tokens = self.best_provider.generate_reward_with_tokens(honest_mode=False, second_best_score=second_best_score)
+                cost = self.best_provider.set_cost(self.current_time)
 
                 self.delegation_history.append({
                     'time': self.current_time,
                     'provider_id': self.best_provider.provider_id,
                     'cost': cost,
-                    'reward': reward
+                    'reward': reward,
+                    'prompt_tokens': prompt_tokens,
+                    'completion_tokens': completion_tokens,
+                    'total_tokens': prompt_tokens + completion_tokens
                 })
 
                 self.current_time += 1
@@ -217,17 +217,22 @@ class User:
                 # 整数部分委托
                 integer_delegations = integer_part * self.B
                 for _ in range(min(integer_delegations, self.T - self.current_time)):
-                    cost = provider.set_cost(self.current_time, {
-                        'utility': utility,
-                        'phase': 3
-                    })
-                    reward = provider.generate_reward(cost)
+                    # 策略模式：先用次优服务商测试，再让当前服务商选择模型
+                    second_best_score = 0.0
+                    if self.second_best_provider is not None:
+                        second_best_score, _, _ = self.second_best_provider.generate_reward_with_tokens(honest_mode=True)
+                    
+                    reward, prompt_tokens, completion_tokens = provider.generate_reward_with_tokens(honest_mode=False, second_best_score=second_best_score)
+                    cost = provider.set_cost(self.current_time)
 
                     self.delegation_history.append({
                         'time': self.current_time,
                         'provider_id': provider.provider_id,
                         'cost': cost,
-                        'reward': reward
+                        'reward': reward,
+                        'prompt_tokens': prompt_tokens,
+                        'completion_tokens': completion_tokens,
+                        'total_tokens': prompt_tokens + completion_tokens
                     })
 
                     self.current_time += 1
@@ -237,18 +242,22 @@ class User:
                     if random.random() < fractional_part:
                         print(f"  服务商{provider.provider_id}获得概率委托，概率：{fractional_part:.4f}")
                         for _ in range(min(self.B, self.T - self.current_time)):
-                            cost = provider.set_cost(self.current_time, {
-                                'utility': utility,
-                                'phase': 3,
-                                'probabilistic': True
-                            })
-                            reward = provider.generate_reward(cost)
+                            # 概率委托也使用策略模式
+                            second_best_score = 0.0
+                            if self.second_best_provider is not None:
+                                second_best_score, _, _ = self.second_best_provider.generate_reward_with_tokens(honest_mode=True)
+                            
+                            reward, prompt_tokens, completion_tokens = provider.generate_reward_with_tokens(honest_mode=False, second_best_score=second_best_score)
+                            cost = provider.set_cost(self.current_time)
 
                             self.delegation_history.append({
                                 'time': self.current_time,
                                 'provider_id': provider.provider_id,
                                 'cost': cost,
-                                'reward': reward
+                                'reward': reward,
+                                'prompt_tokens': prompt_tokens,
+                                'completion_tokens': completion_tokens,
+                                'total_tokens': prompt_tokens + completion_tokens
                             })
 
                             self.current_time += 1
@@ -276,21 +285,31 @@ class User:
                 total_cost = sum(d['cost'] for d in provider_delegations)
                 total_reward = sum(d['reward'] for d in provider_delegations)
                 avg_reward = total_reward / len(provider_delegations)
-
+                total_prompt_tokens = sum(d.get('prompt_tokens', 0) for d in provider_delegations)
+                total_completion_tokens = sum(d.get('completion_tokens', 0) for d in provider_delegations)
+                total_tokens = sum(d.get('total_tokens', 0) for d in provider_delegations)
                 results['provider_stats'][provider.provider_id] = {
                     'delegations': len(provider_delegations),
                     'total_cost': total_cost,
                     'total_reward': total_reward,
-                    'avg_reward': avg_reward,
-                    'profit': total_reward - total_cost
+                    'avg_reward': avg_reward,  # avg_reward即为平均EED分数
+                    'profit': total_reward - total_cost,
+                    'total_prompt_tokens': total_prompt_tokens,
+                    'total_completion_tokens': total_completion_tokens,
+                    'total_tokens': total_tokens,
+                    'avg_tokens_per_delegation': total_tokens / len(provider_delegations) if len(provider_delegations) > 0 else 0
                 }
             else:
                 results['provider_stats'][provider.provider_id] = {
                     'delegations': 0,
                     'total_cost': 0,
                     'total_reward': 0,
-                    'avg_reward': 0,
-                    'profit': 0
+                    'avg_reward': 0,  # avg_reward即为平均EED分数
+                    'profit': 0,
+                    'total_prompt_tokens': 0,
+                    'total_completion_tokens': 0,
+                    'total_tokens': 0,
+                    'avg_tokens_per_delegation': 0
                 }
 
-        return results 
+        return results
