@@ -29,15 +29,13 @@ def create_example_scenario():
         ),
     ]
 
-    # 设置每个服务商的内部能力参数u_value
-    u_values = [3.3, 3.4, 3.1]  # 服务商1: 3.3, 服务商2: 3.4, 服务商3: 3.1
     
     providers = []
     for i, setting in enumerate(provider_settings):
         config = ProviderConfig(
             provider_id=i + 1,
             price=0.0,
-            mu=u_values[i],
+            mu=0.1,  # 初始mu值设为默认值，将在第一轮后根据reward均值更新
             model_keys=setting["model_keys"],
             model_costs=[],
         )

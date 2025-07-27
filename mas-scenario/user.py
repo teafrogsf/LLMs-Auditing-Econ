@@ -29,12 +29,32 @@ class User:
         self.phase1_completed = False
         self.phase2_completed = False
         self.phase3_completed = False
+        self.phase4_completed = False
 
         # 阶段1结果
         self.avg_rewards = {}  # 各服务商平均回报
         self.best_provider = None
         self.second_best_reward = 0
         self.second_best_provider = None
+        
+        # 历史回报记录 - 按服务商分组
+        self.history_rewards = {}  # 按provider_id存储各服务商的历史回报
+        # 初始化每个服务商的历史回报列表
+        for provider in providers:
+            self.history_rewards[provider.provider_id] = []
+    
+    def get_average_reward(self, provider_id: int) -> float:
+        """获取指定服务商的历史平均回报"""
+        if provider_id not in self.history_rewards or not self.history_rewards[provider_id]:
+            return 0.0
+        return float(np.mean(self.history_rewards[provider_id]))
+
+    def get_recent_average_reward(self, provider_id: int, recent_count: int) -> float:
+        """获取指定服务商最近n次的平均回报"""
+        if provider_id not in self.history_rewards or not self.history_rewards[provider_id]:
+            return 0.0
+        recent_rewards = self.history_rewards[provider_id][-recent_count:]
+        return float(np.mean(recent_rewards))
 
     # --------------------- 机制执行入口 --------------------- #
     def run_mechanism(self) -> Dict:
@@ -51,8 +71,11 @@ class User:
         # 阶段2：委托最佳服务商
         self._phase2_exploitation()
 
-        # 阶段3：基于效用的委托
-        self._phase3_utility_based()
+        # 阶段3：委托剩余服务商
+        self._phase3_incentive()
+
+        # 阶段4：基于效用的委托
+        self._phase4_utility_based()
 
         return self._get_results()
 
@@ -67,26 +90,43 @@ class User:
                 if self.current_time >= self.T:
                     break
 
-                # 委托服务商，使用EED评分机制（诚实模式）
-                reward, prompt_tokens, completion_tokens = provider.generate_reward_with_tokens(honest_mode=True)
-                # 根据实际token使用量计算成本
-                cost = provider.set_cost(self.current_time)
+                # 委托服务商，阶段1使用诚实模式
+                result = provider.delegate_provider(phase=1, t=self.current_time)
+                reward = result["reward"]
+                price = result["price"]
+                prompt_tokens, completion_tokens = result["tokens"]
 
                 self.delegation_history.append({
                     'time': self.current_time,
                     'provider_id': provider.provider_id,
-                    'cost': cost,
+                    'cost': price,
                     'reward': reward,
                     'prompt_tokens': prompt_tokens,
                     'completion_tokens': completion_tokens,
                     'total_tokens': prompt_tokens + completion_tokens
                 })
+                
+                # 记录该服务商的历史回报
+                self.history_rewards[provider.provider_id].append(reward)
 
                 self.current_time += 1
 
         # 计算平均回报
         for provider in self.providers:
-            self.avg_rewards[provider.provider_id] = provider.get_average_reward()
+            self.avg_rewards[provider.provider_id] = self.get_average_reward(provider.provider_id)
+
+        # 第一轮后更新各服务商的mu值
+        print("\n  第一轮完成，更新各服务商的mu值：")
+        for provider in self.providers:
+            provider.update_mu_from_rewards(self)
+        
+        # 重新计算机制参数，因为mu值已更新
+        min_mu = min(p.mu for p in self.providers)
+        if min_mu <= 0:
+            min_mu = 1e-6  # 使用一个很小的正数
+            print(f"  警告：检测到mu值为0或负数，使用默认值 {min_mu}")
+        self.u = -math.log(min_mu) + 1 + self.M  # u = -log(min_i μ_i) + 1 + M
+        print(f"  更新后的u值：{self.u:.4f}")
 
         # 找到最佳服务商
         best_reward = max(self.avg_rewards.values())
@@ -131,29 +171,29 @@ class User:
         stopped_early = False
 
         while delegation_count < remaining_delegations and self.current_time < self.T:
-            # 策略模式：先用次优服务商测试，再让最优服务商选择模型
-            second_best_score = 0.0
-            if self.second_best_provider is not None:
-                # 用次优服务商的正常模型测试
-                second_best_score, _, _ = self.second_best_provider.generate_reward_with_tokens(honest_mode=True)
-            
-            # 最优服务商根据次优服务商的表现选择模型
-            reward, prompt_tokens, completion_tokens = self.best_provider.generate_reward_with_tokens(honest_mode=False, second_best_score=second_best_score)
-            cost = self.best_provider.set_cost(self.current_time)
+            # 阶段2委托最优服务商
+            result = self.best_provider.delegate_provider(phase=2, t=self.current_time, second_best_reward=self.second_best_reward, R=remaining_delegations)
+            reward = result["reward"]
+            price = result["price"]
+            prompt_tokens, completion_tokens = result["tokens"]
             
             self.delegation_history.append({
                 'time': self.current_time,
                 'provider_id': self.best_provider.provider_id,
-                'cost': cost,
+                'cost': price,
                 'reward': reward,
                 'prompt_tokens': prompt_tokens,
                 'completion_tokens': completion_tokens,
                 'total_tokens': prompt_tokens + completion_tokens
             })
+            
+            # 记录该服务商的历史回报
+            self.history_rewards[self.best_provider.provider_id].append(reward)
+            
             delegation_count += 1
             self.current_time += 1
             if delegation_count >= self.B and self.best_provider is not None:
-                recent_avg = self.best_provider.get_recent_average_reward(self.B)
+                recent_avg = self.get_recent_average_reward(self.best_provider.provider_id, self.B)
                 if recent_avg < threshold:
                     print(f"  在{delegation_count}次委托后停止，最近平均回报：{recent_avg:.4f} < {threshold:.4f}")
                     stopped_early = True
@@ -163,35 +203,79 @@ class User:
         if not stopped_early and self.current_time < self.T and self.best_provider is not None:
             print(f"  给予奖励，额外委托{self.B}次")
             for _ in range(min(self.B, self.T - self.current_time)):
-                # 奖励轮也使用策略模式
-                second_best_score = 0.0
-                if self.second_best_provider is not None:
-                    second_best_score, _, _ = self.second_best_provider.generate_reward_with_tokens(honest_mode=True)
-                
-                reward, prompt_tokens, completion_tokens = self.best_provider.generate_reward_with_tokens(honest_mode=False, second_best_score=second_best_score)
-                cost = self.best_provider.set_cost(self.current_time)
+                # 奖励轮委托
+                result = self.best_provider.delegate_provider(phase=3, t=self.current_time, second_best_reward=self.second_best_reward)
+                reward = result["reward"]
+                price = result["price"]
+                prompt_tokens, completion_tokens = result["tokens"]
 
                 self.delegation_history.append({
                     'time': self.current_time,
                     'provider_id': self.best_provider.provider_id,
-                    'cost': cost,
+                    'cost': price,
                     'reward': reward,
                     'prompt_tokens': prompt_tokens,
                     'completion_tokens': completion_tokens,
                     'total_tokens': prompt_tokens + completion_tokens
                 })
+                
+                # 记录该服务商的历史回报
+                self.history_rewards[self.best_provider.provider_id].append(reward)
 
                 self.current_time += 1
 
         self.phase2_completed = True
-
     # --------------------- 阶段 3 --------------------- #
-    def _phase3_utility_based(self):
-        """阶段3：基于效用的委托"""
+    def _phase3_incentive(self):
+        """阶段3：委托除最优服务商外的其他服务商各B次"""
         if not self.phase2_completed:
             return
 
-        print("阶段3：基于效用的委托")
+        print("阶段3：委托除最优服务商外的其他服务商")
+
+        # 委托除最优服务商外的其他服务商
+        for provider in self.providers:
+            if self.current_time >= self.T:
+                break
+                
+            # 跳过最优服务商
+            if self.best_provider and provider.provider_id == self.best_provider.provider_id:
+                continue
+                
+            print(f"  委托服务商{provider.provider_id} {self.B}次")
+            
+            # 委托该服务商B次
+            for _ in range(min(self.B, self.T - self.current_time)):#DONE: 这里的委托次数需要调整
+                # 阶段3委托
+                result = provider.delegate_provider(phase=3, t=self.current_time)
+                reward = result["reward"]
+                price = result["price"]
+                prompt_tokens, completion_tokens = result["tokens"]
+
+                self.delegation_history.append({
+                    'time': self.current_time,
+                    'provider_id': provider.provider_id,
+                    'cost': price,
+                    'reward': reward,
+                    'prompt_tokens': prompt_tokens,
+                    'completion_tokens': completion_tokens,
+                    'total_tokens': prompt_tokens + completion_tokens
+                })
+                
+                # 记录该服务商的历史回报
+                self.history_rewards[provider.provider_id].append(reward)
+
+                self.current_time += 1
+
+        self.phase3_completed = True
+
+    # --------------------- 阶段 4 --------------------- #
+    def _phase4_utility_based(self):
+        """阶段4：基于效用的委托"""
+        if not self.phase2_completed:
+            return
+
+        print("阶段4：基于效用的委托")
 
         for provider in self.providers:
             if self.current_time >= self.T:
@@ -216,23 +300,24 @@ class User:
                 # 整数部分委托
                 integer_delegations = integer_part * self.B
                 for _ in range(min(integer_delegations, self.T - self.current_time)):
-                    # 策略模式：先用次优服务商测试，再让当前服务商选择模型
-                    second_best_score = 0.0
-                    if self.second_best_provider is not None:
-                        second_best_score, _, _ = self.second_best_provider.generate_reward_with_tokens(honest_mode=True)
-                    
-                    reward, prompt_tokens, completion_tokens = provider.generate_reward_with_tokens(honest_mode=False, second_best_score=second_best_score)
-                    cost = provider.set_cost(self.current_time)
+                    # 阶段4整数部分委托
+                    result = provider.delegate_provider(phase=4, t=self.current_time)
+                    reward = result["reward"]
+                    price = result["price"]
+                    prompt_tokens, completion_tokens = result["tokens"]
 
                     self.delegation_history.append({
                         'time': self.current_time,
                         'provider_id': provider.provider_id,
-                        'cost': cost,
+                        'cost': price,
                         'reward': reward,
                         'prompt_tokens': prompt_tokens,
                         'completion_tokens': completion_tokens,
                         'total_tokens': prompt_tokens + completion_tokens
                     })
+                    
+                    # 记录该服务商的历史回报
+                    self.history_rewards[provider.provider_id].append(reward)
 
                     self.current_time += 1
 
@@ -241,27 +326,28 @@ class User:
                     if random.random() < fractional_part:
                         print(f"  服务商{provider.provider_id}获得概率委托，概率：{fractional_part:.4f}")
                         for _ in range(min(self.B, self.T - self.current_time)):
-                            # 概率委托也使用策略模式
-                            second_best_score = 0.0
-                            if self.second_best_provider is not None:
-                                second_best_score, _, _ = self.second_best_provider.generate_reward_with_tokens(honest_mode=True)
-                            
-                            reward, prompt_tokens, completion_tokens = provider.generate_reward_with_tokens(honest_mode=False, second_best_score=second_best_score)
-                            cost = provider.set_cost(self.current_time)
+                            # 阶段4概率委托
+                            result = provider.delegate_provider(phase=4, t=self.current_time)
+                            reward = result["reward"]
+                            price = result["price"]
+                            prompt_tokens, completion_tokens = result["tokens"]
 
                             self.delegation_history.append({
                                 'time': self.current_time,
                                 'provider_id': provider.provider_id,
-                                'cost': cost,
+                                'cost': price,
                                 'reward': reward,
                                 'prompt_tokens': prompt_tokens,
                                 'completion_tokens': completion_tokens,
                                 'total_tokens': prompt_tokens + completion_tokens
                             })
+                            
+                            # 记录该服务商的历史回报
+                            self.history_rewards[provider.provider_id].append(reward)
 
                             self.current_time += 1
 
-        self.phase3_completed = True
+        self.phase4_completed = True
 
     # --------------------- 结果统计 --------------------- #
     def _get_results(self) -> Dict:
@@ -272,6 +358,7 @@ class User:
             'phase1_completed': self.phase1_completed,
             'phase2_completed': self.phase2_completed,
             'phase3_completed': self.phase3_completed,
+            'phase4_completed': self.phase4_completed,
             'best_provider': self.best_provider.provider_id if self.best_provider else None,
             'provider_stats': {}
         }
@@ -312,3 +399,4 @@ class User:
                 }
 
         return results
+    
