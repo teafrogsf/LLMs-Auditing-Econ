@@ -19,7 +19,7 @@ def evaluate_model(model_name: str) -> Tuple[float, int, int]:
         model_name: 要测试的模型名称
         
     Returns:
-        Tuple[float, int, int]: (EED分数, input tokens数量, output tokens数量)
+        Tuple[float, int, int]: (分数, input tokens数量, output tokens数量)
     """
     if not dataset:
         return 0.0, 0, 0

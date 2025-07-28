@@ -1,5 +1,6 @@
 import math
 import random
+import sys
 from typing import List, Dict
 
 import numpy as np
@@ -10,11 +11,15 @@ from provider import Provider, MODEL_PRICING
 class User:
     """委托人（用户）类"""
 
-    def __init__(self, T: int, K: int, providers: List[Provider]):
+    def __init__(self, T: int, K: int, providers: List[Provider], output_file: str = "output.txt"):
         self.T = T  # 总时间步数
         self.K = K  # 服务商数量
         self.providers = providers
-
+        
+        # 输出文件设置
+        self.output_file = output_file
+        self.original_stdout = sys.stdout
+        
         # 机制参数
         self.B = int(T ** (2 / 3))  # B = T^(2/3)
         self.M = 8 * (T ** (-1 / 3)) * math.log(K * T)  # M = 8T^(-1/3)ln(KT)
@@ -55,6 +60,25 @@ class User:
             return 0.0
         recent_rewards = self.history_rewards[provider_id][-recent_count:]
         return float(np.mean(recent_rewards))
+    
+    def _print_to_file(self, *args, **kwargs):
+        """将输出重定向到文件"""
+        with open(self.output_file, 'a', encoding='utf-8') as f:
+            print(*args, file=f, **kwargs)
+    
+    def _start_file_output(self):
+        """开始将输出重定向到文件"""
+        # 清空输出文件
+        with open(self.output_file, 'w', encoding='utf-8') as f:
+            f.write("=== 机制执行日志 ===\n\n")
+        # 重定向标准输出，设置为无缓冲模式实现实时输出
+        sys.stdout = open(self.output_file, 'a', encoding='utf-8', buffering=1)
+    
+    def _stop_file_output(self):
+        """停止输出重定向，恢复到控制台"""
+        if sys.stdout != self.original_stdout:
+            sys.stdout.close()
+            sys.stdout = self.original_stdout
 
     # --------------------- 机制执行入口 --------------------- #
     def run_mechanism(self) -> Dict:
@@ -63,21 +87,48 @@ class User:
         Returns:
             博弈结果统计
         """
-        print(f"开始运行机制，参数：T={self.T}, K={self.K}, B={self.B}, M={self.M:.4f}, u={self.u:.4f}")
+        # 开始将输出重定向到文件
+        self._start_file_output()
+        
+        try:
+            print(f"开始运行机制，参数：T={self.T}, K={self.K}, B={self.B}, M={self.M:.4f}, u={self.u:.4f}")
 
-        # 阶段1：轮流委托每个服务商B次
-        self._phase1_exploration()
+            # 阶段1：轮流委托每个服务商B次
+            self._phase1_exploration()
 
-        # 阶段2：委托最佳服务商
-        self._phase2_exploitation()
+            # 阶段2：委托最佳服务商
+            self._phase2_exploitation()
 
-        # 阶段3：委托剩余服务商
-        self._phase3_incentive()
+            # 阶段3：委托剩余服务商
+            self._phase3_incentive()
 
-        # 阶段4：基于效用的委托
-        self._phase4_utility_based()
+            # 阶段4：基于效用的委托
+            self._phase4_utility_based()
 
-        return self._get_results()
+            results = self._get_results()
+            
+            # 在文件中输出最终结果
+            print("\n=== 博弈结果 ===")
+            print(f"总时间步数：{results['total_time']}")
+            print(f"实际委托次数：{results['total_delegations']}")
+            print(f"最佳服务商：{results['best_provider']}")
+
+            print("\n各服务商统计：")
+            for provider_id, stats in results['provider_stats'].items():
+                print(f"  服务商{provider_id}:")
+                print(f"    委托次数：{stats['delegations']}")
+                print(f"    总成本：{stats['total_cost']:.4f}")
+                print(f"    总回报：{stats['total_reward']:.4f}")
+                print(f"    平均回报：{stats['avg_reward']:.4f}")
+                print(f"    用户效用：{stats['profit']:.4f}")
+            
+            return results
+        
+        finally:
+            # 恢复标准输出
+            self._stop_file_output()
+            # 在控制台显示完成信息
+            print(f"机制执行完成，详细日志已保存到: {self.output_file}")
 
     # --------------------- 阶段 1 --------------------- #
     def _phase1_exploration(self):
