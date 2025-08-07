@@ -12,7 +12,6 @@ from tenacity import (
     wait_random_exponential,
 )  # for exponential backoff
 
-model_list = ["text-davinci-003","code-davinci-002","gpt-3.5-turbo","gpt-4"]
 parser = argparse.ArgumentParser(description="shortest path")
 parser.add_argument('--model', type=str, default="text-davinci-003", help='name of LM (default: text-davinci-003)')
 parser.add_argument('--mode', type=str, default="easy", help='mode (default: easy)')
@@ -33,7 +32,7 @@ def translate(G, q, args):
     if args.city == 1:
         prompt_folder = "city-prompt"
     if args.prompt in ["CoT", "k-shot","Algorithm","Instruct",'dot1','dot2','ins1','ins2','ins3']:
-        with open("NLGraph/"+ args.prompt + "-prompt.txt", "r") as f:
+        with open("NLGraph/shortest_path/"+ args.prompt + "-prompt.txt", "r") as f:
             exemplar = f.read()
         Q = Q + exemplar + "\n\n\n"
     if args.city == 0:
