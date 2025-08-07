@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 from shortest_path_gen import Generator
 from shortest_path import translate, evaluate
@@ -8,30 +8,26 @@ from llm_client import ExampleLLM
 import networkx as nx
 import argparse
 import random
-from tqdm import tqdm
 import numpy as np
 from datetime import datetime, timedelta, timezone
 
 class ShortestPathRunner:
-    def __init__(self, model_name="deepseek-v3", mode="easy", prompt="none", city=0):
+    def __init__(self, model_name="deepseek-v3", prompt="none", city=0):
         """
         初始化最短路径测试运行器
         
         Args:
-            model_name: 使用的模型名称
-            mode: 难度模式 ("easy" 或 "hard")
+            model_name: 使用的模型名称")
             prompt: 提示技术
             city: 是否使用城市描述 (0或1)
         """
         self.model_name = model_name
-        self.mode = mode
         self.prompt = prompt
         self.city = city
         self.llm = ExampleLLM(model_name)
         
         # 模拟args对象用于兼容现有函数
         self.args = type('Args', (), {
-            'mode': mode,
             'prompt': prompt,
             'city': city,
             'model': model_name
@@ -44,16 +40,12 @@ class ShortestPathRunner:
         Returns:
             tuple: (Graph, query)元组
         """
-        if self.mode == "easy":
-            n_min = 21
-            n_max = 30
-            num_nodes = random.randint(n_min, n_max)  # 固定节点数
-            edge_prob = 0.3  # 固定边概率
-            max_weight = 15
-        else:  # hard
-            num_nodes = 15  # 固定节点数
-            edge_prob = 0.25  # 固定边概率
-            max_weight = 10
+        
+        n_min = 20
+        n_max = 30
+        num_nodes = random.randint(n_min, n_max)  # 固定节点数
+        edge_prob = 0.3  # 固定边概率
+        max_weight = 15
         
         generator = Generator(
             num_of_nodes=num_nodes,
@@ -107,35 +99,29 @@ class ShortestPathRunner:
         print("测试结果统计")
         print("="*50)
         print(f"模型: {results['model_name']}")
-        print(f"模式: {results['mode']}")
         print(f"提示技术: {results['prompt']}")
-        print(f"城市模式: {'是' if results['city'] else '否'}")
         print(f"测试图数量: {results['num_graphs']}")
         print(f"平均得分: {results['mean_score']:.4f}")
-        print(f"标准差: {results['std_score']:.4f}")
         print(f"最高得分: {results['max_score']:.4f}")
         print(f"最低得分: {results['min_score']:.4f}")
         print(f"总输入tokens: {results['total_prompt_tokens']}")
         print(f"总输出tokens: {results['total_completion_tokens']}")
         print("="*50)
 
-def run_single_graph_test():
+def run_single_graph_test(model: str):
     """
     运行单个图的测试
     """
-    # 直接设置参数，不使用命令行解析
-    model_name = "deepseek-v3"
-    mode = "easy"  # 可以改为 "hard"
+    model_name = model
     prompt = "CoT"  # 使用CoT提示
     city = 0
     
     print(f"初始化测试运行器...")
-    print(f"模型: {model_name}, 模式: {mode}, 提示技术: {prompt}, 城市模式: {'是' if city else '否'}")
+    print(f"模型: {model_name}, 提示技术: {prompt}")
     
     # 创建运行器
     runner = ShortestPathRunner(
         model_name=model_name,
-        mode=mode,
         prompt=prompt,
         city=city
     )
@@ -157,7 +143,6 @@ def run_single_graph_test():
     print("测试结果")
     print("="*50)
     print(f"模型: {model_name}")
-    print(f"模式: {mode}")
     print(f"得分: {score:.4f}")
     print(f"输入tokens: {prompt_tokens}")
     print(f"输出tokens: {completion_tokens}")
@@ -187,7 +172,7 @@ def main():
         print(f"\n第{i+1}次测试:")
         print("-" * 30)
         
-        result = run_single_graph_test()
+        result = run_single_graph_test("deepseek-v3")
         
         all_scores.append(result['score'])
         all_prompt_tokens.append(result['prompt_tokens'])
@@ -206,7 +191,6 @@ def main():
     print("10次测试总体统计结果")
     print("="*60)
     print(f"平均得分: {mean_score:.4f}")
-    print(f"标准差: {std_score:.4f}")
     print(f"最高得分: {max_score:.4f}")
     print(f"最低得分: {min_score:.4f}")
     print(f"总输入tokens: {total_prompt_tokens}")

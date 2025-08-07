@@ -1,8 +1,5 @@
-import os
 from random import randint, shuffle, random
 import networkx as nx
-import argparse
-from tqdm import tqdm
 
 class Generator:
     def __init__(self,num_of_nodes = 10, edge_probability = 0.35, max_weight = 4):
@@ -38,30 +35,3 @@ class Generator:
         G, q = self.generate_graph()
         return G, q
 
-if __name__ == "__main__":
-    # 简化为只生成一张简单模式的图
-    print("正在生成一张简单模式的图...")
-    
-    # 使用简单模式的固定参数
-    n_min = 5  # 简单模式：节点数在5-10之间
-    n_max = 10
-    edge_probability = 0.6 # 简单模式的边概率
-    max_weight = 4  # 简单模式的最大权重
-    
-    # 创建生成器并生成图
-    generator = Generator(num_of_nodes=num_of_nodes, edge_probability=edge_probability, max_weight=max_weight)
-    Graph, q = generator.generate()
-    
-    # 输出图的基本信息
-    print(f"生成的图有 {Graph.number_of_nodes()} 个节点，{Graph.number_of_edges()} 条边")
-    print(f"查询的起点和终点：{q[0]} -> {q[1]}")
-    
-    # 显示图的边和权重
-    print("\n图的边和权重：")
-    edge = list(Graph.edges())
-    for i in range(len(Graph.edges())):
-        u, v = edge[i]
-        weight = Graph[u][v]["weight"]
-        print(f"边 {u}-{v}: 权重 {weight}")
-    
-    print("\n图生成完成！")
