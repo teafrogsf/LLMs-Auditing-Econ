@@ -116,7 +116,6 @@ class MaxFlowRunner:
         try:
             matches = re.findall(r'\d+', correct_answer_str)
             correct_answer = int(matches[-1]) if matches else 0
-            print(f"标准答案{correct_answer}")
 
         except:
             correct_answer = 0
@@ -150,9 +149,9 @@ class MaxFlowRunner:
             q = (source, target)
             score = evaluate(llm_answer.lower(), G, q, correct_answer)
 
-            print(f"模型答案：{llm_answer}")
-            print(f"标准答案{correct_answer}")
-            print(f"最终评估：{score}")
+            # print(f"模型答案：{llm_answer}")
+            # print(f"标准答案{correct_answer}")
+            # print(f"最终评估：{score}")
             
             return {
                 'success': True,

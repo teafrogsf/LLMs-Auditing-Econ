@@ -4,9 +4,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 # 获取当前文件的绝对路径
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
-# 添加 shortest_path 子目录到模块搜索路径
-sys.path.append(os.path.join(current_dir, "shortest_path"))
-from shortest_path_runner import run_single_graph_test
+# 添加子目录到模块搜索路径
+sys.path.append(os.path.join(current_dir, "max_flow"))
+from max_flow_runner import run_single_graph_test
 import numpy as np
 import matplotlib.pyplot as plt
 import json
@@ -18,7 +18,7 @@ class MultiModelRunner:
         初始化多模型测试运行器
         """
         # 测试模型列表
-        self.models = ['deepseek-v3','deepseek-r1','gpt-4o','gpt-4o-mini','gpt-35-turbo','o1-mini','o3-mini']
+        self.models = ['deepseek-v3','deepseek-r1','gpt-4o-mini','gpt-35-turbo','o1-mini']
         self.num_runs = 5  # 每个模型运行5次
         self.results = {}
     
@@ -32,7 +32,7 @@ class MultiModelRunner:
         Returns:
             dict: 测试结果
         """
-        print(f"\n开始测试模型: {model_name} (任务: shortest_path)")
+        print(f"\n开始测试模型: {model_name} (任务: max_flow)")
         print("-" * 50)
         
         scores = []
@@ -58,16 +58,14 @@ class MultiModelRunner:
         
         # 计算统计结果
         mean_score = np.mean(scores)
-        std_score = np.std(scores)
         max_score = np.max(scores)
         min_score = np.min(scores)
         
         result = {
             'model_name': model_name,
-            'task_name': 'shortest_path',
+            'task_name': 'max_flow',
             'scores': scores,
             'mean_score': mean_score,
-            'std_score': std_score,
             'max_score': max_score,
             'min_score': min_score,
             'total_prompt_tokens': total_prompt_tokens,
@@ -81,7 +79,7 @@ class MultiModelRunner:
         运行所有模型的测试
         """
 
-        task_name = 'shortest_path'
+        task_name = 'max_flow'
         # 初始化任务结果
         self.results[task_name] = {}
         
@@ -106,34 +104,29 @@ class MultiModelRunner:
         plt.rcParams['font.sans-serif'] = ['SimHei', 'DejaVu Sans']
         plt.rcParams['axes.unicode_minus'] = False
         
-        # 为每个任务创建一个子图
-        num_tasks = len(self.results)
-        fig, axes = plt.subplots(1, num_tasks, figsize=(6*num_tasks, 6))
+        # 获取结果数据
+        task_name = 'max_flow'
+        task_results = self.results[task_name]
         
-        if num_tasks == 1:
-            axes = [axes]
+        models = list(task_results.keys())
+        mean_scores = [task_results[model]['mean_score'] for model in models]
         
-        for idx, (task_name, task_results) in enumerate(self.results.items()):
-            ax = axes[idx]
-            
-            models = list(task_results.keys())
-            mean_scores = [task_results[model]['mean_score'] for model in models]
-            std_scores = [task_results[model]['std_score'] for model in models]
-            
-            # 绘制柱状图
-            bars = ax.bar(models, mean_scores, yerr=std_scores, capsize=5, 
-                         alpha=0.7, color=['#1f77b4', '#ff7f0e'])
-            
-            ax.set_title(f'{task_name} 任务平均得分', fontsize=14, fontweight='bold')
-            ax.set_ylabel('平均得分', fontsize=12)
-            ax.set_xlabel('模型', fontsize=12)
-            ax.grid(True, alpha=0.3)
-            
-            # 在柱子上显示数值
-            for bar, mean_score, std_score in zip(bars, mean_scores, std_scores):
-                height = bar.get_height()
-                ax.text(bar.get_x() + bar.get_width()/2., height + std_score + 0.01,
-                       f'{mean_score:.3f}', ha='center', va='bottom', fontsize=10)
+        # 创建图表
+        fig, ax = plt.subplots(figsize=(8, 6))
+        
+        # 绘制柱状图
+        bars = ax.bar(models, mean_scores, alpha=0.7, color='#1f77b4')
+        
+        # 设置标题和标签
+        ax.set_title('模型平均得分', fontsize=16, fontweight='bold')
+        ax.set_ylabel('平均得分', fontsize=12)
+        ax.set_xlabel('模型名称', fontsize=12)
+        
+        # 在柱子上显示数值
+        for bar, mean_score in zip(bars, mean_scores):
+            height = bar.get_height()
+            ax.text(bar.get_x() + bar.get_width()/2., height + 0.01,
+                   f'{mean_score:.3f}', ha='center', va='bottom', fontsize=12)
         
         plt.tight_layout()
         
@@ -166,7 +159,6 @@ class MultiModelRunner:
                     'task_name': model_result['task_name'],
                     'scores': [float(s) for s in model_result['scores']],
                     'mean_score': float(model_result['mean_score']),
-                    'std_score': float(model_result['std_score']),
                     'max_score': float(model_result['max_score']),
                     'min_score': float(model_result['min_score']),
                     'total_prompt_tokens': model_result['total_prompt_tokens'],
@@ -196,7 +188,7 @@ class MultiModelRunner:
             
             for model_name, result in task_results.items():
                 print(f"  {model_name}:")
-                print(f"    平均得分: {result['mean_score']:.4f} ± {result['std_score']:.4f}")
+                print(f"    平均得分: {result['mean_score']:.4f}")
                 print(f"    得分范围: [{result['min_score']:.4f}, {result['max_score']:.4f}]")
                 print(f"    Token使用: 输入{result['total_prompt_tokens']}, 输出{result['total_completion_tokens']}")
         
