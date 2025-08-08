@@ -30,7 +30,7 @@ class SingletonClient:
             ),
             ]
 
-        self.key_client_map = {"gpt-4o-mini": 0,
+        self.key_client_map = {
                              "gpt-4o": 0,
                              "gpt-4": 0,
                              "gpt-4o-mini": 0,
