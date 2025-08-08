@@ -134,9 +134,7 @@ class MaxFlowRunner:
         
         # 创建提示
         q = (source, target)
-        args = type('Args', (), {
-            'prompt': 'CoT'
-        })()
+        args = type('Args', (), {'prompt': 'CoT'})()
         prompt = translate(G, q, args)
         
         # 调用LLM
@@ -149,9 +147,9 @@ class MaxFlowRunner:
             q = (source, target)
             score = evaluate(llm_answer.lower(), G, q, correct_answer)
 
-            # print(f"模型答案：{llm_answer}")
-            # print(f"标准答案{correct_answer}")
-            # print(f"最终评估：{score}")
+            print(f"模型答案：{llm_answer}")
+            print(f"标准答案{correct_answer}")
+            print(f"最终评估：{score}")
             
             return {
                 'success': True,
@@ -208,58 +206,108 @@ def run_single_graph_test(model_name: str = "deepseek-v3"):
     
     return result
 
-def main():
+
+def run_multi_graph_test(model_name: str = "deepseek-v3"):
     """
-    主函数
+    运行多个图测试
+    
+    Args:
+        model_name: 模型名称
+        
+    Returns:
+        测试结果列表
     """
-    model_name = "deepseek-v3"
-    num_runs = 3
+    runner = MaxFlowRunner(model_name)
     
-    print(f"最大流问题测试 - 模型: {model_name}")
-    print(f"运行次数: {num_runs}")
+    # 检查测试数据是否可用
+    if not runner.test_data:
+        return {
+            'success': False,
+            'error': '没有可用的测试数据',
+            'results': []
+        }
     
-    all_results = []
-    total_correct = 0
-    total_tests = 0
+    # 筛选所有难度为hard的测试样例
+    hard_test_cases = {}
+    for test_id, test_case in runner.test_data.items():
+        if test_case.get('difficulty', '') == 'hard':
+            hard_test_cases[int(test_id)] = test_case
     
-    for run in range(num_runs):
-        print(f"\n{'='*50}")
-        print(f"第 {run + 1} 次运行")
-        print(f"{'='*50}")
-        
-        result = run_single_graph_test(model_name)
-        all_results.append(result)
-        
-        if result['successful_tests'] > 0:
-            total_correct += result['correct_answers']
-            total_tests += result['successful_tests']
-        
-        print(f"\n第 {run + 1} 次运行结果:")
-        print(f"生成结果：{result['correct']}")
-        print(f"模型答案：{result['llm_answer']}, 标准答案：{result['correct_answer']}")
-        print(f"输入tokens: {result['total_prompt_tokens']}, 输出tokens: {result['total_completion_tokens']}")
+    if not hard_test_cases:
+        return {
+            'success': False,
+            'error': '没有找到难度为hard的测试样例',
+            'results': []
+        }
     
-    # 计算总体统计
-    if total_tests > 0:
-        overall_accuracy = total_correct / total_tests
+    # 按照问题编号从最小的开始排序
+    sorted_test_ids = sorted(hard_test_cases.keys())
+    
+    # 选择前5个测试样例
+    selected_test_ids = sorted_test_ids[:5]
+    
+    if len(selected_test_ids) < 5:
+        print(f"警告：只找到 {len(selected_test_ids)} 个hard难度的测试样例，少于要求的5个")
+    
+    results = []
+    total_score = 0
+    successful_tests = 0
+    scores = []
+    total_prompt_tokens = 0
+    total_completion_tokens = 0
+    
+    print(f"开始运行 {len(selected_test_ids)} 个hard难度的测试样例")
+    print(f"选择的测试样例编号: {selected_test_ids}")
+    
+    # 依次运行每个测试样例
+    for i, test_id in enumerate(selected_test_ids, 1):
+        print(f"\n=== 运行第 {i} 个测试样例 (编号: {test_id}) ===")
+        test_case = hard_test_cases[test_id]
         
-        print(f"\n{'='*50}")
-        print(f"总体结果 ({num_runs} 次运行)")
-        print(f"{'='*50}")
-        print(f"总准确率: {overall_accuracy:.2%} ({total_correct}/{total_tests})")
-   
-        # 计算总token消耗
-        total_prompt_tokens = sum(r.get('total_prompt_tokens', 0) for r in all_results)
-        total_completion_tokens = sum(r.get('total_completion_tokens', 0) for r in all_results)
-        print(f"总输入tokens: {total_prompt_tokens}, 总输出tokens: {total_completion_tokens}")
+        # 运行单个测试
+        result = runner.run_single_test(test_case)
+        result['test_id'] = test_id
+        result['test_number'] = i
         
-        # 计算每次运行的准确率
-        accuracies = [r['accuracy'] for r in all_results if r['successful_tests'] > 0]
-        if accuracies:
-            print(f"准确率范围: {min(accuracies):.2%} - {max(accuracies):.2%}")
-            print(f"准确率标准差: {(sum((a - overall_accuracy)**2 for a in accuracies) / len(accuracies))**0.5:.2%}")
-    else:
-        print("\n没有成功的测试结果")
+        results.append(result)
+        
+        if result.get('success', False):
+            successful_tests += 1
+            score = result.get('score', 0)
+            total_score += score
+            scores.append(score)
+            print(f"测试 {i} 完成，得分: {score}")
+        else:
+            scores.append(0)
+            print(f"测试 {i} 失败: {result.get('error', '未知错误')}")
+        
+        # 累计token使用量
+        total_prompt_tokens += result.get('prompt_tokens', 0)
+        total_completion_tokens += result.get('completion_tokens', 0)
+    
+    # 计算统计信息
+    average_score = total_score / len(selected_test_ids) if selected_test_ids else 0
+    max_score = max(scores) if scores else 0
+    min_score = min(scores) if scores else 0
+    
+    summary = {
+        'success': True,
+        'total_tests': len(selected_test_ids),
+        'successful_tests': successful_tests,
+        'failed_tests': len(selected_test_ids) - successful_tests,
+        'total_score': total_score,
+        'average_score': average_score,
+        'max_score': max_score,
+        'min_score': min_score,
+        'scores': scores,
+        'total_prompt_tokens': total_prompt_tokens,
+        'total_completion_tokens': total_completion_tokens,
+        'test_ids': selected_test_ids,
+        'results': results
+    }
+    
+    return summary
+
 
 if __name__ == "__main__":
     run_single_graph_test()

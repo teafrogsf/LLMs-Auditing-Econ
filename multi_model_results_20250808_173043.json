@@ -1,0 +1,84 @@
+{
+  "max_flow": {
+    "deepseek-v3": {
+      "model_name": "deepseek-v3",
+      "task_name": "max_flow",
+      "scores": [
+        0.0,
+        0.0,
+        1.0,
+        0.7647058823529411,
+        0.0
+      ],
+      "mean_score": 0.3529411764705882,
+      "max_score": 1.0,
+      "min_score": 0.0,
+      "total_prompt_tokens": 9330,
+      "total_completion_tokens": 3329
+    },
+    "gpt-4o-mini": {
+      "model_name": "gpt-4o-mini",
+      "task_name": "max_flow",
+      "scores": [
+        0.7857142857142857,
+        0.0,
+        0.0,
+        0.7647058823529411,
+        0.0
+      ],
+      "mean_score": 0.31008403361344533,
+      "max_score": 0.7857142857142857,
+      "min_score": 0.0,
+      "total_prompt_tokens": 9350,
+      "total_completion_tokens": 2731
+    },
+    "gpt-35-turbo": {
+      "model_name": "gpt-35-turbo",
+      "task_name": "max_flow",
+      "scores": [
+        0.0,
+        0.0,
+        1.0,
+        0.47058823529411764,
+        0.9411764705882353
+      ],
+      "mean_score": 0.48235294117647065,
+      "max_score": 1.0,
+      "min_score": 0.0,
+      "total_prompt_tokens": 9350,
+      "total_completion_tokens": 863
+    },
+    "o1-mini": {
+      "model_name": "o1-mini",
+      "task_name": "max_flow",
+      "scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_score": 0.0,
+      "max_score": 0.0,
+      "min_score": 0.0,
+      "total_prompt_tokens": 9923,
+      "total_completion_tokens": 16730
+    },
+    "qwen-max": {
+      "model_name": "qwen-max",
+      "task_name": "max_flow",
+      "scores": [
+        0.7142857142857143,
+        0.8888888888888888,
+        1.0,
+        0.6470588235294118,
+        0.0
+      ],
+      "mean_score": 0.650046685340803,
+      "max_score": 1.0,
+      "min_score": 0.0,
+      "total_prompt_tokens": 9565,
+      "total_completion_tokens": 2945
+    }
+  }
+}
