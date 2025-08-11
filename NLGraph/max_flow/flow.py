@@ -5,6 +5,7 @@ import networkx as nx
 import numpy as np
 import argparse
 import time
+import re
 from datetime import datetime, timedelta, timezone
 from tenacity import (
     retry,
@@ -102,41 +103,36 @@ def log(Q, res1, res2, answer, args):
         f.write("\n")
         print(args, file=f)
 
+
 def evaluate(ans, G, q, std):
-    mode_str = "the maximum flow from node " + str(q[0])+" to node " + str(q[1]) + " is"
-    
-    # 找到最后一个匹配的模式字符串
-    pos = -1
-    start_pos = 0
-    while True:
-        found_pos = ans.find(mode_str, start_pos)
-        if found_pos == -1:
-            break
-        pos = found_pos
-        start_pos = found_pos + 1
-    
-    if pos == -1:
+    """
+    从 <answer>...</answer> 中提取最终答案的数字并与标准答案 std 做比较。
+    """
+    # 1) 提取 <answer> ... </answer> 中的数字
+    pattern = re.compile(r"<\s*answer\s*>\s*([+-]?\d+(?:\.\d+)?)\s*<\s*/\s*answer\s*>",
+                         flags=re.IGNORECASE | re.DOTALL)
+    matches = pattern.findall(ans)
+    if not matches:
+        print("没有在 <answer> 标签中找到数值")
         return 0
-    score = 1
-    pos = pos + len(mode_str) + 1
-    i = pos
-    while i < len(ans) and not (ans[i] >= '0' and ans[i] <='9'):
-        i+=1
-    
-    if i >= len(ans):
-        return 0  # 没有找到数字
-    
-    num = 0
-    while i < len(ans) and ans[i] >= '0' and ans[i] <='9':
-        num = num*10 + int(ans[i])
-        i+=1
-    
-    # 部分得分制：PC = t/s (if t ≤ s), 0 (if t > s)
+
+    raw = matches[-1]  # 若有多个 <answer>，取最后一个
+    # 2) 将数值转为 float；若是形如 "10.0" 仍可后续按需要转 int
+    try:
+        num = float(raw)
+    except ValueError:
+        print("提取到的 <answer> 不是合法数字：", raw)
+        return 0
+
+    if std == 0:
+        return 1 if abs(num) == 0 else 0
+
     if num <= std:
-        score = num / std if std > 0 else 0
+        score = num / std
     else:
+        print("没得分（回答大于标准答案）")
         score = 0
-    
+
     return score
 
 def main():
