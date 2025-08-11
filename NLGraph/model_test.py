@@ -18,8 +18,8 @@ class MultiModelRunner:
         初始化多模型测试运行器
         """
         # 测试模型列表
-        self.models = ['o1-mini']
-        self.num_runs = 1  # 每个模型运行1次（因为run_multi_graph_test已经运行5个测试样例）
+        self.models = ['deepseek-v3','gpt-4o-mini','gpt-35-turbo','o1-mini','qwen-max']
+        self.num_runs = 1  # 每个模型运行1次（因为run_multi_graph_test已经运行6个测试样例）
         self.results = {}
     
     def run_single_model_test(self, model_name):
