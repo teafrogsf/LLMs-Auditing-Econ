@@ -31,10 +31,12 @@ class MaxFlowRunner:
             tuple: (Graph, query)元组
         """
         
-        n_min = 10
+        n_min = 15
         n_max = 20
         num_nodes = random.randint(n_min, n_max)  # 随机节点数
-        edge_prob = 0.35  # 边概率
+        prob_min = 0.25
+        prob_max = 0.3  # 边概率
+        edge_prob = random.uniform(prob_min, prob_max)
         max_capacity = 20  # 最大容量
         
         generator = Generator(
@@ -58,7 +60,7 @@ class MaxFlowRunner:
         Returns:
             测试结果
         """
-        print(f"开始进行测试：")
+        # print(f"开始进行测试：")
         source, target = q
         
         # 计算正确答案（使用NetworkX的最大流算法）
@@ -76,17 +78,17 @@ class MaxFlowRunner:
         prompt = translate(G, q, args)
         
         # 调用LLM
-        print(f"开始调用LLM")
+        # print(f"开始调用LLM")
         try:
             llm_answer, prompt_tokens, completion_tokens = self.llm.call_llm(prompt)
-            print(f"LLM调用完成,开始评估答案...")
+            # print(f"LLM调用完成,开始评估答案...")
             
             # 评估答案
             score = evaluate(llm_answer.lower(), G, q, correct_answer)
 
-            print(f"模型答案：{llm_answer}")
-            print(f"标准答案：{correct_answer}")
-            print(f"最终评估：{score}")
+            # print(f"模型答案：{llm_answer}")
+            # print(f"标准答案：{correct_answer}")
+            # print(f"最终评估：{score}")
             
             return {
                 'success': True,
@@ -107,7 +109,7 @@ class MaxFlowRunner:
     
     
 
-def run_single_graph_test(model_name: str = "deepseek-v3"):
+def run_single_graph_test(model_name: str):
     """
     运行单个图测试
     
@@ -117,19 +119,19 @@ def run_single_graph_test(model_name: str = "deepseek-v3"):
     Returns:
         测试结果
     """
-    print(f"模型: {model_name}")
+    # print(f"模型: {model_name}")
     
     # 创建运行器
     runner = MaxFlowRunner(model_name)
     
-    print(f"正在生成测试图...")
+    # print(f"正在生成测试图...")
     # 生成单个测试图
     G, q = runner.generate_single_test_graph()
     
-    print(f"测试图生成完成！")
-    print(f"图信息: {G.number_of_nodes()}个节点, {G.number_of_edges()}条边")
-    print(f"查询: 从节点{q[0]}到节点{q[1]}的最大流")
-    print(f"开始运行测试...")
+    # print(f"测试图生成完成！")
+    # print(f"图信息: {G.number_of_nodes()}个节点, {G.number_of_edges()}条边")
+    # print(f"查询: 从节点{q[0]}到节点{q[1]}的最大流")
+    # print(f"开始运行测试...")
     
     # 运行单个测试
     result = runner.run_single_test(G, q)
@@ -137,21 +139,19 @@ def run_single_graph_test(model_name: str = "deepseek-v3"):
     return result
 
 
-def run_multi_graph_test(model_name: str = "deepseek-v3", num_tests: int = 5):
+def run_multi_graph_test(model_name: str, num_tests: int = 100):
     """
     运行多个图测试
     
     Args:
         model_name: 模型名称
-        num_tests: 测试图的数量
+        num_tests: 测试数量，默认100个
         
     Returns:
-        测试结果
+        测试结果列表
     """
-    print(f"初始化测试运行器...")
-    print(f"模型: {model_name}")
-    
-    # 创建运行器
+    import threading
+    from concurrent.futures import ThreadPoolExecutor, as_completed
     runner = MaxFlowRunner(model_name)
     
     results = []
@@ -161,41 +161,78 @@ def run_multi_graph_test(model_name: str = "deepseek-v3", num_tests: int = 5):
     total_prompt_tokens = 0
     total_completion_tokens = 0
     
-    print(f"开始运行 {num_tests} 个测试样例")
+    # 初始化分数记录列表和锁
+    score_records = []
+    file_lock = threading.Lock()
+    stats_lock = threading.Lock()
     
-    # 依次运行每个测试样例
-    for i in range(1, num_tests + 1):
-        print(f"\n=== 运行第 {i} 个测试样例 ===")
+    def run_single_test_wrapper(test_number):
+        """单个测试的包装函数，用于并行执行"""
+        print(f"\n=== 运行第 {test_number} 个测试样例 ===")
         
         # 生成测试图
         G, q = runner.generate_single_test_graph()
-        print(f"图信息: {G.number_of_nodes()}个节点, {G.number_of_edges()}条边")
-        print(f"查询: 从节点{q[0]}到节点{q[1]}的最大流")
+        
+        print(f"测试 {test_number}: 图信息: {G.number_of_nodes()}个节点, {G.number_of_edges()}条边")
+        print(f"测试 {test_number}: 查询: 从节点{q[0]}到节点{q[1]}的最大流")
         
         # 运行单个测试
         result = runner.run_single_test(G, q)
-        result['test_number'] = i
-        
-        results.append(result)
+        result['test_number'] = test_number
         
         if result.get('success', False):
-            successful_tests += 1
             score = result.get('score', 0)
-            total_score += score
-            scores.append(score)
-            print(f"测试 {i} 完成，得分: {score}")
+            print(f"测试 {test_number} 完成，得分: {score}")
         else:
-            scores.append(0)
-            print(f"测试 {i} 失败: {result.get('error', '未知错误')}")
+            score = 0
+            print(f"测试 {test_number} 失败: {result.get('error', '未知错误')}")
+    
+        score_record = f"({test_number}:{score})"
+        with file_lock:
+            with open('max_flow_scores.txt', 'a', encoding='utf-8') as f:
+                f.write(f"{model_name}:{score_record}\n")
+            score_records.append(score_record)
         
-        # 累计token使用量
-        total_prompt_tokens += result.get('prompt_tokens', 0)
-        total_completion_tokens += result.get('completion_tokens', 0)
+        # 更新统计信息
+        with stats_lock:
+            nonlocal total_score, successful_tests, total_prompt_tokens, total_completion_tokens
+            results.append(result)
+            if result.get('success', False):
+                successful_tests += 1
+                total_score += score
+                scores.append(score)
+            else:
+                scores.append(0)
+            
+            total_prompt_tokens += result.get('prompt_tokens', 0)
+            total_completion_tokens += result.get('completion_tokens', 0)
+        
+        return result
+    
+    test_numbers = list(range(1, num_tests + 1))
+    
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        # 提交所有任务
+        future_to_test = {executor.submit(run_single_test_wrapper, test_number): test_number for test_number in test_numbers}
+        
+        # 等待所有任务完成
+        for future in as_completed(future_to_test):
+            test_number = future_to_test[future]
+            try:
+                result = future.result()
+            except Exception as exc:
+                print(f'测试 {test_number} 产生异常: {exc}')
     
     # 计算统计信息
     average_score = total_score / num_tests if num_tests > 0 else 0
     max_score = max(scores) if scores else 0
     min_score = min(scores) if scores else 0
+    
+    # 所有测试完成后，添加分隔行
+    with open('max_flow_scores.txt', 'a', encoding='utf-8') as f:
+        f.write('\n\n\n')
+    
+    print(f"所有测试完成")
     
     summary = {
         'success': True,
@@ -216,4 +253,4 @@ def run_multi_graph_test(model_name: str = "deepseek-v3", num_tests: int = 5):
 
 
 if __name__ == "__main__":
-    run_single_graph_test()
+    run_single_graph_test("deepseek-v3")
