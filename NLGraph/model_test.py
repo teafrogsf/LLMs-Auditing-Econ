@@ -18,7 +18,7 @@ class MultiModelRunner:
         初始化多模型测试运行器
         """
         # 测试模型列表
-        self.models = ['deepseek-v3','gpt-4o-mini','gpt-35-turbo','o1-mini','qwen-max']
+        self.models = ['gpt-35-turbo','gpt-4o','o3-mini','deepseek-v3']
         self.num_runs = 1  # 每个模型运行1次（因为run_multi_graph_test已经运行6个测试样例）
         self.results = {}
     
@@ -37,7 +37,7 @@ class MultiModelRunner:
         
         try:
             # 使用run_multi_graph_test运行5个hard难度的测试样例
-            multi_result = run_multi_graph_test(model_name)
+            multi_result = run_multi_graph_test(model_name,100)
             
             if not multi_result.get('success', True):
                 print(f"  运行出错: {multi_result.get('error', '未知错误')}")
