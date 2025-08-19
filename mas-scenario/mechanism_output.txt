@@ -1,8 +1,0 @@
-=== 机制执行日志 ===
-
-开始运行机制，参数：T=10, K=3, B=4, M=12.6296, u=15.9322
-阶段1：轮流委托每个服务商4次
-  委托服务商1 4次
-EED格式预测答案: \lambda_D = \sqrt{\frac{\varepsilon_0 kT}{2n_0 e^2}}.
-EED格式标准答案: \lambda_D = \sqrt{\frac{k T \varepsilon_0}{2 e^2 n_0}}
-Something happened during simplification,returning zero

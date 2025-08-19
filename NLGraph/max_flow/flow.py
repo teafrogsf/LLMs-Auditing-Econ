@@ -116,7 +116,8 @@ def evaluate(ans, G, q, std):
         print("没有在 <answer> 标签中找到数值")
         return 0
 
-    raw = matches[-1]  # 若有多个 <answer>，取最后一个
+    raw = matches[-1]  # 若有多个 <answer>，取最后一个 
+    print(f"模型答案：{raw}")
     # 2) 将数值转为 float；若是形如 "10.0" 仍可后续按需要转 int
     try:
         num = float(raw)

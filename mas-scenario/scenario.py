@@ -17,15 +17,15 @@ def create_example_scenario():
     provider_settings = [
         # GPT系列
         dict(
-            model_keys=["gpt-4","gpt-4o", "gpt-35-turbo"],
+            model_keys=["o1","o3-mini", "o1-mini"],
         ),
         # Qwen系列
         dict(
-            model_keys=["qwen-max", "gpt-4o-mini"],
+            model_keys=["deepseek-r1", "gpt-4o-mini","deepseek-v3"],
         ),
         # DeepSeek系列
         dict(
-            model_keys=["deepseek-r1", "deepseek-v3"],
+            model_keys=["qwen-max", "gpt-4o", "gpt-35-turbo"],
         ),
     ]
 
@@ -35,7 +35,7 @@ def create_example_scenario():
         config = ProviderConfig(
             provider_id=i + 1,
             price=0.0,
-            mu=0.1,  # 初始mu值设为默认值，将在第一轮后根据reward均值更新
+            mu=5,  # 初始mu值设为默认值，将在第一轮后根据reward均值更新
             model_keys=setting["model_keys"],
             model_costs=[],
         )

@@ -16,8 +16,9 @@ from utils import evaluate_model
 MODEL_PRICING = {
     "gpt-4o": {"input": 2.5/1_000_000, "output": 10/1_000_000},
     "gpt-4": {"input": 30/1_000_000, "output": 60/1_000_000},
-     "gpt-4o-mini": {"input": 0.15/1_000_000, "output": 0.6/1_000_000},
+    "gpt-4o-mini": {"input": 0.15/1_000_000, "output": 0.6/1_000_000},
     "o1-mini": {"input": 1.1/1_000_000, "output": 4.4/1_000_000},
+    "o1": {"input": 15/1_000_000, "output": 60/1_000_000},
     "o3-mini": {"input": 1.1/1_000_000, "output": 4.4/1_000_000},
     "gpt-35-turbo": {"input": 0.5/1_000_000, "output": 1.5/1_000_000},
     "qwen-max": {"input": 1.6/1_000_000, "output": 6.4/1_000_000},
@@ -62,9 +63,9 @@ class Provider:
         """
         设置当前时间步的成本，根据当前时间步t和历史真实使用模型列表计算
         其中η：
-        - provider1: η = 0.5
-        - provider2: η = 0.3  
-        - provider3: η = 0.7
+        - provider1: η = 0.2
+        - provider2: η = 0.6
+        - provider3: η = 0.4
         
         Args:
             t: 当前时间步
@@ -75,9 +76,9 @@ class Provider:
         """
         # 定义不同provider的η值
         eta_values = {
-            1: 0.5,  # provider1
-            2: 0.3,  # provider2
-            3: 0.7   # provider3
+            1: 0.2,  # provider1
+            2: 0.6,  # provider2
+            3: 0.4   # provider3
         }
         
         # 获取当前provider的η值，默认为1.0
@@ -137,12 +138,11 @@ class Provider:
     def get_normal_model_key(self) -> str:
         """
         获取服务商正常被要求使用的模型
-        服务商1: gpt-4o, 服务商2: gpt-4o-mini, 服务商3: deepseek-v3
         """
         normal_models = {
-            1: "gpt-4o",
+            1: "o3-mini",
             2: "gpt-4o-mini", 
-            3: "deepseek-v3"
+            3: "gpt-4o"
         }
         return normal_models.get(self.provider_id, self.model_keys[0])
         
