@@ -22,10 +22,13 @@ class User:
         self.original_stdout = sys.stdout
 
         # 机制参数
-        self.B = int(T ** (2 / 3))  # B = T^(2/3)
-        self.M = 8 * (T ** (-1 / 3)) * math.log(K * T)  # M = 8T^(-1/3)ln(KT)
+        self.epsilon = 0.2
+        self.B = int(T ** (2 * self.epsilon))  # B = T^(2ϵ)
+        self.M = (T ** (- self.epsilon)) * math.log(K * T)  # M = T^(-ϵ)ln(KT)
         min_mu = min(p.mu for p in providers)
-        self.u = -math.log(min_mu) + 1 + self.M  # u = -log(min_i μ_i) + 1 + M
+        max_mu = max(p.mu for p in providers)
+        self.delta_1 = -math.log(min_mu) + 2 + self.M  # δ1 = -log(min_i μ_i) + 2 + M
+        self.delta_2 = math.log(max_mu) # δ2 = log(max_i μ_i)
 
         # 博弈历史
         self.delegation_history = []  # 委托历史
@@ -39,15 +42,19 @@ class User:
 
         # 阶段1结果
         self.avg_rewards = {}  # 各服务商平均回报
+        self.avg_utilities = {}  # 各服务商平均utility
         self.best_provider = None
         self.second_best_reward = 0
+        self.second_best_utility = 0
         self.second_best_provider = None
         
         # 历史回报记录 - 按服务商分组
         self.history_rewards = {}  # 按provider_id存储各服务商的历史回报
-        # 初始化每个服务商的历史回报列表
+        self.history_utilities = {}  # 按provider_id存储各服务商的历史utility
+        # 初始化每个服务商的历史回报和utility列表
         for provider in providers:
             self.history_rewards[provider.provider_id] = []
+            self.history_utilities[provider.provider_id] = []
     
     def get_average_reward(self, provider_id: int) -> float:
         """获取指定服务商的历史平均回报"""
@@ -61,6 +68,19 @@ class User:
             return 0.0
         recent_rewards = self.history_rewards[provider_id][-recent_count:]
         return float(np.mean(recent_rewards))
+    
+    def get_average_utility(self, provider_id: int) -> float:
+        """获取指定服务商带来的的历史平均utility"""
+        if provider_id not in self.history_utilities or not self.history_utilities[provider_id]:
+            return 0.0
+        return float(np.mean(self.history_utilities[provider_id]))
+
+    def get_recent_average_utility(self, provider_id: int, recent_count: int) -> float:
+        """获取指定服务商带来的最近n次的平均utility"""
+        if provider_id not in self.history_utilities or not self.history_utilities[provider_id]:
+            return 0.0
+        recent_utilities = self.history_utilities[provider_id][-recent_count:]
+        return float(np.mean(recent_utilities))
     
     def _start_file_output(self):
         """开始将输出重定向到文件"""
@@ -83,7 +103,7 @@ class User:
         self._start_file_output()
         
         self.mechanism = Mechanism()
-        print(f"开始运行机制，参数：T={self.T}, K={self.K}, B={self.B}, M={self.M:.4f}, u={self.u:.4f}")
+        print(f"开始运行机制，参数：T={self.T}, K={self.K}, B={self.B}, M={self.M:.4f}, δ1={self.delta_1:.4f}, δ2={self.delta_2:.4f}")
 
         # 阶段1：轮流委托每个服务商B次
         self._phase1_exploration()

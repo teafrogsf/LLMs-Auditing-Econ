@@ -87,8 +87,8 @@ class MaxFlowRunner:
             score = evaluate(llm_answer.lower(), G, q, correct_answer)
 
             # print(f"模型答案：{llm_answer}")
-            # print(f"标准答案：{correct_answer}")
-            # print(f"最终评估：{score}")
+            print(f"标准答案：{correct_answer}")
+            print(f"最终评估：{score}")
             
             return {
                 'success': True,
@@ -173,8 +173,8 @@ def run_multi_graph_test(model_name: str, num_tests: int = 100):
         # 生成测试图
         G, q = runner.generate_single_test_graph()
         
-        print(f"测试 {test_number}: 图信息: {G.number_of_nodes()}个节点, {G.number_of_edges()}条边")
-        print(f"测试 {test_number}: 查询: 从节点{q[0]}到节点{q[1]}的最大流")
+        # print(f"测试 {test_number}: 图信息: {G.number_of_nodes()}个节点, {G.number_of_edges()}条边")
+        # print(f"测试 {test_number}: 查询: 从节点{q[0]}到节点{q[1]}的最大流")
         
         # 运行单个测试
         result = runner.run_single_test(G, q)

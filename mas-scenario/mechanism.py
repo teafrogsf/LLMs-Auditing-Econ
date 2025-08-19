@@ -39,14 +39,16 @@ class Mechanism:
                     'total_tokens': prompt_tokens + completion_tokens
                 })
                 
-                # 记录该服务商的历史回报
+                # 记录该服务商的历史reward和utility
                 user.history_rewards[provider.provider_id].append(reward)
+                user.history_utilities[provider.provider_id].append(utility)
 
                 user.current_time += 1
 
-        # 计算平均回报
+        # 计算平均reward和平均utility
         for provider in user.providers:
             user.avg_rewards[provider.provider_id] = user.get_average_reward(provider.provider_id)
+            user.avg_utilities[provider.provider_id] = user.get_average_utility(provider.provider_id)
 
         # 第一轮后更新各服务商的mu值
         print("\n  第一轮完成，更新各服务商的mu值：")
@@ -61,24 +63,25 @@ class Mechanism:
         user.u = -math.log(min_mu) + 1 + user.M  # u = -log(min_i μ_i) + 1 + M
         print(f"  更新后的u值：{user.u:.4f}")
 
-        # 找到最佳服务商
-        best_reward = max(user.avg_rewards.values())
-        user.best_provider = max(
-            [p for p in user.providers if user.avg_rewards[p.provider_id] == best_reward],
-            key=lambda p: p.provider_id
-        )
+        # 找到最佳服务商（基于utility）
+        best_utility = max(user.avg_utilities.values())
+        best_providers = [p for p in user.providers if user.avg_utilities[p.provider_id] == best_utility]
+        user.best_provider = random.choice(best_providers)
 
-        # 找到第二好的回报
-        rewards = list(user.avg_rewards.values())
-        rewards.remove(best_reward)
-        user.second_best_reward = max(rewards) if rewards else 0
+        # 找到第二好的utility
+        utilities = list(user.avg_utilities.values())
+        utilities.remove(best_utility)
+        user.second_best_utility = max(utilities) if utilities else 0
         user.second_best_provider = max(
-            [p for p in user.providers if user.avg_rewards[p.provider_id] == user.second_best_reward],
+            [p for p in user.providers if user.avg_utilities[p.provider_id] == user.second_best_utility],
             key=lambda p: p.provider_id
-        ) if rewards else None
+        ) if utilities else None
+        
+        # 保持原有的second_best_reward用于兼容性
+        user.second_best_reward = user.avg_rewards[user.second_best_provider.provider_id] if user.second_best_provider else 0
 
-        print(f"  阶段1完成，最佳服务商：{user.best_provider.provider_id if user.best_provider else None}，平均回报：{best_reward:.4f}")
-        print(f"  第二好回报：{user.second_best_reward:.4f}")
+        print(f"  阶段1完成，最佳服务商：{user.best_provider.provider_id if user.best_provider else None}，平均效用：{best_utility:.4f}")
+        print(f"  第二好效用：{user.second_best_utility:.4f}")
 
         user.phase1_completed = True
 
@@ -93,8 +96,8 @@ class Mechanism:
 
         print(f"阶段2：委托最佳服务商{user.best_provider.provider_id}")
 
-        threshold = user.second_best_reward - user.M
-        R = max(0, user.T - (user.u + 3) * user.B * user.K)
+        threshold = user.second_best_utility - user.M
+        R = max(0, user.T - (max(user.delta_1,user.delta_2) + 3) * user.B * user.K)
         remaining_delegations = min(R, user.T - user.current_time)
 
         print(f"  计划委托{remaining_delegations}次，阈值：{threshold:.4f}")
@@ -104,7 +107,7 @@ class Mechanism:
 
         while delegation_count < remaining_delegations and user.current_time < user.T:
             # 阶段2委托最优服务商
-            result = user.best_provider.delegate_provider(phase=2, t=user.current_time, second_best_reward=user.second_best_reward, R=remaining_delegations)
+            result = user.best_provider.delegate_provider(phase=2, t=user.current_time, second_best_reward=user.second_best_utility, R=remaining_delegations)
             reward = result["reward"]
             price = result["price"]
             prompt_tokens, completion_tokens = result["tokens"]
@@ -119,15 +122,17 @@ class Mechanism:
                 'total_tokens': prompt_tokens + completion_tokens
             })
             
-            # 记录该服务商的历史回报
+            # 记录该服务商的历史回报和utility
+            utility = reward - price
             user.history_rewards[user.best_provider.provider_id].append(reward)
+            user.history_utilities[user.best_provider.provider_id].append(utility)
             
             delegation_count += 1
             user.current_time += 1
             if delegation_count >= user.B and user.best_provider is not None:
-                recent_avg = user.get_recent_average_reward(user.best_provider.provider_id, user.B)
-                if recent_avg < threshold:
-                    print(f"  在{delegation_count}次委托后停止，最近平均回报：{recent_avg:.4f} < {threshold:.4f}")
+                recent_avg_utility = user.get_recent_average_utility(user.best_provider.provider_id, user.B)
+                if recent_avg_utility < threshold:
+                    print(f"  在{delegation_count}次委托后停止，最近平均效用：{recent_avg_utility:.4f} < {threshold:.4f}")
                     stopped_early = True
                     break
 
@@ -151,8 +156,10 @@ class Mechanism:
                     'total_tokens': prompt_tokens + completion_tokens
                 })
                 
-                # 记录该服务商的历史回报
+                # 记录该服务商的历史回报和utility
+                utility = reward - price
                 user.history_rewards[user.best_provider.provider_id].append(reward)
+                user.history_utilities[user.best_provider.provider_id].append(utility)
 
                 user.current_time += 1
 
@@ -167,8 +174,8 @@ class Mechanism:
 
         # 委托除最优服务商外的其他服务商
         for provider in user.providers:
-        #     if user.current_time >= user.T:
-        #         break
+            if user.current_time >= user.T:
+                break
                 
             # 跳过最优服务商
             if user.best_provider and provider.provider_id == user.best_provider.provider_id:
@@ -194,8 +201,10 @@ class Mechanism:
                     'total_tokens': prompt_tokens + completion_tokens
                 })
                 
-                # 记录该服务商的历史回报
+                # 记录该服务商的历史回报和utility
+                utility = reward - price
                 user.history_rewards[provider.provider_id].append(reward)
+                user.history_utilities[provider.provider_id].append(utility)
 
                 user.current_time += 1
 
@@ -209,8 +218,8 @@ class Mechanism:
         print("阶段4：基于效用的委托")
 
         for provider in user.providers:
-        #     if user.current_time >= user.T:
-        #         break
+            if user.current_time >= user.T:
+                break
 
             avg_reward = user.avg_rewards[provider.provider_id]
             # 确保对数为正数
@@ -219,7 +228,7 @@ class Mechanism:
                 print(f"  服务商{provider.provider_id}的回报差值{reward_diff:.4f} <= 0，跳过")
                 continue
 
-            utility = user.u + math.log(reward_diff)
+            utility = user.delta_1 + math.log(reward_diff)
 
             if utility >= 0:
                 # 计算委托次数
@@ -247,8 +256,10 @@ class Mechanism:
                         'total_tokens': prompt_tokens + completion_tokens
                     })
                     
-                    # 记录该服务商的历史回报
+                    # 记录该服务商的历史回报和utility
+                    utility_value = reward - price
                     user.history_rewards[provider.provider_id].append(reward)
+                    user.history_utilities[provider.provider_id].append(utility_value)
 
                     user.current_time += 1
 
@@ -273,8 +284,10 @@ class Mechanism:
                                 'total_tokens': prompt_tokens + completion_tokens
                             })
                             
-                            # 记录该服务商的历史回报
+                            # 记录该服务商的历史回报和utility
+                            utility_value = reward - price
                             user.history_rewards[provider.provider_id].append(reward)
+                            user.history_utilities[provider.provider_id].append(utility_value)
 
                             user.current_time += 1
 
