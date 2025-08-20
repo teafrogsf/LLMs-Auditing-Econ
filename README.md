@@ -3,12 +3,19 @@
  
  ## NLGraph
  在此文件夹中，包含了不同NLGraph问题的文件夹，如max_flow,shortest_path问题等。这些文件夹提供了用于评估模型的代码。以max_flow文件夹举例，文件夹包括：
+ 
  max_flow/
+ 
 ├── CoT-prompt.txt
+
 ├── flow_gen.py
+
 ├── flow.py
+
 ├── main.json
+
 └── max_flow_runner.py
+
 其中`flow_gen.py`用于生成最大流问题所用图，`flow.py`用于形成prompt以及评估LLM的回答，`main.json`为已经生成好的最大流问题数据集，`max_flow_runner.py`为其他文件使用一个完整的图生成->评估LLM回答->得到评估分数及其他数据提供接口
 
 ## mas-scenario
