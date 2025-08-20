@@ -36,9 +36,9 @@ class User:
 
         # 阶段记录
         self.phase1_completed = False
-        self.phase2_completed = False
+        self.phase2_completed_1 = False
+        self.phase2_completed_2 = False
         self.phase3_completed = False
-        self.phase4_completed = False
 
         # 阶段1结果
         self.avg_rewards = {}  # 各服务商平均回报
@@ -111,11 +111,11 @@ class User:
         # 阶段2：委托最佳服务商
         self._phase2_exploitation()
 
-        # 阶段3：委托剩余服务商
-        self._phase3_incentive()
+        # 委托剩余服务商
+        self._phase2_incentive()
 
-        # 阶段4：基于效用的委托
-        self._phase4_utility_based()
+        # 阶段3：基于效用的委托
+        self._phase3_utility_based()
 
         return self._get_results()
 
@@ -128,13 +128,13 @@ class User:
         """阶段2：利用阶段 - 通过mechanism委托"""
         self.mechanism.phase2_exploitation(self)
 
-    def _phase3_incentive(self):
+    def _phase2_incentive(self):
         """阶段3：激励阶段 - 通过mechanism委托"""
-        self.mechanism.phase3_incentive(self)
+        self.mechanism.phase2_incentive(self)
 
-    def _phase4_utility_based(self):
+    def _phase3_utility_based(self):
         """阶段4：基于效用的委托 - 通过mechanism委托"""
-        self.mechanism.phase4_utility_based(self)
+        self.mechanism.phase3_utility_based(self)
 
     def _get_results(self) -> Dict:
         """获取博弈结果统计"""
@@ -142,9 +142,9 @@ class User:
             'total_time': self.T,
             'total_delegations': len(self.delegation_history),
             'phase1_completed': self.phase1_completed,
-            'phase2_completed': self.phase2_completed,
+            'phase2_completed_1': self.phase2_completed_1,
+            'phase2_completed_2': self.phase2_completed_2,
             'phase3_completed': self.phase3_completed,
-            'phase4_completed': self.phase4_completed,
             'best_provider': self.best_provider.provider_id if self.best_provider else None,
             'provider_stats': {}
         }

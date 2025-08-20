@@ -3,6 +3,7 @@ import numpy as np
 import random
 import sys
 import os
+import threading
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 
@@ -57,6 +58,9 @@ class Provider:
         self.prompt_tokens_by_time = []  # 每个时间步的input tokens
         self.completion_tokens_by_time = []  # 每个时间步的output tokens
         self.model_idx_by_time = []  # 每个时间步使用的模型索引
+        
+        # 线程安全锁
+        self._lock = threading.Lock()
         
 
     def set_cost(self, t: int, mechanism_info: Optional[Dict] = None) -> float:
@@ -206,7 +210,11 @@ class Provider:
                 
             threshold = R * second_best_reward
             
-            if self.cumulative_reward < threshold:
+            # 线程安全地读取cumulative_reward
+            with self._lock:
+                current_cumulative_reward = self.cumulative_reward
+            
+            if current_cumulative_reward < threshold:
                 # 使用真实模型
                 model_key = self.get_normal_model_key()
                 model_idx = self.model_keys.index(model_key)
@@ -224,13 +232,24 @@ class Provider:
         from utils import evaluate_model
         reward, prompt_tokens, completion_tokens = evaluate_model(model_key)
         
-        # 更新累积reward
-        self.cumulative_reward += reward
-        
-        # 按时间步存储token使用情况和模型索引
-        self.prompt_tokens_by_time.append(prompt_tokens)
-        self.completion_tokens_by_time.append(completion_tokens)
-        self.model_idx_by_time.append(model_idx)
+        # 使用线程锁保护共享数据的访问
+        with self._lock:
+            # 更新累积reward
+            self.cumulative_reward += reward
+            
+            # 按时间步存储token使用情况和模型索引
+            # 确保列表足够长以容纳当前时间步
+            while len(self.prompt_tokens_by_time) <= t:
+                self.prompt_tokens_by_time.append(0)
+            while len(self.completion_tokens_by_time) <= t:
+                self.completion_tokens_by_time.append(0)
+            while len(self.model_idx_by_time) <= t:
+                self.model_idx_by_time.append(0)
+                
+            # 按时间步索引存储数据
+            self.prompt_tokens_by_time[t] = prompt_tokens
+            self.completion_tokens_by_time[t] = completion_tokens
+            self.model_idx_by_time[t] = model_idx
         
         # 计算价格，使用当前时间步
         price = self.get_price(t)
