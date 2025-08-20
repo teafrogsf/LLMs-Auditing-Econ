@@ -6,8 +6,8 @@ from typing import Dict, List, Optional, Tuple
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from llm_client import ExampleLLM
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "NLGraph", "max_flow"))
-from max_flow_runner import run_single_graph_test
+sys.path.append(os.path.join(os.path.dirname(__file__), "datasets", "nl_graph", "max_flow"))
+from max_flow_evaluator import run_single_graph_test
 
 def evaluate_model(model_name: str) -> Tuple[float, int, int]:
     """使用指定模型在数据集中随机选择样本进行评估
