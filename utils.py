@@ -22,7 +22,7 @@ def evaluate_model(model_name: str) -> Tuple[float, int, int]:
     result = run_single_graph_test(model_name)
     
     # 提取返回值
-    score = result.get('score', 0.0)*20 # reward放大20倍
+    score = result.get('score', 0.0) * 20 # reward放大20倍
     prompt_tokens = result.get('prompt_tokens', 0)
     completion_tokens = result.get('completion_tokens', 0)
     

@@ -10,7 +10,7 @@ def create_example_scenario():
     np.random.seed(42)
     random.seed(42)
 
-    T = 10  # 总时间步数
+    T = 1000  # 总时间步数
     K = 3     # 服务商数量
 
     # 配置每个服务商的模型
@@ -54,7 +54,7 @@ def create_example_scenario():
     for provider_id, stats in results['provider_stats'].items():
         print(f"  服务商{provider_id}:")
         print(f"    委托次数：{stats['delegations']}")
-        print(f"    总成本：{stats['total_cost']:.4f}")
+        print(f"    总价格：{stats['total_cost']:.4f}")
         print(f"    总回报：{stats['total_reward']:.4f}")
         print(f"    平均回报：{stats['avg_reward']:.4f}")
         print(f"    用户效用：{stats['profit']:.4f}")

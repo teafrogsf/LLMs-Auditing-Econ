@@ -113,8 +113,8 @@ def evaluate(ans, G, q, std):
                          flags=re.IGNORECASE | re.DOTALL)
     matches = pattern.findall(ans)
     if not matches:
-        print("没有在 <answer> 标签中找到数值")
-        return 0
+        # print("没有在 <answer> 标签中找到数值")
+        return 0.0
 
     raw = matches[-1]  # 若有多个 <answer>，取最后一个 
     print(f"模型答案：{raw}")
@@ -122,8 +122,8 @@ def evaluate(ans, G, q, std):
     try:
         num = float(raw)
     except ValueError:
-        print("提取到的 <answer> 不是合法数字：", raw)
-        return 0
+        # print("提取到的 <answer> 不是合法数字：", raw)
+        return 0.0
 
     if std == 0:
         return 1 if abs(num) == 0 else 0
@@ -131,8 +131,8 @@ def evaluate(ans, G, q, std):
     if num <= std:
         score = num / std
     else:
-        print("没得分（回答大于标准答案）")
-        score = 0
+        # print("没得分（回答大于标准答案）")
+        score = 0.0
 
     return score
 

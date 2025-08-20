@@ -1,6 +1,7 @@
 import math
 import random
 from typing import Dict, List
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import numpy as np
 
@@ -40,6 +41,7 @@ class Mechanism:
                 })
                 
                 # 记录该服务商的历史reward和utility
+                utility = reward - price
                 user.history_rewards[provider.provider_id].append(reward)
                 user.history_utilities[provider.provider_id].append(utility)
 
@@ -57,11 +59,13 @@ class Mechanism:
         
         # 重新计算机制参数，因为mu值已更新
         min_mu = min(p.mu for p in user.providers)
+        max_mu = max(p.mu for p in user.providers)
         if min_mu <= 0:
             min_mu = 1e-6  # 使用一个很小的正数
             print(f"  警告：检测到mu值为0或负数，使用默认值 {min_mu}")
-        user.u = -math.log(min_mu) + 1 + user.M  # u = -log(min_i μ_i) + 1 + M
-        print(f"  更新后的u值：{user.u:.4f}")
+        user.delta_1 =-math.log(min_mu) + 2 + user.M  # δ1 = -log(min_i μ_i) + 2 + M
+        user.delta_2 = math.log(max_mu) # δ2 = log(max_i μ_i)
+        print(f"  更新后的值：δ1={user.delta_1:.4f}, δ2={user.delta_2:.4f}")
 
         # 找到最佳服务商（基于utility）
         best_utility = max(user.avg_utilities.values())
@@ -98,22 +102,57 @@ class Mechanism:
 
         threshold = user.second_best_utility - user.M
         R = max(0, user.T - (max(user.delta_1,user.delta_2) + 3) * user.B * user.K)
-        remaining_delegations = min(R, user.T - user.current_time)
+        remaining_delegations = int(min(R, user.T - user.current_time))
 
         print(f"  计划委托{remaining_delegations}次，阈值：{threshold:.4f}")
 
         delegation_count = 0
         stopped_early = False
 
-        while delegation_count < remaining_delegations and user.current_time < user.T:
-            # 阶段2委托最优服务商
-            result = user.best_provider.delegate_provider(phase=2, t=user.current_time, second_best_reward=user.second_best_utility, R=remaining_delegations)
+        # 并行处理委托任务
+        def delegate_task(time_step):
+            """单个委托任务"""
+            result = user.best_provider.delegate_provider(phase=2, t=time_step, second_best_reward=user.second_best_utility, R=remaining_delegations)
+            return {
+                'time': time_step,
+                'result': result
+            }
+        
+        # 创建时间步列表
+        time_steps = [user.current_time + i for i in range(remaining_delegations) if user.current_time + i < user.T]
+        
+        # 检查是否有委托任务
+        if not time_steps:
+            user.phase2_completed = True
+            return
+        
+        # 并行执行委托任务
+        delegation_results = []
+        with ThreadPoolExecutor(max_workers=min(len(time_steps), 16)) as executor:
+            # 提交所有任务
+            future_to_time = {executor.submit(delegate_task, t): t for t in time_steps}
+            
+            # 收集结果
+            for future in as_completed(future_to_time):
+                try:
+                    task_result = future.result()
+                    delegation_results.append(task_result)
+                except Exception as e:
+                    print(f"委托任务执行失败: {e}")
+        
+        # 按时间步排序结果
+        delegation_results.sort(key=lambda x: x['time'])
+        
+        # 按顺序处理结果并检查是否需要提前停止
+        for i, task_result in enumerate(delegation_results):
+            time_step = task_result['time']
+            result = task_result['result']
             reward = result["reward"]
             price = result["price"]
             prompt_tokens, completion_tokens = result["tokens"]
             
             user.delegation_history.append({
-                'time': user.current_time,
+                'time': time_step,
                 'provider_id': user.best_provider.provider_id,
                 'cost': price,
                 'reward': reward,
@@ -127,13 +166,16 @@ class Mechanism:
             user.history_rewards[user.best_provider.provider_id].append(reward)
             user.history_utilities[user.best_provider.provider_id].append(utility)
             
-            delegation_count += 1
-            user.current_time += 1
+            delegation_count = i + 1
+            user.current_time = time_step + 1
+            
+            # 检查是否需要提前停止
             if delegation_count >= user.B and user.best_provider is not None:
                 recent_avg_utility = user.get_recent_average_utility(user.best_provider.provider_id, user.B)
                 if recent_avg_utility < threshold:
-                    print(f"  在{delegation_count}次委托后停止，最近平均效用：{recent_avg_utility:.4f} < {threshold:.4f}")
+                    print(f"  在{delegation_count}次委托后停止，最近平均utility：{recent_avg_utility:.4f} < {threshold:.4f}")
                     stopped_early = True
+                    # 如果需要提前停止，丢弃剩余的结果
                     break
 
         # 如果没有提前停止，给予奖励
@@ -163,14 +205,14 @@ class Mechanism:
 
                 user.current_time += 1
 
-        user.phase2_completed = True
+        user.phase2_completed_1 = True
 
-    def phase3_incentive(self, user):
-        """阶段3：委托除最优服务商外的其他服务商各B次"""
-        if not user.phase2_completed:
+    def phase2_incentive(self, user):
+        """阶段2：委托除最优服务商外的其他服务商各B次"""
+        if not user.phase2_completed_1:
             return
 
-        print("阶段3：委托除最优服务商外的其他服务商")
+        print("阶段2：委托除最优服务商外的其他服务商")
 
         # 委托除最优服务商外的其他服务商
         for provider in user.providers:
@@ -208,14 +250,14 @@ class Mechanism:
 
                 user.current_time += 1
 
-        user.phase3_completed = True
+        user.phase2_completed_2 = True
 
-    def phase4_utility_based(self, user):
-        """阶段4：基于效用的委托"""
-        if not user.phase2_completed:
+    def phase3_utility_based(self, user):
+        """阶段3：基于效用的委托"""
+        if not user.phase2_completed_2:
             return
 
-        print("阶段4：基于效用的委托")
+        print("阶段3：基于效用的委托")
 
         for provider in user.providers:
             if user.current_time >= user.T:
@@ -291,4 +333,4 @@ class Mechanism:
 
                             user.current_time += 1
 
-        user.phase4_completed = True
+        user.phase3_completed = True
