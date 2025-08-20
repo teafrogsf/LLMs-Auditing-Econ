@@ -8,8 +8,8 @@ from typing import Dict, List, Tuple, Any
 
 # 添加项目根目录到路径
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from flow import translate, evaluate
-from flow_gen import Generator
+from max_flow_solver import translate, evaluate
+from max_flow_generator import Generator
 from llm_client import ExampleLLM
 
 class MaxFlowRunner:

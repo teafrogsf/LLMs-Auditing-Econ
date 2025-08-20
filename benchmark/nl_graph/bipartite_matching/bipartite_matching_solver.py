@@ -29,7 +29,7 @@ def translate(G, n1, n2, args):
     m = G.number_of_edges()
     Q = ''
     if args.prompt in ["CoT", "k-shot","Instruct","Algorithm"]:
-        with open("NLGraph/bipartite_match/" + args.prompt + "-prompt.txt", "r") as f:
+        with open("cot_prompt.txt", "r") as f:
             exemplar = f.read()
         Q = Q + exemplar + "\n\n\n"
     Q = Q + "There are "+str(n1)+" job applicants numbered from 0 to "+str(n1-1)+", and "+str(n2)+" jobs numbered from 0 to "+str(n2-1)+". Each applicant is interested in some of the jobs. Each job can only accept one applicant and a job applicant can be appointed for only one job.\n"

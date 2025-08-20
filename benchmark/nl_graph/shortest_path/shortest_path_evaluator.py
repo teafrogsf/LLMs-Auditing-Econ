@@ -2,8 +2,8 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
-from shortest_path_gen import Generator
-from shortest_path import translate, evaluate
+from shortest_path_generator import Generator
+from shortest_path_solver import translate, evaluate
 from llm_client import ExampleLLM
 import networkx as nx
 import argparse

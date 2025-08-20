@@ -6,7 +6,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # 添加子目录到模块搜索路径
 sys.path.append(os.path.join(current_dir, "max_flow"))
-from max_flow_runner import run_multi_graph_test
+from max_flow_evaluator import run_single_graph_test
 import numpy as np
 import matplotlib.pyplot as plt
 import json
@@ -18,8 +18,8 @@ class MultiModelRunner:
         初始化多模型测试运行器
         """
         # 测试模型列表
-        self.models = ['gpt-35-turbo','gpt-4o','o3-mini','deepseek-v3']
-        self.num_runs = 1  # 每个模型运行1次（因为run_multi_graph_test已经运行6个测试样例）
+        self.models = ['deepseek-v3','gpt-4o-mini','gpt-35-turbo','o1-mini']
+        self.num_runs = 5  # 每个模型运行5次
         self.results = {}
     
     def run_single_model_test(self, model_name):
@@ -35,64 +35,44 @@ class MultiModelRunner:
         print(f"\n开始测试模型: {model_name} (任务: max_flow)")
         print("-" * 50)
         
-        try:
-            # 使用run_multi_graph_test运行5个hard难度的测试样例
-            multi_result = run_multi_graph_test(model_name,100)
+        scores = []
+        total_prompt_tokens = 0
+        total_completion_tokens = 0
+        
+        for run_idx in range(self.num_runs):
+            print(f"第 {run_idx + 1}/{self.num_runs} 次运行...")
             
-            if not multi_result.get('success', True):
-                print(f"  运行出错: {multi_result.get('error', '未知错误')}")
-                return {
-                    'model_name': model_name,
-                    'task_name': 'max_flow',
-                    'scores': [0] * 5,
-                    'mean_score': 0,
-                    'max_score': 0,
-                    'min_score': 0,
-                    'total_prompt_tokens': 0,
-                    'total_completion_tokens': 0
-                }
-            
-            # 直接从multi_result中获取已计算的统计信息
-            scores = multi_result.get('scores', [])
-            mean_score = multi_result.get('average_score', 0)
-            max_score = multi_result.get('max_score', 0)
-            min_score = multi_result.get('min_score', 0)
-            total_prompt_tokens = multi_result.get('total_prompt_tokens', 0)
-            total_completion_tokens = multi_result.get('total_completion_tokens', 0)
-            
-            print(f"  总得分: {multi_result.get('total_score', 0):.4f}")
-            print(f"  平均得分: {multi_result.get('average_score', 0):.4f}")
-            print(f"  最高得分: {max_score:.4f}")
-            print(f"  最低得分: {min_score:.4f}")
-            print(f"  成功测试数: {multi_result.get('successful_tests', 0)}/5")
-            print(f"  总Token使用量: {total_prompt_tokens + total_completion_tokens} (输入: {total_prompt_tokens}, 输出: {total_completion_tokens})")
-            
-            result = {
-                'model_name': model_name,
-                'task_name': 'max_flow',
-                'scores': scores,
-                'mean_score': mean_score,
-                'max_score': max_score,
-                'min_score': min_score,
-                'total_prompt_tokens': total_prompt_tokens,
-                'total_completion_tokens': total_completion_tokens,
-                'multi_test_summary': multi_result  # 保存完整的多测试结果
-            }
-            
-            return result
-            
-        except Exception as e:
-            print(f"  运行出错: {e}")
-            return {
-                'model_name': model_name,
-                'task_name': 'max_flow',
-                'scores': [0] * 5,
-                'mean_score': 0,
-                'max_score': 0,
-                'min_score': 0,
-                'total_prompt_tokens': 0,
-                'total_completion_tokens': 0
-            }
+            try:
+                # 使用封装好的函数运行单次测试
+                result = run_single_graph_test(model_name)
+                
+                scores.append(result['score'])
+                total_prompt_tokens += result['prompt_tokens']
+                total_completion_tokens += result['completion_tokens']
+                
+                print(f"  得分: {result['score']:.4f}")
+                
+            except Exception as e:
+                print(f"  运行出错: {e}")
+                scores.append(0)
+        
+        # 计算统计结果
+        mean_score = np.mean(scores)
+        max_score = np.max(scores)
+        min_score = np.min(scores)
+        
+        result = {
+            'model_name': model_name,
+            'task_name': 'max_flow',
+            'scores': scores,
+            'mean_score': mean_score,
+            'max_score': max_score,
+            'min_score': min_score,
+            'total_prompt_tokens': total_prompt_tokens,
+            'total_completion_tokens': total_completion_tokens
+        }
+        
+        return result
     
     def run_all_tests(self):
         """
