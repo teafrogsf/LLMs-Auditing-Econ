@@ -29,7 +29,6 @@ class ProviderConfig:
     """服务商配置"""
     provider_id: int
     price: float  # p_i
-    mu: float     # μ_i
     model_keys: List[str]  # 支持的模型列表
     model_costs: List[float]  # 各模型的真实cost
 
@@ -39,7 +38,6 @@ class Provider:
     def __init__(self, config: ProviderConfig):
         self.config = config
         self.provider_id = config.provider_id
-        self.mu = config.mu
         self.price = config.price
         self.model_keys = config.model_keys
         self.model_costs = config.model_costs
@@ -146,19 +144,7 @@ class Provider:
             3: "gpt-4o"
         }
         return normal_models.get(self.provider_id, self.model_keys[0])
-        
-    
-    def update_mu_from_rewards(self, user) -> None:
-        """根据历史reward的均值更新mu值"""
-        if self.provider_id in user.history_rewards and user.history_rewards[self.provider_id]:
-            avg_reward = user.get_average_reward(self.provider_id)
-            # 将mu值设为历史reward的均值
-            self.mu = avg_reward
-            # 同时更新config中的mu值
-            self.config.mu = avg_reward
-            print(f"Provider {self.provider_id}: mu值已更新为 {self.mu:.4f} (基于 {len(user.history_rewards[self.provider_id])} 次历史reward的均值)")
-        else:
-            print(f"Provider {self.provider_id}: 无历史reward数据, mu值保持不变")
+
 
     def _get_cheapest_model_idx(self) -> int:
         """获取最便宜模型的索引"""

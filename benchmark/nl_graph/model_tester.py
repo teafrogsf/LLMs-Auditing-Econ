@@ -17,7 +17,7 @@ class MultiModelRunner:
         初始化多模型测试运行器
         """
         # 测试模型列表
-        self.models = ['gpt-35-turbo','qwen-max','deepseek-v3','deepseek-r1','gpt-4o','gpt-4','gpt-4o-mini','o1','o1-mini','o3-mini']
+        self.models = ['deepseek-v3']
         self.num_runs = 1 
         self.results = {}
     
@@ -30,12 +30,8 @@ class MultiModelRunner:
         os.makedirs(save_dir, exist_ok=True)
         
         # 生成文件名
-        filename = f"{model_name}_result.txt"
+        filename = f"{model_name.replace('-', '_')}_test_result.jsonl"
         filepath = os.path.join(save_dir, filename)
-        lines = []
-        lines.append(f"model_name: {result['model_name']}")
-        lines.append(f"task_name: {result['task_name']}")
-        lines.append("scores:")
         
         # 格式化分数列表，按图编号排序
         multi_test_summary = result.get('multi_test_summary', {})
@@ -43,22 +39,21 @@ class MultiModelRunner:
         
         sorted_test_results = sorted(test_results, key=lambda x: x.get('test_number', 0))
         
-        for test_result in sorted_test_results:
-            test_number = test_result.get('test_number', 0)
-            score = test_result.get('score', 0)
-            lines.append(f"  [{test_number}]: {score}")
-
-        # 添加每个测试的token消耗信息
-        lines.append("token_usage:")
-        
-        for test_result in sorted_test_results:
-            test_number = test_result.get('test_number', 0)
-            prompt_tokens = test_result.get('prompt_tokens', 0)
-            completion_tokens = test_result.get('completion_tokens', 0)
-            lines.append(f"  [{test_number}]: prompt={prompt_tokens}, completion={completion_tokens}")
-        
+        # 写入JSONL格式
         with open(filepath, 'w', encoding='utf-8') as f:
-            f.write("\n".join(lines))
+            for test_result in sorted_test_results:
+                test_number = test_result.get('test_number', 0)
+                score = test_result.get('score', 0)
+                prompt_tokens = test_result.get('prompt_tokens', 0)
+                completion_tokens = test_result.get('completion_tokens', 0)
+                
+                json_line = {
+                    "ID": test_number,
+                    "score": score,
+                    "input_tokens": prompt_tokens,
+                    "output_tokens": completion_tokens
+                }
+                f.write(json.dumps(json_line, ensure_ascii=False) + '\n')
         
         print(f"模型 {model_name} 的测试结果已保存到: {filepath}")
     

@@ -25,10 +25,6 @@ class User:
         self.epsilon = 0.2
         self.B = int(T ** (2 * self.epsilon))  # B = T^(2ϵ)
         self.M = (T ** (- self.epsilon)) * math.log(K * T)  # M = T^(-ϵ)ln(KT)
-        min_mu = min(p.mu for p in providers)
-        max_mu = max(p.mu for p in providers)
-        self.delta_1 = -math.log(min_mu) + 2 + self.M  # δ1 = -log(min_i μ_i) + 2 + M
-        self.delta_2 = math.log(max_mu) # δ2 = log(max_i μ_i)
 
         # 博弈历史
         self.delegation_history = []  # 委托历史
@@ -155,17 +151,18 @@ class User:
 
             if provider_delegations:
                 total_cost = sum(d['cost'] for d in provider_delegations)
-                total_reward = sum(d['reward'] for d in provider_delegations)
-                avg_reward = total_reward / len(provider_delegations)
+
+                total_utility = sum(d.get('utility', 0) for d in provider_delegations)
+                avg_utility = total_utility / len(provider_delegations)
                 total_prompt_tokens = sum(d.get('prompt_tokens', 0) for d in provider_delegations)
                 total_completion_tokens = sum(d.get('completion_tokens', 0) for d in provider_delegations)
                 total_tokens = sum(d.get('total_tokens', 0) for d in provider_delegations)
                 results['provider_stats'][provider.provider_id] = {
                     'delegations': len(provider_delegations),
                     'total_cost': total_cost,
-                    'total_reward': total_reward,
-                    'avg_reward': avg_reward,  # avg_reward即为平均EED分数
-                    'profit': total_reward - total_cost,
+                    'total_utility': total_utility,
+                    'avg_utility': avg_utility,  
+
                     'total_prompt_tokens': total_prompt_tokens,
                     'total_completion_tokens': total_completion_tokens,
                     'total_tokens': total_tokens,
@@ -175,8 +172,8 @@ class User:
                 results['provider_stats'][provider.provider_id] = {
                     'delegations': 0,
                     'total_cost': 0,
-                    'total_reward': 0,
-                    'avg_reward': 0,  # avg_reward即为平均EED分数
+                    'total_utility': 0,
+                    'avg_utility': 0, 
                     'profit': 0,
                     'total_prompt_tokens': 0,
                     'total_completion_tokens': 0,

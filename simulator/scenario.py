@@ -35,7 +35,6 @@ def create_example_scenario():
         config = ProviderConfig(
             provider_id=i + 1,
             price=0.0,
-            mu=5,  # 初始mu值设为默认值，将在第一轮后根据reward均值更新
             model_keys=setting["model_keys"],
             model_costs=[],
         )

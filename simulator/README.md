@@ -33,8 +33,6 @@ def delegate_provider(self, phase: int, t: int, second_best_reward=None, R=None)
 
 ### user.py
 
-**User类** - 委托人的核心实现，管理整个博弈过程
-
 **主要功能：**
 - 多阶段机制执行
 - 历史数据统计和分析
@@ -66,8 +64,6 @@ def run_mechanism(self) -> Dict:
 - `ε = 0.2`: 探索参数
 
 ### mechanism.py
-
-**Mechanism类** - 提供分阶段的执行方法
 
 **主要功能：**
 - 阶段1：探索阶段，轮流委托每个服务商B次
@@ -117,4 +113,3 @@ def phase3_utility_based(self, user):
 1. **模型定价**：基于真实API定价，支持动态成本计算
 2. **并发处理**：机制支持多线程并发执行
 3. **文件输出**：所有运行日志会保存到指定文件
-
