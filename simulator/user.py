@@ -5,7 +5,7 @@ from typing import List, Dict
 
 import numpy as np
 
-from provider import Provider, MODEL_PRICING
+from text_generation_model import Provider, MODEL_PRICING
 from mechanism import Mechanism
 
 

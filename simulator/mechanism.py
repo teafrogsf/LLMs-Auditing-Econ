@@ -5,7 +5,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import numpy as np
 
-from provider import Provider
+from text_generation_model import Provider
 
 
 class Mechanism:

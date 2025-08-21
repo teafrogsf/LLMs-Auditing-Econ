@@ -1,7 +1,6 @@
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-# 获取当前文件的绝对路径
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # 添加子目录到模块搜索路径
@@ -18,9 +17,50 @@ class MultiModelRunner:
         初始化多模型测试运行器
         """
         # 测试模型列表
-        self.models = ['gpt-35-turbo','gpt-4o','o3-mini','deepseek-v3']
-        self.num_runs = 1  # 每个模型运行1次（因为run_multi_graph_test已经运行6个测试样例）
+        self.models = ['gpt-35-turbo','qwen-max','deepseek-v3','deepseek-r1','gpt-4o','gpt-4','gpt-4o-mini','o1','o1-mini','o3-mini']
+        self.num_runs = 1 
         self.results = {}
+    
+    def save_single_model_result(self, model_name, result):
+        """
+        保存单个模型的测试结果到指定目录
+        """
+        # 创建保存目录
+        save_dir = "e:/LLMs-Auditing-Econ/benchmark/nl_graph/max_flow/model_test_result/"
+        os.makedirs(save_dir, exist_ok=True)
+        
+        # 生成文件名
+        filename = f"{model_name}_result.txt"
+        filepath = os.path.join(save_dir, filename)
+        lines = []
+        lines.append(f"model_name: {result['model_name']}")
+        lines.append(f"task_name: {result['task_name']}")
+        lines.append("scores:")
+        
+        # 格式化分数列表，按图编号排序
+        multi_test_summary = result.get('multi_test_summary', {})
+        test_results = multi_test_summary.get('results', [])
+        
+        sorted_test_results = sorted(test_results, key=lambda x: x.get('test_number', 0))
+        
+        for test_result in sorted_test_results:
+            test_number = test_result.get('test_number', 0)
+            score = test_result.get('score', 0)
+            lines.append(f"  [{test_number}]: {score}")
+
+        # 添加每个测试的token消耗信息
+        lines.append("token_usage:")
+        
+        for test_result in sorted_test_results:
+            test_number = test_result.get('test_number', 0)
+            prompt_tokens = test_result.get('prompt_tokens', 0)
+            completion_tokens = test_result.get('completion_tokens', 0)
+            lines.append(f"  [{test_number}]: prompt={prompt_tokens}, completion={completion_tokens}")
+        
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write("\n".join(lines))
+        
+        print(f"模型 {model_name} 的测试结果已保存到: {filepath}")
     
     def run_single_model_test(self, model_name):
         """
@@ -36,21 +76,21 @@ class MultiModelRunner:
         print("-" * 50)
         
         try:
-            # 使用run_multi_graph_test运行5个hard难度的测试样例
-            multi_result = run_multi_graph_test(model_name,100)
+            multi_result = run_multi_graph_test(model_name,1000)
             
             if not multi_result.get('success', True):
                 print(f"  运行出错: {multi_result.get('error', '未知错误')}")
-                return {
+                result = {
                     'model_name': model_name,
                     'task_name': 'max_flow',
                     'scores': [0] * 5,
                     'mean_score': 0,
-                    'max_score': 0,
-                    'min_score': 0,
                     'total_prompt_tokens': 0,
                     'total_completion_tokens': 0
                 }
+                # 立即保存失败结果
+                self.save_single_model_result(model_name, result)
+                return result
             
             # 直接从multi_result中获取已计算的统计信息
             scores = multi_result.get('scores', [])
@@ -62,8 +102,6 @@ class MultiModelRunner:
             
             print(f"  总得分: {multi_result.get('total_score', 0):.4f}")
             print(f"  平均得分: {multi_result.get('average_score', 0):.4f}")
-            print(f"  最高得分: {max_score:.4f}")
-            print(f"  最低得分: {min_score:.4f}")
             print(f"  成功测试数: {multi_result.get('successful_tests', 0)}/5")
             print(f"  总Token使用量: {total_prompt_tokens + total_completion_tokens} (输入: {total_prompt_tokens}, 输出: {total_completion_tokens})")
             
@@ -72,27 +110,28 @@ class MultiModelRunner:
                 'task_name': 'max_flow',
                 'scores': scores,
                 'mean_score': mean_score,
-                'max_score': max_score,
-                'min_score': min_score,
                 'total_prompt_tokens': total_prompt_tokens,
                 'total_completion_tokens': total_completion_tokens,
                 'multi_test_summary': multi_result  # 保存完整的多测试结果
             }
             
+            # 立即保存成功结果
+            self.save_single_model_result(model_name, result)
             return result
             
         except Exception as e:
             print(f"  运行出错: {e}")
-            return {
+            result = {
                 'model_name': model_name,
                 'task_name': 'max_flow',
                 'scores': [0] * 5,
                 'mean_score': 0,
-                'max_score': 0,
-                'min_score': 0,
                 'total_prompt_tokens': 0,
                 'total_completion_tokens': 0
             }
+            # 立即保存异常结果
+            self.save_single_model_result(model_name, result)
+            return result
     
     def run_all_tests(self):
         """
@@ -158,44 +197,14 @@ class MultiModelRunner:
         
         plt.show()
     
-    def save_results(self):
-        """
-        保存测试结果到JSON文件
-        """
-        if not self.results:
-            print("没有测试结果可以保存")
-            return
-        
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"multi_model_results_{timestamp}.json"
-        
-        # 转换numpy数组为列表以便JSON序列化
-        results_for_json = {}
-        for task_name, task_results in self.results.items():
-            results_for_json[task_name] = {}
-            for model_name, model_result in task_results.items():
-                results_for_json[task_name][model_name] = {
-                    'model_name': model_result['model_name'],
-                    'task_name': model_result['task_name'],
-                    'scores': [float(s) for s in model_result['scores']],
-                    'mean_score': float(model_result['mean_score']),
-                    'max_score': float(model_result['max_score']),
-                    'min_score': float(model_result['min_score']),
-                    'total_prompt_tokens': model_result['total_prompt_tokens'],
-                    'total_completion_tokens': model_result['total_completion_tokens']
-                }
-        
-        with open(filename, 'w', encoding='utf-8') as f:
-            json.dump(results_for_json, f, ensure_ascii=False, indent=2)
-        
-        print(f"测试结果已保存为: {filename}")
+    
 
 def main():
     runner = MultiModelRunner()
     
     try:
         runner.run_all_tests()
-        runner.save_results()
+
         runner.plot_results()
         
     except KeyboardInterrupt:
