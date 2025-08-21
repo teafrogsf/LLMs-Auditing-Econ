@@ -52,19 +52,15 @@ class Mechanism:
             user.avg_rewards[provider.provider_id] = user.get_average_reward(provider.provider_id)
             user.avg_utilities[provider.provider_id] = user.get_average_utility(provider.provider_id)
 
-        # 第一轮后更新各服务商的mu值
-        print("\n  第一轮完成，更新各服务商的mu值：")
-        for provider in user.providers:
-            provider.update_mu_from_rewards(user)
         
-        # 重新计算机制参数，因为mu值已更新
-        min_mu = min(p.mu for p in user.providers)
-        max_mu = max(p.mu for p in user.providers)
-        if min_mu <= 0:
-            min_mu = 1e-6  # 使用一个很小的正数
-            print(f"  警告：检测到mu值为0或负数，使用默认值 {min_mu}")
-        user.delta_1 =-math.log(min_mu) + 2 + user.M  # δ1 = -log(min_i μ_i) + 2 + M
-        user.delta_2 = math.log(max_mu) # δ2 = log(max_i μ_i)
+        # 重新计算机制参数
+        min_utility = min(user.avg_utilities.values())
+        max_utility = max(user.avg_utilities.values())
+        if min_utility <= 0:
+            min_utility = 1e-6  # 使用一个很小的正数
+            print(f"  警告：检测到utility值为0或负数，使用默认值 {min_utility}")
+        user.delta_1 = -math.log(min_utility) + 2 + user.M  # δ1 = -log(min_i utility_i) + 2 + M
+        user.delta_2 = math.log(max_utility) # δ2 = log(max_i utility_i)
         print(f"  更新后的值：δ1={user.delta_1:.4f}, δ2={user.delta_2:.4f}")
 
         # 找到最佳服务商（基于utility）

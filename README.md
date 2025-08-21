@@ -28,7 +28,7 @@ LLMs-Auditing-Econ/
 
 ## 使用方法
 
-### 1. 图算法基准测试
+### 图算法基准测试
 
 #### 使用 max_flow_evaluator.py 进行最大流测试
 
@@ -47,11 +47,11 @@ print(f"平均得分: {multi_results['average_score']}")
 ```
 
 **更改测试模型：**
-- 修改文件末尾的 `if __name__ == "__main__":` 部分中的模型名称，以字符串传入
+- 修改文件末尾的 `if __name__ == "__main__":`中`run_single_graph_test("gpt-35-turbo")` 部分中的模型名称，以字符串传入
 
 #### 使用 model_tester.py 进行批量模型测试
 
-`model_tester.py` 提供了多模型批量测试和结果可视化功能：
+`model_tester.py` 提供了多模型批量测试和结果可视化功能,运行结束后生成各模型得分平均分图表：
 
 ```python
 from benchmark.nl_graph.model_tester import MultiModelRunner
@@ -60,7 +60,7 @@ from benchmark.nl_graph.model_tester import MultiModelRunner
 runner = MultiModelRunner()
 
 # 修改要测试的模型列表
-runner.models = ['gpt-35-turbo', 'gpt-4', 'claude-3']  # 添加你想测试的模型
+runner.models = ['gpt-35-turbo', 'deepseek-v3']  # 添加你想测试的模型
 
 # 运行所有模型测试
 runner.run_all_tests()
@@ -69,22 +69,10 @@ runner.run_all_tests()
 runner.plot_results()
 ```
 
-**主要功能：**
-- 自动生成对比图表，显示各模型的平均得分
-- 支持并发测试，提高测试效率
-
-**更改测试模型：**
-- 修改运行器 `__init__` 部分中的`self.models`
 
 **直接运行：**
 ```bash
 python benchmark/nl_graph/model_tester.py
-```
-
-### 2. 经济机制模拟
-
-```bash
-python simulator/experiment.py
 ```
 
 ## 图算法模块详解
@@ -103,16 +91,15 @@ python simulator/experiment.py
 `model_evaluator.py` 提供统一的模型评估接口：
 
 ```python
-def evaluate_model(self, model_name: str, test_sample: Dict) -> Tuple[float, int, int]:
+def evaluate_model(model_name: str) -> Tuple[float, int, int]:
     """
     评估模型性能
     
     参数:
         model_name: 要测试的模型名称
-        test_sample: 测试样本
     
     返回:
-        Tuple[float, int, int]: (得分, 输入token数, 输出token数)
+        Tuple[float, int, int]: (分数, input tokens数量, output tokens数量)
     """
 ```
 
@@ -121,6 +108,12 @@ def evaluate_model(self, model_name: str, test_sample: Dict) -> Tuple[float, int
 模拟器模块实现了机制的仿真环境，具体设计请参考：
 - 论文中的机制设计部分
 - `simulator/README.md` 中的详细说明
+
+### 运行机制
+
+```bash
+python simulator/experiment.py
+```
 
 ## 所有可用的模型
 
