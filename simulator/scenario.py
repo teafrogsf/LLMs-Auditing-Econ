@@ -2,7 +2,7 @@ import random
 
 import numpy as np
 
-from provider import Provider, ProviderConfig
+from text_generation_model import Provider, ProviderConfig
 from user import User
 
 

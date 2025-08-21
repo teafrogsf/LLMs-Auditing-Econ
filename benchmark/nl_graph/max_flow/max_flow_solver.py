@@ -13,23 +13,14 @@ from tenacity import (
     wait_random_exponential,
 )  # for exponential backoff
 
-parser = argparse.ArgumentParser(description="maximum flow")
-parser.add_argument('--model', type=str, default="text-davinci-003", help='name of LM (default: text-davinci-003)')
-parser.add_argument('--mode', type=str, default="easy", help='mode (default: easy)')
-parser.add_argument('--prompt', type=str, default="none", help='prompting techniques (default: none)')
-parser.add_argument('--T', type=int, default=0, help='temprature (default: 0)')
-parser.add_argument('--token', type=int, default=400, help='max token (default: 400)')
-parser.add_argument('--SC', type=int, default=0, help='self-consistency (default: 0)')
-parser.add_argument('--SC_num', type=int, default=5, help='number of cases for self-consistency (default: 5)')
-args = parser.parse_args()
-assert args.prompt in ["CoT", "none", "0-CoT", "LTM", "PROGRAM","k-shot"]
 
-def translate(G, q, args):
+def translate(G, q, pattern:str):
     edge = list(G.edges())
     n, m = G.number_of_nodes(), G.number_of_edges()
     Q = ''
-    if args.prompt in ["CoT", "k-shot"]:
-        with open("NLGraph/max_flow/" + args.prompt + "-prompt.txt", "r") as f:
+    if pattern in ["cot", "k-shot"]:
+        prompt_file_path = os.path.join(os.path.dirname(__file__), pattern + "_prompt.txt")
+        with open(prompt_file_path, "r") as f:
             exemplar = f.read()
         Q = Q + exemplar + "\n\n\n"
     Q = Q + "In a directed graph, the nodes are numbered from 0 to " + str(n-1)+", and the edges are:\n"
@@ -42,13 +33,6 @@ def translate(G, q, args):
         Q = Q + '\n'
     Q = Q + "Q: What is the maximum flow from node " + str(q[0])+" to node " + str(q[1]) + "?"
     Q = Q + "\nA:"
-    match args.prompt:
-        case "0-CoT":
-            Q = Q + " Let's think step by step:"
-        case "LTM":
-            Q = Q + " Let's break down this problem:" 
-        case "PROGRAM":
-            Q = Q + " Let's solve the problem by a Python program:"
     return Q
 
 @retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(1000))
@@ -117,8 +101,8 @@ def evaluate(ans, G, q, std):
         return 0.0
 
     raw = matches[-1]  # 若有多个 <answer>，取最后一个 
-    print(f"模型答案：{raw}")
-    # 2) 将数值转为 float；若是形如 "10.0" 仍可后续按需要转 int
+    # print(f"模型答案：{raw}")
+    # 2) 将数值转为 float
     try:
         num = float(raw)
     except ValueError:
