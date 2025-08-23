@@ -105,13 +105,12 @@ class Provider:
         self.history_costs.append(cost)
         return cost
 
-    def get_price(self, t: int, mechanism_info: Optional[Dict] = None) -> float:
+    def get_price(self, t: int) -> float:
         """
         获取当前时间步的真实价格, 根据真实token使用乘以单个price计算
         
         Args:
             t: 当前时间步
-            mechanism_info: 机制信息，包含历史真实使用模型列表等
             
         Returns:
             float: 当前的报价
