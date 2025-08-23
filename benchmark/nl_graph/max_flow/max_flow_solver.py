@@ -1,18 +1,7 @@
-import openai
 import os
-from tqdm import tqdm
 import networkx as nx
-import numpy as np
-import argparse
-import time
 import re
-from datetime import datetime, timedelta, timezone
-from tenacity import (
-    retry,
-    stop_after_attempt,
-    wait_random_exponential,
-)  # for exponential backoff
-
+from loguru import logger
 
 def translate(G, q, pattern:str):
     edge = list(G.edges())
@@ -35,78 +24,26 @@ def translate(G, q, pattern:str):
     Q = Q + "\nA:"
     return Q
 
-@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(1000))
-def predict(Q, args):
-    input = Q
-    temperature = 0
-    if args.SC == 1:
-        temperature = 0.7
-    if 'gpt' in args.model:
-        Answer_list = []
-        for text in input:
-            response = openai.ChatCompletion.create(
-            model=args.model,
-            messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": text},
-            ],
-            temperature=temperature,
-            max_tokens=args.token,
-            )
-            Answer_list.append(response["choices"][0]["message"]["content"])
-        return Answer_list
-    response = openai.Completion.create(
-    model=args.model,
-    prompt=input,
-    temperature=temperature,
-    max_tokens=args.token,
-    )
-    Answer_list = []
-    for i in range(len(input)):
-        Answer_list.append(response["choices"][i]["text"])
-    return Answer_list
-
-def log(Q, res1, res2, answer, args):
-    utc_dt = datetime.utcnow().replace(tzinfo=timezone.utc)
-    bj_dt = utc_dt.astimezone(timezone(timedelta(hours=8)))
-    time = bj_dt.now().strftime("%Y%m%d---%H-%M")
-    newpath = 'log/flow/'+args.model+'-'+args.mode+'-'+time+ '-' + args.prompt
-    if args.SC == 1:
-        newpath = newpath + "+SC"
-    if not os.path.exists(newpath):
-        os.makedirs(newpath)
-    newpath = newpath + "/"
-    np.save(newpath+"res1.npy", res1)
-    np.save(newpath+"res2.npy", res2)
-    np.save(newpath+"answer.npy", answer)
-    with open(newpath+"prompt.txt","w") as f:
-        f.write(Q)
-        f.write("\n")
-        f.write("Acc: " + str(res1.sum())+'/'+str(len(res1)) + '\n')
-        f.write("Acc2: " + str(res2.sum())+'/'+str(len(res2)) + '\n')
-        f.write("\n")
-        print(args, file=f)
-
 
 def evaluate(ans, G, q, std):
     """
     从 <answer>...</answer> 中提取最终答案的数字并与标准答案 std 做比较。
     """
-    # 1) 提取 <answer> ... </answer> 中的数字
+    # 提取标签中的数字
     pattern = re.compile(r"<\s*answer\s*>\s*([+-]?\d+(?:\.\d+)?)\s*<\s*/\s*answer\s*>",
                          flags=re.IGNORECASE | re.DOTALL)
     matches = pattern.findall(ans)
     if not matches:
-        # print("没有在 <answer> 标签中找到数值")
+        # logger.debug("没有在 <answer> 标签中找到数值")
         return 0.0
 
-    raw = matches[-1]  # 若有多个 <answer>，取最后一个 
-    # print(f"模型答案：{raw}")
+    raw = matches[-1]  # 若有多个答案，取最后一个 
+    logger.debug(f"模型答案：{raw}")
     # 2) 将数值转为 float
     try:
         num = float(raw)
     except ValueError:
-        # print("提取到的 <answer> 不是合法数字：", raw)
+        # logger.debug(f"提取到的不是合法数字：{raw}")
         return 0.0
 
     if std == 0:
@@ -115,73 +52,7 @@ def evaluate(ans, G, q, std):
     if num <= std:
         score = num / std
     else:
-        # print("没得分（回答大于标准答案）")
+        # logger.debug("回答大于标准答案")
         score = 0.0
 
     return score
-
-def main():
-    if 'OPENAI_API_KEY' in os.environ:
-        openai.api_key = os.environ['OPENAI_API_KEY']
-    else:
-        raise Exception("Missing openai key!")
-    if 'OPENAI_ORGANIZATION' in os.environ:
-        openai.organization = os.environ['OPENAI_ORGANIZATION']
-
-    res1,  res2, answer = [], [], []
-    match args.mode:
-        case "easy":
-            g_num = 150
-        case "hard":
-            g_num = 200
-
-    batch_num = 20
-    for i in tqdm(range((g_num + batch_num - 1) // batch_num)):
-        G_list, Q_list, q_list, std_list = [], [], [], []
-        for j in range(i*batch_num, min(g_num, (i+1)*batch_num)):
-            with open("NLgraph/flow/graph/"+args.mode+"/standard/graph"+str(j)+".txt","r") as f:
-                n, m = [int(x) for x in next(f).split()]
-                array = []
-                for line in f: # read rest of lines
-                    array.append([int(x) for x in line.split()])
-                edge, q, std = array[:-2], array[-2], array[-1][0]
-                G = nx.DiGraph()
-                G.add_nodes_from(range(n))
-                for k in range(m):
-                    G.add_edge(edge[k][0], edge[k][1], capacity = edge[k][2])
-                Q = translate(G, q, args)
-                Q_list.append(Q)
-                G_list.append(G)
-                q_list.append(q)
-                std_list.append(std)
-        sc = 1
-        if args.SC == 1:
-            sc = args.SC_num
-        sc_list = []
-        for k in range(sc):
-            answer_list = predict(Q_list, args)
-            sc_list.append(answer_list)
-        for j in range(len(Q_list)):
-            vote1, vote2 = 0, 0
-            for k in range(sc):
-                ans, G, std = sc_list[k][j].lower(), G_list[j], std_list[j]
-                answer.append(ans.lower())
-                try:
-                    r1, r2 = evaluate(ans.lower(), G, q_list[j], std) # r1 for solution check and r2 for final answer check
-                    vote1 += r1
-                    vote2 += r2
-                except:
-                    print(ans.lower())
-            r1 = 1 if vote1*2 > sc else 0
-            r2 = 1 if vote2*2 > sc else 0 
-            res1.append(r1)
-            res2.append(r2)
-
-    res1 = np.array(res1)
-    res2 = np.array(res2)
-    answer = np.array(answer)
-    log(Q, res1, res2, answer, args)
-    print(res2.sum())
-
-if __name__ == "__main__":
-    main()

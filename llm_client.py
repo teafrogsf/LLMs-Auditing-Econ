@@ -3,7 +3,6 @@ from typing import Tuple, Any
 from openai import OpenAI
 import openai
 
-
 class SingletonClient:
     _instance = None
 
@@ -22,11 +21,10 @@ class SingletonClient:
             api_version="2024-12-01-preview"),
             OpenAI(
             api_key=os.getenv("QWEN_API_KEY"),
-            base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"),
+            base_url=os.getenv("QWEN_BASE_URL")),
             OpenAI(
             api_key=os.getenv("DEEPSEEK_API_KEY"),
-            base_url="https://api.lkeap.cloud.tencent.com/v1",
-            # base_url="https://api.deepseek.com",
+            base_url=os.getenv("DEEPSEEK_BASE_URL"),
             ),
             ]
 
@@ -107,4 +105,4 @@ if __name__ == "__main__":
     response, prompt_tokens, completion_tokens = llm.call_llm("你好，请介绍一下你自己")
     print("回复:", response)
     print("输入token数:", prompt_tokens)
-    print("输出token数:", completion_tokens) 
+    print("输出token数:", completion_tokens)
