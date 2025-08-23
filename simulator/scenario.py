@@ -6,14 +6,14 @@ from loguru import logger
 from text_generation_model import Provider, ProviderConfig
 from user import User
 
+RANDOM_SEED = 42
+np.random.seed(RANDOM_SEED)
+random.seed(RANDOM_SEED)
+
 logger.add("logs/simulator.log", rotation="10 MB", retention="7 days", level="INFO")
 
 
 def create_example_scenario():
-    RANDOM_SEED = 42
-    np.random.seed(RANDOM_SEED)
-    random.seed(RANDOM_SEED)
-
     T = 3  # 总时间步数
     K = 3     # 服务商数量
 
