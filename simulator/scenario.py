@@ -1,16 +1,20 @@
 import random
 
 import numpy as np
+from loguru import logger
 
 from text_generation_model import Provider, ProviderConfig
 from user import User
 
+logger.add("logs/simulator.log", rotation="10 MB", retention="7 days", level="INFO")
+
 
 def create_example_scenario():
-    np.random.seed(42)
-    random.seed(42)
+    RANDOM_SEED = 42
+    np.random.seed(RANDOM_SEED)
+    random.seed(RANDOM_SEED)
 
-    T = 1000  # 总时间步数
+    T = 3  # 总时间步数
     K = 3     # 服务商数量
 
     # 配置每个服务商的模型
@@ -40,23 +44,23 @@ def create_example_scenario():
         )
         providers.append(Provider(config))
 
-    # 创建User实例，指定输出文件
-    user = User(T, K, providers, output_file="output.txt")
+    # 创建User实例
+    user = User(T, K, providers)
 
     results = user.run_mechanism()
-    print("\n=== 博弈结果 ===")
-    print(f"总时间步数：{results['total_time']}")
-    print(f"实际委托次数：{results['total_delegations']}")
-    print(f"最佳服务商：{results['best_provider']}")
+    logger.info("\n=== 博弈结果 ===")
+    logger.info(f"总时间步数：{results['total_time']}")
+    logger.info(f"实际委托次数：{results['total_delegations']}")
+    logger.info(f"最佳服务商：{results['best_provider']}")
 
-    print("\n各服务商统计：")
+    logger.info("\n各服务商统计：")
     for provider_id, stats in results['provider_stats'].items():
-        print(f"  服务商{provider_id}:")
-        print(f"    委托次数：{stats['delegations']}")
-        print(f"    总价格：{stats['total_cost']:.4f}")
-        print(f"    总回报：{stats['total_reward']:.4f}")
-        print(f"    平均回报：{stats['avg_reward']:.4f}")
-        print(f"    用户效用：{stats['profit']:.4f}")
+        logger.info(f"  服务商{provider_id}:")
+        logger.info(f"    委托次数：{stats['delegations']}")
+        logger.info(f"    总价格：{stats['total_cost']:.4f}")
+        logger.info(f"    总回报：{stats['total_reward']:.4f}")
+        logger.info(f"    平均回报：{stats['avg_reward']:.4f}")
+        logger.info(f"    用户效用：{stats['profit']:.4f}")
 
     return user, providers, results
 

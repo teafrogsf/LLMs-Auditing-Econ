@@ -5,6 +5,8 @@ import sys
 import random
 import networkx as nx
 from typing import Dict, List, Tuple, Any
+from loguru import logger
+logger.add("logs/max_flow.log", rotation="10 MB", retention="7 days", level="INFO")
 
 # 添加项目根目录到路径
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..','..')))
@@ -34,7 +36,6 @@ class MaxFlowRunner:
             G, (s,t)
         """
         if json_file_path is None:
-            # 默认路径指向当前max_flow文件夹下的文件
             json_file_path = os.path.join(os.path.dirname(__file__), 'max_flow_graphs.json')
         
         try:
@@ -60,7 +61,7 @@ class MaxFlowRunner:
             return G, q
             
         except Exception as e:
-            print(f"从JSON文件加载图失败: {e}")
+            logger.error(f"从JSON文件加载图失败: {e}")
             return None
     
     def load_graph_by_index(self, graph_index: int, json_file_path: str = None):
@@ -75,7 +76,6 @@ class MaxFlowRunner:
             G, (s,t) 或 None（如果索引不存在）
         """
         if json_file_path is None:
-            # 默认路径指向当前max_flow文件夹下的文件
             json_file_path = os.path.join(os.path.dirname(__file__), 'max_flow_graphs.json')
         
         try:
@@ -85,7 +85,7 @@ class MaxFlowRunner:
             # 按索引选择图
             graph_key = str(graph_index)
             if graph_key not in data:
-                print(f"图索引 {graph_index} 不存在")
+                logger.error(f"图索引 {graph_index} 不存在")
                 return None
                 
             graph_info = data[graph_key]
@@ -104,10 +104,10 @@ class MaxFlowRunner:
             return G, q
             
         except Exception as e:
-            print(f"从JSON文件加载图失败: {e}")
+            logger.error(f"从JSON文件加载图失败: {e}")
             return None
     
-    def run_single_test(self, G, q):
+    def evaluate_on_graph(self, G, q):
         """
         运行单个测试
         
@@ -123,7 +123,7 @@ class MaxFlowRunner:
         try:
             correct_answer = nx.maximum_flow_value(G, source, target, capacity='capacity')
         except Exception as e:
-            print(f"计算正确答案失败: {e}")
+            logger.error(f"计算正确答案失败: {e}")
             return {
                 'success': False,
                 'error': f"计算正确答案失败: {e}"
@@ -134,14 +134,14 @@ class MaxFlowRunner:
         prompt = translate(G, q, pattern)
         
         # 调用LLM
-        # print(f"开始调用LLM")
+        # logger.debug(f"开始调用LLM")
         try:
             llm_answer, prompt_tokens, completion_tokens = self.llm.call_llm(prompt)
             # 评估答案
             score = evaluate(llm_answer.lower(), G, q, correct_answer)
-            # print(f"模型答案：{llm_answer}")
-            # print(f"标准答案：{correct_answer}")
-            # print(f"最终评估：{score}")
+            # logger.debug(f"模型答案：{llm_answer}")
+            # logger.debug(f"标准答案：{correct_answer}")
+            # logger.debug(f"最终评估：{score}")
             
             return {
                 'success': True,
@@ -159,10 +159,8 @@ class MaxFlowRunner:
                 'success': False,
                 'error': str(e)
             }
-    
-    
 
-def run_single_graph_test(model_name: str):
+def generate_and_evaluate_random_graph(model_name: str):
     """
     运行单个图测试
     
@@ -172,9 +170,8 @@ def run_single_graph_test(model_name: str):
     Returns:
         测试结果
     """
-    # 创建运行器
     runner = MaxFlowRunner(model_name)
-    # print(f"正在加载测试图...")
+    # logger.debug(f"正在加载测试图...")
     # 从JSON文件中加载单个测试图
     graph_result = runner.load_random_graph()
     if graph_result is None:
@@ -184,13 +181,13 @@ def run_single_graph_test(model_name: str):
         }
     
     G, q = graph_result
-    # print(f"测试图加载完成！")
+    # logger.debug(f"测试图加载完成！")
     # 运行单个测试
-    result = runner.run_single_test(G, q)
+    result = runner.evaluate_on_graph(G, q)
     return result
 
 
-def run_multi_graph_test(model_name: str, num_tests: int = 10):
+def generate_and_evaluate_batch_graphs(model_name: str, num_tests: int ):
     """
     运行多个图测试
     
@@ -218,13 +215,13 @@ def run_multi_graph_test(model_name: str, num_tests: int = 10):
     
     def run_single_test_wrapper(test_number):
         """单个测试的包装函数，用于并行执行"""
-        print(f"\n=== 运行第 {test_number} 个测试样例 ===")
+        logger.info(f"\n=== 运行第 {test_number} 个测试样例 ===")
         
-        # 从JSON文件中按顺序加载测试图（test_number从0开始）
+        # 从JSON文件中按顺序加载测试图
         graph_result = runner.load_graph_by_index(test_number)
         
         if graph_result is None:
-            print(f"测试 {test_number} 失败: 从JSON文件加载图失败")
+            logger.error(f"测试 {test_number} 失败: 从JSON文件加载图失败")
             return {
                 'success': False,
                 'error': '从JSON文件加载图失败',
@@ -233,15 +230,15 @@ def run_multi_graph_test(model_name: str, num_tests: int = 10):
         
         G, q = graph_result
         # 运行单个测试
-        result = runner.run_single_test(G, q)
+        result = runner.evaluate_on_graph(G, q)
         result['test_number'] = test_number
         
         if result.get('success', False):
             score = result.get('score', 0)
-            print(f"测试 {test_number} 完成，得分: {score}")
+            logger.success(f"测试 {test_number} 完成，得分: {score}")
         else:
             score = 0
-            print(f"测试 {test_number} 失败: {result.get('error', '未知错误')}")
+            logger.error(f"测试 {test_number} 失败: {result.get('error', '未知错误')}")
     
         prompt_tokens = result.get('prompt_tokens', 0)
         completion_tokens = result.get('completion_tokens', 0)
@@ -279,16 +276,15 @@ def run_multi_graph_test(model_name: str, num_tests: int = 10):
             try:
                 result = future.result()
             except Exception as exc:
-                print(f'测试 {test_number} 产生异常: {exc}')
+                logger.error(f'测试 {test_number} 产生异常: {exc}')
     
     # 计算统计信息
     average_score = total_score / num_tests if num_tests > 0 else 0
     
-    # 所有测试完成后，添加分隔行
     with open('max_flow_scores.txt', 'a', encoding='utf-8') as f:
         f.write('\n\n\n')
     
-    print(f"所有测试完成")
+    logger.success(f"所有测试完成")
     
     summary = {
         'success': True,
@@ -305,4 +301,4 @@ def run_multi_graph_test(model_name: str, num_tests: int = 10):
 
 
 if __name__ == "__main__":
-    run_single_graph_test("gpt-35-turbo")
+    run_random_graph_test("gpt-35-turbo")

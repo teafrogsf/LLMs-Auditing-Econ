@@ -112,7 +112,7 @@ def evaluate_model(model_name: str) -> Tuple[float, int, int]:
 ### 运行机制
 
 ```bash
-python simulator/experiment.py
+python simulator/scenario.py
 ```
 
 ## 所有可用的模型

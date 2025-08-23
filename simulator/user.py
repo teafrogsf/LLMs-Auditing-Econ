@@ -1,25 +1,20 @@
 import math
 import random
 import sys
-from typing import List, Dict
-
 import numpy as np
 
+from loguru import logger
+from typing import List, Dict
 from text_generation_model import Provider, MODEL_PRICING
 from mechanism import Mechanism
-
 
 class User:
     """委托人（用户）类"""
 
-    def __init__(self, T: int, K: int, providers: List[Provider], output_file: str = "output.txt"):
+    def __init__(self, T: int, K: int, providers: List[Provider]):
         self.T = T  # 总时间步数
         self.K = K  # 服务商数量
         self.providers = providers
-
-        # 输出文件设置
-        self.output_file = output_file
-        self.original_stdout = sys.stdout
 
         # 机制参数
         self.epsilon = 0.2
@@ -78,13 +73,7 @@ class User:
         recent_utilities = self.history_utilities[provider_id][-recent_count:]
         return float(np.mean(recent_utilities))
     
-    def _start_file_output(self):
-        """开始将输出重定向到文件"""
-        # 清空输出文件
-        with open(self.output_file, 'w', encoding='utf-8') as f:
-            f.write("=== 机制执行日志 ===\n\n")
-        # 重定向标准输出，设置为无缓冲模式实现实时输出
-        sys.stdout = open(self.output_file, 'a', encoding='utf-8', buffering=1)
+
 
 
     # --------------------- 机制执行入口 --------------------- #
@@ -95,11 +84,8 @@ class User:
             博弈结果统计
         """
 
-        # 开始将输出重定向到文件
-        self._start_file_output()
-        
         self.mechanism = Mechanism()
-        print(f"开始运行机制，参数：T={self.T}, K={self.K}, B={self.B}, M={self.M:.4f}, δ1={self.delta_1:.4f}, δ2={self.delta_2:.4f}")
+        logger.info(f"开始运行机制，参数：T={self.T}, K={self.K}, B={self.B}, M={self.M:.4f}")
 
         # 阶段1：轮流委托每个服务商B次
         self._phase1_exploration()
@@ -151,18 +137,17 @@ class User:
 
             if provider_delegations:
                 total_cost = sum(d['cost'] for d in provider_delegations)
-
-                total_utility = sum(d.get('utility', 0) for d in provider_delegations)
-                avg_utility = total_utility / len(provider_delegations)
+                total_reward = sum(d['reward'] for d in provider_delegations)
+                avg_reward = total_reward / len(provider_delegations)
                 total_prompt_tokens = sum(d.get('prompt_tokens', 0) for d in provider_delegations)
                 total_completion_tokens = sum(d.get('completion_tokens', 0) for d in provider_delegations)
                 total_tokens = sum(d.get('total_tokens', 0) for d in provider_delegations)
                 results['provider_stats'][provider.provider_id] = {
                     'delegations': len(provider_delegations),
                     'total_cost': total_cost,
-                    'total_utility': total_utility,
-                    'avg_utility': avg_utility,  
-
+                    'total_reward': total_reward,
+                    'avg_reward': avg_reward,  
+                    'profit': total_reward - total_cost,
                     'total_prompt_tokens': total_prompt_tokens,
                     'total_completion_tokens': total_completion_tokens,
                     'total_tokens': total_tokens,
@@ -172,8 +157,8 @@ class User:
                 results['provider_stats'][provider.provider_id] = {
                     'delegations': 0,
                     'total_cost': 0,
-                    'total_utility': 0,
-                    'avg_utility': 0, 
+                    'total_reward': 0,
+                    'avg_reward': 0, 
                     'profit': 0,
                     'total_prompt_tokens': 0,
                     'total_completion_tokens': 0,

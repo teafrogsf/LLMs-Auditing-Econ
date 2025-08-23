@@ -212,7 +212,6 @@ class Provider:
             model_key = self.model_keys[model_idx]
         
         # 调用evaluate_model函数进行评估
-        from utils import evaluate_model
         reward, prompt_tokens, completion_tokens = evaluate_model(model_key)
         
         # 使用线程锁保护共享数据的访问

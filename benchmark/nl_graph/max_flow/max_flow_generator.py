@@ -41,7 +41,7 @@ class Generator:
                 for v in nodes:
                     if u == v:
                         continue
-                    # 避免重复边：DiGraph 允许更新属性，这里只在不存在时添加
+                    # 避免重复边
                     if not G.has_edge(u, v) and random() < self.edge_probability:
                         G.add_edge(u, v, capacity=self._rand_capacity())
 
