@@ -73,9 +73,6 @@ class User:
         recent_utilities = self.history_utilities[provider_id][-recent_count:]
         return float(np.mean(recent_utilities))
     
-
-
-
     # --------------------- 机制执行入口 --------------------- #
     def run_mechanism(self) -> Dict:
         """
