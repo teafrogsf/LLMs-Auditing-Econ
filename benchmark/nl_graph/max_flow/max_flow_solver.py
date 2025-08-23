@@ -38,7 +38,7 @@ def evaluate(ans, G, q, std):
         return 0.0
 
     raw = matches[-1]  # 若有多个答案，取最后一个 
-    logger.debug(f"模型答案：{raw}")
+    # logger.debug(f"模型答案：{raw}")
     # 2) 将数值转为 float
     try:
         num = float(raw)

@@ -58,7 +58,7 @@ class MaxFlowRunner:
                 raise ValueError("无法找到源点和汇点信息")
             
             q = (source, target)
-            return G, q
+            return G, q, random_id
             
         except Exception as e:
             logger.error(f"从JSON文件加载图失败: {e}")
@@ -173,17 +173,17 @@ def generate_and_evaluate_random_graph(model_name: str):
     runner = MaxFlowRunner(model_name)
     # logger.debug(f"正在加载测试图...")
     # 从JSON文件中加载单个测试图
-    graph_result = runner.load_random_graph()
-    if graph_result is None:
+    G, q, question_id = runner.load_random_graph()
+    if G is None:
         return {
             'success': False,
             'error': '从JSON文件加载图失败'
         }
-    
-    G, q = graph_result
     # logger.debug(f"测试图加载完成！")
     # 运行单个测试
     result = runner.evaluate_on_graph(G, q)
+    # 添加问题ID到结果中
+    result['question_id'] = question_id
     return result
 
 
