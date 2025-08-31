@@ -42,7 +42,7 @@
 {"id":41,"score":0.5454545454545454,"input_tokens":2582,"output_tokens":1229}
 {"id":42,"score":0.7538461538461538,"input_tokens":2662,"output_tokens":3233}
 {"id":43,"score":0.0,"input_tokens":2486,"output_tokens":3317}
-{"id":44,"score":0.4791666666666667,"input_tokens":2742,"output_tokens":3429}
+{"id":44,"score":0,"input_tokens":0,"output_tokens":0}
 {"id":45,"score":0.0,"input_tokens":2630,"output_tokens":4669}
 {"id":46,"score":1.0,"input_tokens":2406,"output_tokens":5462}
 {"id":47,"score":1.0,"input_tokens":2742,"output_tokens":4990}

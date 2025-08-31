@@ -105,7 +105,7 @@ class Mechanism:
         # 并行处理委托任务
         def delegate_task(time_step):
             """单个委托任务"""
-            result = user.best_provider.run(phase=2, t=time_step, second_best_utility=user.second_best_utility, R=remaining_delegations)
+            result = user.best_provider.run(phase=2, t=time_step, second_best_reward=user.second_best_utility, R=remaining_delegations)
             return {
                 'time': time_step,
                 'result': result
@@ -176,7 +176,7 @@ class Mechanism:
             logger.info(f"  给予奖励，额外委托{user.B}次")
             for _ in range(min(user.B, user.T - user.current_time)):
                 # 奖励轮委托
-                result = user.best_provider.run(phase=3, t=user.current_time, second_best_utility=user.second_best_utility)
+                result = user.best_provider.run(phase=3, t=user.current_time, second_best_reward=user.second_best_reward)
                 reward = result["reward"]
                 price = result["price"]
                 prompt_tokens, completion_tokens = result["tokens"]
