@@ -38,7 +38,7 @@ class ProviderConfig:
 
 
 class Evaluator:
-    def __init__(self, models, param=7) -> None:
+    def __init__(self, models, param=10) -> None:
         # self.models = list(MODEL_PRICING.keys())
         self.data = {model: [json.loads(line) for line in open(f'test_result/{model}_test_result.jsonl')] for model in models}
         self.task_ids = json.load(open('task_ids_shuffled.json'))
@@ -157,6 +157,17 @@ class Provider:
             # 如果时间步t超出范围，返回默认价格
             return self.price
 
+    def get_normal_model_key(self) -> str:
+        """
+        获取服务商正常被要求使用的模型
+        """
+        normal_models = {
+            1: "o3-mini",
+            2: "gpt-4o-mini", 
+            3: "gpt-4o"
+        }
+        return normal_models.get(self.provider_id, self.model_keys[0])
+
     def _get_best_model_idx(self) -> int:
         """获取最贵模型的索引"""
         return max(
@@ -171,11 +182,7 @@ class Provider:
             key=lambda i: (MODEL_PRICING[self.model_keys[i]]["input"] + MODEL_PRICING[self.model_keys[i]]["output"]) / 2
         )
     
-    def get_total_cost(self) -> float:
-        """获取该provider的总真实成本"""
-        return sum(self.history_costs)
-    
-    def run(self, phase: int, t: int, second_best_utility=None, R=None) -> Dict:
+    def run(self, phase: int, t: int, second_best_reward=None, R=None) -> Dict:
         """产生reward的函数，根据不同阶段采用不同策略
         
         Args:
@@ -199,21 +206,21 @@ class Provider:
                 model_key = self.model_keys[model_idx]   
 
             elif phase == 2:
-                # 阶段二：首先使用真实模型，当累积reward达到R*second_best_utility时使用最便宜模型
-                if second_best_utility is None:
-                    second_best_utility = 0.0
+                # 阶段二：首先使用真实模型，当累积reward达到R*second_best_reward时使用最便宜模型
+                if second_best_reward is None:
+                    second_best_reward = 0.0
                 if R is None:
                     R = 0 # 默认值，但应该从user中传入
                     
-                threshold = R * second_best_utility
+                threshold = R * second_best_reward
                 
                 # 线程安全地读取cumulative_reward
                 with self._lock:
                     current_cumulative_reward = self.cumulative_reward
                 
                 if current_cumulative_reward < threshold:
-                    # 使用真实模型（也就是最好的模型）
-                    model_key = self._get_best_model_idx()
+                    # 使用真实模型
+                    model_key = self.get_normal_model_key()
                     model_idx = self.model_keys.index(model_key)
                 else:
                     # 使用最便宜的模型
