@@ -1,5 +1,8 @@
 import math
+from re import T
+from unittest.loader import VALID_MODULE_NAME
 import numpy as np
+import json
 import random
 import sys
 import os
@@ -23,6 +26,7 @@ MODEL_PRICING = {
     "deepseek-v3": {"input": 0.07/1_000_000, "output": 1.10/1_000_000},
     "deepseek-r1": {"input": 0.14/1_000_000, "output": 2.19/1_000_000},
 }
+STRATEGIES = ['ours', 'honest', 'random', 'worst']
 
 @dataclass
 class ProviderConfig:
@@ -31,6 +35,24 @@ class ProviderConfig:
     price: float  # p_i
     model_keys: List[str]  # 支持的模型列表
     model_costs: List[float]  # 各模型的真实cost
+    strategy: str
+
+
+class Evaluator:
+    def __init__(self, models, param=10) -> None:
+        # self.models = list(MODEL_PRICING.keys())
+        self.data = {model: [json.loads(line) for line in open(f'test_result/{model}_test_result.jsonl')] for model in models}
+        self.task_ids = json.load(open('task_ids_shuffled.json'))
+        self.param = param
+
+    def get_item(self, model, t):
+        result = self.data[model][self.task_ids[t]]
+        score = result.get('score', 0.0) * self.param
+        prompt_tokens = result.get('input_tokens', 0)
+        completion_tokens = result.get('output_tokens', 0)
+    
+        return score, prompt_tokens, completion_tokens
+
 
 class Provider:
     """API服务商类（支持多模型和真实LLM调用）"""
@@ -41,8 +63,11 @@ class Provider:
         self.price = config.price
         self.model_keys = config.model_keys
         self.model_costs = config.model_costs
-        self.llms = [ExampleLLM(key) for key in self.model_keys]
-
+        # self.llms = [ExampleLLM(key) for key in self.model_keys]
+        self.evaluator = Evaluator(self.model_keys)
+        self.strategy = config.strategy
+        if self.strategy not in STRATEGIES:
+            raise ValueError(f'Strategy {self.strategy} is not supported.')
         # 历史记录
         self.history_costs = []  # 历史成本
         self.total_delegations = 0  # 总委托次数
@@ -56,7 +81,8 @@ class Provider:
         
         # 线程安全锁
         self._lock = threading.Lock()
-        
+
+
 
     def set_cost(self, t: int, mechanism_info: Optional[Dict] = None) -> float:
         """
@@ -144,23 +170,21 @@ class Provider:
         }
         return normal_models.get(self.provider_id, self.model_keys[0])
 
+    def _get_best_model_idx(self) -> int:
+        """获取最贵模型的索引"""
+        return max(
+            range(len(self.model_keys)),
+            key=lambda i: (MODEL_PRICING[self.model_keys[i]]["input"] + MODEL_PRICING[self.model_keys[i]]["output"]) / 2
+        )
 
     def _get_cheapest_model_idx(self) -> int:
         """获取最便宜模型的索引"""
-        min_cost_idx = 0
-        min_cost = float('inf')
-        
-        for i, model_key in enumerate(self.model_keys):
-            pricing = MODEL_PRICING.get(model_key, {"input": self.price, "output": self.price})
-            # 使用平均价格作为比较标准
-            avg_price = (pricing["input"] + pricing["output"]) / 2
-            if avg_price < min_cost:
-                min_cost = avg_price
-                min_cost_idx = i
-                
-        return min_cost_idx
+        return min(
+            range(len(self.model_keys)),
+            key=lambda i: (MODEL_PRICING[self.model_keys[i]]["input"] + MODEL_PRICING[self.model_keys[i]]["output"]) / 2
+        )
     
-    def delegate_provider(self, phase: int, t: int, second_best_reward=None, R=None) -> Dict:
+    def run(self, phase: int, t: int, second_best_reward=None, R=None) -> Dict:
         """产生reward的函数，根据不同阶段采用不同策略
         
         Args:
@@ -177,41 +201,56 @@ class Provider:
             }
         """
             
-        # 根据阶段选择模型策略
-        if phase == 1:
-            # 阶段一：永远使用真实模型
-            model_key = self.get_normal_model_key()
-            model_idx = self.model_keys.index(model_key)
-            
-        elif phase == 2:
-            # 阶段二：首先使用真实模型，当累积reward达到R*second_best_reward时使用最便宜模型
-            if second_best_reward is None:
-                second_best_reward = 0.0
-            if R is None:
-                R = 0 # 默认值，但应该从user中传入
+        if self.strategy == 'ours':
+            if phase == 1:
+                # 阶段一：永远使用最贵的
+                model_idx = self._get_best_model_idx()
+                model_key = self.model_keys[model_idx]   
+
+            elif phase == 2:
+                # 阶段二：首先使用真实模型，当累积reward达到R*second_best_reward时使用最便宜模型
+                if second_best_reward is None:
+                    second_best_reward = 0.0
+                if R is None:
+                    R = 0 # 默认值，但应该从user中传入
+                    
+                threshold = R * second_best_reward
                 
-            threshold = R * second_best_reward
-            
-            # 线程安全地读取cumulative_reward
-            with self._lock:
-                current_cumulative_reward = self.cumulative_reward
-            
-            if current_cumulative_reward < threshold:
-                # 使用真实模型
-                model_key = self.get_normal_model_key()
-                model_idx = self.model_keys.index(model_key)
+                # 线程安全地读取cumulative_reward
+                with self._lock:
+                    current_cumulative_reward = self.cumulative_reward
+                
+                if current_cumulative_reward < threshold:
+                    # 使用真实模型
+                    model_key = self.get_normal_model_key()
+                    model_idx = self.model_keys.index(model_key)
+                else:
+                    # 使用最便宜的模型
+                    model_idx = self._get_cheapest_model_idx()
+                    model_key = self.model_keys[model_idx]
+                    
             else:
-                # 使用最便宜的模型
+                # 其他阶段：使用最便宜的模型
                 model_idx = self._get_cheapest_model_idx()
                 model_key = self.model_keys[model_idx]
-                
-        else:
-            # 其他阶段：使用最便宜的模型
+        
+        elif self.strategy == 'worst':
             model_idx = self._get_cheapest_model_idx()
             model_key = self.model_keys[model_idx]
         
+        elif self.strategy == 'honest':
+            model_idx = self._get_best_model_idx()
+            model_key = self.model_keys[model_idx]
+
+        elif self.strategy == 'random':
+            model_idx = random.choice(range(len(self.model_keys)))
+            model_key = self.model_keys[model_idx]
+        
+        else:
+            raise ValueError(f'No strategy {self.strategy}')
+
         # 调用evaluate_model函数进行评估
-        reward, prompt_tokens, completion_tokens = evaluate_model(model_key)
+        reward, prompt_tokens, completion_tokens = self.evaluator.get_item(model_key, t)
         
         # 使用线程锁保护共享数据的访问
         with self._lock:
@@ -240,6 +279,4 @@ class Provider:
             "price": float(price),
             "tokens": (int(prompt_tokens), int(completion_tokens))
         }
-    
-
     

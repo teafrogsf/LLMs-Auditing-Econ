@@ -1,4 +1,6 @@
+from ast import arg
 import random
+import argparse
 
 import numpy as np
 from loguru import logger
@@ -10,11 +12,15 @@ RANDOM_SEED = 42
 np.random.seed(RANDOM_SEED)
 random.seed(RANDOM_SEED)
 
-logger.add("logs/simulator.log", rotation="10 MB", retention="7 days", level="INFO")
 
 
 def create_example_scenario():
-    T = 3  # 总时间步数
+    paser = argparse.ArgumentParser()
+    paser.add_argument('--s', help='strategy', default='ours', choices=['honest', 'ours', 'worst', 'random'])
+    args = paser.parse_args()
+    logger.add(f"logs/simulator_{args.s}.log", rotation="10 MB", retention="7 days", level="INFO")
+
+    T = 1000  # 总时间步数
     K = 3     # 服务商数量
 
     # 配置每个服务商的模型
@@ -41,6 +47,7 @@ def create_example_scenario():
             price=0.0,
             model_keys=setting["model_keys"],
             model_costs=[],
+            strategy=args.s
         )
         providers.append(Provider(config))
 

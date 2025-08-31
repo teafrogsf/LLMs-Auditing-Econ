@@ -113,3 +113,10 @@ def phase3_utility_based(self, user):
 1. **模型定价**：基于真实API定价，支持动态成本计算
 2. **并发处理**：机制支持多线程并发执行
 3. **文件输出**：所有运行日志会保存到指定文件
+
+
+## Uase by wangyu
+
+```shell
+python -
+```
