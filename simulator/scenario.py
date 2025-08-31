@@ -7,18 +7,21 @@ from loguru import logger
 
 from text_generation_model import Provider, ProviderConfig
 from user import User
+import itertools
+
 
 RANDOM_SEED = 42
 np.random.seed(RANDOM_SEED)
 random.seed(RANDOM_SEED)
+CHOICES=['honest', 'ours', 'worst', 'random']
 
 
+def create_example_scenario(choices):
+    # paser = argparse.ArgumentParser()
+    # paser.add_argument('--s', help='strategy', default='ours', choices=['honest', 'ours', 'worst', 'random'])
+    # args = paser.parse_args()
 
-def create_example_scenario():
-    paser = argparse.ArgumentParser()
-    paser.add_argument('--s', help='strategy', default='ours', choices=['honest', 'ours', 'worst', 'random'])
-    args = paser.parse_args()
-    logger.add(f"logs/simulator_{args.s}.log", rotation="10 MB", retention="7 days", level="INFO")
+    logger.add(f"logs/simulator_{'-'.join(choices)}.log", rotation="10 MB", retention="7 days", level="INFO")
 
     T = 1000  # 总时间步数
     K = 3     # 服务商数量
@@ -47,7 +50,7 @@ def create_example_scenario():
             price=0.0,
             model_keys=setting["model_keys"],
             model_costs=[],
-            strategy=args.s
+            strategy=choices[i]
         )
         providers.append(Provider(config))
 
@@ -71,6 +74,14 @@ def create_example_scenario():
 
     return user, providers, results
 
+def main():
+    choices_list = list(itertools.product(CHOICES, repeat=3))
+    for item in choices_list:
+        print(item)
+        # continue
+        create_example_scenario(item)
+
 
 if __name__ == "__main__":
-    create_example_scenario()
+    # create_example_scenario()
+    main()
