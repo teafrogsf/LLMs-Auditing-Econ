@@ -7,6 +7,8 @@ from loguru import logger
 from typing import List, Dict
 from text_generation_model import Provider, MODEL_PRICING
 from mechanism import Mechanism
+import json
+
 
 class User:
     """委托人（用户）类"""
@@ -24,6 +26,8 @@ class User:
         # 博弈历史
         self.delegation_history = []  # 委托历史
         self.current_time = 0
+
+        self.task_ids = json.load(open('task_ids_shuffled.json'))
 
         # 阶段记录
         self.phase1_completed = False

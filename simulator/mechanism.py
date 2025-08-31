@@ -25,7 +25,7 @@ class Mechanism:
                     break
 
                 # 委托服务商，阶段1使用诚实模式
-                result = provider.delegate_provider(phase=1, t=user.current_time)
+                result = provider.run(phase=1, t=user.current_time)
                 reward = result["reward"]
                 price = result["price"]
                 prompt_tokens, completion_tokens = result["tokens"]
@@ -108,7 +108,7 @@ class Mechanism:
         # 并行处理委托任务
         def delegate_task(time_step):
             """单个委托任务"""
-            result = user.best_provider.delegate_provider(phase=2, t=time_step, second_best_reward=user.second_best_utility, R=remaining_delegations)
+            result = user.best_provider.run(phase=2, t=time_step, second_best_reward=user.second_best_utility, R=remaining_delegations)
             return {
                 'time': time_step,
                 'result': result
@@ -179,7 +179,7 @@ class Mechanism:
             logger.info(f"  给予奖励，额外委托{user.B}次")
             for _ in range(min(user.B, user.T - user.current_time)):
                 # 奖励轮委托
-                result = user.best_provider.delegate_provider(phase=3, t=user.current_time, second_best_reward=user.second_best_reward)
+                result = user.best_provider.run(phase=3, t=user.current_time, second_best_reward=user.second_best_reward)
                 reward = result["reward"]
                 price = result["price"]
                 prompt_tokens, completion_tokens = result["tokens"]
@@ -224,7 +224,7 @@ class Mechanism:
             # 委托该服务商B次
             for _ in range(user.B):
                 # 阶段3委托
-                result = provider.delegate_provider(phase=3, t=user.current_time)
+                result = provider.run(phase=3, t=user.current_time)
                 reward = result["reward"]
                 price = result["price"]
                 prompt_tokens, completion_tokens = result["tokens"]
@@ -279,7 +279,7 @@ class Mechanism:
                 integer_delegations = integer_part * user.B
                 for _ in range(min(integer_delegations, user.T - user.current_time)):
                     # 阶段4整数部分委托
-                    result = provider.delegate_provider(phase=4, t=user.current_time)
+                    result = provider.run(phase=4, t=user.current_time)
                     reward = result["reward"]
                     price = result["price"]
                     prompt_tokens, completion_tokens = result["tokens"]
@@ -307,7 +307,7 @@ class Mechanism:
                         logger.info(f"  服务商{provider.provider_id}获得概率委托，概率：{fractional_part:.4f}")
                         for _ in range(min(user.B, user.T - user.current_time)):
                             # 阶段4概率委托
-                            result = provider.delegate_provider(phase=4, t=user.current_time)
+                            result = provider.run(phase=4, t=user.current_time)
                             reward = result["reward"]
                             price = result["price"]
                             prompt_tokens, completion_tokens = result["tokens"]
