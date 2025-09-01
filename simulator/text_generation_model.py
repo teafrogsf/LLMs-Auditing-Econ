@@ -12,7 +12,6 @@ from typing import Dict, List, Optional, Tuple
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from llm_client import ExampleLLM
-from model_evaluator import evaluate_model
 
 MODEL_PRICING = {
     "gpt-4o": {"input": 2.5/1_000_000, "output": 10/1_000_000},
@@ -39,7 +38,7 @@ class ProviderConfig:
 
 
 class Evaluator:
-    def __init__(self, models, param=10) -> None:
+    def __init__(self, models, param=7) -> None:
         # self.models = list(MODEL_PRICING.keys())
         self.data = {model: [json.loads(line) for line in open(f'test_result/{model}_test_result.jsonl')] for model in models}
         self.task_ids = json.load(open('task_ids_shuffled.json'))
@@ -164,9 +163,9 @@ class Provider:
         获取服务商正常被要求使用的模型
         """
         normal_models = {
-            1: "o3-mini",
-            2: "gpt-4o-mini", 
-            3: "gpt-4o"
+            1: "o1",
+            2: "o3-mini", 
+            3: "gpt-4"
         }
         return normal_models.get(self.provider_id, self.model_keys[0])
 

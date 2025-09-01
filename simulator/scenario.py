@@ -25,17 +25,14 @@ def create_example_scenario():
 
     # 配置每个服务商的模型
     provider_settings = [
-        # GPT系列
         dict(
-            model_keys=["o1","o3-mini", "o1-mini"],
+            model_keys=["o1","o1-mini","gpt-4o-mini"],
         ),
-        # Qwen系列
         dict(
-            model_keys=["deepseek-r1", "gpt-4o-mini","deepseek-v3"],
+            model_keys=["o3-mini","deepseek-r1","deepseek-v3"],
         ),
-        # DeepSeek系列
         dict(
-            model_keys=["qwen-max", "gpt-4o", "gpt-35-turbo"],
+            model_keys=["gpt-4","gpt-4o","gpt-35-turbo"],
         ),
     ]
 
