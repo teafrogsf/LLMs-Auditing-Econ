@@ -42,7 +42,7 @@ def create_example_scenario():
         ),
         dict(
             model_keys=["gpt-4","gpt-4o","gpt-35-turbo"],
-        )
+        ),
     ]
 
     
