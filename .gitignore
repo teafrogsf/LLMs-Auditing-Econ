@@ -1,4 +1,2 @@
 .env
 __pycache__
-**/model_test_result/
-max_flow_scores.txt
