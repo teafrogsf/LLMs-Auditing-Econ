@@ -7,18 +7,21 @@ from loguru import logger
 
 from text_generation_model import Provider, ProviderConfig
 from user import User
+import itertools
+
 
 RANDOM_SEED = 42
 np.random.seed(RANDOM_SEED)
 random.seed(RANDOM_SEED)
+CHOICES=['honest', 'ours', 'worst', 'random']
 
 
-
-def create_example_scenario():
-    paser = argparse.ArgumentParser()
-    paser.add_argument('--s', help='strategy', default='ours', choices=['honest', 'ours', 'worst', 'random'])
-    args = paser.parse_args()
-    logger.add(f"logs/simulator_{args.s}.log", rotation="10 MB", retention="7 days", level="INFO")
+def create_example_scenario(choices):
+    # paser = argparse.ArgumentParser()
+    # paser.add_argument('--s', help='strategy', default='ours', choices=['honest', 'ours', 'worst', 'random'])
+    # args = paser.parse_args()
+    logger.remove()
+    logger.add(f"logs/simulator_{'-'.join(choices)}.log", rotation="10 MB", retention="7 days", level="INFO")
 
     T = 1000  # 总时间步数
     K = 3     # 服务商数量
@@ -33,7 +36,7 @@ def create_example_scenario():
         ),
         dict(
             model_keys=["gpt-4","gpt-4o","gpt-35-turbo"],
-        ),
+        )
     ]
 
     
@@ -44,7 +47,7 @@ def create_example_scenario():
             price=0.0,
             model_keys=setting["model_keys"],
             model_costs=[],
-            strategy=args.s
+            strategy=choices[i]
         )
         providers.append(Provider(config))
 
@@ -59,15 +62,30 @@ def create_example_scenario():
 
     logger.info("\n各服务商统计：")
     for provider_id, stats in results['provider_stats'].items():
+        # 获取对应provider的总成本
+        provider = next(p for p in providers if p.provider_id == provider_id)
+        total_cost = provider.get_total_cost()
+        provider_utility = stats['total_price'] - total_cost  # 服务商效用 = price - cost
+        
         logger.info(f"  服务商{provider_id}:")
         logger.info(f"    委托次数：{stats['delegations']}")
-        logger.info(f"    总价格：{stats['total_cost']:.4f}")
+        logger.info(f"    总价格：{stats['total_price']:.4f}")
+        logger.info(f"    总成本：{total_cost:.4f}")
+        logger.info(f"    服务商效用：{provider_utility:.4f}")
         logger.info(f"    总回报：{stats['total_reward']:.4f}")
         logger.info(f"    平均回报：{stats['avg_reward']:.4f}")
         logger.info(f"    用户效用：{stats['profit']:.4f}")
 
     return user, providers, results
 
+def main():
+    choices_list = list(itertools.product(CHOICES, repeat=3))
+    for item in choices_list:
+        print(item)
+        # continue
+        create_example_scenario(item)
+
 
 if __name__ == "__main__":
-    create_example_scenario()
+    # create_example_scenario()
+    main()

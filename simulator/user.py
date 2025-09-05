@@ -39,7 +39,6 @@ class User:
         self.avg_rewards = {}  # 各服务商平均回报
         self.avg_utilities = {}  # 各服务商平均utility
         self.best_provider = None
-        self.second_best_reward = 0
         self.second_best_utility = 0
         self.second_best_provider = None
         
@@ -137,7 +136,7 @@ class User:
             provider_delegations = [d for d in self.delegation_history if d['provider_id'] == provider.provider_id]
 
             if provider_delegations:
-                total_cost = sum(d['cost'] for d in provider_delegations)
+                total_price = sum(d['price'] for d in provider_delegations)
                 total_reward = sum(d['reward'] for d in provider_delegations)
                 avg_reward = total_reward / len(provider_delegations)
                 total_prompt_tokens = sum(d.get('prompt_tokens', 0) for d in provider_delegations)
@@ -145,10 +144,10 @@ class User:
                 total_tokens = sum(d.get('total_tokens', 0) for d in provider_delegations)
                 results['provider_stats'][provider.provider_id] = {
                     'delegations': len(provider_delegations),
-                    'total_cost': total_cost,
+                    'total_price': total_price,
                     'total_reward': total_reward,
                     'avg_reward': avg_reward,  
-                    'profit': total_reward - total_cost,
+                    'profit': total_reward - total_price,
                     'total_prompt_tokens': total_prompt_tokens,
                     'total_completion_tokens': total_completion_tokens,
                     'total_tokens': total_tokens,
@@ -157,7 +156,7 @@ class User:
             else:
                 results['provider_stats'][provider.provider_id] = {
                     'delegations': 0,
-                    'total_cost': 0,
+                    'total_price': 0,
                     'total_reward': 0,
                     'avg_reward': 0, 
                     'profit': 0,

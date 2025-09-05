@@ -132,7 +132,7 @@ class Provider:
 
     def get_price(self, t: int) -> float:
         """
-        获取当前时间步的真实价格, 根据真实token使用乘以单个price计算
+        获取当前时间步的价格，使用服务商最好模型的单价*当前时间步的tokens
         
         Args:
             t: 当前时间步
@@ -140,20 +140,19 @@ class Provider:
         Returns:
             float: 当前的报价
         """
-        # 根据时间步t获取对应的token使用情况和模型索引（t从1开始，需要转换为列表索引）
-        if t < len(self.prompt_tokens_by_time) and t < len(self.completion_tokens_by_time) and t < len(self.model_idx_by_time):
+        # 根据时间步t获取对应的token使用情况
+        if t < len(self.prompt_tokens_by_time) and t < len(self.completion_tokens_by_time):
             prompt_tokens = self.prompt_tokens_by_time[t]
             completion_tokens = self.completion_tokens_by_time[t]
-            model_idx = self.model_idx_by_time[t]
-            model_key = self.model_keys[model_idx]
             
-            # 获取真实价格
-            pricing = MODEL_PRICING.get(model_key, {"input": self.price, "output": self.price})
+            # 获取服务商最好模型的价格
+            best_model_idx = self._get_best_model_idx()
+            best_model_key = self.model_keys[best_model_idx]
+            best_model_pricing = MODEL_PRICING.get(best_model_key, {"input": self.price, "output": self.price})
             
-            # 计算真实价格
-            real_price = prompt_tokens * pricing["input"] + completion_tokens * pricing["output"]
-            self.price = real_price
-            return real_price
+            # 使用最好模型的单价计算价格
+            price = prompt_tokens * best_model_pricing["input"] + completion_tokens * best_model_pricing["output"]
+            return price
         else:
             # 如果时间步t超出范围，返回默认价格
             return self.price
@@ -183,13 +182,17 @@ class Provider:
             key=lambda i: (MODEL_PRICING[self.model_keys[i]]["input"] + MODEL_PRICING[self.model_keys[i]]["output"]) / 2
         )
     
-    def run(self, phase: int, t: int, second_best_reward=None, R=None) -> Dict:
+    def get_total_cost(self) -> float:
+        """获取该provider的总真实成本"""
+        return sum(self.history_costs)
+    
+    def run(self, phase: int, t: int, second_best_utility=None, R=None) -> Dict:
         """产生reward的函数，根据不同阶段采用不同策略
         
         Args:
             phase: 阶段编号 (1, 2, 或其他)
             t: 当前时间步
-            second_best_reward: 第二好的reward值（阶段2使用）
+            second_best_utility: 第二好的reward值（阶段2使用）
             R: 阶段2的委托次数限制（从user中传入）
             
         Returns:
@@ -207,13 +210,13 @@ class Provider:
                 model_key = self.model_keys[model_idx]   
 
             elif phase == 2:
-                # 阶段二：首先使用真实模型，当累积reward达到R*second_best_reward时使用最便宜模型
-                if second_best_reward is None:
-                    second_best_reward = 0.0
+                # 阶段二：首先使用真实模型，当累积reward达到R*second_best_utility时使用最便宜模型
+                if second_best_utility is None:
+                    second_best_utility = 0.0
                 if R is None:
                     R = 0 # 默认值，但应该从user中传入
                     
-                threshold = R * second_best_reward
+                threshold = R * second_best_utility
                 
                 # 线程安全地读取cumulative_reward
                 with self._lock:
@@ -272,6 +275,9 @@ class Provider:
         
         # 计算价格，使用当前时间步
         price = self.get_price(t)
+        # 记录当前成本
+        self.set_cost(t)
+
         
         return {
             "reward": float(reward),
