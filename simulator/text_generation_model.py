@@ -157,17 +157,6 @@ class Provider:
             # 如果时间步t超出范围，返回默认价格
             return self.price
 
-    def get_normal_model_key(self) -> str:
-        """
-        获取服务商正常被要求使用的模型
-        """
-        normal_models = {
-            1: "o1",
-            2: "o3-mini", 
-            3: "gpt-4"
-        }
-        return normal_models.get(self.provider_id, self.model_keys[0])
-
     def _get_best_model_idx(self) -> int:
         """获取最贵模型的索引"""
         return max(
@@ -223,8 +212,8 @@ class Provider:
                     current_cumulative_reward = self.cumulative_reward
                 
                 if current_cumulative_reward < threshold:
-                    # 使用真实模型
-                    model_key = self.get_normal_model_key()
+                    # 使用真实模型（也就是最好的模型）
+                    model_key = self._get_best_model_idx()
                     model_idx = self.model_keys.index(model_key)
                 else:
                     # 使用最便宜的模型
