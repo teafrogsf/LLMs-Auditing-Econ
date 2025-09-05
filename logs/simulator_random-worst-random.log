@@ -1,50 +1,50 @@
-2025-09-05 12:19:43.715 | INFO     | user:run_mechanism:88 - 开始运行机制，参数：T=1000, K=3, B=15, M=2.0111
-2025-09-05 12:19:43.715 | INFO     | mechanism:phase1_exploration:19 - 阶段1：轮流委托每个服务商15次
-2025-09-05 12:19:43.715 | INFO     | mechanism:phase1_exploration:22 -   委托服务商1 15次
-2025-09-05 12:19:43.715 | INFO     | mechanism:phase1_exploration:22 -   委托服务商2 15次
-2025-09-05 12:19:43.715 | INFO     | mechanism:phase1_exploration:22 -   委托服务商3 15次
-2025-09-05 12:19:43.716 | INFO     | mechanism:phase1_exploration:64 -   更新后的值：δ1=3.4066, δ2=1.1589
-2025-09-05 12:19:43.716 | INFO     | mechanism:phase1_exploration:80 -   阶段1完成，最佳服务商：1，平均效用：3.1864
-2025-09-05 12:19:43.716 | INFO     | mechanism:phase1_exploration:81 -   第二好效用：2.8400
-2025-09-05 12:19:43.716 | INFO     | mechanism:phase2_exploitation:94 - 阶段2：委托最佳服务商1
-2025-09-05 12:19:43.716 | INFO     | mechanism:phase2_exploitation:100 -   计划委托711次，阈值：0.8289
-2025-09-05 12:19:43.730 | INFO     | mechanism:phase2_exploitation:169 -   在630次委托后停止，最近平均utility：0.7623 < 0.8289
-2025-09-05 12:19:43.730 | INFO     | mechanism:phase2_incentive:208 - 阶段2：委托除最优服务商外的其他服务商
-2025-09-05 12:19:43.730 | INFO     | mechanism:phase2_incentive:219 -   委托服务商2 15次
-2025-09-05 12:19:43.730 | INFO     | mechanism:phase2_incentive:219 -   委托服务商3 15次
-2025-09-05 12:19:43.732 | INFO     | mechanism:phase3_utility_based:253 - 阶段3：基于效用的委托
-2025-09-05 12:19:43.732 | INFO     | mechanism:phase3_utility_based:273 -   服务商1效用：3.7938，整数部分：3，小数部分：0.7938
-2025-09-05 12:19:43.732 | INFO     | mechanism:phase3_utility_based:304 -   服务商1获得概率委托，概率：0.7938
-2025-09-05 12:19:43.733 | INFO     | mechanism:phase3_utility_based:273 -   服务商2效用：3.2266，整数部分：3，小数部分：0.2266
-2025-09-05 12:19:43.733 | INFO     | mechanism:phase3_utility_based:263 -   服务商3的回报差值-0.0860 <= 0，跳过
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:58 - 
+2025-09-05 14:38:13.735 | INFO     | user:run_mechanism:88 - 开始运行机制，参数：T=1000, K=3, B=15, M=2.0111
+2025-09-05 14:38:13.735 | INFO     | mechanism:phase1_exploration:19 - 阶段1：轮流委托每个服务商15次
+2025-09-05 14:38:13.735 | INFO     | mechanism:phase1_exploration:22 -   委托服务商1 15次
+2025-09-05 14:38:13.735 | INFO     | mechanism:phase1_exploration:22 -   委托服务商2 15次
+2025-09-05 14:38:13.735 | INFO     | mechanism:phase1_exploration:22 -   委托服务商3 15次
+2025-09-05 14:38:13.735 | INFO     | mechanism:phase1_exploration:64 -   更新后的值：δ1=3.4066, δ2=1.1589
+2025-09-05 14:38:13.735 | INFO     | mechanism:phase1_exploration:80 -   阶段1完成，最佳服务商：1，平均效用：3.1864
+2025-09-05 14:38:13.735 | INFO     | mechanism:phase1_exploration:81 -   第二好效用：2.8400
+2025-09-05 14:38:13.735 | INFO     | mechanism:phase2_exploitation:94 - 阶段2：委托最佳服务商1
+2025-09-05 14:38:13.735 | INFO     | mechanism:phase2_exploitation:100 -   计划委托711次，阈值：0.8289
+2025-09-05 14:38:13.752 | INFO     | mechanism:phase2_exploitation:169 -   在630次委托后停止，最近平均utility：0.7623 < 0.8289
+2025-09-05 14:38:13.753 | INFO     | mechanism:phase2_incentive:208 - 阶段2：委托除最优服务商外的其他服务商
+2025-09-05 14:38:13.753 | INFO     | mechanism:phase2_incentive:219 -   委托服务商2 15次
+2025-09-05 14:38:13.753 | INFO     | mechanism:phase2_incentive:219 -   委托服务商3 15次
+2025-09-05 14:38:13.753 | INFO     | mechanism:phase3_utility_based:253 - 阶段3：基于效用的委托
+2025-09-05 14:38:13.753 | INFO     | mechanism:phase3_utility_based:273 -   服务商1效用：3.7938，整数部分：3，小数部分：0.7938
+2025-09-05 14:38:13.753 | INFO     | mechanism:phase3_utility_based:304 -   服务商1获得概率委托，概率：0.7938
+2025-09-05 14:38:13.753 | INFO     | mechanism:phase3_utility_based:273 -   服务商2效用：3.2266，整数部分：3，小数部分：0.2266
+2025-09-05 14:38:13.754 | INFO     | mechanism:phase3_utility_based:263 -   服务商3的回报差值-0.0860 <= 0，跳过
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:58 - 
 === 博弈结果 ===
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:59 - 总时间步数：1000
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:60 - 实际委托次数：810
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:61 - 最佳服务商：1
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:63 - 
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:59 - 总时间步数：1000
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:60 - 实际委托次数：810
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:61 - 最佳服务商：1
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:63 - 
 各服务商统计：
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:70 -   服务商1:
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:71 -     委托次数：705
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:72 -     总价格：244.6828
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:73 -     总成本：37.3106
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:74 -     服务商效用：207.3722
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:75 -     总回报：2359.7928
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:76 -     平均回报：3.3472
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:77 -     用户效用：2115.1100
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:70 -   服务商2:
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:71 -     委托次数：75
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:72 -     总价格：0.4577
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:73 -     总成本：0.0463
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:74 -     服务商效用：0.4113
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:75 -     总回报：207.4176
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:76 -     平均回报：2.7656
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:77 -     用户效用：206.9600
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:70 -   服务商3:
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:71 -     委托次数：30
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:72 -     总价格：2.8736
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:73 -     总成本：0.2553
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:74 -     服务商效用：2.6184
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:75 -     总回报：65.8901
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:76 -     平均回报：2.1963
-2025-09-05 12:19:43.733 | INFO     | __main__:create_example_scenario:77 -     用户效用：63.0165
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:70 -   服务商1:
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:71 -     委托次数：705
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:72 -     总价格：244.6828
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:73 -     总成本：37.3106
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:74 -     服务商效用：207.3722
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:75 -     总回报：2359.7928
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:76 -     平均回报：3.3472
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:77 -     用户效用：2115.1100
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:70 -   服务商2:
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:71 -     委托次数：75
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:72 -     总价格：0.4577
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:73 -     总成本：0.0463
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:74 -     服务商效用：0.4113
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:75 -     总回报：207.4176
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:76 -     平均回报：2.7656
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:77 -     用户效用：206.9600
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:70 -   服务商3:
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:71 -     委托次数：30
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:72 -     总价格：2.8736
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:73 -     总成本：0.2553
+2025-09-05 14:38:13.754 | INFO     | __main__:create_example_scenario:74 -     服务商效用：2.6184
+2025-09-05 14:38:13.755 | INFO     | __main__:create_example_scenario:75 -     总回报：65.8901
+2025-09-05 14:38:13.755 | INFO     | __main__:create_example_scenario:76 -     平均回报：2.1963
+2025-09-05 14:38:13.755 | INFO     | __main__:create_example_scenario:77 -     用户效用：63.0165

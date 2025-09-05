@@ -213,8 +213,8 @@ class Provider:
                 
                 if current_cumulative_reward < threshold:
                     # 使用真实模型（也就是最好的模型）
-                    model_key = self._get_best_model_idx()
-                    model_idx = self.model_keys.index(model_key)
+                    model_idx = self._get_best_model_idx()
+                    model_key = self.model_keys[model_idx]
                 else:
                     # 使用最便宜的模型
                     model_idx = self._get_cheapest_model_idx()
