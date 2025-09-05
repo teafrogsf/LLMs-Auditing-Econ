@@ -33,7 +33,7 @@ class Mechanism:
                 user.delegation_history.append({
                     'time': user.current_time,
                     'provider_id': provider.provider_id,
-                    'cost': price,
+                    'price': price,
                     'reward': reward,
                     'prompt_tokens': prompt_tokens,
                     'completion_tokens': completion_tokens,
@@ -77,9 +77,6 @@ class Mechanism:
             key=lambda p: p.provider_id
         ) if utilities else None
         
-        # 保持原有的second_best_reward用于兼容性
-        user.second_best_reward = user.avg_rewards[user.second_best_provider.provider_id] if user.second_best_provider else 0
-
         logger.info(f"  阶段1完成，最佳服务商：{user.best_provider.provider_id if user.best_provider else None}，平均效用：{best_utility:.4f}")
         logger.info(f"  第二好效用：{user.second_best_utility:.4f}")
 
@@ -108,7 +105,7 @@ class Mechanism:
         # 并行处理委托任务
         def delegate_task(time_step):
             """单个委托任务"""
-            result = user.best_provider.run(phase=2, t=time_step, second_best_reward=user.second_best_utility, R=remaining_delegations)
+            result = user.best_provider.run(phase=2, t=time_step, second_best_utility=user.second_best_utility, R=remaining_delegations)
             return {
                 'time': time_step,
                 'result': result
@@ -150,7 +147,7 @@ class Mechanism:
             user.delegation_history.append({
                 'time': time_step,
                 'provider_id': user.best_provider.provider_id,
-                'cost': price,
+                'price': price,
                 'reward': reward,
                 'prompt_tokens': prompt_tokens,
                 'completion_tokens': completion_tokens,
@@ -179,7 +176,7 @@ class Mechanism:
             logger.info(f"  给予奖励，额外委托{user.B}次")
             for _ in range(min(user.B, user.T - user.current_time)):
                 # 奖励轮委托
-                result = user.best_provider.run(phase=3, t=user.current_time, second_best_reward=user.second_best_reward)
+                result = user.best_provider.run(phase=3, t=user.current_time, second_best_utility=user.second_best_utility)
                 reward = result["reward"]
                 price = result["price"]
                 prompt_tokens, completion_tokens = result["tokens"]
@@ -187,7 +184,7 @@ class Mechanism:
                 user.delegation_history.append({
                     'time': user.current_time,
                     'provider_id': user.best_provider.provider_id,
-                    'cost': price,
+                    'price': price,
                     'reward': reward,
                     'prompt_tokens': prompt_tokens,
                     'completion_tokens': completion_tokens,
@@ -232,7 +229,7 @@ class Mechanism:
                 user.delegation_history.append({
                     'time': user.current_time,
                     'provider_id': provider.provider_id,
-                    'cost': price,
+                    'price': price,
                     'reward': reward,
                     'prompt_tokens': prompt_tokens,
                     'completion_tokens': completion_tokens,
@@ -287,7 +284,7 @@ class Mechanism:
                     user.delegation_history.append({
                         'time': user.current_time,
                         'provider_id': provider.provider_id,
-                        'cost': price,
+                        'price': price,
                         'reward': reward,
                         'prompt_tokens': prompt_tokens,
                         'completion_tokens': completion_tokens,
@@ -315,7 +312,7 @@ class Mechanism:
                             user.delegation_history.append({
                                 'time': user.current_time,
                                 'provider_id': provider.provider_id,
-                                'cost': price,
+                                'price': price,
                                 'reward': reward,
                                 'prompt_tokens': prompt_tokens,
                                 'completion_tokens': completion_tokens,

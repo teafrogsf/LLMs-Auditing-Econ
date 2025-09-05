@@ -14,7 +14,7 @@ def set_cost(self, t: int, mechanism_info: Optional[Dict] = None) -> float:
 def get_price(self, t: int, mechanism_info: Optional[Dict] = None) -> float:
     """获取模型报价，用户可见的价格信息"""
 
-def delegate_provider(self, phase: int, t: int, second_best_reward=None, R=None) -> Dict:
+def delegate_provider(self, phase: int, t: int, second_best_utility=None, R=None) -> Dict:
     """执行委托任务，返回评估结果
     
     策略说明：
