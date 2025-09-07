@@ -3,7 +3,7 @@ import random
 import numpy as np
 
 from typing import Dict, List
-from concurrent.futures import ThreadPoolExecutor, as_completed
+# from concurrent.futures import ThreadPoolExecutor, as_completed
 from loguru import logger
 from text_generation_model import Provider
 
@@ -102,50 +102,19 @@ class Mechanism:
         delegation_count = 0
         stopped_early = False
 
-        # 并行处理委托任务
-        def delegate_task(time_step):
-            """单个委托任务"""
-            result = user.best_provider.run(phase=2, t=time_step, second_best_utility=user.second_best_utility, R=remaining_delegations)
-            return {
-                'time': time_step,
-                'result': result
-            }
-        
-        # 创建时间步列表
-        time_steps = [user.current_time + i for i in range(remaining_delegations) if user.current_time + i < user.T]
-        
-        # 检查是否有委托任务
-        if not time_steps:
-            user.phase2_completed = True
-            return
-        
-        # 并行执行委托任务
-        delegation_results = []
-        with ThreadPoolExecutor(max_workers=min(len(time_steps), 16)) as executor:
-            # 提交所有任务
-            future_to_time = {executor.submit(delegate_task, t): t for t in time_steps}
-            
-            # 收集结果
-            for future in as_completed(future_to_time):
-                try:
-                    task_result = future.result()
-                    delegation_results.append(task_result)
-                except Exception as e:
-                    logger.error(f"委托任务执行失败: {e}")
-        
-        # 按时间步排序结果
-        delegation_results.sort(key=lambda x: x['time'])
-        
-        # 按顺序处理结果并检查是否需要提前停止
-        for i, task_result in enumerate(delegation_results):
-            time_step = task_result['time']
-            result = task_result['result']
+        # 顺序执行委托任务
+        for i in range(remaining_delegations):
+            if user.current_time >= user.T:
+                break
+                
+            # 执行委托任务
+            result = user.best_provider.run(phase=2, t=user.current_time, second_best_utility=user.second_best_utility, R=remaining_delegations)
             reward = result["reward"]
             price = result["price"]
             prompt_tokens, completion_tokens = result["tokens"]
             
             user.delegation_history.append({
-                'time': time_step,
+                'time': user.current_time,
                 'provider_id': user.best_provider.provider_id,
                 'price': price,
                 'reward': reward,
@@ -160,7 +129,7 @@ class Mechanism:
             user.history_utilities[user.best_provider.provider_id].append(utility)
             
             delegation_count = i + 1
-            user.current_time = time_step + 1
+            user.current_time += 1
             
             # 检查是否需要提前停止
             if delegation_count >= user.B and user.best_provider is not None:
@@ -168,7 +137,6 @@ class Mechanism:
                 if recent_avg_utility < threshold:
                     logger.info(f"  在{delegation_count}次委托后停止，最近平均utility：{recent_avg_utility:.4f} < {threshold:.4f}")
                     stopped_early = True
-                    # 如果需要提前停止，丢弃剩余的结果
                     break
 
         # 如果没有提前停止，给予奖励
@@ -220,7 +188,6 @@ class Mechanism:
             
             # 委托该服务商B次
             for _ in range(user.B):
-                # 阶段3委托
                 result = provider.run(phase=3, t=user.current_time)
                 reward = result["reward"]
                 price = result["price"]
@@ -275,7 +242,7 @@ class Mechanism:
                 # 整数部分委托
                 integer_delegations = integer_part * user.B
                 for _ in range(min(integer_delegations, user.T - user.current_time)):
-                    # 阶段4整数部分委托
+                    # 整数部分委托
                     result = provider.run(phase=4, t=user.current_time)
                     reward = result["reward"]
                     price = result["price"]
@@ -303,7 +270,7 @@ class Mechanism:
                     if random.random() < fractional_part:
                         logger.info(f"  服务商{provider.provider_id}获得概率委托，概率：{fractional_part:.4f}")
                         for _ in range(min(user.B, user.T - user.current_time)):
-                            # 阶段4概率委托
+                            # 概率委托
                             result = provider.run(phase=4, t=user.current_time)
                             reward = result["reward"]
                             price = result["price"]

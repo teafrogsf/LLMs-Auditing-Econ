@@ -40,6 +40,9 @@ def create_example_scenario(choices):
     ]
 
     
+    # 定义各服务商的η值
+    eta_values = [0.2, 0.6, 0.4]  # provider1, provider2, provider3
+    
     providers = []
     for i, setting in enumerate(provider_settings):
         config = ProviderConfig(
@@ -47,7 +50,8 @@ def create_example_scenario(choices):
             price=0.0,
             model_keys=setting["model_keys"],
             model_costs=[],
-            strategy=choices[i]
+            strategy=choices[i],
+            eta=eta_values[i]
         )
         providers.append(Provider(config))
 
@@ -65,7 +69,7 @@ def create_example_scenario(choices):
         # 获取对应provider的总成本
         provider = next(p for p in providers if p.provider_id == provider_id)
         total_cost = provider.get_total_cost()
-        provider_utility = stats['total_price'] - total_cost  # 服务商效用 = price - cost
+        provider_utility = provider.eta * stats['total_price'] - total_cost  # 服务商效用 = eta * price - cost
         
         logger.info(f"  服务商{provider_id}:")
         logger.info(f"    委托次数：{stats['delegations']}")
@@ -84,7 +88,6 @@ def main():
         print(item)
         # continue
         create_example_scenario(item)
-
 
 if __name__ == "__main__":
     # create_example_scenario()
