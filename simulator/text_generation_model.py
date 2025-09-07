@@ -6,10 +6,10 @@ import json
 import random
 import sys
 import os
-import threading
+# import threading
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
-
+from loguru import logger
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from llm_client import ExampleLLM
 
@@ -35,6 +35,7 @@ class ProviderConfig:
     model_keys: List[str]  # 支持的模型列表
     model_costs: List[float]  # 各模型的真实cost
     strategy: str
+    eta: float  # η参数
 
 
 class Evaluator:
@@ -65,12 +66,12 @@ class Provider:
         # self.llms = [ExampleLLM(key) for key in self.model_keys]
         self.evaluator = Evaluator(self.model_keys)
         self.strategy = config.strategy
+        self.eta = config.eta  # η参数
         if self.strategy not in STRATEGIES:
             raise ValueError(f'Strategy {self.strategy} is not supported.')
         # 历史记录
         self.history_costs = []  # 历史成本
         self.total_delegations = 0  # 总委托次数
-        self.model_usage = [0] * len(self.model_keys)  # 各模型被调用次数
         self.cumulative_reward = 0.0
         
         # 按时间步存储token使用情况
@@ -78,18 +79,12 @@ class Provider:
         self.completion_tokens_by_time = []  # 每个时间步的output tokens
         self.model_idx_by_time = []  # 每个时间步使用的模型索引
         
-        # 线程安全锁
-        self._lock = threading.Lock()
 
 
 
     def set_cost(self, t: int, mechanism_info: Optional[Dict] = None) -> float:
         """
         设置当前时间步的成本，根据当前时间步t和历史真实使用模型列表计算
-        其中η：
-        - provider1: η = 0.2
-        - provider2: η = 0.6
-        - provider3: η = 0.4
         
         Args:
             t: 当前时间步
@@ -98,17 +93,10 @@ class Provider:
         Returns:
             float: 当前花费的成本c
         """
-        # 定义不同provider的η值
-        eta_values = {
-            1: 0.2,  # provider1
-            2: 0.6,  # provider2
-            3: 0.4   # provider3
-        }
+        # 使用provider的η值
+        eta = self.eta
         
-        # 获取当前provider的η值，默认为1.0
-        eta = eta_values.get(self.provider_id, 1.0)
-        
-        # 根据时间步t获取对应的token使用情况和模型索引（t从1开始，需要转换为列表索引）
+        # 根据时间步t获取对应的token使用情况和模型索引
         if t < len(self.prompt_tokens_by_time) and t < len(self.completion_tokens_by_time) and t < len(self.model_idx_by_time):
             prompt_tokens = self.prompt_tokens_by_time[t]
             completion_tokens = self.completion_tokens_by_time[t]
@@ -206,12 +194,8 @@ class Provider:
                     R = 0 # 默认值，但应该从user中传入
                     
                 threshold = R * second_best_utility
-                
-                # 线程安全地读取cumulative_reward
-                with self._lock:
-                    current_cumulative_reward = self.cumulative_reward
-                
-                if current_cumulative_reward < threshold:
+               
+                if self.cumulative_reward < threshold:
                     # 使用真实模型（也就是最好的模型）
                     model_idx = self._get_best_model_idx()
                     model_key = self.model_keys[model_idx]
@@ -243,31 +227,27 @@ class Provider:
         # 调用evaluate_model函数进行评估
         reward, prompt_tokens, completion_tokens = self.evaluator.get_item(model_key, t)
         
-        # 使用线程锁保护共享数据的访问
-        with self._lock:
-            # 更新累积reward
-            self.cumulative_reward += reward
+        # 更新累积reward
+        self.cumulative_reward += reward
+    
+        # 确保列表足够长以容纳当前时间步
+        while len(self.prompt_tokens_by_time) <= t:
+            self.prompt_tokens_by_time.append(0)
+        while len(self.completion_tokens_by_time) <= t:
+            self.completion_tokens_by_time.append(0)
+        while len(self.model_idx_by_time) <= t:
+            self.model_idx_by_time.append(0)
             
-            # 按时间步存储token使用情况和模型索引
-            # 确保列表足够长以容纳当前时间步
-            while len(self.prompt_tokens_by_time) <= t:
-                self.prompt_tokens_by_time.append(0)
-            while len(self.completion_tokens_by_time) <= t:
-                self.completion_tokens_by_time.append(0)
-            while len(self.model_idx_by_time) <= t:
-                self.model_idx_by_time.append(0)
-                
-            # 按时间步索引存储数据
-            self.prompt_tokens_by_time[t] = prompt_tokens
-            self.completion_tokens_by_time[t] = completion_tokens
-            self.model_idx_by_time[t] = model_idx
+        # 按时间步索引存储数据
+        self.prompt_tokens_by_time[t] = prompt_tokens
+        self.completion_tokens_by_time[t] = completion_tokens
+        self.model_idx_by_time[t] = model_idx
         
         # 计算价格，使用当前时间步
         price = self.get_price(t)
         # 记录当前成本
         self.set_cost(t)
-
-        
+    
         return {
             "reward": float(reward),
             "price": float(price),
