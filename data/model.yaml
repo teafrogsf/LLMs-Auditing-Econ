@@ -1,0 +1,125 @@
+gpt-4.1:
+  client: "azure"
+  model_name: "gpt-4.1"
+  deployment: "gpt-4.1"
+
+
+o1:
+  client: "azure"
+  model_name: "o1"
+  deployment: "o1"
+  reasoning_effort: medium
+
+o3-high:
+  client: "azure"
+  model_name: "o3-high"
+  deployment: "o3-1000ktpm"
+  reasoning_effort: high
+
+o3:
+  client: "azure"
+  model_name: "o3"
+  deployment: "o3-1000ktpm"
+  reasoning_effort: medium
+
+
+  
+o3-mini:
+  client: "azure"
+  model_name: "o3-mini"
+  deployment: "o3-mini"
+  reasoning_effort: medium
+
+o3-mini-high:
+  client: "azure"
+  model_name: "o3-mini-high"
+  deployment: "o3-mini"
+  reasoning_effort: high
+
+
+
+
+o4-mini:
+  client: "azure"
+  model_name: "o4-mini"
+  deployment: "o4-mini-1020ktpm"
+  reasoning_effort: medium
+
+o4-mini-high:
+  client: "azure"
+  model_name: "o4-mini-high"
+  deployment: "o4-mini-1020ktpm"
+  reasoning_effort: high
+
+
+claude-3.7-sonnet:
+  client: "anthropic_aws"
+  model_name: "claude-3.7-sonnet"
+  deployment: "us.anthropic.claude-3-7-sonnet-20250219-v1:0"
+  thinking: false
+
+claude-3.7-sonnet-thinking:
+  client: "anthropic_aws"
+  model_name: "claude-3.7-sonnet-thinking"
+  deployment: "us.anthropic.claude-3-7-sonnet-20250219-v1:0"
+  thinking: true
+
+# claude-3.7-sonnet-thinking:
+#   client: "anthropic"
+#   model_name: "claude-3.7-sonnet-thinking"
+#   deployment: "claude-3-7-sonnet-20250219"
+#   thinking: true
+
+
+claude-4.0-sonnet:
+  client: "anthropic_aws"
+  model_name: "claude-4.0-sonnet"
+  deployment: "us.anthropic.claude-sonnet-4-20250514-v1:0"
+  thinking: false
+
+# claude-4.0-sonnet-thinking:
+#   client: "anthropic"
+#   model_name: "claude-4.0-sonnet-thinking"
+#   deployment: "claude-sonnet-4-20250514"
+#   thinking: true
+
+claude-4.0-sonnet-thinking:
+  client: "anthropic_aws"
+  model_name: "claude-4.0-sonnet-thinking"
+  deployment: "us.anthropic.claude-sonnet-4-20250514-v1:0"
+  thinking: true
+
+gemini-2.5-pro-preview:
+  client: "google"
+  model_name: "gemini-2.5-pro-preview"
+  deployment: "gemini-2.5-pro-preview-06-05"
+  
+
+deepseek-v3:
+  client: "tencent"
+  model_name: 'deepseek-v3'
+  deployment: "deepseek-v3-0324"
+  is_reasoning: false
+
+deepseek-r1:
+  client: "tencent"
+  model_name: 'deepseek-r1'
+  deployment: "deepseek-r1-0528"
+  is_reasoning: true
+
+
+doubao-seed-1.6:
+  client: "doubao"
+  model_name: 'doubao-seed-1.6'
+  deployment: "doubao-seed-1.6-250615"
+  thinking: 'disabled'
+
+
+
+doubao-seed-1.6-thinking:
+  client: "doubao"
+  model_name: 'doubao-seed-1.6-thinking'
+  deployment: "doubao-seed-1.6-thinking-250615"
+  thinking: 'enabled'
+
+
