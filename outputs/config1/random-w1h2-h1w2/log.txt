@@ -1,0 +1,13 @@
+====================Stage1: Delegate each provider B Times====================
+Delegate provider0 3 Times
+Delegate provider1 3 Times
+Delegate provider2 3 Times
+{'avg_rewards': [3.704074464348437, 2.825047080979284, 2.6515151515151514], 'avg_utilities': [3.500009464348437, 2.819616747645951, 2.563295151515151]}
+δ1=5.0714, δ2=1.2528
+  阶段1完成，最佳服务商：0，平均效用：3.5000
+  第二好效用：2.8196
+  计划委托927次，阈值：-1.1931
+bonust B times for best
+provider 0的回报差值-0.5402 <= 0，跳过
+provider 1的回报差值-2.3822 <= 0，跳过
+provider 2的回报差值-2.3980 <= 0，跳过

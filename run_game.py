@@ -54,9 +54,10 @@ def main():
     logger.log(json.dumps(config, indent=2))
 
     ### step4: scenarios making
-    CHOICES = ['honest', 'ours', 'worst', 'random', 'h1w2', 'w1h2']
-
-    scenarios = list(itertools.product(CHOICES, repeat=3))
+    MODEL_CHOICES = ['honest', 'ours', 'worst', 'random', 'h1w2', 'w1h2']
+    TOKEN_CHOICES = [1, 1.5, 2]
+    scenarios = list(itertools.product(MODEL_CHOICES, repeat=3))
+    
     logger.log(f'{len(scenarios)}')
     for sc in scenarios:
         logger.log(f'run {sc}')

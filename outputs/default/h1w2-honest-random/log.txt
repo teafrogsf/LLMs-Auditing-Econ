@@ -1,0 +1,11 @@
+====================Stage1: Delegate each provider B Times====================
+Delegate provider0 63 Times
+Delegate provider1 63 Times
+Delegate provider2 63 Times
+{'avg_rewards': [0.07940953496703393, 0.07253926450232219, 0.03970622533829844], 'avg_utilities': [0.038323400046399024, -0.6615238307357728, -0.058468536566463454]}
+warning
+δ1=16.8235, δ2=-3.2617
+  阶段1完成，最佳服务商：0，平均效用：0.0383
+  第二好效用：-0.0585
+  计划委托0次，阈值：-0.2763
+bonust B times for best

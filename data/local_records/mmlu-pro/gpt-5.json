@@ -1,0 +1,3852 @@
+[
+  {
+    "question_id": 10642,
+    "score": 0,
+    "input_tokens": 1377,
+    "output_tokens": 142,
+    "llm_raw_answer": "(B): 26"
+  },
+  {
+    "question_id": 2734,
+    "score": 0,
+    "input_tokens": 1000,
+    "output_tokens": 341,
+    "llm_raw_answer": "(B): Schizophrenia and manic-depressive psychosis\n\nExplanation: In the traditional “functional vs. organic” nosology, the major functional psychoses were schizophrenia (characterized by delusions, hallucinations, disorganized thought/behavior) and manic-depressive psychosis (now bipolar disorder), marked by episodes of mania and depression without identifiable gross organic brain disease."
+  },
+  {
+    "question_id": 9101,
+    "score": 1,
+    "input_tokens": 1052,
+    "output_tokens": 254,
+    "llm_raw_answer": "Let's think step by step. Wavelength λ = v/f. Taking the speed of sound in air as about 340 m/s, λ = 340 / 256 ≈ 1.33 m = 133 cm. The answer is (B)."
+  },
+  {
+    "question_id": 712,
+    "score": 0,
+    "input_tokens": 999,
+    "output_tokens": 340,
+    "llm_raw_answer": "(E): 96 tiles, $72.00"
+  },
+  {
+    "question_id": 9164,
+    "score": 0,
+    "input_tokens": 1126,
+    "output_tokens": 285,
+    "llm_raw_answer": "D: You can never prove your theory to be correct only “yet to be proven wrong”."
+  },
+  {
+    "question_id": 8493,
+    "score": 1,
+    "input_tokens": 1661,
+    "output_tokens": 239,
+    "llm_raw_answer": "The magnitude is sqrt(5^2 + 0^2 + 7^2) = sqrt(74) ≈ 8.6. The answer is (H)."
+  },
+  {
+    "question_id": 5903,
+    "score": 0,
+    "input_tokens": 869,
+    "output_tokens": 206,
+    "llm_raw_answer": "(I): Subtraction"
+  },
+  {
+    "question_id": 8303,
+    "score": 0,
+    "input_tokens": 1670,
+    "output_tokens": 333,
+    "llm_raw_answer": "Answer: (J)\n\nReason: This is the Ramsey number R(4,4), which is known to be 18. Thus, 17 is not sufficient (there exists a 2-coloring of K17 with no monochromatic K4), and every 2-coloring of K18 contains a monochromatic K4."
+  },
+  {
+    "question_id": 6770,
+    "score": 0,
+    "input_tokens": 1010,
+    "output_tokens": 270,
+    "llm_raw_answer": "(B) Early adapters"
+  },
+  {
+    "question_id": 8465,
+    "score": 0,
+    "input_tokens": 1714,
+    "output_tokens": 380,
+    "llm_raw_answer": "(E): conducting the survey at the entrance to the mall\n\nReason: Surveying at the entrance reaches a broad cross-section of actual shoppers entering the mall, minimizing bias compared to surveying in specific stores, at specific times, or only certain customer groups."
+  },
+  {
+    "question_id": 10867,
+    "score": 0,
+    "input_tokens": 934,
+    "output_tokens": 268,
+    "llm_raw_answer": "(B)"
+  },
+  {
+    "question_id": 6413,
+    "score": 0,
+    "input_tokens": 986,
+    "output_tokens": 270,
+    "llm_raw_answer": "(C): Personal control"
+  },
+  {
+    "question_id": 10238,
+    "score": 0,
+    "input_tokens": 1083,
+    "output_tokens": 355,
+    "llm_raw_answer": "Let's think step by step. \n- Power = V × I = 100 V × 1 A = 100 W = 0.1 kW\n- Energy over 24 hr = 0.1 kW × 24 hr = 2.4 kWh\n- Cost = 2.4 kWh × $0.50/kWh = $1.20\n\nAnswer: (G) $1.20"
+  },
+  {
+    "question_id": 6703,
+    "score": 0,
+    "input_tokens": 976,
+    "output_tokens": 364,
+    "llm_raw_answer": "(D): Skeletal Muscle\n\nReason: Per unit mass, resting skeletal muscle has a much lower metabolic rate than highly active organs like the kidney, liver, and brain."
+  },
+  {
+    "question_id": 9424,
+    "score": 1,
+    "input_tokens": 1050,
+    "output_tokens": 411,
+    "llm_raw_answer": "Let's think step by step. For a body of mass m, kinetic energy K = (1/2) m v^2 and momentum p = m v. Doubling K means v increases by a factor of sqrt(2), so p increases by the same factor sqrt(2) ≈ 1.414. That is an increase, but less than doubling.\n\nThe answer is (J)."
+  },
+  {
+    "question_id": 684,
+    "score": 0,
+    "input_tokens": 944,
+    "output_tokens": 525,
+    "llm_raw_answer": "(B): Awareness"
+  },
+  {
+    "question_id": 6369,
+    "score": 0,
+    "input_tokens": 1091,
+    "output_tokens": 334,
+    "llm_raw_answer": "(C): G1"
+  },
+  {
+    "question_id": 1974,
+    "score": 0,
+    "input_tokens": 1324,
+    "output_tokens": 513,
+    "llm_raw_answer": "(F) The city, because it does not unreasonably limit alternative avenues of communication. Courts allow zoning of adult businesses as a content-neutral time, place, and manner regulation aimed at secondary effects, so long as reasonable alternatives remain (e.g., placement in industrial zones)."
+  },
+  {
+    "question_id": 4666,
+    "score": 0,
+    "input_tokens": 1457,
+    "output_tokens": 781,
+    "llm_raw_answer": "(D): 18.41 L\n\nReason: At constant pressure, V ∝ T (in Kelvin). T1 = 25°C = 298 K, T2 = 250°C = 523 K. \nV2 = 10.5 L × (523/298) ≈ 18.4 L."
+  },
+  {
+    "question_id": 6128,
+    "score": 0,
+    "input_tokens": 1051,
+    "output_tokens": 595,
+    "llm_raw_answer": "(I) 1.5 units of BMI"
+  },
+  {
+    "question_id": 6149,
+    "score": 0,
+    "input_tokens": 1004,
+    "output_tokens": 464,
+    "llm_raw_answer": "(A): Practice regular aerobic exercise"
+  },
+  {
+    "question_id": 825,
+    "score": 0,
+    "input_tokens": 1056,
+    "output_tokens": 396,
+    "llm_raw_answer": "(A)"
+  },
+  {
+    "question_id": 4934,
+    "score": 0,
+    "input_tokens": 2024,
+    "output_tokens": 460,
+    "llm_raw_answer": "(C)"
+  },
+  {
+    "question_id": 3787,
+    "score": 0,
+    "input_tokens": 1606,
+    "output_tokens": 457,
+    "llm_raw_answer": "Answer: (C)\n\nReasoning:\n- Convert wavelength: 5890 Å = 589 nm.\n- Photon energy in eV: E(eV) ≈ 1240/λ(nm) = 1240/589 ≈ 2.11 eV.\n- Convert to kcal/mol: 1 eV per particle = 23.06 kcal/mol, so 2.11 eV ≈ 2.11 × 23.06 ≈ 48.6 kcal/mol.\n\nClosest option: (a) 2.1 eV and (b) 48.4 kcal/mol."
+  },
+  {
+    "question_id": 2603,
+    "score": 0,
+    "input_tokens": 1054,
+    "output_tokens": 710,
+    "llm_raw_answer": "Answer: (D)\n\nExplanation: A pay incentive program ties financial rewards to performance to motivate higher output.\n\nExample of a common plan: A piece-rate plan pays employees a set amount for each unit produced (or, in sales, a commission as a percentage of sales), directly linking pay to results."
+  },
+  {
+    "question_id": 1029,
+    "score": 0,
+    "input_tokens": 1612,
+    "output_tokens": 682,
+    "llm_raw_answer": "(G): The businessman recovers $1,500 from the woman, and the woman recovers $700 from the businessman.\n\nExplanation: Under pure comparative negligence, each party’s damages are reduced by their own percentage of fault, and the statute prohibits set-off. Thus:\n- Businessman: $5,000 × (1 − 0.70) = $1,500\n- Woman: $1,000 × (1 − 0.30) = $700"
+  },
+  {
+    "question_id": 11641,
+    "score": 0,
+    "input_tokens": 1137,
+    "output_tokens": 787,
+    "llm_raw_answer": "Answer: (H) 3/8\n\nExplanation (brief):\nP = ∫_{x=0}^{3/4} ∫_{y=1/3}^{1} 6 x^2 y dy dx\n= ∫_{0}^{3/4} 6 x^2 [y^2/2]_{1/3}^{1} dx\n= ∫_{0}^{3/4} 6 x^2 (4/9) dx\n= (24/9) [x^3/3]_{0}^{3/4}\n= (8/3) (27/192) = 3/8."
+  },
+  {
+    "question_id": 71,
+    "score": 0,
+    "input_tokens": 1015,
+    "output_tokens": 524,
+    "llm_raw_answer": "(F)"
+  },
+  {
+    "question_id": 7513,
+    "score": 0,
+    "input_tokens": 1088,
+    "output_tokens": 408,
+    "llm_raw_answer": "(A): Establishing minimum standards, providing public services, setting forth laws"
+  },
+  {
+    "question_id": 10358,
+    "score": 0,
+    "input_tokens": 1418,
+    "output_tokens": 502,
+    "llm_raw_answer": "(C): The user's search engine history — it reveals detailed, sensitive information about interests, health, finances, and behavior over time, making it more privacy-compromising than identifiers like IP, email, or phone number."
+  },
+  {
+    "question_id": 11107,
+    "score": 0,
+    "input_tokens": 954,
+    "output_tokens": 716,
+    "llm_raw_answer": "(H)"
+  },
+  {
+    "question_id": 9203,
+    "score": 1,
+    "input_tokens": 1297,
+    "output_tokens": 708,
+    "llm_raw_answer": "Let's think step by step. On a rough incline, friction does negative work, converting part of the gravitational potential energy into thermal energy. Therefore, not all the lost potential energy becomes kinetic energy; the final kinetic energy is less than the initial gravitational potential energy. The answer is (F)."
+  },
+  {
+    "question_id": 8768,
+    "score": 0,
+    "input_tokens": 1784,
+    "output_tokens": 1028,
+    "llm_raw_answer": "Answer: (J) 6.07 min\n\nExplanation:\nNewton’s law gives T(t) = 70 + 130 e^{-kt}. From T(1) = 190:\n190 = 70 + 130 e^{-k} ⇒ e^{-k} = 12/13 ⇒ k = ln(13/12).\n\nFor T(t) = 150:\n150 = 70 + 130 e^{-kt} ⇒ e^{-kt} = 8/13 ⇒ t = ln(13/8) / ln(13/12) ≈ 6.07 minutes."
+  },
+  {
+    "question_id": 11171,
+    "score": 0,
+    "input_tokens": 1041,
+    "output_tokens": 524,
+    "llm_raw_answer": "(D)"
+  },
+  {
+    "question_id": 2149,
+    "score": 0,
+    "input_tokens": 1018,
+    "output_tokens": 83,
+    "llm_raw_answer": "(C): there are aggressive cues in the environment"
+  },
+  {
+    "question_id": 8511,
+    "score": 0,
+    "input_tokens": 1687,
+    "output_tokens": 1204,
+    "llm_raw_answer": "(G): 1.0\n\nReason: Let f(x) = sqrt(log(9 - x)) / (sqrt(log(9 - x)) + sqrt(log(x + 3))). Using the substitution x -> 6 - x, we get f(6 - x) = sqrt(log(x + 3)) / (sqrt(log(x + 3)) + sqrt(log(9 - x))). Hence f(x) + f(6 - x) = 1. Over [2, 4], ∫_2^4 f(x) dx = ∫_2^4 f(6 - x) dx, so 2∫_2^4 f(x) dx = ∫_2^4 1 dx = 2, giving ∫_2^4 f(x) dx = 1."
+  },
+  {
+    "question_id": 1794,
+    "score": 0,
+    "input_tokens": 1410,
+    "output_tokens": 1292,
+    "llm_raw_answer": "(F)"
+  },
+  {
+    "question_id": 11460,
+    "score": 0,
+    "input_tokens": 1259,
+    "output_tokens": 1544,
+    "llm_raw_answer": "A: Let's think step by step.\n\n- Given V = 230 V, Ra = 2.3 Ω, field resistance Rf = 115 Ω.\n- With field rheostat cut out (normal field), at no load E = 220 V.\n  Armature current Ia = (V − E)/Ra = (230 − 220)/2.3 = 10/2.3 ≈ 4.35 A.\n\n- If field current is reduced to half, assume flux ∝ field current (unsaturated) and speed initially unchanged. Then back emf halves: E' = 220/2 = 110 V.\n  New armature current Ia' = (V − E')/Ra = (230 − 110)/2.3 = 120/2.3 ≈ 52.2 A.\n\nAnswer: (F): 4.35 amperes, 52.2 amperes."
+  },
+  {
+    "question_id": 6521,
+    "score": 0,
+    "input_tokens": 1074,
+    "output_tokens": 334,
+    "llm_raw_answer": "(C): Transferase"
+  },
+  {
+    "question_id": 8165,
+    "score": 0,
+    "input_tokens": 1686,
+    "output_tokens": 888,
+    "llm_raw_answer": "(I): 1\n\nReason: Let the AP be 9, 9 + d, 9 + 2d. After adjustments, the GP is 9, 11 + d, 29 + 2d. Geometric condition gives (11 + d)^2 = 9(29 + 2d) ⇒ d^2 + 4d − 140 = 0 ⇒ d = 10 or d = −14. The corresponding third terms are 49 and 1, so the smallest is 1."
+  },
+  {
+    "question_id": 2142,
+    "score": 0,
+    "input_tokens": 1117,
+    "output_tokens": 846,
+    "llm_raw_answer": "(C): discuss the client's options with her and maintain her confidentiality unless she signs a release.\n\nRationale: Under APA and CPA ethics, you should inform the client of options (e.g., filing a complaint) and respect confidentiality. Reporting without the client’s consent is not permitted unless required by law or necessary to prevent serious, foreseeable harm."
+  },
+  {
+    "question_id": 6866,
+    "score": 0,
+    "input_tokens": 1194,
+    "output_tokens": 532,
+    "llm_raw_answer": "(G): Increase of $100 billion in NNP"
+  },
+  {
+    "question_id": 1336,
+    "score": 0,
+    "input_tokens": 1365,
+    "output_tokens": 908,
+    "llm_raw_answer": "(J)"
+  },
+  {
+    "question_id": 7521,
+    "score": 0,
+    "input_tokens": 1312,
+    "output_tokens": 720,
+    "llm_raw_answer": "Answer: (H)\n\nExample of erroneous economic thinking: A government cuts taxes and a few months later GDP growth accelerates. Concluding that the tax cut caused the higher growth simply because it happened earlier is post hoc reasoning; the acceleration could instead be due to an improving global economy, a technology boom, or other factors occurring around the same time."
+  },
+  {
+    "question_id": 7805,
+    "score": 0,
+    "input_tokens": 1707,
+    "output_tokens": 468,
+    "llm_raw_answer": "Compute the sampling distribution of the mean: μ = 4, SE = 0.25/√40 ≈ 0.0395. \nZ = (3.9 − 4)/0.0395 ≈ −2.53, so P(Z < −2.53) ≈ 0.0057.\n\nAnswer: (F)"
+  },
+  {
+    "question_id": 7319,
+    "score": 0,
+    "input_tokens": 1223,
+    "output_tokens": 1484,
+    "llm_raw_answer": "(E)"
+  },
+  {
+    "question_id": 786,
+    "score": 0,
+    "input_tokens": 961,
+    "output_tokens": 1232,
+    "llm_raw_answer": "(B): $7.85"
+  },
+  {
+    "question_id": 873,
+    "score": 0,
+    "input_tokens": 1457,
+    "output_tokens": 1245,
+    "llm_raw_answer": "(E) She must produce the MRI records because it represents the best evidence under the best evidence rule.\n\nReason: When a party seeks to prove the contents of a writing, recording, or photograph (which includes MRIs), the original (or a permissible duplicate) is required unless an exception applies. Her testimony about what the MRI showed is an attempt to prove the contents of the MRI, triggering the best evidence rule."
+  },
+  {
+    "question_id": 5896,
+    "score": 0,
+    "input_tokens": 925,
+    "output_tokens": 600,
+    "llm_raw_answer": "(B): Reading the product's label and proceeding according to the label directions"
+  },
+  {
+    "question_id": 4309,
+    "score": 0,
+    "input_tokens": 1539,
+    "output_tokens": 2120,
+    "llm_raw_answer": "(B): 13,000 g/mole\n\nReason:\nUse the Svedberg equation combined with the Stokes-Einstein relation:\nM = (s R T) / [D (1 − v̄ ρ)]\n\nGiven:\n- s = 2.02 × 10^-13 s\n- D = 13.1 × 10^-7 cm^2/s = 1.31 × 10^-6 cm^2/s\n- v̄ = 0.707 cm^3/g\n- ρ = 0.998 g/cm^3 → (1 − v̄ρ) = 1 − 0.707×0.998 ≈ 0.2944\n- R = 8.314 × 10^7 erg mol^-1 K^-1 (cgs units)\n- T = 293 K (20°C)\n\nCompute:\nRT ≈ 2.436 × 10^10 erg/mol\nsRT ≈ 2.02 × 10^-13 × 2.436 × 10^10 ≈ 4.92 × 10^-3\nD(1 − v̄ρ) ≈ 1.31 × 10^-6 × 0.2944 ≈ 3.86 × 10^-7\n\nM ≈ (4.92 × 10^-3) / (3.86 × 10^-7) ≈ 1.28 × 10^4 g/mol ≈ 13,000 g/mol"
+  },
+  {
+    "question_id": 2995,
+    "score": 0,
+    "input_tokens": 1447,
+    "output_tokens": 405,
+    "llm_raw_answer": "(B): A decrease in partial pressure of carbon dioxide and a decrease in concentration of hydrogen ions\n\nReason: Hyperventilation “blows off” CO2, lowering arterial pCO2. With bicarbonate unchanged acutely, the Henderson–Hasselbalch relationship predicts an increase in pH (decrease in [H+]), i.e., respiratory alkalosis."
+  },
+  {
+    "question_id": 9551,
+    "score": 0,
+    "input_tokens": 1082,
+    "output_tokens": 652,
+    "llm_raw_answer": "(B)"
+  },
+  {
+    "question_id": 1516,
+    "score": 0,
+    "input_tokens": 1383,
+    "output_tokens": 1411,
+    "llm_raw_answer": "(D): Involuntary manslaughter\n\nReason: The senior associate committed an unlawful act (assault) by threatening immediate harm. The young associate’s death, though unforeseeable due to his hidden heart condition, was caused by that assault. Under the misdemeanor-manslaughter (involuntary manslaughter) rule and the “eggshell skull” principle, the defendant is liable for the unintended death resulting from his unlawful assault. This is more serious than assault or aggravated assault and does not rise to murder (no malice) or voluntary manslaughter (no adequate provocation)."
+  },
+  {
+    "question_id": 2536,
+    "score": 0,
+    "input_tokens": 994,
+    "output_tokens": 140,
+    "llm_raw_answer": "(J)"
+  },
+  {
+    "question_id": 5440,
+    "score": 0,
+    "input_tokens": 861,
+    "output_tokens": 1680,
+    "llm_raw_answer": "(H): by 10 fold"
+  },
+  {
+    "question_id": 1778,
+    "score": 0,
+    "input_tokens": 1345,
+    "output_tokens": 2399,
+    "llm_raw_answer": "(D): tires and bicycles.\n\nReason: A nondiscriminatory ad valorem property tax may be imposed on imported goods that have come to rest in the state and are held for distribution (Michelin Tire Corp. v. Wages). The original-package doctrine does not bar such a tax, and goods at a warehouse—whether mingled in storage or sitting on the loading dock—have a tax situs in the state."
+  },
+  {
+    "question_id": 1062,
+    "score": 0,
+    "input_tokens": 1478,
+    "output_tokens": 1612,
+    "llm_raw_answer": "(F)"
+  },
+  {
+    "question_id": 5560,
+    "score": 0,
+    "input_tokens": 844,
+    "output_tokens": 207,
+    "llm_raw_answer": "(A): Variable sampling."
+  },
+  {
+    "question_id": 10629,
+    "score": 0,
+    "input_tokens": 1488,
+    "output_tokens": 2124,
+    "llm_raw_answer": "(F)\n\nBriefly: SVMs can handle multi-class via strategies (A false), are not guaranteed unique in all cases (B false), handle nonlinearly separable data via soft margins/kernels (C false), can be influenced by outliers depending on C (D false), generalization relates to number of support vectors (E false), a linear SVM in 2D yields a straight line (F true), kernels need not be linear (G false), Gaussian kernels can model very complex boundaries (H false), not every kernel has a practical closed-form feature map (I false), and kernels do affect model complexity (J false)."
+  },
+  {
+    "question_id": 4140,
+    "score": 0,
+    "input_tokens": 1637,
+    "output_tokens": 2710,
+    "llm_raw_answer": "(D) 1.2 × 10^-21 M"
+  },
+  {
+    "question_id": 5460,
+    "score": 1,
+    "input_tokens": 827,
+    "output_tokens": 223,
+    "llm_raw_answer": "A: Alan Shepard, who flew Freedom 7 in 1961. The answer is (J)."
+  },
+  {
+    "question_id": 1959,
+    "score": 0,
+    "input_tokens": 1468,
+    "output_tokens": 1501,
+    "llm_raw_answer": "(H) The supermarket would not be entitled to reject the operator's offer to \"cure.\""
+  },
+  {
+    "question_id": 9062,
+    "score": 0,
+    "input_tokens": 1431,
+    "output_tokens": 489,
+    "llm_raw_answer": "(A)\n\nReason: In steady-state, the motion is sinusoidal: x(t) = x_max cos(ωt − δ). The rms of a sinusoid is amplitude/√2. Since v_max = ω x_max and a_max = ω^2 x_max, we get:\n- x_rms = x_max/√2\n- v_rms = ω x_max/√2\n- a_rms = ω^2 x_max/√2"
+  },
+  {
+    "question_id": 4945,
+    "score": 0,
+    "input_tokens": 2256,
+    "output_tokens": 1100,
+    "llm_raw_answer": "(J)"
+  },
+  {
+    "question_id": 1028,
+    "score": 0,
+    "input_tokens": 1379,
+    "output_tokens": 817,
+    "llm_raw_answer": "(B) Because the senator is a public figure, he has the burden to prove “actual malice” (knowledge of falsity or reckless disregard for the truth) to hold the newspaper liable."
+  },
+  {
+    "question_id": 11600,
+    "score": 0,
+    "input_tokens": 1132,
+    "output_tokens": 1370,
+    "llm_raw_answer": "Answer: (F) 0.2\n\nReason: Mach number M = V/a. At 17°C, a ≈ sqrt(1.4·287·290.15) ≈ 341.5 m/s. With V = 224 fps = 68.3 m/s, M ≈ 68.3/341.5 ≈ 0.2."
+  },
+  {
+    "question_id": 8487,
+    "score": 1,
+    "input_tokens": 1670,
+    "output_tokens": 673,
+    "llm_raw_answer": "Let's think step by step. The base is bounded by x^2 = 4y (i.e., x = ±2√y) and y = 2, so y ranges from 0 to 2. A cross-section perpendicular to the y-axis at height y is a square whose side length equals the width in x: side = (2√y) - (−2√y) = 4√y. Thus the area is A(y) = (4√y)^2 = 16y. The volume is ∫_0^2 16y dy = 16 [y^2/2]_0^2 = 16*(4/2) = 32. The answer is (B)."
+  },
+  {
+    "question_id": 7642,
+    "score": 0,
+    "input_tokens": 1142,
+    "output_tokens": 3443,
+    "llm_raw_answer": "(I): the Fed buys Treasury securities from commercial banks\n\nReason: An open market purchase injects reserves directly into banks, increasing their total and thus their excess reserves (since required reserves don’t change immediately)."
+  },
+  {
+    "question_id": 7384,
+    "score": 0,
+    "input_tokens": 1281,
+    "output_tokens": 332,
+    "llm_raw_answer": "(B)"
+  },
+  {
+    "question_id": 8219,
+    "score": 0,
+    "input_tokens": 1667,
+    "output_tokens": 1308,
+    "llm_raw_answer": "(J) 2.301\n\nReason: f'(x) = 10(1 − 2 ln x)/x^3, so f''(x) = 10(6 ln x − 5)/x^4. Set f''(x) = 0 ⇒ ln x = 5/6 ⇒ x = e^(5/6) ≈ 2.301."
+  },
+  {
+    "question_id": 9022,
+    "score": 0,
+    "input_tokens": 1710,
+    "output_tokens": 2384,
+    "llm_raw_answer": "(H) 0.757"
+  },
+  {
+    "question_id": 7795,
+    "score": 0,
+    "input_tokens": 1764,
+    "output_tokens": 296,
+    "llm_raw_answer": "(F) — When the population standard deviation is unknown and we use the sample standard deviation, this adds extra variability; the t distribution accounts for this."
+  },
+  {
+    "question_id": 7343,
+    "score": 0,
+    "input_tokens": 1292,
+    "output_tokens": 3271,
+    "llm_raw_answer": "Answer: (H)\n\nReason:\n- PV of 4-year $10,000 annuity at 8%: 10,000 × [(1 − 1/1.08^4)/0.08] ≈ 10,000 × 3.312 ≈ $33,121 < $35,000 ⇒ don’t buy.\n- PV at 2%: 10,000 × [(1 − 1/1.02^4)/0.02] ≈ 10,000 × 3.808 ≈ $38,078 > $35,000 ⇒ buy."
+  },
+  {
+    "question_id": 9987,
+    "score": 0,
+    "input_tokens": 1195,
+    "output_tokens": 3903,
+    "llm_raw_answer": "A: Let's think step by step.\n- Wavelengths: λ1 = 589.593 mμ, λ2 = 588.996 mμ → Δλ = 0.597 mμ; mean λ ≈ 589.3 mμ.\n- (a) Grating resolving power R = λ/Δλ ≈ 589.3/0.597 ≈ 987.1. For first order (m = 1), N ≥ ceil(R) = 988 lines.\n- (b) Prism resolving power R = (dn/dλ)·t ⇒ t = R/(dn/dλ) ≈ 987.1 / (5.30×10^-5 per mμ) ≈ 1.86 cm (≈ 1.88 cm with rounding).\n\nThe answer is (I): 988 lines, 1.88 cm."
+  },
+  {
+    "question_id": 3885,
+    "score": 0,
+    "input_tokens": 1623,
+    "output_tokens": 998,
+    "llm_raw_answer": "(G): 2 gm of hydrogen, 11 gm/mole, 4.07 atm\n\nReasoning (brief):\n- Density 0.002 g/cc = 2 g/L. In 11 L, total mass = 22 g → H2 mass = 22 − 20 = 2 g.\n- Moles: Ne = 20/20 = 1 mol; H2 = 2/2 = 1 mol; total = 2 mol → average M = 22 g / 2 mol = 11 g/mol.\n- Pressure: P = nRT/V = (2 mol)(0.08206 L·atm/mol·K)(273.15 K) / 11 L ≈ 4.07 atm."
+  },
+  {
+    "question_id": 4796,
+    "score": 0,
+    "input_tokens": 2169,
+    "output_tokens": 470,
+    "llm_raw_answer": "(I): Welfare programs were questioned after the First World War."
+  },
+  {
+    "question_id": 436,
+    "score": 0,
+    "input_tokens": 925,
+    "output_tokens": 141,
+    "llm_raw_answer": "(B): Exclusive"
+  },
+  {
+    "question_id": 12202,
+    "score": 0,
+    "input_tokens": 1144,
+    "output_tokens": 4442,
+    "llm_raw_answer": "Let's think step by step. For reversible heat transfer at a constant boundary temperature T, the availability (exergy) of the heat is:\nEx = Q (1 − T0/T)\n\nHere:\n- Q = 826 Btu/lbm\n- T = 400°F = 860°R\n- T0 = 40°F = 500°R\n\nSo:\nEx = 826 × (1 − 500/860) ≈ 826 × 0.4186 ≈ 346 Btu\n\nNone of the listed options matches this value exactly; the correct value is approximately 346 Btu. If forced to choose, the closest is (A): 300 Btu."
+  },
+  {
+    "question_id": 869,
+    "score": 0,
+    "input_tokens": 1554,
+    "output_tokens": 1100,
+    "llm_raw_answer": "(A)"
+  },
+  {
+    "question_id": 10559,
+    "score": 0,
+    "input_tokens": 1361,
+    "output_tokens": 207,
+    "llm_raw_answer": "(D): True, True"
+  },
+  {
+    "question_id": 3233,
+    "score": 0,
+    "input_tokens": 1538,
+    "output_tokens": 1056,
+    "llm_raw_answer": "Answer: (F)\n\nExplanation:\n- The presence of both wild-type and vermilion sons means the mother must carry both alleles (her sons get their X from her), so the female is v^+ v.\n- The presence of vermilion daughters (which require two recessive alleles) means the father must contribute an X^v, so the male is v (i.e., X^v Y)."
+  },
+  {
+    "question_id": 4610,
+    "score": 0,
+    "input_tokens": 1396,
+    "output_tokens": 271,
+    "llm_raw_answer": "(G) Carbonic acid"
+  },
+  {
+    "question_id": 754,
+    "score": 0,
+    "input_tokens": 977,
+    "output_tokens": 149,
+    "llm_raw_answer": "(D) Economic, Legal, Ethical and Philanthropic"
+  },
+  {
+    "question_id": 10424,
+    "score": 0,
+    "input_tokens": 1420,
+    "output_tokens": 430,
+    "llm_raw_answer": "P(A) = P(A|B)P(B) + P(A|¬B)P(¬B)\n1/2 = P(A|B)(1/3) + (1/4)(2/3) = (1/3)P(A|B) + 1/6\nSubtract 1/6: 1/3 = (1/3)P(A|B) ⇒ P(A|B) = 1\n\nAnswer: (D)"
+  },
+  {
+    "question_id": 3298,
+    "score": 0,
+    "input_tokens": 1441,
+    "output_tokens": 871,
+    "llm_raw_answer": "(C): 0.218, 0.015\n\nReasoning:\n- Total variance (random mating): V_P = 0.573\n- Inbred strain variance ≈ environmental variance: V_E = 0.340\n- Genetic variance: V_G = V_P − V_E = 0.573 − 0.340 = 0.233\n- Narrow-sense heritability h^2 = 0.38, so additive variance: V_A = h^2 × V_P = 0.38 × 0.573 ≈ 0.218\n- Dominance + epistasis: V_D + V_I = V_G − V_A = 0.233 − 0.218 ≈ 0.015"
+  },
+  {
+    "question_id": 5439,
+    "score": 1,
+    "input_tokens": 858,
+    "output_tokens": 662,
+    "llm_raw_answer": "Let's think step by step. The primary symptom described is itching and skin irritation around the genitals, without mention of lesions, discharge, or pain. The STI most classically associated with intense genital itching and irritation is pubic lice (crabs), which are transmitted through close sexual contact and cause pruritus due to bites.\n\nThe answer is (C): pubic lice."
+  },
+  {
+    "question_id": 2821,
+    "score": 0,
+    "input_tokens": 1335,
+    "output_tokens": 4241,
+    "llm_raw_answer": "(A) do not have the ability to metastasize\n\nExplanation: In culture, neither normal nor cancer cells metastasize (metastasis is a process that occurs in an organism). Other options describe differences (e.g., contact inhibition, anchorage dependence, indefinite division) or are false for both (e.g., growing without nutrients or oxygen)."
+  },
+  {
+    "question_id": 10079,
+    "score": 0,
+    "input_tokens": 1193,
+    "output_tokens": 588,
+    "llm_raw_answer": "(I)"
+  },
+  {
+    "question_id": 2425,
+    "score": 0,
+    "input_tokens": 1072,
+    "output_tokens": 223,
+    "llm_raw_answer": "(B): Convergent thinking narrows toward one correct answer, while divergent thinking generates multiple possible solutions."
+  },
+  {
+    "question_id": 5565,
+    "score": 0,
+    "input_tokens": 912,
+    "output_tokens": 1068,
+    "llm_raw_answer": "(I): The entity frequently changes its external auditors.\n\nFrequent auditor changes can signal opinion shopping or disputes over aggressive accounting, a strong red flag for fraudulent financial reporting risk."
+  },
+  {
+    "question_id": 4135,
+    "score": 0,
+    "input_tokens": 1456,
+    "output_tokens": 440,
+    "llm_raw_answer": "Let's think step by step.\n\n- Melt ice at 0°C: 10 g × 80 cal/g = 800 cal\n- Heat water from 0°C to 100°C: 10 g × 1 cal/g·°C × 100°C = 1000 cal\n- Vaporize at 100°C: 10 g × 540 cal/g = 5400 cal\n\nTotal heat = 800 + 1000 + 5400 = 7200 calories\n\nAnswer: (C) 7200 calories"
+  },
+  {
+    "question_id": 5255,
+    "score": 0,
+    "input_tokens": 972,
+    "output_tokens": 1420,
+    "llm_raw_answer": "(B)"
+  },
+  {
+    "question_id": 6140,
+    "score": 0,
+    "input_tokens": 1047,
+    "output_tokens": 209,
+    "llm_raw_answer": "(I): glucose-1-phosphate"
+  },
+  {
+    "question_id": 8496,
+    "score": 0,
+    "input_tokens": 1661,
+    "output_tokens": 182,
+    "llm_raw_answer": "(B): 3980\n\nReason: 1990×1991 − 1989×1990 = 1990(1991 − 1989) = 1990×2 = 3980."
+  },
+  {
+    "question_id": 512,
+    "score": 0,
+    "input_tokens": 993,
+    "output_tokens": 3367,
+    "llm_raw_answer": "(B) 108610\n\nExplanation (concise):\n- Outcomes: 80k, 90k, …, 140k (each prob 1/7).\n- With U(x) = x^(1/4), let y = x/10,000 ∈ {8,…,14}. Then U(x) = 10·y^(1/4).\n- Average of y^(1/4) ≈ 1.815215. Certainty equivalent CE satisfies (CE/10,000)^(1/4) = 1.815215 ⇒ CE/10,000 ≈ 1.815215^4 ≈ 10.8571 ⇒ CE ≈ 108,571.\n- Closest option: 108610."
+  },
+  {
+    "question_id": 12210,
+    "score": 0,
+    "input_tokens": 1190,
+    "output_tokens": 1770,
+    "llm_raw_answer": "(H)\n\nReason:\n- Cascade (cumulative) synchronous speed: n_sync = 120f/(P1+P2) = 120×60/(6+8) = 514.3 rpm\n  With slip s = 0.075: n = (1 − s) n_sync = 0.925 × 514.3 ≈ 475 rpm.\n- Separate operation:\n  • 6-pole: n_sync = 120×60/6 = 1200 rpm → n = 0.925 × 1200 = 1110 rpm\n  • 8-pole: n_sync = 120×60/8 = 900 rpm → n = 0.925 × 900 = 832.5 ≈ 832 rpm"
+  },
+  {
+    "question_id": 9529,
+    "score": 0,
+    "input_tokens": 1095,
+    "output_tokens": 1589,
+    "llm_raw_answer": "Let's think step by step. Just before hitting the water, his speed is v = sqrt(2 g h) = sqrt(2*9.8*5) ≈ 9.9 m/s downward. The water brings him to rest in 0.4 s, so the average acceleration is a = Δv/Δt = 9.9/0.4 ≈ 24.75 m/s^2 upward. The net upward force is m a ≈ 100*24.75 = 2475 N. The water’s average upward force must also overcome his weight, so F_water = m a + mg ≈ 2475 + 980 ≈ 3455 N upward. With downward taken as positive (as in the options), this is about -3480 N.\n\nAnswer: (E)"
+  },
+  {
+    "question_id": 8643,
+    "score": 0,
+    "input_tokens": 1702,
+    "output_tokens": 334,
+    "llm_raw_answer": "(J): 16"
+  },
+  {
+    "question_id": 2482,
+    "score": 0,
+    "input_tokens": 1017,
+    "output_tokens": 155,
+    "llm_raw_answer": "(I): Neurotransmitters are deactivated through re-uptake or enzyme action"
+  },
+  {
+    "question_id": 3567,
+    "score": 0,
+    "input_tokens": 1479,
+    "output_tokens": 1272,
+    "llm_raw_answer": "(H): 3780 l\n\nExplanation:\n- NH4NO3 → N2O + 2 H2O, so 1 mol NH4NO3 gives 3 mol gas.\n- Moles NH4NO3 = 900 g / 80 g/mol = 11.25 mol → gas moles = 3 × 11.25 = 33.75 mol.\n- Volume at T = 1092°C = 1365 K, assuming 1 atm: V = nRT = 33.75 × 0.08206 × 1365 ≈ 3780 L.\n(Equivalently, 33.75 mol × 22.4 L/mol at 273 K = 756 L; scale by 1365/273 = 5 → 756 × 5 = 3780 L.)"
+  },
+  {
+    "question_id": 11419,
+    "score": 0,
+    "input_tokens": 1240,
+    "output_tokens": 1722,
+    "llm_raw_answer": "(D): 28.1 Btu/hr-ft^2 and 234°F\n\nReason:\n- Heat needed: Q = ṁ cp ΔT = (3 lbm/hr)(0.24 Btu/lbm-°F)(210−65) ≈ 104.4 Btu/hr\n- Tube inner area: A = πDL = π(0.75 in/12)(19 ft) ≈ 3.73 ft²\n- Constant wall heat flux: q_w = Q/A ≈ 104.4/3.73 ≈ 28.0 ≈ 28.1 Btu/hr-ft²\n- For fully developed laminar flow with constant q\", Nu ≈ 4.36. With k_air ≈ 0.017 Btu/hr-ft-°F, h ≈ 4.36 k/D ≈ 1.18 Btu/hr-ft²-°F\n- Wall–bulk ΔT ≈ q_w/h ≈ 28.1/1.18 ≈ 23.7°F, so T_w,end ≈ 210 + 23.7 ≈ 234°F"
+  },
+  {
+    "question_id": 7846,
+    "score": 1,
+    "input_tokens": 1665,
+    "output_tokens": 286,
+    "llm_raw_answer": "Let's think step by step. The diagonal of the square is the distance between (1,2) and (7,4):\nd = sqrt((7−1)^2 + (4−2)^2) = sqrt(36 + 4) = sqrt(40).\n\nFor a square, area = (diagonal^2)/2 = 40/2 = 20.\n\nThe answer is (B)."
+  },
+  {
+    "question_id": 7454,
+    "score": 0,
+    "input_tokens": 1162,
+    "output_tokens": 940,
+    "llm_raw_answer": "(A): $64 and $72\n\nExplanation:\n- Real NNP 1933 in 1929 dollars = 48 / (75/100) = 48 / 0.75 = 64\n- Rebase to 1933=100: price ratio P_1929/P_1933 = 100/75 = 4/3, so real NNP 1929 in 1933 dollars = 96 / (4/3) = 72"
+  },
+  {
+    "question_id": 717,
+    "score": 1,
+    "input_tokens": 1071,
+    "output_tokens": 487,
+    "llm_raw_answer": "Let's think step by step. By taking natural logs of the Cobb-Douglas function Q = A K^β L^γ, we get:\nln Q = ln A + β ln K + γ ln L + ε.\nThis is linear in the parameters, so we can use ordinary least squares multiple regression of ln Q on ln K and ln L to estimate β and γ (and ln A as the intercept). The answer is (H): Multiple regression."
+  },
+  {
+    "question_id": 5971,
+    "score": 0,
+    "input_tokens": 832,
+    "output_tokens": 205,
+    "llm_raw_answer": "(C) Marines"
+  },
+  {
+    "question_id": 7149,
+    "score": 0,
+    "input_tokens": 1201,
+    "output_tokens": 1436,
+    "llm_raw_answer": "(D): Further increases in aggregate demand will not lower the unemployment rate but will create inflation."
+  },
+  {
+    "question_id": 9928,
+    "score": 1,
+    "input_tokens": 1185,
+    "output_tokens": 319,
+    "llm_raw_answer": "A: The magnetic force is always perpendicular to the proton’s velocity and does no work, so the speed stays constant. Therefore after 4 s, its speed is unchanged at 1.5 × 10^6 m/s. The answer is (A)."
+  },
+  {
+    "question_id": 8255,
+    "score": 1,
+    "input_tokens": 1751,
+    "output_tokens": 280,
+    "llm_raw_answer": "Let's think step by step. They will both leave together after a number of minutes equal to the least common multiple of 75 and 15. Since 75 = 5 × 15, LCM(75,15) = 75 minutes. Starting at 6:00 a.m., 75 minutes later is 7:15 a.m. The answer is (C)."
+  },
+  {
+    "question_id": 11878,
+    "score": 0,
+    "input_tokens": 1306,
+    "output_tokens": 1438,
+    "llm_raw_answer": "(B): 9.00 × 10^-9 kmol NaCl / m^2-sec"
+  },
+  {
+    "question_id": 6674,
+    "score": 0,
+    "input_tokens": 1157,
+    "output_tokens": 643,
+    "llm_raw_answer": "(C): Premenstrual dysphoric disorder\n\nRationale: Her prominent mood and behavioral symptoms recur predictably in the late luteal phase (days before menses) and around the onset of menstruation, with otherwise normal functioning and no ongoing psychiatric history—consistent with PMDD."
+  },
+  {
+    "question_id": 12011,
+    "score": 0,
+    "input_tokens": 1215,
+    "output_tokens": 393,
+    "llm_raw_answer": "Answer: (D)\n\nReason: Phase velocity v = c / √(ε_r μ_r) = 3×10^8 / √(25×1) = 0.6×10^8 m/s. Index of refraction n = √(ε_r μ_r) = 5."
+  },
+  {
+    "question_id": 4209,
+    "score": 0,
+    "input_tokens": 1537,
+    "output_tokens": 2070,
+    "llm_raw_answer": "Answer: (H)\n\nReasoning:\n- Moles of Mg in 1.00 g: n = 1.00 / 24.3 ≈ 0.04115 mol.\n- Energy to ionize all atoms once: n × 735 ≈ 0.04115 × 735 ≈ 30.25 kJ. This is less than 40.0 kJ, so all atoms can become Mg+.\n- Remaining energy: 40.0 − 30.25 ≈ 9.75 kJ.\n- Moles that can be doubly ionized with the remainder: 9.75 / 1447 ≈ 0.00674 mol → fraction ≈ 0.00674 / 0.04115 ≈ 16.4% Mg2+.\n- The rest (≈83.6%) remain as Mg+.\n\nThus, Mg2+ ≈ 16.5%, Mg+ ≈ 83.5%."
+  },
+  {
+    "question_id": 2426,
+    "score": 0,
+    "input_tokens": 1083,
+    "output_tokens": 311,
+    "llm_raw_answer": "(H) Existential neurosis involves a sense of meaninglessness, emptiness, boredom, and lack of direction; logotherapy (Frankl) aims to help individuals find purpose and meaning in life as a path to recovery."
+  },
+  {
+    "question_id": 2752,
+    "score": 0,
+    "input_tokens": 1047,
+    "output_tokens": 290,
+    "llm_raw_answer": "(D): Client-centered therapy views human nature as innately capable and motivated towards positive self-fulfillment or actualization."
+  },
+  {
+    "question_id": 1215,
+    "score": 0,
+    "input_tokens": 1498,
+    "output_tokens": 635,
+    "llm_raw_answer": "(D): the graduate student consented to a fist fight, not a fight involving weapons.\n\nConsent is limited to the scope agreed upon. Using brass knuckles materially changes the nature of the fight and exceeds the consent given, defeating the consent defense."
+  },
+  {
+    "question_id": 9453,
+    "score": 1,
+    "input_tokens": 1214,
+    "output_tokens": 1201,
+    "llm_raw_answer": "Let's think step by step. The rod length is 4 m and the arc radius is 2 m, so the subtended angle is θ = L/R = 4/2 = 2 rad. The linear charge density is λ = Q/L = 20 nC / 4 m = 5×10^-9 C/m. For a uniformly charged arc, the field at the center is E = (2kλ/R) sin(θ/2). With k ≈ 9×10^9, R = 2 m, and sin(1) ≈ 0.8415, we get E ≈ (2×9×10^9×5×10^-9 / 2)×0.8415 ≈ 38 N/C. The answer is (C)."
+  },
+  {
+    "question_id": 5795,
+    "score": 0,
+    "input_tokens": 853,
+    "output_tokens": 526,
+    "llm_raw_answer": "(E) 24"
+  },
+  {
+    "question_id": 7086,
+    "score": 0,
+    "input_tokens": 1246,
+    "output_tokens": 460,
+    "llm_raw_answer": "(H)"
+  },
+  {
+    "question_id": 6370,
+    "score": 0,
+    "input_tokens": 1053,
+    "output_tokens": 241,
+    "llm_raw_answer": "(D): Superficial inguinal\n\nRationale: Lymphatic drainage from the anal canal below the dentate (pectinate) line goes to the superficial inguinal lymph nodes."
+  },
+  {
+    "question_id": 7880,
+    "score": 0,
+    "input_tokens": 1742,
+    "output_tokens": 868,
+    "llm_raw_answer": "Answer: (J) π/14 s\n\nReason:\n- From ΔL = 5 cm for mass m = 100 g, the spring constant satisfies k = mg/ΔL.\n- Thus ω = sqrt(k/m) = sqrt(g/ΔL) = sqrt(980/5) = sqrt(196) = 14 rad/s.\n- With x(0) = 0 and v(0) = 10 cm/s downward, the solution is x(t) = (v0/ω) sin(ω t) = (10/14) sin(14 t).\n- The first return to equilibrium (x(t) = 0, t > 0) occurs at t = π/ω = π/14 seconds."
+  },
+  {
+    "question_id": 5178,
+    "score": 0,
+    "input_tokens": 831,
+    "output_tokens": 398,
+    "llm_raw_answer": "(C): Reverse channels"
+  },
+  {
+    "question_id": 11596,
+    "score": 0,
+    "input_tokens": 1294,
+    "output_tokens": 1996,
+    "llm_raw_answer": "Answer: (J)\n\nReason: Using SFEE with Q_in − W_out = ṁ[(h2−h1) + (V2²−V1²)/(2g_c)/778 + (z2−z1)/778], we get:\n- Δh = 20 Btu/lbm\n- ΔKE ≈ −0.150 Btu/lbm\n- ΔPE ≈ −0.129 Btu/lbm\nTotal per lbm ≈ 19.72 Btu/lbm → ṁ×total ≈ 98.6 Btu/s\n\nSo W_out = Q_in − ṁ×total ≈ 50 − 98.6 = −48.6 Btu/s (work input required).\n\nArea: A = ṁ v / V1 = (5 lbm/s)(15 ft³/lbm)/(100 ft/s) = 0.75 ft²."
+  },
+  {
+    "question_id": 11492,
+    "score": 0,
+    "input_tokens": 1145,
+    "output_tokens": 1023,
+    "llm_raw_answer": "Answer: (A): 45 signals\n\nExplanation (concise):\n- Sampling rate per voice channel ≈ 2 × 3 kHz = 6 kHz\n- Quantization levels = 16 → 4 bits/sample\n- Bit rate per channel = 6 kHz × 4 = 24 kbps\n- Bit period ≥ 1 μs → max channel bit rate ≈ 1 Mbps\n- Number of channels ≈ 1,000,000 / 24,000 ≈ 41.7 ≈ 45 (closest option)"
+  },
+  {
+    "question_id": 7721,
+    "score": 1,
+    "input_tokens": 1710,
+    "output_tokens": 324,
+    "llm_raw_answer": "Let's think step by step. The volume of a prism equals the area of its base times its height (length). With base area 116 ft^2 and height 30 ft, volume = 116 × 30 = 3480 ft^3. The answer is (F)."
+  },
+  {
+    "question_id": 10064,
+    "score": 0,
+    "input_tokens": 1053,
+    "output_tokens": 1832,
+    "llm_raw_answer": "The resultant magnitude can range from |4 − 3| = 1 N up to 4 + 3 = 7 N.  \nFrom the options, the possible values are: 1 N (B), 2 N (C), 4 N (G), 5 N (I), 6 N (D), and 7 N (H).  \nValues like 8 N, 9 N, or 0 N are not possible."
+  },
+  {
+    "question_id": 1612,
+    "score": 0,
+    "input_tokens": 1371,
+    "output_tokens": 1746,
+    "llm_raw_answer": "(E): gratuitous assignment of future rights"
+  },
+  {
+    "question_id": 9240,
+    "score": 0,
+    "input_tokens": 1113,
+    "output_tokens": 9217,
+    "llm_raw_answer": "(H): 750,000 cm\n\nReason: A sheet bent into a cylinder forms a concentric meniscus cylindrical lens with very small power. Its focal length is approximately\nf ≈ n R^2 / [(n − 1)^2 t].\nWith n = 1.5, R = 5 m = 500 cm, and t = 2 cm:\nf = 1.5 × 500^2 / (0.5^2 × 2) = 1.5 × 250000 / 0.5 = 750000 cm."
+  },
+  {
+    "question_id": 6636,
+    "score": 0,
+    "input_tokens": 995,
+    "output_tokens": 524,
+    "llm_raw_answer": "(B)"
+  },
+  {
+    "question_id": 2113,
+    "score": 0,
+    "input_tokens": 986,
+    "output_tokens": 220,
+    "llm_raw_answer": "(J) increased importance of social skills, less reliance on parents, and more reliance on peers"
+  },
+  {
+    "question_id": 7095,
+    "score": 0,
+    "input_tokens": 1080,
+    "output_tokens": 511,
+    "llm_raw_answer": "(B): a higher price level\n\nReason:\n- Higher price level raises nominal transactions needs, increasing nominal money demand.\n- A recession lowers income and reduces money demand.\n- Higher interest rates and higher expected inflation raise the opportunity cost of holding money, reducing money demand."
+  },
+  {
+    "question_id": 6767,
+    "score": 0,
+    "input_tokens": 1076,
+    "output_tokens": 737,
+    "llm_raw_answer": "(E) and (G)\n\n- Folate (as tetrahydrofolate, THF) donates one-carbon units for nucleotide synthesis, including conversion of dUMP to dTMP (thymidine monophosphate).\n- Folate (as N5-methyl-THF) provides the methyl group for remethylation of homocysteine to methionine via methionine synthase (with vitamin B12)."
+  },
+  {
+    "question_id": 2773,
+    "score": 0,
+    "input_tokens": 989,
+    "output_tokens": 240,
+    "llm_raw_answer": "(G): at the beginning of the list\n\nExplanation: After a delay, the recency effect fades, leaving the primacy effect—better recall for items at the beginning of the list."
+  },
+  {
+    "question_id": 2271,
+    "score": 0,
+    "input_tokens": 999,
+    "output_tokens": 407,
+    "llm_raw_answer": "(C): the selection of weights for the predictors capitalized on chance"
+  },
+  {
+    "question_id": 7919,
+    "score": 0,
+    "input_tokens": 1686,
+    "output_tokens": 248,
+    "llm_raw_answer": "Let's think step by step. \n- Roses remaining after sales: 152 − 96 = 56.\n- Divide equally among 8 vases: 56 ÷ 8 = 7.\n\nAnswer: (H)"
+  },
+  {
+    "question_id": 4052,
+    "score": 0,
+    "input_tokens": 1596,
+    "output_tokens": 1637,
+    "llm_raw_answer": "Answer: (G)\n\nReasoning:\n- Initial mass = m(11B) + m(1H) = 11.00931 + 1.00783 = 12.01714 u\n- Final mass = 3 m(4He) = 3 × 4.00260 = 12.00780 u\n- Mass defect Δm = 12.01714 − 12.00780 = 0.00934 u\n- Energy per reaction: E = Δm × 931.5 MeV/u ≈ 0.00934 × 931.5 ≈ 8.70 MeV\n- Convert to kcal/mol: 1 eV/particle = 23.06 kcal/mol → 8.70 MeV = 8.70 × 10^6 eV ⇒ 8.70 × 23.06 × 10^6 ≈ 2.01 × 10^8 kcal/mol\n\nSo ΔE ≈ +2.01 × 10^8 kcal per mole."
+  },
+  {
+    "question_id": 8872,
+    "score": 0,
+    "input_tokens": 1657,
+    "output_tokens": 929,
+    "llm_raw_answer": "(A): True, True\n\nReason:\n- In any cyclic subgroup of order n, there are φ(n) generators, all of order n. For n = 15, φ(15) = 8. So if a group has an element of order 15, its cyclic subgroup contributes at least 8 elements of order 15. Hence Statement 1 is true.\n- Elements of order 15 come in disjoint batches of 8 from distinct cyclic subgroups of order 15 (distinct such subgroups share no element of order 15). Therefore the total number of elements of order 15 is a multiple of 8. If it’s more than 8, it’s at least 16. Hence Statement 2 is true."
+  },
+  {
+    "question_id": 3991,
+    "score": 0,
+    "input_tokens": 1533,
+    "output_tokens": 574,
+    "llm_raw_answer": "Answer: (H)\n\nReason: Use PV = Z n R T, so V = Z n R T / P.\nWith Z = 0.86, n = 0.0082 mol, R = 0.08206 L·atm·mol⁻¹·K⁻¹, T = 300 K, P = 20 atm:\n\nV ≈ 0.86 × 0.0082 × 0.08206 × 300 / 20 ≈ 0.00868 L = 8.7 cm³."
+  },
+  {
+    "question_id": 9087,
+    "score": 1,
+    "input_tokens": 1158,
+    "output_tokens": 1235,
+    "llm_raw_answer": "A: Let's think step by step. \n- Volume of droplet: V = (4/3)π(0.05 cm)^3 ≈ 5.236×10^-4 cm^3\n- Mass ≈ 5.236×10^-4 g; moles = mass/18 ≈ 2.909×10^-5 mol\n- Molecules = moles × NA ≈ 2.909×10^-5 × 6.022×10^23 ≈ 1.75×10^19\n- Atoms = 3 × molecules ≈ 5.26×10^19 atoms\n- Time at 5 atoms/s = 5.26×10^19 / 5 ≈ 1.05×10^19 s ≈ (1.05×10^19)/(3.156×10^7) ≈ 3.3×10^11 years\n\nThe answer is (E)."
+  },
+  {
+    "question_id": 6943,
+    "score": 0,
+    "input_tokens": 1137,
+    "output_tokens": 273,
+    "llm_raw_answer": "(F): An explanation of imperialism"
+  },
+  {
+    "question_id": 385,
+    "score": 0,
+    "input_tokens": 996,
+    "output_tokens": 829,
+    "llm_raw_answer": "(F): $60.00\n\nUsing FIFO, ending inventory is valued at the most recent cost. With 30 units on hand and the latest cost at $2.00, value = 30 × $2.00 = $60.00."
+  },
+  {
+    "question_id": 1375,
+    "score": 0,
+    "input_tokens": 1186,
+    "output_tokens": 398,
+    "llm_raw_answer": "(G): Salmond"
+  },
+  {
+    "question_id": 8372,
+    "score": 0,
+    "input_tokens": 1674,
+    "output_tokens": 1075,
+    "llm_raw_answer": "(H): a^3 = e\n\nReason: For φ(x) = a x a^2 to be a homomorphism, we need φ(xy) = φ(x)φ(y):\n- φ(xy) = a x y a^2\n- φ(x)φ(y) = (a x a^2)(a y a^2) = a x a^3 y a^2\nEquality for all x,y gives a x y a^2 = a x a^3 y a^2 ⇒ x y = x a^3 y ⇒ y = a^3 y ⇒ a^3 = e.\nConversely, if a^3 = e, then φ(xy) = a x y a^2 = a x a^3 y a^2 = φ(x)φ(y)."
+  },
+  {
+    "question_id": 8789,
+    "score": 0,
+    "input_tokens": 1642,
+    "output_tokens": 142,
+    "llm_raw_answer": "(A): 48"
+  },
+  {
+    "question_id": 5928,
+    "score": 0,
+    "input_tokens": 840,
+    "output_tokens": 319,
+    "llm_raw_answer": "(J): Air\n\nReason: For a small, very valuable item, using an insured overnight air service (e.g., FedEx/UPS/USPS Express) minimizes transit time and risk, offers tracking and signature options, and is the standard secure shipping method."
+  },
+  {
+    "question_id": 6775,
+    "score": 0,
+    "input_tokens": 1011,
+    "output_tokens": 208,
+    "llm_raw_answer": "(A): carnitine."
+  },
+  {
+    "question_id": 6354,
+    "score": 0,
+    "input_tokens": 1017,
+    "output_tokens": 430,
+    "llm_raw_answer": "A: (D) The floor. The thin orbital floor (inferior wall) over the maxillary sinus is the weakest and most commonly collapses in a blow-out fracture."
+  },
+  {
+    "question_id": 3634,
+    "score": 0,
+    "input_tokens": 1399,
+    "output_tokens": 1119,
+    "llm_raw_answer": "(A): N2(g)\n\nReason: In NO, nitrogen is +2. A reduction must give a product where nitrogen has a lower oxidation state. Among the options, only N2 has nitrogen at 0 (reduced). The others have nitrogen at +3 (NO2−), +4 (NO2), or +5 (NO3−, N2O5), which are oxidized relative to NO."
+  },
+  {
+    "question_id": 11031,
+    "score": 0,
+    "input_tokens": 1025,
+    "output_tokens": 332,
+    "llm_raw_answer": "(E)"
+  },
+  {
+    "question_id": 4173,
+    "score": 0,
+    "input_tokens": 1582,
+    "output_tokens": 846,
+    "llm_raw_answer": "Answer: (G)\n\nReasoning (concise):\n- Flip angle θ = γ B1 t (on resonance).\n- For a 180° pulse: θ = π.\n- Using γ(1H) = 2.675×10^8 rad s^-1 T^-1 and t = 12.5 μs:\n  B1 = π / (γ t) ≈ 3.1416 / (2.675×10^8 × 12.5×10^-6) ≈ 9.4×10^-4 T.\n- Closest option: 9.3×10^-4 T."
+  },
+  {
+    "question_id": 5659,
+    "score": 0,
+    "input_tokens": 872,
+    "output_tokens": 332,
+    "llm_raw_answer": "(A)"
+  },
+  {
+    "question_id": 10956,
+    "score": 0,
+    "input_tokens": 1050,
+    "output_tokens": 460,
+    "llm_raw_answer": "(B)"
+  },
+  {
+    "question_id": 10625,
+    "score": 0,
+    "input_tokens": 1453,
+    "output_tokens": 1272,
+    "llm_raw_answer": "(G)\n\nExplanation: The root set consists of references in registers, the call stack (locals, parameters, temporaries), and global/static variables. Objects on the heap are not roots; they are discovered by tracing from the roots."
+  },
+  {
+    "question_id": 3041,
+    "score": 0,
+    "input_tokens": 1440,
+    "output_tokens": 588,
+    "llm_raw_answer": "(G)"
+  },
+  {
+    "question_id": 3820,
+    "score": 0,
+    "input_tokens": 1491,
+    "output_tokens": 1223,
+    "llm_raw_answer": "n = 2 m L v / h = 2(1.0e-3 kg)(1.0e-2 m)(1.0e-2 m/s) / 6.626e-34 J·s ≈ 3×10^26 ⇒ (J)"
+  },
+  {
+    "question_id": 5422,
+    "score": 0,
+    "input_tokens": 838,
+    "output_tokens": 204,
+    "llm_raw_answer": "(C)"
+  },
+  {
+    "question_id": 77,
+    "score": 0,
+    "input_tokens": 923,
+    "output_tokens": 206,
+    "llm_raw_answer": "(J): Quantitative"
+  },
+  {
+    "question_id": 10809,
+    "score": 0,
+    "input_tokens": 906,
+    "output_tokens": 1293,
+    "llm_raw_answer": "(F): justice"
+  },
+  {
+    "question_id": 4523,
+    "score": 0,
+    "input_tokens": 1476,
+    "output_tokens": 1076,
+    "llm_raw_answer": "(G): 54.394 eV, which corresponds to about 5.25 × 10^3 kJ·mol^−1 (≈ 5248 kJ·mol^−1).\n\nReason: He+ is hydrogen-like with Z = 2, so Ionization energy = 13.6 eV × Z^2 = 13.6 × 4 ≈ 54.4 eV; 1 eV per particle = 96.485 kJ·mol^−1."
+  },
+  {
+    "question_id": 7362,
+    "score": 0,
+    "input_tokens": 1170,
+    "output_tokens": 409,
+    "llm_raw_answer": "(G): Decrease the money supply; increase taxes; reduce government spending."
+  },
+  {
+    "question_id": 944,
+    "score": 0,
+    "input_tokens": 1537,
+    "output_tokens": 676,
+    "llm_raw_answer": "(D): The court found an implied warranty of habitability from the builder to the buyer that was enforceable by a subsequent buyer."
+  },
+  {
+    "question_id": 7951,
+    "score": 0,
+    "input_tokens": 1704,
+    "output_tokens": 500,
+    "llm_raw_answer": "Use the sum of squares formula: sum_{k=1}^n k^2 = n(n+1)(2n+1)/6.\n\nSum 21^2 to 40^2 = S40 − S20\n- S40 = 40·41·81 / 6 = 22140\n- S20 = 20·21·41 / 6 = 2870\n\nDifference = 22140 − 2870 = 19270.\n\nAnswer: (J) 19270"
+  },
+  {
+    "question_id": 2687,
+    "score": 0,
+    "input_tokens": 973,
+    "output_tokens": 338,
+    "llm_raw_answer": "(D): social learning theory and innate aggression"
+  },
+  {
+    "question_id": 8433,
+    "score": 0,
+    "input_tokens": 1719,
+    "output_tokens": 690,
+    "llm_raw_answer": "Answer: (G)\n\nReasoning:\n- For U(0,1), μ = 1/2 and σ^2 = 1/12.\n- For n = 12, Var(X̄) = (1/12)/12 = 1/144, so SD(X̄) = 1/12.\n- Standardize: Z = (X̄ − 1/2)/(1/12). Then\n  P(1/2 ≤ X̄ ≤ 2/3) ≈ P(0 ≤ Z ≤ (2/3 − 1/2)/(1/12)) = P(0 ≤ Z ≤ 2) = Φ(2) − 0.5 ≈ 0.9772 − 0.5 = 0.4772."
+  },
+  {
+    "question_id": 8000,
+    "score": 0,
+    "input_tokens": 1700,
+    "output_tokens": 845,
+    "llm_raw_answer": "362,880"
+  },
+  {
+    "question_id": 6016,
+    "score": 0,
+    "input_tokens": 1053,
+    "output_tokens": 215,
+    "llm_raw_answer": "(C): Those with low capabilities are more vulnerable to environmental demands."
+  },
+  {
+    "question_id": 8023,
+    "score": 0,
+    "input_tokens": 1676,
+    "output_tokens": 245,
+    "llm_raw_answer": "Answer: (D)\n\nReason: 2 rolls in 18 minutes → 9 minutes per roll. For 8 rolls: 8 × 9 = 72 minutes = 1 hour 12 minutes."
+  },
+  {
+    "question_id": 7631,
+    "score": 0,
+    "input_tokens": 1175,
+    "output_tokens": 639,
+    "llm_raw_answer": "(F): Increased demand — Appreciating\n\nRationale: Higher national debt typically means more government borrowing, which can raise interest rates and attract foreign capital. Foreign investors need dollars to buy U.S. Treasury securities, increasing demand for dollars and causing the dollar to appreciate."
+  },
+  {
+    "question_id": 2468,
+    "score": 0,
+    "input_tokens": 1047,
+    "output_tokens": 356,
+    "llm_raw_answer": "(G): Allport stressed the difference between the nomothetic and the ideographic methods of study and preferred the ideographic method."
+  },
+  {
+    "question_id": 1994,
+    "score": 0,
+    "input_tokens": 1056,
+    "output_tokens": 284,
+    "llm_raw_answer": "(F): allowable only if it is not clinically contraindicated and the relationship is not exploitative"
+  },
+  {
+    "question_id": 5038,
+    "score": 0,
+    "input_tokens": 1975,
+    "output_tokens": 340,
+    "llm_raw_answer": "(A): within the past 12,000 years"
+  },
+  {
+    "question_id": 11567,
+    "score": 0,
+    "input_tokens": 1524,
+    "output_tokens": 3576,
+    "llm_raw_answer": "(E): Overall heat transfer coefficient: 978.97 Btu/hr-ft^2-°F, Total rate of heat transfer: 123,021 Btu/hr, Total rate of condensation: 94.3 lb/hr"
+  },
+  {
+    "question_id": 2427,
+    "score": 0,
+    "input_tokens": 1030,
+    "output_tokens": 346,
+    "llm_raw_answer": "(G): Aggressiveness is a complex interaction between innate tendencies and learned responses."
+  },
+  {
+    "question_id": 6303,
+    "score": 0,
+    "input_tokens": 1085,
+    "output_tokens": 730,
+    "llm_raw_answer": "(G): the mucosa covering the vocal folds is tightly attached to underlying tissues."
+  },
+  {
+    "question_id": 4162,
+    "score": 0,
+    "input_tokens": 1447,
+    "output_tokens": 1066,
+    "llm_raw_answer": "Let's think step by step. \n- Initial concentration of the acid: C = 0.0025 mol / 0.250 L = 0.0100 M.\n- From pH = 4.26, [H+] = 10^-4.26 ≈ 5.5 × 10^-5 M.\n- For HA ⇌ H+ + A−, Ka = [H+][A−]/[HA] ≈ x^2/(C − x) = (5.5×10^-5)^2 / (0.0100 − 0.000055) ≈ 3.04×10^-7.\n- pKa = −log Ka ≈ 6.52.\n\nAnswer: (E) 6.52"
+  },
+  {
+    "question_id": 6998,
+    "score": 0,
+    "input_tokens": 1151,
+    "output_tokens": 252,
+    "llm_raw_answer": "(H): $60,000\n\nExplanation: Required reserves = 20% of $250,000 = $50,000. Actual reserves = required reserves + excess reserves = $50,000 + $10,000 = $60,000."
+  },
+  {
+    "question_id": 6045,
+    "score": 0,
+    "input_tokens": 1190,
+    "output_tokens": 806,
+    "llm_raw_answer": "(D): Chronic Pancreatitis\n\nExplanation: Long-standing alcohol use with prior episodes of severe abdominal pain suggests chronic pancreatitis, which leads to exocrine insufficiency and fat malabsorption (bulky, foul-smelling stools). This causes deficiency of fat-soluble vitamins (including vitamin D) and binding of calcium in the gut, resulting in hypocalcemia with neuromuscular irritability (positive Chvostek and Trousseau signs)."
+  },
+  {
+    "question_id": 7458,
+    "score": 0,
+    "input_tokens": 1191,
+    "output_tokens": 1288,
+    "llm_raw_answer": "Answer: (D) 8 thousand people\n\nExplanation (brief):\n- Marginal Physical Product (thousand tons): 12, 14, 16, 18, 20, 18, 16, 11 (for populations 2–9).\n- Average Physical Product (tons per person): 10, 11, 12, 13, 14, 15, ≈15.43, 15.5, 15 (for populations 1–9).\n- The highest APP is at population 8 (15.5), so the optimum population is 8 thousand."
+  },
+  {
+    "question_id": 4851,
+    "score": 0,
+    "input_tokens": 2087,
+    "output_tokens": 332,
+    "llm_raw_answer": "(F)"
+  },
+  {
+    "question_id": 3743,
+    "score": 0,
+    "input_tokens": 1516,
+    "output_tokens": 829,
+    "llm_raw_answer": "(G): The atomic radius of hydrogen is smaller than the first Bohr radius\n\nExplanation: The first Bohr radius a0 ≈ 0.0529 nm, whereas the given atomic radius is 0.037 nm. The difference arises because the Bohr radius is a theoretical scale (the most probable electron–nucleus distance in the 1s state of an isolated H atom), while the quoted “atomic radius” is typically a covalent radius (about half the H–H bond length in H2), which reflects bonding and a different definition of size."
+  },
+  {
+    "question_id": 9549,
+    "score": 0,
+    "input_tokens": 1062,
+    "output_tokens": 206,
+    "llm_raw_answer": "(A): increases."
+  },
+  {
+    "question_id": 4624,
+    "score": 0,
+    "input_tokens": 1477,
+    "output_tokens": 573,
+    "llm_raw_answer": "Answer: (H) 2.8 liters\n\nReason:\n- Molar mass NH4NO3 = 80 g/mol → moles = 10/80 = 0.125 mol\n- Reaction: NH4NO3 → N2O + 2 H2O (1:1 mol ratio for N2O)\n- Moles N2O = 0.125 mol\n- At STP, 1 mol gas = 22.4 L → Volume = 0.125 × 22.4 = 2.8 L"
+  },
+  {
+    "question_id": 1910,
+    "score": 0,
+    "input_tokens": 1492,
+    "output_tokens": 1804,
+    "llm_raw_answer": "(B): the new owner.\n\nReason: The tenant’s covenant to pay taxes “touches and concerns” the land and runs with the leasehold. When the tenant assigned the lease, the assignee (the student) came into privity of estate with the landlord and became liable on all covenants that run with the land while in possession, including the taxes. When the landlord conveyed the reversion, the benefit of such covenants passed to the new owner, who may enforce them against the assignee. The anti-assignment clause makes the assignment voidable at the landlord’s option, but since the landlord did not object, the assignment stands."
+  },
+  {
+    "question_id": 3164,
+    "score": 0,
+    "input_tokens": 1336,
+    "output_tokens": 596,
+    "llm_raw_answer": "(D): a DNA or RNA primer and reverse transcriptase\n\nExplanation: Reverse transcriptase synthesizes DNA using an RNA template but requires a primer (either DNA or RNA) to initiate synthesis. RNase is not required to form the initial RNA/DNA hybrid; it’s used later (RNase H activity) to remove the RNA strand if making double-stranded DNA."
+  },
+  {
+    "question_id": 5526,
+    "score": 1,
+    "input_tokens": 830,
+    "output_tokens": 288,
+    "llm_raw_answer": "A: The cervix must dilate to about 10 cm for delivery. The answer is (H)."
+  },
+  {
+    "question_id": 7816,
+    "score": 0,
+    "input_tokens": 1697,
+    "output_tokens": 204,
+    "llm_raw_answer": "(A)"
+  },
+  {
+    "question_id": 9989,
+    "score": 0,
+    "input_tokens": 1133,
+    "output_tokens": 612,
+    "llm_raw_answer": "(F): Jupiter's greater mass compresses it more, increasing its density, so its radius is only slightly larger than Saturn’s."
+  },
+  {
+    "question_id": 2106,
+    "score": 0,
+    "input_tokens": 1000,
+    "output_tokens": 270,
+    "llm_raw_answer": "(G): delta waves"
+  },
+  {
+    "question_id": 11915,
+    "score": 0,
+    "input_tokens": 1096,
+    "output_tokens": 1825,
+    "llm_raw_answer": "(E): - 5 mph\n\nReason: A Pitot (stagnation) tube overreads at higher speeds due to compressibility. At 300 mph (M ≈ 0.39), the impact pressure is about 3.9% higher than the incompressible dynamic pressure, so the indicated speed is about 2% high. That corresponds to roughly 6 mph; the closest option is -5 mph."
+  },
+  {
+    "question_id": 8785,
+    "score": 0,
+    "input_tokens": 1659,
+    "output_tokens": 144,
+    "llm_raw_answer": "(A): 126.26"
+  },
+  {
+    "question_id": 3240,
+    "score": 0,
+    "input_tokens": 1419,
+    "output_tokens": 293,
+    "llm_raw_answer": "(F): Tonus refers to the state of sustained partial contraction present in skeletal muscles as long as the nerves to the muscle are intact."
+  },
+  {
+    "question_id": 119,
+    "score": 0,
+    "input_tokens": 975,
+    "output_tokens": 370,
+    "llm_raw_answer": "Answer: (F)\n\nExplanation: Present value = 10,000 / (1.04)^10 ≈ 10,000 / 1.48024 ≈ $6,756."
+  },
+  {
+    "question_id": 10957,
+    "score": 0,
+    "input_tokens": 1145,
+    "output_tokens": 908,
+    "llm_raw_answer": "(E)"
+  },
+  {
+    "question_id": 391,
+    "score": 0,
+    "input_tokens": 956,
+    "output_tokens": 144,
+    "llm_raw_answer": "(D): $175.00"
+  },
+  {
+    "question_id": 10513,
+    "score": 0,
+    "input_tokens": 1394,
+    "output_tokens": 144,
+    "llm_raw_answer": "(E): seed([x])"
+  },
+  {
+    "question_id": 6586,
+    "score": 0,
+    "input_tokens": 998,
+    "output_tokens": 1166,
+    "llm_raw_answer": "(C): Primates"
+  },
+  {
+    "question_id": 6791,
+    "score": 0,
+    "input_tokens": 1219,
+    "output_tokens": 1303,
+    "llm_raw_answer": "(B): Mucosal edema\n\nReasoning: Her 1-week history of URI symptoms (clear rhinorrhea, low-grade fever), sinus tenderness without purulent drainage, and serous otitis media suggest an acute viral URI. The mechanism of acute sinusitis in this setting is mucosal edema causing obstruction of sinus ostia and impaired drainage, rather than a primary bacterial infection."
+  },
+  {
+    "question_id": 2090,
+    "score": 0,
+    "input_tokens": 1054,
+    "output_tokens": 238,
+    "llm_raw_answer": "J\n\nExplicit (intentional, declarative—especially episodic) memory tends to decline with age, while implicit (automatic, procedural/priming) memory is relatively preserved."
+  },
+  {
+    "question_id": 5628,
+    "score": 0,
+    "input_tokens": 814,
+    "output_tokens": 206,
+    "llm_raw_answer": "(H): gingham"
+  },
+  {
+    "question_id": 8331,
+    "score": 0,
+    "input_tokens": 1640,
+    "output_tokens": 1228,
+    "llm_raw_answer": "(J): 2\n\nReason: A homomorphism f: Z → Z₂ (as additive groups) is determined by f(1). In Z₂, f(1) can be 0 or 1, yielding the zero map or the mod 2 map. Hence there are 2 homomorphisms."
+  },
+  {
+    "question_id": 9933,
+    "score": 1,
+    "input_tokens": 1118,
+    "output_tokens": 2008,
+    "llm_raw_answer": "A: Let's think step by step. Work done by a force is the dot product of the force and the displacement. As the elevator (and the man) move upward, the normal force from the floor is upward as well, so it does positive work on the man. (Even at constant speed it does positive work, balanced by gravity’s negative work.) The answer is (A)."
+  },
+  {
+    "question_id": 1065,
+    "score": 0,
+    "input_tokens": 1431,
+    "output_tokens": 1237,
+    "llm_raw_answer": "(F): proper, because it constituted a permissible inference."
+  },
+  {
+    "question_id": 7054,
+    "score": 0,
+    "input_tokens": 1181,
+    "output_tokens": 644,
+    "llm_raw_answer": "(B): Do not produce if the price is lower than AVC.\n\nExplanation: In the short run, fixed costs are sunk. A competitive firm should shut down if price < average variable cost (equivalently, if TR < TVC). If price ≥ AVC, it should continue producing."
+  },
+  {
+    "question_id": 2977,
+    "score": 0,
+    "input_tokens": 1415,
+    "output_tokens": 544,
+    "llm_raw_answer": "(B): The neurilemma sheath provides a channel for the axon to grow back to its former position.\n\nEvidence: In the peripheral nervous system, when the neurilemma (Schwann cell sheath) remains intact after injury, it forms a regeneration tube that guides the regrowing axon back to its target. If the neurilemma is disrupted—or in the CNS where a comparable sheath is absent—regeneration is poor."
+  },
+  {
+    "question_id": 429,
+    "score": 0,
+    "input_tokens": 978,
+    "output_tokens": 531,
+    "llm_raw_answer": "(A) $124 and $60,000"
+  },
+  {
+    "question_id": 8715,
+    "score": 0,
+    "input_tokens": 1640,
+    "output_tokens": 206,
+    "llm_raw_answer": "(I) 8"
+  },
+  {
+    "question_id": 2097,
+    "score": 0,
+    "input_tokens": 966,
+    "output_tokens": 144,
+    "llm_raw_answer": "(B): Hierarchy of needs"
+  },
+  {
+    "question_id": 4287,
+    "score": 0,
+    "input_tokens": 1415,
+    "output_tokens": 721,
+    "llm_raw_answer": "(C): 0.0752"
+  },
+  {
+    "question_id": 6473,
+    "score": 0,
+    "input_tokens": 1015,
+    "output_tokens": 526,
+    "llm_raw_answer": "(H) Smaller bladder"
+  },
+  {
+    "question_id": 7259,
+    "score": 0,
+    "input_tokens": 1321,
+    "output_tokens": 295,
+    "llm_raw_answer": "(C) Cross elasticity is the ratio between the percentage change in the quantity demanded of a good and the percentage change in the price of another good."
+  },
+  {
+    "question_id": 3459,
+    "score": 0,
+    "input_tokens": 1566,
+    "output_tokens": 905,
+    "llm_raw_answer": "(D) \n\n- (a) Complementary strand has A' = T, T' = A, G' = C, C' = G, so (A'+T')/(G'+C') = (A+T)/(G+C) = 0.2.\n- (b) For (A+G)/(T+C), the complementary ratio is (T+C)/(A+G), the reciprocal → 1/0.2 = 5.\n- (c) In double-stranded DNA, total purines = total pyrimidines, so (A+G)/(T+C) = 1."
+  },
+  {
+    "question_id": 362,
+    "score": 0,
+    "input_tokens": 937,
+    "output_tokens": 144,
+    "llm_raw_answer": "(G): a bounce-back coupon"
+  },
+  {
+    "question_id": 709,
+    "score": 0,
+    "input_tokens": 954,
+    "output_tokens": 594,
+    "llm_raw_answer": "(J): $3,342.59"
+  },
+  {
+    "question_id": 5357,
+    "score": 0,
+    "input_tokens": 831,
+    "output_tokens": 398,
+    "llm_raw_answer": "(F): dialects"
+  },
+  {
+    "question_id": 7856,
+    "score": 0,
+    "input_tokens": 1663,
+    "output_tokens": 2864,
+    "llm_raw_answer": "(J): 13068\n\nReason (concise): For two labeled round tables, the number of seatings is\nL = sum_{m=1}^7 C(8,m) (m−1)! (7−m)! = 8! ∑_{m=1}^7 1/[m(8−m)] = 40320 × (363/560) = 26136.\nSince the tables are identical, divide by 2 to get 13068."
+  },
+  {
+    "question_id": 10436,
+    "score": 0,
+    "input_tokens": 1435,
+    "output_tokens": 459,
+    "llm_raw_answer": "Answer: (F) 64\n\nReason: Throughput is limited by the bottleneck link, which is 500 kbps. File size = 4,000,000 bytes = 32,000,000 bits. Time = 32,000,000 / 500,000 ≈ 64 seconds."
+  },
+  {
+    "question_id": 4881,
+    "score": 0,
+    "input_tokens": 2076,
+    "output_tokens": 474,
+    "llm_raw_answer": "(F): the provision for land sales in the Northwest that would benefit the entire nation"
+  },
+  {
+    "question_id": 6747,
+    "score": 0,
+    "input_tokens": 1164,
+    "output_tokens": 140,
+    "llm_raw_answer": "(A)"
+  },
+  {
+    "question_id": 5251,
+    "score": 0,
+    "input_tokens": 842,
+    "output_tokens": 334,
+    "llm_raw_answer": "(E) parquetry"
+  },
+  {
+    "question_id": 5880,
+    "score": 0,
+    "input_tokens": 829,
+    "output_tokens": 398,
+    "llm_raw_answer": "(E): tolerance stage"
+  },
+  {
+    "question_id": 9917,
+    "score": 0,
+    "input_tokens": 1331,
+    "output_tokens": 1312,
+    "llm_raw_answer": "(G): velocity ≈ 1.709 × 10^7 m/s, magnetic field ≈ 0.885 Wb/m^2\n\nReason:\n- KE = 6.048 MeV = 9.6889 × 10^-13 J\n- v = sqrt(2 KE / m) = sqrt(2 × 9.6889e-13 / 6.64e-27) ≈ 1.709 × 10^7 m/s\n- B = m v / (q r) with q = 2e = 3.204e-19 C, r = 0.40 m → B ≈ 0.885 T (Wb/m^2)"
+  },
+  {
+    "question_id": 12198,
+    "score": 0,
+    "input_tokens": 1177,
+    "output_tokens": 2174,
+    "llm_raw_answer": "(A): - 19.55 Btu/lb\n\nReasoning:\n- For an adiabatic (Q=0), frictionless process: W(by system) = -ΔU = -∫ c_v dT = -[∫ c_p dT - RΔT].\n- Given c_p(T) = 0.212 + 0.000059 T [Btu/lbm-R], with T in Rankine.\n- Convert temperatures: T1 = 200°F = 659.67 R, T2 = 300°F = 759.67 R, ΔT = 100 R.\n- Gas constant: R = Ru/M = 1.9859/34 = 0.05841 Btu/lbm-R.\n- ∫ c_p dT = 0.212·ΔT + 0.5·0.000059·(T2^2 − T1^2)\n= 0.212·100 + 0.5·0.000059·[100·(759.67+659.67)]\n= 21.2 + 4.187 ≈ 25.387 Btu/lb.\n- ΔU = ∫ c_p dT − RΔT = 25.387 − 0.05841·100 = 25.387 − 5.841 = 19.546 Btu/lb.\n- W = −ΔU ≈ −19.55 Btu/lb."
+  },
+  {
+    "question_id": 10761,
+    "score": 0,
+    "input_tokens": 1425,
+    "output_tokens": 2575,
+    "llm_raw_answer": "(C): False, True"
+  },
+  {
+    "question_id": 4686,
+    "score": 0,
+    "input_tokens": 2216,
+    "output_tokens": 150,
+    "llm_raw_answer": "(J): Dred Scott v. Sanford (1857)"
+  },
+  {
+    "question_id": 478,
+    "score": 0,
+    "input_tokens": 1220,
+    "output_tokens": 1759,
+    "llm_raw_answer": "(A): Y = 18 − 0.05 X, r ≈ −0.4867"
+  },
+  {
+    "question_id": 8104,
+    "score": 0,
+    "input_tokens": 1642,
+    "output_tokens": 1300,
+    "llm_raw_answer": "(D): 6\n\nReasoning:\n- The order of a permutation in S_n is the least common multiple (lcm) of the lengths of its disjoint cycles.\n- For n = 6, possible cycle type partitions of 6 include: 6; 5+1; 4+2; 3+3; 3+2+1; etc.\n- The corresponding orders are: lcm(6)=6; lcm(5,1)=5; lcm(4,2)=4; lcm(3,3)=3; lcm(3,2,1)=6.\n- The maximum among these is 6."
+  },
+  {
+    "question_id": 1157,
+    "score": 0,
+    "input_tokens": 1465,
+    "output_tokens": 2803,
+    "llm_raw_answer": "(H) The right of assembly as guaranteed by the First Amendment.\n\nRationale: His most plausible constitutional claim is that excluding him from the caucus burdens his First Amendment associational/assembly rights in the political process. Other options either don’t apply (e.g., Speech and Debate protects against external questioning and applies to federal legislators), lack a protected interest (due process), or address unrelated rights. Success would still hinge on showing sufficient state action, but among the choices, the First Amendment right of assembly is the strongest fit."
+  },
+  {
+    "question_id": 11709,
+    "score": 0,
+    "input_tokens": 1169,
+    "output_tokens": 2513,
+    "llm_raw_answer": "(A): 70.5 lbs"
+  },
+  {
+    "question_id": 3193,
+    "score": 0,
+    "input_tokens": 1397,
+    "output_tokens": 301,
+    "llm_raw_answer": "(J): The person involved may enter a state of tremors and spasms, or may even die depending on the quantity of gas inhaled.\n\nReason: Nerve gases inhibit (break down/inactivate) acetylcholinesterase, causing acetylcholine to accumulate at synapses and neuromuscular junctions. This leads to continuous stimulation of cholinergic receptors, producing muscle fasciculations, spasms, and potentially paralytic respiratory failure, seizures, and death in severe exposures."
+  },
+  {
+    "question_id": 3749,
+    "score": 0,
+    "input_tokens": 1442,
+    "output_tokens": 746,
+    "llm_raw_answer": "Answer: (C) 6%\n\nReasoning:\n- Moles of HF = 10.0 g / 20.0 g/mol = 0.50 mol\n- Mass of water = 500 g = 0.500 kg → molality m = 0.50 / 0.500 = 1.0 m\n- ΔTf = i Kf m ⇒ i = 1.98 / (1.86 × 1.0) ≈ 1.0645\n- For HF ⇌ H+ + F−, van’t Hoff factor i = 1 + α ⇒ α ≈ 1.0645 − 1 = 0.0645 ≈ 6%\n\nSo the degree of ionization is about 6%."
+  },
+  {
+    "question_id": 3736,
+    "score": 0,
+    "input_tokens": 1611,
+    "output_tokens": 644,
+    "llm_raw_answer": "(G): -1.0 × 10^2 J\n\nReason: ΔV = A·Δx = (100 cm^2)(10 cm) = 1000 cm^3 = 1.0×10^-3 m^3. Work w = -P_ext ΔV = -(1 atm)(1.0×10^-3 m^3) ≈ -(1.013×10^5 Pa)(1.0×10^-3 m^3) ≈ -1.01×10^2 J ≈ -1.0×10^2 J."
+  },
+  {
+    "question_id": 9184,
+    "score": 0,
+    "input_tokens": 1056,
+    "output_tokens": 144,
+    "llm_raw_answer": "(D) 931 MeV"
+  },
+  {
+    "question_id": 1809,
+    "score": 0,
+    "input_tokens": 1347,
+    "output_tokens": 336,
+    "llm_raw_answer": "(G) easement in gross"
+  },
+  {
+    "question_id": 10297,
+    "score": 1,
+    "input_tokens": 1125,
+    "output_tokens": 1420,
+    "llm_raw_answer": "A: Kirkwood gaps occur at mean-motion resonances with Jupiter (e.g., 3:1, 5:2, 2:1). Among the options, only “half that of Jupiter” (the 2:1 resonance at ~3.27 AU) is correct. The answer is (F)."
+  },
+  {
+    "question_id": 10030,
+    "score": 1,
+    "input_tokens": 1070,
+    "output_tokens": 1006,
+    "llm_raw_answer": "A: Let's think step by step. For a compound microscope with final image at infinity (normal adjustment), magnifying power M ≈ (L/f_objective) × (25 cm/f_eyepiece). Here L = 10 cm, f_o = 0.5 cm, f_e = 2 cm.\n\nSo M = (10/0.5) × (25/2) = 20 × 12.5 = 250. The answer is (F)."
+  },
+  {
+    "question_id": 4032,
+    "score": 0,
+    "input_tokens": 1433,
+    "output_tokens": 510,
+    "llm_raw_answer": "Answer: (F) 0.25 N\n\nExplanation:\n- KOH is monobasic, so its equivalent weight equals its molar mass ≈ 56 g/eq.\n- Equivalents of KOH = 0.56 g / 56 g/eq = 0.010 eq.\n- These 0.010 eq are neutralized by 40 mL = 0.040 L of the solution.\n- Normality = equivalents / volume (L) = 0.010 / 0.040 = 0.25 N."
+  },
+  {
+    "question_id": 5804,
+    "score": 0,
+    "input_tokens": 922,
+    "output_tokens": 396,
+    "llm_raw_answer": "(C)"
+  },
+  {
+    "question_id": 2366,
+    "score": 0,
+    "input_tokens": 1164,
+    "output_tokens": 844,
+    "llm_raw_answer": "(E)"
+  },
+  {
+    "question_id": 5409,
+    "score": 0,
+    "input_tokens": 954,
+    "output_tokens": 799,
+    "llm_raw_answer": "(J): $6,000\n\nExplanation: Vale includes only his 50% share of the partnership’s taxable income items in AGI. The $12,000 dividends pass through, so his share is $6,000. The $80,000 tax-exempt interest is excluded from gross income, and the $10,000 cash distribution is a non-taxable return of capital (reduces basis), not income."
+  },
+  {
+    "question_id": 5853,
+    "score": 0,
+    "input_tokens": 855,
+    "output_tokens": 206,
+    "llm_raw_answer": "(D): Sector model"
+  },
+  {
+    "question_id": 10646,
+    "score": 0,
+    "input_tokens": 1432,
+    "output_tokens": 899,
+    "llm_raw_answer": "Answer: (F) 0.5\n\nExplanation: With Y = X + Z, Z ~ N(0,1) and an output power constraint E[Y^2] ≤ 2, the entropy of Y is maximized when Y is Gaussian with Var(Y) = 2. Then\nC = h(Y) − h(Z) = 0.5 log2(Var(Y)/Var(Z)) = 0.5 log2(2/1) = 0.5 bits.\nThis is achieved by choosing X ~ N(0,1), independent of Z."
+  },
+  {
+    "question_id": 4838,
+    "score": 0,
+    "input_tokens": 1987,
+    "output_tokens": 274,
+    "llm_raw_answer": "(E): beneath the remains of extinct animals"
+  },
+  {
+    "question_id": 11442,
+    "score": 0,
+    "input_tokens": 1165,
+    "output_tokens": 8660,
+    "llm_raw_answer": "(A): 89,368.79 kJ"
+  },
+  {
+    "question_id": 11546,
+    "score": 0,
+    "input_tokens": 1117,
+    "output_tokens": 2255,
+    "llm_raw_answer": "(A): 5 belts"
+  },
+  {
+    "question_id": 8830,
+    "score": 0,
+    "input_tokens": 1657,
+    "output_tokens": 601,
+    "llm_raw_answer": "(B) 40\n\nExplanation:\n- From 5 yaps = 3 baps, 42 baps = 42*(5/3) = 70 yaps.\n- From 4 daps = 7 yaps, 1 yap = 4/7 daps, so 70 yaps = 70*(4/7) = 40 daps."
+  },
+  {
+    "question_id": 9143,
+    "score": 1,
+    "input_tokens": 1129,
+    "output_tokens": 966,
+    "llm_raw_answer": "Let's think step by step. To hover, thrust must equal weight: mdot * ve = m g_moon, so dm/dt = -m g_moon / ve, giving m(t) = m0 exp(-g_moon t / ve). You can use only 20% of the mass as fuel, so m drops to 0.8 m0. Thus t = (ve / g_moon) ln(m0 / 0.8 m0) = (ve / g_moon) ln(1.25).\n\nWith ve = 2000 m/s and g_moon = g/6 ≈ 9.8/6 ≈ 1.63 m/s^2:\nt ≈ (2000 / 1.63) × ln(1.25) ≈ 1227 × 0.223 ≈ 273 s.\n\nThe answer is (H)."
+  },
+  {
+    "question_id": 11290,
+    "score": 0,
+    "input_tokens": 1620,
+    "output_tokens": 2527,
+    "llm_raw_answer": "(B)\n\nReasoning (concise):\n- Heating at constant pressure without adding/removing moisture keeps specific humidity constant: ω_initial = ω_final.\n- At 60°F, φ = 55%: p_ws ≈ 0.256 psia → p_v = 0.55×0.256 ≈ 0.141 psia.\n- ω = 0.62198 p_v / (P − p_v) = 0.62198×0.141/(14.7−0.141) ≈ 0.00602 lbm/lbm.\n- At 85°F, p_ws ≈ 0.595 psia → φ_final = p_v/p_ws ≈ 0.141/0.595 ≈ 23.6%.\n- Heat added: Δh ≈ (0.24 + 0.444 ω) ΔT = (0.24 + 0.444×0.00602)×25 ≈ 6.1 Btu/lbm dry air."
+  },
+  {
+    "question_id": 3044,
+    "score": 0,
+    "input_tokens": 1381,
+    "output_tokens": 285,
+    "llm_raw_answer": "(I): It reduces the chances of a nest being robbed, thus enhancing the survival of offspring."
+  },
+  {
+    "question_id": 9891,
+    "score": 1,
+    "input_tokens": 1155,
+    "output_tokens": 292,
+    "llm_raw_answer": "A: Let's think step by step. The kinetic energy is K = (1/2) m v^2 = 0.5 × (4.6 × 10^-26 kg) × (500 m/s)^2 = 0.5 × 4.6 × 10^-26 × 2.5 × 10^5 = 5.75 × 10^-21 J. The answer is (I)."
+  },
+  {
+    "question_id": 8946,
+    "score": 0,
+    "input_tokens": 1697,
+    "output_tokens": 2334,
+    "llm_raw_answer": "Answer: (J)\n\nExplanation:\nVelocity vector v(t) = r′(t) = (2, 1/t, 2t). The speed is |v(t)| = sqrt(4 + 1/t^2 + 4t^2) = |2t + 1/t| = 2t + 1/t (since t > 0).  \nAverage speed from t=1 to t=10 is\n(1/9) ∫₁¹⁰ (2t + 1/t) dt = (1/9)[t² + ln t]₁¹⁰ = (1/9)(99 + ln 10) ≈ 11.25."
+  },
+  {
+    "question_id": 6689,
+    "score": 0,
+    "input_tokens": 1131,
+    "output_tokens": 455,
+    "llm_raw_answer": "(E): Munchausen syndrome\n\nRationale: Recurrent hospitalizations, dramatic and inconsistent symptom reports, extensive negative workups, and willingness to undergo multiple procedures strongly suggest factitious disorder imposed on self (Munchausen syndrome), characterized by intentional production or feigning of symptoms to assume the sick role."
+  },
+  {
+    "question_id": 7912,
+    "score": 0,
+    "input_tokens": 1796,
+    "output_tokens": 634,
+    "llm_raw_answer": "(H): An experiment, but a poorly designed one because there was no control group. She imposed a treatment (weekly quizzes), so it’s an experiment, but without a control group (and randomization), causation can’t be established."
+  },
+  {
+    "question_id": 7733,
+    "score": 1,
+    "input_tokens": 1658,
+    "output_tokens": 300,
+    "llm_raw_answer": "A: Let's think step by step. Let width be w, then length is 2w. By the Pythagorean theorem, (2w)^2 + w^2 = (5√5)^2 = 125, so 5w^2 = 125 → w^2 = 25. The area is L·W = 2w·w = 2w^2 = 2·25 = 50. The answer is (F)."
+  },
+  {
+    "question_id": 8889,
+    "score": 0,
+    "input_tokens": 1652,
+    "output_tokens": 528,
+    "llm_raw_answer": "(B): 578 r2"
+  },
+  {
+    "question_id": 510,
+    "score": 0,
+    "input_tokens": 977,
+    "output_tokens": 1459,
+    "llm_raw_answer": "(J) 102.95\n\nPrice = 6/(1.03) + 6/(1.04)^2 + 106/(1.05)^3 ≈ 102.95."
+  },
+  {
+    "question_id": 10151,
+    "score": 0,
+    "input_tokens": 1194,
+    "output_tokens": 458,
+    "llm_raw_answer": "(D): 3.2 × 10^2 N\n\nReasoning:\n- Round-trip distance = 2L = 400 m; time = 10 s → wave speed v = 400/10 = 40 m/s.\n- Linear mass density μ = mass/length = 40 kg / 200 m = 0.2 kg/m.\n- For a string, v = sqrt(T/μ) → T = μ v^2 = 0.2 × 40^2 = 0.2 × 1600 = 320 N = 3.2 × 10^2 N."
+  },
+  {
+    "question_id": 1652,
+    "score": 0,
+    "input_tokens": 1499,
+    "output_tokens": 460,
+    "llm_raw_answer": "(I)"
+  },
+  {
+    "question_id": 6766,
+    "score": 0,
+    "input_tokens": 988,
+    "output_tokens": 316,
+    "llm_raw_answer": "Answer: (A)\n\nExplanation: Synthesis of blood clotting proteins is a function of vitamin K, not vitamin A. Vitamin A is involved in regulation of gene expression and cell differentiation, maintenance of epithelial tissues, vision, and supporting immune function."
+  },
+  {
+    "question_id": 5805,
+    "score": 0,
+    "input_tokens": 923,
+    "output_tokens": 346,
+    "llm_raw_answer": "(I): evolutionary selection has favored the development of males who respond to novel sexual stimuli"
+  },
+  {
+    "question_id": 6541,
+    "score": 0,
+    "input_tokens": 1291,
+    "output_tokens": 587,
+    "llm_raw_answer": "(D): CT scan of the abdomen with contrast\n\nReasoning: This presentation is most consistent with acute diverticulitis (LLQ pain, fever, leukocytosis). Given persistent symptoms despite antibiotics, the next step is CT abdomen with contrast to confirm the diagnosis and assess for complications (eg, abscess, perforation)."
+  },
+  {
+    "question_id": 10694,
+    "score": 0,
+    "input_tokens": 1400,
+    "output_tokens": 337,
+    "llm_raw_answer": "(I): Transform data to zero mean"
+  },
+  {
+    "question_id": 4333,
+    "score": 0,
+    "input_tokens": 1432,
+    "output_tokens": 1793,
+    "llm_raw_answer": "(E): 7.790 Å\n\nReason: In the CsCl-type lattice, Cs atoms occupy the cube corners. The distance between two Cs atoms across the body diagonal is a·√3 = 4.5 × √3 ≈ 7.79 Å."
+  },
+  {
+    "question_id": 7865,
+    "score": 0,
+    "input_tokens": 1653,
+    "output_tokens": 2689,
+    "llm_raw_answer": "Answer: (I)\n\nExplanation (sketch):\n- The table sizes must sum to 7 with 5 tables, so the only distributions are (3,1,1,1,1) and (2,2,1,1,1).\n- Case (3,1,1,1,1): Choose 3 people for the 3-person table: C(7,3)=35, arrange them around a circle: (3−1)!=2. Total = 35×2 = 70.\n- Case (2,2,1,1,1): Choose two disjoint pairs for the two 2-person tables: (C(7,2)×C(5,2))/2! = (21×10)/2 = 105. Each 2-person round table has 1 arrangement.\n- Total = 70 + 105 = 175."
+  },
+  {
+    "question_id": 11712,
+    "score": 0,
+    "input_tokens": 1234,
+    "output_tokens": 5149,
+    "llm_raw_answer": "(E): V_R ≈ 3.948, C_d ≈ 12 in.\n\nReasoning (concise):\n- Diametral pitch P = 8 in⁻¹, desired center distance C ≈ 12 in ⇒ T1 + T2 ≈ 2PC = 192.\n- Speed increase ≈ 4 ⇒ T1/T2 ≈ 4. Choose nearby integer, relatively prime teeth: T1 = 154, T2 = 39.\n- Actual VR = 154/39 ≈ 3.948; center distance = (154 + 39)/(2×8) = 193/16 ≈ 12.06 in ≈ 12 in."
+  },
+  {
+    "question_id": 2677,
+    "score": 0,
+    "input_tokens": 1149,
+    "output_tokens": 297,
+    "llm_raw_answer": "(H): The four basic kinds of verbal learning are: Serial learning, Serial-anticipation learning, Paired-associate learning, and Free recall learning."
+  },
+  {
+    "question_id": 5586,
+    "score": 0,
+    "input_tokens": 877,
+    "output_tokens": 276,
+    "llm_raw_answer": "(E): It adapts to changing organizational environments."
+  },
+  {
+    "question_id": 8206,
+    "score": 0,
+    "input_tokens": 1675,
+    "output_tokens": 1446,
+    "llm_raw_answer": "(B): 1.8474\n\nUsing Newton–Raphson on f(x) = x^3 + 2x − 10 with f′(x) = 3x^2 + 2:\n- Start x0 = 2. Then f(2) = 2, f′(2) = 14 → x1 = 2 − 2/14 = 1.857142857.\n- f(x1) ≈ 0.11953, f′(x1) ≈ 12.3469 → x2 ≈ 1.857142857 − 0.11953/12.3469 ≈ 1.8474.\n\nSo the solution ≈ 1.8474."
+  },
+  {
+    "question_id": 7602,
+    "score": 0,
+    "input_tokens": 1191,
+    "output_tokens": 657,
+    "llm_raw_answer": "(B): Introduction of product differentiation\n\nReason: If firms differentiate their products (features, branding, quality, location), the market shifts from perfect competition to monopolistic competition. Because products are no longer perfect substitutes, consumers may prefer specific varieties and are willing to pay higher prices, so lower-priced pure competitors won’t necessarily drive out the higher-priced differentiated firms."
+  },
+  {
+    "question_id": 7332,
+    "score": 0,
+    "input_tokens": 1176,
+    "output_tokens": 1623,
+    "llm_raw_answer": "(G): $1,000,000\n\nReason: With rr = 10% and no excess reserves or currency drain, the simple money multiplier is 1/rr = 10. A $100,000 reserve injection via the Fed’s purchase allows deposits (and thus the money supply) to expand by 10 × $100,000 = $1,000,000."
+  },
+  {
+    "question_id": 11210,
+    "score": 0,
+    "input_tokens": 971,
+    "output_tokens": 469,
+    "llm_raw_answer": "(F) must be for the good of human beings."
+  },
+  {
+    "question_id": 5254,
+    "score": 0,
+    "input_tokens": 833,
+    "output_tokens": 206,
+    "llm_raw_answer": "(D): Bowie knife"
+  },
+  {
+    "question_id": 4245,
+    "score": 0,
+    "input_tokens": 1482,
+    "output_tokens": 907,
+    "llm_raw_answer": "Answer: (B)\n\nExplanation: The longest chain is pentane. Numbering from the left gives substituents at 2 (bromo) and 3 (chloro), which is the lowest set of locants. List substituents alphabetically: 2-bromo-3-chloropentane."
+  },
+  {
+    "question_id": 7996,
+    "score": 1,
+    "input_tokens": 1736,
+    "output_tokens": 160,
+    "llm_raw_answer": "p̂ = y/n = 9/50 = 0.18. The answer is (J)."
+  },
+  {
+    "question_id": 8683,
+    "score": 0,
+    "input_tokens": 1661,
+    "output_tokens": 175,
+    "llm_raw_answer": "Answer: (A)\n\nReason: The ratio blue:white is 5:3. For 15 white cars, blue = (5/3) × 15 = 25."
+  },
+  {
+    "question_id": 3965,
+    "score": 0,
+    "input_tokens": 1448,
+    "output_tokens": 415,
+    "llm_raw_answer": "(A): 694 mm of Hg\n\nReason: At constant volume, P2 = P1 × (T2/T1) with temperatures in Kelvin.\nT1 = 23 + 273 = 296 K; T2 = 48 + 273 = 321 K.\nP2 = 640 × (321/296) ≈ 640 × 1.08446 ≈ 694 mm Hg."
+  },
+  {
+    "question_id": 8761,
+    "score": 0,
+    "input_tokens": 1748,
+    "output_tokens": 241,
+    "llm_raw_answer": "(F): 7200 ft-lb\n\nReason: Work against gravity = weight × height = 360 lb × 20 ft = 7200 ft-lb (independent of time)."
+  },
+  {
+    "question_id": 8024,
+    "score": 1,
+    "input_tokens": 1636,
+    "output_tokens": 215,
+    "llm_raw_answer": "Let's think step by step. \n- 24 = 2^3 × 3\n- 36 = 2^2 × 3^2\nTake the highest powers: 2^3 and 3^2, so LCM = 2^3 × 3^2 = 8 × 9 = 72. The answer is (C)."
+  },
+  {
+    "question_id": 12074,
+    "score": 0,
+    "input_tokens": 1191,
+    "output_tokens": 427,
+    "llm_raw_answer": "(B) 1 + sin(10^6 t)\n\nReason: i = C dv/dt ⇒ dv/dt = i/C = cos(10^6 t) / 10^-6 = 10^6 cos(10^6 t). Integrate with v(0)=1:\nv(t) = 1 + ∫0^t 10^6 cos(10^6 τ) dτ = 1 + sin(10^6 t)."
+  },
+  {
+    "question_id": 8654,
+    "score": 0,
+    "input_tokens": 1695,
+    "output_tokens": 1223,
+    "llm_raw_answer": "Answer: (A)\n\n- Statement 1 is false: A quotient (factor) group of a non-abelian group can be abelian. Example: S3/A3 ≅ C2 is abelian.\n- Statement 2 is false: Normality is not transitive. Example: In G = S4, let H = V4 (the Klein four), which is normal in S4, and let K = {e, (12)(34)}, which is normal in H (since H is abelian) but not normal in G (its conjugates are other double transpositions not in K)."
+  },
+  {
+    "question_id": 9985,
+    "score": 1,
+    "input_tokens": 1213,
+    "output_tokens": 1484,
+    "llm_raw_answer": "Let's think step by step. For a spherical mirror in a medium of refractive index n, the optical power (in diopters) is Φ = 2n/R, with R in meters. Here R = 20 cm = 0.20 m.\n\n- In air (n = 1): Φ = 2(1)/0.20 = 10 D\n- In water (n = 1.33): Φ = 2(1.33)/0.20 ≈ 13.33 D\n\nThe answer is (H): 10 diopters in air, 13.33 diopters in water."
+  },
+  {
+    "question_id": 12226,
+    "score": 0,
+    "input_tokens": 1192,
+    "output_tokens": 1002,
+    "llm_raw_answer": "(C): 3.42 × 10^12 Ω\n\nReason: For leakage through insulation, V(t) = V0 e^(−t/RC). With V/V0 = 0.9 at t = 100 hr:\nR = −t / [C ln(0.9)] = 100×3600 / [1×10^−6 × 0.10536] ≈ 3.42×10^12 Ω."
+  },
+  {
+    "question_id": 553,
+    "score": 0,
+    "input_tokens": 949,
+    "output_tokens": 254,
+    "llm_raw_answer": "(H) 50\n\nExplanation: Profit = Revenue − Cost = 100x − x^2, which is maximized at x = 50 (since dP/dx = 100 − 2x = 0 ⇒ x = 50)."
+  },
+  {
+    "question_id": 4223,
+    "score": 0,
+    "input_tokens": 1578,
+    "output_tokens": 3661,
+    "llm_raw_answer": "(G)"
+  },
+  {
+    "question_id": 5020,
+    "score": 0,
+    "input_tokens": 2381,
+    "output_tokens": 541,
+    "llm_raw_answer": "(H): The growth of corporate power and banking interests inspired rural activists to lobby for political reform."
+  },
+  {
+    "question_id": 7239,
+    "score": 0,
+    "input_tokens": 1199,
+    "output_tokens": 188,
+    "llm_raw_answer": "(F): Demand rises, increasing the price and increasing the quantity.\n\nReason: Polyester pants are a substitute. When their price rises, consumers switch toward jeans, increasing demand for jeans. With supply unchanged, the equilibrium price and quantity of jeans both rise."
+  },
+  {
+    "question_id": 8495,
+    "score": 1,
+    "input_tokens": 1657,
+    "output_tokens": 290,
+    "llm_raw_answer": "Let's think step by step. Simplify:\n3x − 4(x − 2) + 6x − 8 = 3x − 4x + 8 + 6x − 8 = (3x − 4x + 6x) + (8 − 8) = 5x.\nSo 5x = 0 ⇒ x = 0. The answer is (A)."
+  },
+  {
+    "question_id": 8093,
+    "score": 0,
+    "input_tokens": 1680,
+    "output_tokens": 1482,
+    "llm_raw_answer": "Answer: (B) 672.4 Year\n\nExplanation:\n- Exponential decay with half-life h: A(t) = A0 · 2^(-t/h), here h = 1620 years.\n- “Reduced by one-quarter” means the amount is 3/4 of the original: A(t) = (3/4)A0.\n- So 2^(-t/1620) = 3/4 ⇒ t = 1620 · log2(4/3) ≈ 1620 · ln(4/3)/ln 2 ≈ 672.4 years."
+  },
+  {
+    "question_id": 6575,
+    "score": 0,
+    "input_tokens": 1020,
+    "output_tokens": 528,
+    "llm_raw_answer": "(J): Meat and meat products"
+  },
+  {
+    "question_id": 1313,
+    "score": 0,
+    "input_tokens": 1423,
+    "output_tokens": 923,
+    "llm_raw_answer": "(H): not succeed, because the farmer did not promise to pay the mortgage debt."
+  },
+  {
+    "question_id": 7616,
+    "score": 0,
+    "input_tokens": 1406,
+    "output_tokens": 1114,
+    "llm_raw_answer": "I’m missing the cost schedule, which is necessary to answer this. Please provide the table (output levels with total cost, or MC and ATC). Here’s how we’ll solve it once we have it:\n\n- For each output q, compute total revenue TR = 52.5 × q (since price is $52.50 per thousand board feet).\n- Compute profit π(q) = TR − TC(q). \n  - The profitable range is all q where π(q) > 0 (equivalently, where ATC(q) < 52.5).\n  - The break-even outputs are where π(q) = 0 (ATC = 52.5).\n- The profit-maximizing output is the q that gives the highest π(q). If MC is given/derivable and output is treated as continuous, it’s where MC = 52.5 (check that ATC < 52.5 there to ensure positive profit).\n\nShare the cost schedule and I’ll compute the correct option."
+  },
+  {
+    "question_id": 8659,
+    "score": 0,
+    "input_tokens": 1741,
+    "output_tokens": 648,
+    "llm_raw_answer": "(E): True, False\n\nReason: A permutation is a bijection from a set to itself, hence it is one-to-one (Statement 1 true). But being one-to-one alone does not make a function a permutation (it must also be onto the same set), so Statement 2 is false."
+  },
+  {
+    "question_id": 6182,
+    "score": 0,
+    "input_tokens": 1258,
+    "output_tokens": 529,
+    "llm_raw_answer": "(J): Atlanto-axial instability\n\nExplanation: Long-standing rheumatoid arthritis can erode the transverse ligament and odontoid process, leading to atlanto-axial subluxation. This can intermittently compress the cervical spinal cord, causing transient bilateral leg weakness/numbness and even incontinence without loss of consciousness—classical “drop attacks.”"
+  },
+  {
+    "question_id": 9006,
+    "score": 0,
+    "input_tokens": 1666,
+    "output_tokens": 172,
+    "llm_raw_answer": "Answer: (F) 643\n\nExplanation: Number of T-shirts = total revenue ÷ price per shirt = 5144 ÷ 8 = 643."
+  },
+  {
+    "question_id": 904,
+    "score": 0,
+    "input_tokens": 1234,
+    "output_tokens": 468,
+    "llm_raw_answer": "(A): it violates the statute of frauds."
+  },
+  {
+    "question_id": 486,
+    "score": 0,
+    "input_tokens": 967,
+    "output_tokens": 4304,
+    "llm_raw_answer": "(E): $19,296"
+  },
+  {
+    "question_id": 6359,
+    "score": 0,
+    "input_tokens": 1094,
+    "output_tokens": 323,
+    "llm_raw_answer": "(D): Herpes zoster\n\nReason: Band-like, burning pain in a dermatomal distribution around the torso without abdominal tenderness, especially in an elderly patient, is characteristic of shingles (often preceding the rash). Normal ultrasound and amylase make biliary or pancreatic causes unlikely."
+  },
+  {
+    "question_id": 7673,
+    "score": 0,
+    "input_tokens": 1205,
+    "output_tokens": 613,
+    "llm_raw_answer": "(E): Air is free because its abundance makes the marginal utility of an additional unit essentially zero, so it is not a scarce good."
+  },
+  {
+    "question_id": 12139,
+    "score": 1,
+    "input_tokens": 1260,
+    "output_tokens": 3095,
+    "llm_raw_answer": "Let's think step by step. For the Dieterici EOS P(V − b) exp[a/(RTV)] = RT, applying the critical point conditions (∂P/∂V)_T=0 and (∂²P/∂V²)_T=0 at (Pc, Vc, Tc) yields:\n- b = Vc/2\n- a/(RTc) = 2Vc ⇒ a = 2 RTc Vc\n\nMapping to the given notation (a' = a, b' = b per mole), we get a' = 2 RTc Vc and b' = Vc/2.\n\nThe answer is (D)."
+  },
+  {
+    "question_id": 6576,
+    "score": 0,
+    "input_tokens": 1068,
+    "output_tokens": 571,
+    "llm_raw_answer": "Answer: (A)\n\nReasoning:\n- Proteins are absorbed as free amino acids and as di- and tripeptides (via the PEPT1 transporter), which are often hydrolyzed intracellularly.\n- (B) is false: gastric digestion is not equally efficient for all proteins.\n- (C) is false: chief cells secrete pepsinogen; chymotrypsin, elastase, and carboxypeptidases are pancreatic enzymes.\n- (D) is false: multiple amino acid transporters exist, not just one."
+  },
+  {
+    "question_id": 332,
+    "score": 0,
+    "input_tokens": 1004,
+    "output_tokens": 338,
+    "llm_raw_answer": "(H): $1,377.18"
+  },
+  {
+    "question_id": 8481,
+    "score": 0,
+    "input_tokens": 1658,
+    "output_tokens": 646,
+    "llm_raw_answer": "Compute the circle’s center and radius by completing the square:\nx^2 - 24x + y^2 + 10y + 160 = 0\n(x - 12)^2 + (y + 5)^2 = 9\n\nSo the center is (12, -5) and the radius is 3. The distance from the origin to the center is sqrt(12^2 + 5^2) = sqrt(169) = 13. The shortest distance from the origin to the circle is 13 - 3 = 10.\n\nAnswer: (I) 10"
+  },
+  {
+    "question_id": 6815,
+    "score": 0,
+    "input_tokens": 1079,
+    "output_tokens": 1116,
+    "llm_raw_answer": "(C) and (I)\n\n- In glycolysis, glucose is split into two 3‑carbon molecules (ultimately yielding two pyruvates).\n- Glucagon decreases the rate of hepatic glycolysis.\n\nNotes: Glycolysis requires enzymes and NAD+ (not NADP+), can proceed without oxygen, and in red blood cells the major end-product is lactate, not pyruvate."
+  },
+  {
+    "question_id": 5952,
+    "score": 0,
+    "input_tokens": 828,
+    "output_tokens": 205,
+    "llm_raw_answer": "(G) excitement"
+  },
+  {
+    "question_id": 6243,
+    "score": 0,
+    "input_tokens": 1078,
+    "output_tokens": 367,
+    "llm_raw_answer": "(H): Surgical evaluation\n\nIn children, obstructive sleep apnea is most often due to adenotonsillar hypertrophy; first-line management is evaluation for adenotonsillectomy."
+  },
+  {
+    "question_id": 1775,
+    "score": 0,
+    "input_tokens": 1476,
+    "output_tokens": 1780,
+    "llm_raw_answer": "(J): Yes. The offer allowed 15 days from May 1, so the power of acceptance expired by May 16; his attempt on May 17/18 was after the 15-day period."
+  },
+  {
+    "question_id": 1272,
+    "score": 0,
+    "input_tokens": 1482,
+    "output_tokens": 485,
+    "llm_raw_answer": "(D) Additional attempts at notice are required if at all possible when the county knows in advance that its methods were returned as unclaimed."
+  },
+  {
+    "question_id": 11783,
+    "score": 0,
+    "input_tokens": 1461,
+    "output_tokens": 1110,
+    "llm_raw_answer": "Answer: (A)\n\nComputation at t = 0:\n- dr/dt = [3t^2/(t^3+1), -2e^{-2t}, 2t] → [0, -2, 0]\n- |dr/dt| = 2\n- d^2r/dt^2 = [d/dt(3t^2/(t^3+1)), 4e^{-2t}, 2] → [0, 4, 2]\n- |d^2r/dt^2| = sqrt(0^2 + 4^2 + 2^2) = sqrt(20)"
+  },
+  {
+    "question_id": 11123,
+    "score": 0,
+    "input_tokens": 1007,
+    "output_tokens": 1237,
+    "llm_raw_answer": "(A) Emily doesn't stop working unless Russell makes dinner."
+  },
+  {
+    "question_id": 4861,
+    "score": 0,
+    "input_tokens": 2046,
+    "output_tokens": 405,
+    "llm_raw_answer": "(F): There is an expectation of an afterlife."
+  },
+  {
+    "question_id": 521,
+    "score": 0,
+    "input_tokens": 978,
+    "output_tokens": 485,
+    "llm_raw_answer": "Compute each dividend and add:\n\n- Investment: 5 shares × $50 par = $250; 6% of $250 = $15.00\n- Patronage: 4.5% of $983 = 0.045 × 983 = $44.235 ≈ $44.24\n\nTotal dividend = $15.00 + $44.24 = $59.24\n\nAnswer: (G) $59.24"
+  },
+  {
+    "question_id": 4114,
+    "score": 0,
+    "input_tokens": 1588,
+    "output_tokens": 652,
+    "llm_raw_answer": "Answer: (A) 2.56 M\n\nReason:\n- Moles H2SO4 used = 0.0640 L × 0.200 M = 0.0128 mol\n- Reaction: H2SO4 + 2 NaOH → Na2SO4 + 2 H2O, so moles NaOH = 2 × 0.0128 = 0.0256 mol\n- Sample volume = 10.0 mL = 0.0100 L → [NaOH] = 0.0256 mol / 0.0100 L = 2.56 M"
+  },
+  {
+    "question_id": 6048,
+    "score": 0,
+    "input_tokens": 1053,
+    "output_tokens": 1013,
+    "llm_raw_answer": "(A): Epithelial tissue proliferation\n\nExplanation:\nA mass behind an intact tympanic membrane in a child with chronic/recurrent otitis media is most consistent with a cholesteatoma, which is due to proliferation of keratinizing squamous epithelium (epithelial tissue) within the middle ear. Middle ear effusion would appear as an amber fluid with air-fluid levels/bubbles, not an irregular mass. Lingual papillae loss and midface hypoplasia are unrelated to the described otoscopic finding."
+  },
+  {
+    "question_id": 8439,
+    "score": 0,
+    "input_tokens": 1678,
+    "output_tokens": 538,
+    "llm_raw_answer": "(B): False, True\n\n- Statement 1 is false: Q (characteristic 0) cannot be an extension of Z_2 (characteristic 2), since an extension field must contain a subfield isomorphic to the base field.\n- Statement 2 is true: By Kronecker’s theorem, every non-constant polynomial over a field has a root in some extension field."
+  },
+  {
+    "question_id": 1038,
+    "score": 0,
+    "input_tokens": 1408,
+    "output_tokens": 1653,
+    "llm_raw_answer": "(B): None\n\nReason: Conspiracy requires an agreement between at least two people to commit the target crime. Burglary here requires intent to commit a felony inside at the time of entry. The man and woman believed the tools were the man’s and thus lacked felonious intent; they did not agree to commit a felony. The son had the felonious intent, but no one else shared it, so there was no “meeting of the minds” for burglary. Under the traditional bilateral approach, that means no conspiracy."
+  },
+  {
+    "question_id": 2202,
+    "score": 0,
+    "input_tokens": 1052,
+    "output_tokens": 475,
+    "llm_raw_answer": "(G): estimate the correlation between two variables if one or both could be measured without error"
+  },
+  {
+    "question_id": 1219,
+    "score": 0,
+    "input_tokens": 1386,
+    "output_tokens": 2015,
+    "llm_raw_answer": "(E): inadmissible, because past crimes may not be introduced to prove disposition to commit certain acts."
+  },
+  {
+    "question_id": 10640,
+    "score": 0,
+    "input_tokens": 1395,
+    "output_tokens": 2905,
+    "llm_raw_answer": "(F): 320\n\nReason: By Cayley’s generalization, the number of labeled forests on n vertices with k components containing specified roots (here 1–5) is k·n^(n−k−1). With n=8, k=5, this gives 5·8^(8−5−1) = 5·8^2 = 320."
+  },
+  {
+    "question_id": 12050,
+    "score": 0,
+    "input_tokens": 1059,
+    "output_tokens": 526,
+    "llm_raw_answer": "(J): conductance"
+  },
+  {
+    "question_id": 3796,
+    "score": 0,
+    "input_tokens": 1589,
+    "output_tokens": 5373,
+    "llm_raw_answer": "Answer: (B)\n\nHow to do it (outline with key numbers):\n\n- Convert 40Ar volume to moles at STP:\n  V = 95.0 × 10^-7 m^3 = 9.50 × 10^-6 m^3\n  n(40Ar total) = 9.50 × 10^-6 m^3 / 0.022414 m^3 mol^-1 ≈ 4.24 × 10^-4 mol per kg sample\n\n- Correct for atmospheric Ar using 40Ar/36Ar:\n  R_meas = 75,200; atmospheric R_atm ≈ 295.5\n  Radiogenic 40Ar*: n(40Ar*) = n(40Ar total) × (1 − R_atm/R_meas) ≈ 4.24e-4 × 0.9961 ≈ 4.22 × 10^-4 mol\n\n- Moles of 40K currently in the rock:\n  Potassium = 3.0 wt% → 0.03 kg K/kg → n(K) = 0.03 kg / 39.10 g mol^-1 ≈ 0.767 mol\n  40K natural abundance = 0.0118% = 1.18 × 10^-4 (fraction)\n  n(40K present) = 0.767 × 1.18 × 10^-4 ≈ 9.05 × 10^-5 mol\n\n- K→Ar branching and decay constant:\n  Branching to 40Ar: f ≈ 0.1072\n  Total decay constant λ = ln 2 / 1.248 × 10^9 y ≈ 5.54 × 10^-10 y^-1\n\n- Age from K–Ar growth:\n  t = (1/λ) ln[1 + n(40Ar*) / (f × n(40K present))] \n    = (1/5.54e-10) ln[1 + 4.22e-4 / (0.1072 × 9.05e-5)] \n    ≈ (1/5.54e-10) ln(44.5) ≈ 6.8 × 10^9 years\n\nHence, 6.80 × 10^9 y (B)."
+  },
+  {
+    "question_id": 8448,
+    "score": 0,
+    "input_tokens": 1667,
+    "output_tokens": 1031,
+    "llm_raw_answer": "(D): None of the above are false.\n\n- Median of both sets (4th of 7): 50.\n- Mean of both sets: sums are 350, so mean = 350/7 = 50.\n- Range of both sets: 90 − 10 = 80."
+  },
+  {
+    "question_id": 7436,
+    "score": 0,
+    "input_tokens": 1169,
+    "output_tokens": 470,
+    "llm_raw_answer": "(D): Economic Costs = Explicit Costs plus Implicit Costs."
+  },
+  {
+    "question_id": 2599,
+    "score": 0,
+    "input_tokens": 950,
+    "output_tokens": 78,
+    "llm_raw_answer": "(A): no mode"
+  },
+  {
+    "question_id": 10076,
+    "score": 0,
+    "input_tokens": 1278,
+    "output_tokens": 639,
+    "llm_raw_answer": "Answer: (A)\n\nReasoning:\n- Average kinetic energy per molecule: KE_avg = (3/2) k_B T = (3/2)(1.38×10^-23 J/K)(300 K) ≈ 6.21×10^-21 J.\n- Typical (rms) speed: v_rms = sqrt(3 k_B T / m) = sqrt( (3×1.38×10^-23×300) / 4.68×10^-26 ) ≈ 5.15×10^2 m/s."
+  },
+  {
+    "question_id": 6351,
+    "score": 0,
+    "input_tokens": 1039,
+    "output_tokens": 339,
+    "llm_raw_answer": "(A) eight weeks post-fertilization."
+  },
+  {
+    "question_id": 6233,
+    "score": 0,
+    "input_tokens": 1092,
+    "output_tokens": 311,
+    "llm_raw_answer": "(G): aortic stenosis\n\nExplanation: Exertional syncope with a harsh systolic ejection murmur best heard at the right upper sternal border radiating to the neck is classic for aortic stenosis."
+  },
+  {
+    "question_id": 11225,
+    "score": 0,
+    "input_tokens": 995,
+    "output_tokens": 145,
+    "llm_raw_answer": "(H): The university raises tuition."
+  },
+  {
+    "question_id": 6340,
+    "score": 0,
+    "input_tokens": 1065,
+    "output_tokens": 150,
+    "llm_raw_answer": "(F) Whether our measure is consistent in the information it provides"
+  },
+  {
+    "question_id": 10900,
+    "score": 0,
+    "input_tokens": 988,
+    "output_tokens": 2186,
+    "llm_raw_answer": "(G): Contradictory\n\nReason: ~(~I ≡ H) is equivalent to (I ≡ H). The other statement is (I ≡ ¬H), which is equivalent to ¬(I ≡ H). Thus the two statements always have opposite truth values, so they are contradictory."
+  },
+  {
+    "question_id": 664,
+    "score": 0,
+    "input_tokens": 951,
+    "output_tokens": 592,
+    "llm_raw_answer": "(D): $78.75"
+  },
+  {
+    "question_id": 8041,
+    "score": 1,
+    "input_tokens": 1673,
+    "output_tokens": 811,
+    "llm_raw_answer": "Let's think step by step. The day of the week repeats every 7 days, so we need 10^(10^10) mod 7. Since 10 ≡ 3 (mod 7), this is 3^(10^10) mod 7. The order of 3 modulo 7 is 6, so reduce the exponent mod 6: 10^10 ≡ 4 (mod 6) because 10 ≡ 4 (mod 6) and 4^n ≡ 4 (mod 6) for n ≥ 1. Thus 3^(10^10) ≡ 3^4 ≡ 81 ≡ 4 (mod 7). Four days after Wednesday is Sunday. The answer is (A)."
+  },
+  {
+    "question_id": 5524,
+    "score": 0,
+    "input_tokens": 828,
+    "output_tokens": 271,
+    "llm_raw_answer": "(D): religion and ethics"
+  },
+  {
+    "question_id": 9334,
+    "score": 0,
+    "input_tokens": 1229,
+    "output_tokens": 1600,
+    "llm_raw_answer": "Answer: (I)\n\nReasoning:\n- The force always points toward x = 0 with constant magnitude F0, so the acceleration magnitude is a = F0/m.\n- From x = A (turning point, v = 0) to x = 0, the motion under constant acceleration gives A = (1/2) a t^2 ⇒ t1 = sqrt(2 m A / F0).\n- The motion is symmetric, so a full period covers four such segments: T = 4 t1 = 4 sqrt(2 m A / F0).\n\nPhase diagram note: For energy E = F0 A, v^2 = 2(F0/m)(A − |x|), giving two symmetric branches v = ± sqrt[2(F0/m)(A − |x|)] forming a closed curve between x = −A and x = +A."
+  },
+  {
+    "question_id": 6186,
+    "score": 0,
+    "input_tokens": 1100,
+    "output_tokens": 272,
+    "llm_raw_answer": "(I) Infraspinatus"
+  },
+  {
+    "question_id": 10607,
+    "score": 0,
+    "input_tokens": 1467,
+    "output_tokens": 2767,
+    "llm_raw_answer": "(D): True, False"
+  },
+  {
+    "question_id": 5941,
+    "score": 0,
+    "input_tokens": 1146,
+    "output_tokens": 1036,
+    "llm_raw_answer": "(E)"
+  },
+  {
+    "question_id": 5561,
+    "score": 0,
+    "input_tokens": 974,
+    "output_tokens": 1057,
+    "llm_raw_answer": "(I): Management places the same degree of reliance on the files as they do on files generated from mainframe systems."
+  },
+  {
+    "question_id": 2987,
+    "score": 0,
+    "input_tokens": 1322,
+    "output_tokens": 513,
+    "llm_raw_answer": "(D): The predictable rate of mutation results in ongoing variability in a gene pool.\n\nExplanation: Recessivity and natural selection (including removal of severe mutations) can mask or eliminate mutations, making them appear rare. Simply causing ongoing variability does not explain a low apparent mutation frequency."
+  },
+  {
+    "question_id": 10357,
+    "score": 0,
+    "input_tokens": 1414,
+    "output_tokens": 207,
+    "llm_raw_answer": "(A): 3y"
+  },
+  {
+    "question_id": 12048,
+    "score": 0,
+    "input_tokens": 1093,
+    "output_tokens": 192,
+    "llm_raw_answer": "(D): 0.27\n\nReason: For an ideal step-up (boost) chopper, Vout = Vin / (1 − D). Thus D = 1 − Vin/Vout = 1 − 110/150 ≈ 0.27."
+  },
+  {
+    "question_id": 10066,
+    "score": 0,
+    "input_tokens": 1082,
+    "output_tokens": 3052,
+    "llm_raw_answer": "Answer: (A)\n\nReasoning:\n- For a convex mirror, f = -R/2 = -45/2 = -22.5 cm.\n- Mirror equation: 1/f = 1/do + 1/di with do = 10 cm gives di ≈ -6.92 cm (virtual).\n- Magnification m = -di/do ≈ 0.692 ≈ 0.7.\n\nClosest option given is 0.8 (A)."
+  },
+  {
+    "question_id": 657,
+    "score": 0,
+    "input_tokens": 951,
+    "output_tokens": 592,
+    "llm_raw_answer": "(E): $854.12"
+  },
+  {
+    "question_id": 8205,
+    "score": 0,
+    "input_tokens": 1710,
+    "output_tokens": 2232,
+    "llm_raw_answer": "(B)\n\nExplanation: The characteristic polynomial is det(A − λI) = (λ − 2)²(λ − 6), so the eigenvalues are 2 (with multiplicity 2) and 6."
+  },
+  {
+    "question_id": 3771,
+    "score": 0,
+    "input_tokens": 1592,
+    "output_tokens": 385,
+    "llm_raw_answer": "Answer: (A)\n\n- A) pH = -log(3.5 × 10^-4) ≈ 3.46\n- B) [H+] = 10^-4.25 ≈ 5.6 × 10^-5 M"
+  },
+  {
+    "question_id": 9496,
+    "score": 1,
+    "input_tokens": 1074,
+    "output_tokens": 418,
+    "llm_raw_answer": "Let's think step by step. The motor’s power is P = VI = 120 V × 5 A = 600 W = 0.6 kW. Over 2 hours, energy used is 0.6 kW × 2 h = 1.2 kWh. At 5 cents per kWh, cost = 1.2 × 5 = 6 cents. The answer is (I)."
+  },
+  {
+    "question_id": 2577,
+    "score": 0,
+    "input_tokens": 955,
+    "output_tokens": 719,
+    "llm_raw_answer": "(H): Feminist psychotherapy"
+  },
+  {
+    "question_id": 10774,
+    "score": 0,
+    "input_tokens": 927,
+    "output_tokens": 142,
+    "llm_raw_answer": "(A) Tdc"
+  },
+  {
+    "question_id": 9339,
+    "score": 0,
+    "input_tokens": 1146,
+    "output_tokens": 2191,
+    "llm_raw_answer": "(F): −5e"
+  },
+  {
+    "question_id": 8290,
+    "score": 0,
+    "input_tokens": 1675,
+    "output_tokens": 421,
+    "llm_raw_answer": "Answer: (E) 400\n\nLet current speed = S and current price = P.\nOlder computer speed = S/2 and price = 2P.\n- Current ratio = S/P\n- Older ratio = (S/2)/(2P) = S/(4P)\n\nCurrent as a percent of older = (S/P) / (S/(4P)) × 100% = 4 × 100% = 400%."
+  },
+  {
+    "question_id": 11666,
+    "score": 0,
+    "input_tokens": 1192,
+    "output_tokens": 4165,
+    "llm_raw_answer": "Let's think step by step. The entropy change for heating at constant pressure is\nΔS = ∫(C_p/T) dT.\n\nOver 273–333 K, the molar heat capacity of solid Ag is approximately constant near 6.3–6.4 cal mol^-1 K^-1. Using C_p ≈ 6.4,\nΔS ≈ 6.4 ln(333/273) ≈ 6.4 × 0.198 ≈ 1.27 eu/mole.\n\nClosest option: (F) 1.25 eu/mole."
+  },
+  {
+    "question_id": 816,
+    "score": 0,
+    "input_tokens": 939,
+    "output_tokens": 206,
+    "llm_raw_answer": "(F): $10"
+  },
+  {
+    "question_id": 2719,
+    "score": 0,
+    "input_tokens": 983,
+    "output_tokens": 273,
+    "llm_raw_answer": "(D): dissociative amnesia"
+  },
+  {
+    "question_id": 1520,
+    "score": 0,
+    "input_tokens": 1372,
+    "output_tokens": 816,
+    "llm_raw_answer": "(H): No, because the treatise excerpts were not offered during the examination of a qualified expert.\n\nUnder the learned treatise exception (FRE 803(18)), statements from a reliable medical treatise may be read to the jury only if they are brought out during the testimony of an expert (either relied on by the expert on direct or called to the expert’s attention on cross) and the work is established as a reliable authority. The prosecutor cannot simply read from the treatise without an expert witness."
+  },
+  {
+    "question_id": 401,
+    "score": 0,
+    "input_tokens": 931,
+    "output_tokens": 1042,
+    "llm_raw_answer": "(I): 92 total number of days"
+  },
+  {
+    "question_id": 10955,
+    "score": 0,
+    "input_tokens": 984,
+    "output_tokens": 1203,
+    "llm_raw_answer": "(D): Inconsistent\n\nReason: ~(J ∨ K) · L is equivalent to (~J ∧ ~K ∧ L), which is true only when J=F, K=F, L=T. (L ⊃ J) · K requires K=T to be true. Thus, there is no valuation in which both are true, so they are inconsistent. They are not contradictory because there are valuations where both are false (e.g., J=F, K=F, L=F)."
+  },
+  {
+    "question_id": 11924,
+    "score": 0,
+    "input_tokens": 1281,
+    "output_tokens": 1106,
+    "llm_raw_answer": "Answer: (I)\n\nWork:\ns^2 + 2s + 5 = (s + 1)^2 + 2^2\n2s + 4 = 2(s + 1) + 2\n\nSo F(s) = 2(s+1)/((s+1)^2 + 4) + 2/((s+1)^2 + 4)\n⇒ f(t) = 2 e^{-t} cos(2t) + e^{-t} sin(2t)\n\nGeneralized Laplace pair:\nL{e^{-a t}[C cos(bt) + D sin(bt)]} = [C(s + a) + b D] / [(s + a)^2 + b^2]\nThus, L^{-1}{[A(s + a) + B] / [(s + a)^2 + b^2]} = e^{-a t}[A cos(bt) + (B/b) sin(bt)]"
+  },
+  {
+    "question_id": 838,
+    "score": 0,
+    "input_tokens": 1016,
+    "output_tokens": 1232,
+    "llm_raw_answer": "(E): $3,300"
+  },
+  {
+    "question_id": 10310,
+    "score": 0,
+    "input_tokens": 1079,
+    "output_tokens": 380,
+    "llm_raw_answer": "Distance traveled in 1 minute = v × t = 2 m/s × 60 s = 120 m.\nWork = Force × distance = 5 N × 120 m = 600 J.\n\nAnswer: (C) 600 J"
+  },
+  {
+    "question_id": 1147,
+    "score": 0,
+    "input_tokens": 1207,
+    "output_tokens": 209,
+    "llm_raw_answer": "(C) Doctrine of Worthier Title"
+  },
+  {
+    "question_id": 10265,
+    "score": 1,
+    "input_tokens": 1152,
+    "output_tokens": 611,
+    "llm_raw_answer": "Let's think step by step. The spring constant is k = F/x = 6.0 N / 0.030 m = 200 N/m. The period is T = 2π√(m/k) = 2π√(0.50/200) = 2π√0.0025 = 2π(0.05) ≈ 0.31 s. The answer is (G)."
+  },
+  {
+    "question_id": 6894,
+    "score": 0,
+    "input_tokens": 1210,
+    "output_tokens": 313,
+    "llm_raw_answer": "(F) — Nominal income increased (from $30k to $60k), but real income decreased because prices tripled while nominal income only doubled (real income ∝ nominal/price level → 2/3 of original)."
+  },
+  {
+    "question_id": 3694,
+    "score": 0,
+    "input_tokens": 1466,
+    "output_tokens": 437,
+    "llm_raw_answer": "Answer: (G)\n\nCalculation:\n- P = 380 torr = 0.5 atm\n- V = 492 cm^3 = 0.492 L\n- T = 27°C = 300 K\n- R = 0.082 L·atm·mol^-1·K^-1\n\nn = PV / RT = (0.5 × 0.492) / (0.082 × 300) = 0.246 / 24.6 = 0.0100 mol"
+  },
+  {
+    "question_id": 10487,
+    "score": 0,
+    "input_tokens": 1440,
+    "output_tokens": 1551,
+    "llm_raw_answer": "(A): True, True"
+  },
+  {
+    "question_id": 2052,
+    "score": 0,
+    "input_tokens": 1020,
+    "output_tokens": 600,
+    "llm_raw_answer": "(D): The nervous system classifies information based on the type of senses"
+  },
+  {
+    "question_id": 3940,
+    "score": 0,
+    "input_tokens": 1412,
+    "output_tokens": 514,
+    "llm_raw_answer": "(E): 419 liters\n\nUsing the combined gas law: V2 = V1 × (P1/P2) × (T2/T1) = 500 L × (700/760) × (273/300) ≈ 419 L at STP."
+  },
+  {
+    "question_id": 10479,
+    "score": 0,
+    "input_tokens": 1394,
+    "output_tokens": 1868,
+    "llm_raw_answer": "(B)"
+  },
+  {
+    "question_id": 4891,
+    "score": 0,
+    "input_tokens": 2370,
+    "output_tokens": 844,
+    "llm_raw_answer": "(E)"
+  },
+  {
+    "question_id": 8937,
+    "score": 0,
+    "input_tokens": 1646,
+    "output_tokens": 595,
+    "llm_raw_answer": "Let's think step by step. To form two non-empty ordered subsets (A, B), each of the 5 elements can go to A or B, except we exclude the cases where all go to A or all go to B. That gives 2^5 - 2 = 32 - 2 = 30 ways.\n\nThe answer is (I)."
+  },
+  {
+    "question_id": 8880,
+    "score": 0,
+    "input_tokens": 1672,
+    "output_tokens": 308,
+    "llm_raw_answer": "(A)\n\nReason: The “approximately 95% within two standard deviations” rule applies to (approximately) normal distributions, not to all discrete random variables. The other statements are universally true for discrete random variables."
+  },
+  {
+    "question_id": 1842,
+    "score": 0,
+    "input_tokens": 1300,
+    "output_tokens": 530,
+    "llm_raw_answer": "(D): Murder and voluntary manslaughter"
+  },
+  {
+    "question_id": 7342,
+    "score": 0,
+    "input_tokens": 1251,
+    "output_tokens": 294,
+    "llm_raw_answer": "(F): Subsidization of agriculture occurs when the government buys when the price is depressed, but cannot sell overtly when the price is high."
+  },
+  {
+    "question_id": 8185,
+    "score": 0,
+    "input_tokens": 1735,
+    "output_tokens": 3366,
+    "llm_raw_answer": "(C): -0.166\n\nReason: By Stokes’ Theorem, ∮_C F·dr = ∬_S (∇×F)·n dS. Here ∇×F = (0, 2z−1, 0). The triangle lies on z = 1 − x − y with n dS = (1,1,1) dx dy, so the integrand is (2z−1) = 1 − 2x − 2y over the region x ≥ 0, y ≥ 0, x + y ≤ 1. The integral equals ∬ (1 − 2x − 2y) dx dy = −1/6 ≈ −0.166."
+  },
+  {
+    "question_id": 10655,
+    "score": 1,
+    "input_tokens": 1386,
+    "output_tokens": 276,
+    "llm_raw_answer": "The answer is (I): Quicksort."
+  },
+  {
+    "question_id": 1862,
+    "score": 0,
+    "input_tokens": 1452,
+    "output_tokens": 1100,
+    "llm_raw_answer": "(D)"
+  },
+  {
+    "question_id": 8018,
+    "score": 0,
+    "input_tokens": 1698,
+    "output_tokens": 1265,
+    "llm_raw_answer": "(B) and (D). Adding 6 increases the mean and leaves the median unchanged (list becomes 1, 3, 3, 6, so median is still 3)."
+  },
+  {
+    "question_id": 2333,
+    "score": 0,
+    "input_tokens": 987,
+    "output_tokens": 718,
+    "llm_raw_answer": "(E): positive reinforcement"
+  },
+  {
+    "question_id": 10484,
+    "score": 0,
+    "input_tokens": 1461,
+    "output_tokens": 1117,
+    "llm_raw_answer": "(G): I, II, and III\n\n- I: True — larger pages mean fewer pages per process, so smaller page tables.\n- II: True — smaller pages reduce average internal fragmentation (waste within the last page).\n- III: True — disk access is often dominated by seek/rotational latency (largely independent of transfer size), so larger pages can amortize that fixed overhead and be advantageous."
+  },
+  {
+    "question_id": 3245,
+    "score": 0,
+    "input_tokens": 1440,
+    "output_tokens": 606,
+    "llm_raw_answer": "(C): The filamentous appendages are not flagella, but pili (or fimbriae)."
+  },
+  {
+    "question_id": 4737,
+    "score": 0,
+    "input_tokens": 1995,
+    "output_tokens": 407,
+    "llm_raw_answer": "(A): 500,000 to 100,000 years ago"
+  },
+  {
+    "question_id": 7543,
+    "score": 0,
+    "input_tokens": 1170,
+    "output_tokens": 273,
+    "llm_raw_answer": "(H): Real interest rate remains constant"
+  },
+  {
+    "question_id": 5059,
+    "score": 0,
+    "input_tokens": 905,
+    "output_tokens": 152,
+    "llm_raw_answer": "(C) It allowed the US to intensify its involvement in Vietnam."
+  },
+  {
+    "question_id": 11235,
+    "score": 0,
+    "input_tokens": 928,
+    "output_tokens": 268,
+    "llm_raw_answer": "(J)"
+  },
+  {
+    "question_id": 1528,
+    "score": 0,
+    "input_tokens": 1532,
+    "output_tokens": 2051,
+    "llm_raw_answer": "(C): prevail, because the company would be vicariously liable for the man's unauthorized actions.\n\nReason: The friend is not an employee, so the company ordinarily wouldn’t be vicariously liable for the friend’s negligence itself. However, the clerk (an employee) acted within the scope of his employment when he negligently entrusted supervision of the shop (including assisting customers with potentially hazardous equipment) to an untrained friend. The employer is vicariously liable for the employee’s negligence within the scope of employment, even if the employee’s act (delegating to a non-employee) was unauthorized."
+  },
+  {
+    "question_id": 170,
+    "score": 0,
+    "input_tokens": 1062,
+    "output_tokens": 460,
+    "llm_raw_answer": "(E)"
+  },
+  {
+    "question_id": 1855,
+    "score": 0,
+    "input_tokens": 1350,
+    "output_tokens": 1345,
+    "llm_raw_answer": null
+  },
+  {
+    "question_id": 6318,
+    "score": 0,
+    "input_tokens": 986,
+    "output_tokens": 782,
+    "llm_raw_answer": "(A): Potassium"
+  },
+  {
+    "question_id": 5503,
+    "score": 0,
+    "input_tokens": 836,
+    "output_tokens": 789,
+    "llm_raw_answer": "(A): When the securitizing actor is not granted the special right to implement extraordinary measure.\n\nExplanation: In securitization theory, success hinges on audience acceptance of the securitizing move (i.e., granting legitimacy for extraordinary measures). Actual implementation is not strictly required; thus (B) and (C) do not by themselves mean the issue wasn’t securitized."
+  },
+  {
+    "question_id": 2811,
+    "score": 0,
+    "input_tokens": 1274,
+    "output_tokens": 219,
+    "llm_raw_answer": "(F): water\n\nWater is the most abundant and principal inorganic compound in living organisms."
+  },
+  {
+    "question_id": 2853,
+    "score": 0,
+    "input_tokens": 1299,
+    "output_tokens": 448,
+    "llm_raw_answer": "(I): Epidermis\n\nReason: The plant epidermis forms the protective outer covering, reducing water loss and guarding against pathogens—functions analogous to animal skin. (Cork cells protect woody tissues, but epidermis is the primary “skin” in most plant organs.)"
+  },
+  {
+    "question_id": 9190,
+    "score": 0,
+    "input_tokens": 1086,
+    "output_tokens": 838,
+    "llm_raw_answer": "Answer: (F)\n\nReason: Reflection from a mirror moving along the beam’s normal produces a double Doppler shift. For small v ≪ c, the reflected frequency differs from the incident by Δf ≈ 2v/λ, so the beat frequency is 2v/λ."
+  },
+  {
+    "question_id": 852,
+    "score": 0,
+    "input_tokens": 973,
+    "output_tokens": 1233,
+    "llm_raw_answer": "(D): $1525.77"
+  },
+  {
+    "question_id": 8177,
+    "score": 0,
+    "input_tokens": 1709,
+    "output_tokens": 354,
+    "llm_raw_answer": "(D) 1/4\n\nExplanation:\n- Choose which two packages are correctly delivered: C(4,2) = 6.\n- The remaining two must both be incorrect; for two items there is exactly 1 derangement (they swap).\n- Total favorable permutations = 6 × 1 = 6. Total permutations = 4! = 24.\n- Probability = 6/24 = 1/4."
+  },
+  {
+    "question_id": 12028,
+    "score": 0,
+    "input_tokens": 1495,
+    "output_tokens": 4156,
+    "llm_raw_answer": "Answer: (I)\n\nReason (sketch): For the sine series on (0,1),\nb_n = 2 ∫_0^1 x^2 sin(nπx) dx\n= 2 [ -cos(nπ)/(nπ) + 2(cos(nπ) − 1)/(n^3π^3) ]\n= 2 [ (-1)^{n+1}/(nπ) − 2(1 − (-1)^n)/(n^3π^3) ],\nwhich matches option (I)."
+  },
+  {
+    "question_id": 6316,
+    "score": 0,
+    "input_tokens": 1021,
+    "output_tokens": 962,
+    "llm_raw_answer": "(C): High fatigue resistance\n\nType IIb (fast glycolytic) fibers are fast-contracting, high-force, low-oxidative, high-glycolytic, with low capillary and mitochondrial density, high glycogen stores, and they fatigue quickly (low fatigue resistance)."
+  },
+  {
+    "question_id": 6342,
+    "score": 0,
+    "input_tokens": 1018,
+    "output_tokens": 1679,
+    "llm_raw_answer": "(H): Retire early"
+  },
+  {
+    "question_id": 7260,
+    "score": 0,
+    "input_tokens": 1348,
+    "output_tokens": 652,
+    "llm_raw_answer": "(G)"
+  },
+  {
+    "question_id": 5307,
+    "score": 0,
+    "input_tokens": 830,
+    "output_tokens": 399,
+    "llm_raw_answer": "(H): 16%"
+  },
+  {
+    "question_id": 6983,
+    "score": 0,
+    "input_tokens": 1145,
+    "output_tokens": 396,
+    "llm_raw_answer": "(B)"
+  },
+  {
+    "question_id": 11505,
+    "score": 0,
+    "input_tokens": 1076,
+    "output_tokens": 272,
+    "llm_raw_answer": "(E): 1/3"
+  },
+  {
+    "question_id": 7764,
+    "score": 0,
+    "input_tokens": 1692,
+    "output_tokens": 1002,
+    "llm_raw_answer": "Answer: (G)\n\nExplanation:\nf(x) − g(x) = (x^2 − 4x + 10) − (4x − x^2) = 2(x^2 − 4x + 5) = 2[(x − 2)^2 + 1] > 0 on [1, 3], so area = ∫₁³ (f − g) dx.\nCompute: ∫₁³ 2[(x − 2)^2 + 1] dx = 2∫₁³ (x − 2)^2 dx + 2∫₁³ dx = 2*(2/3) + 2*2 = 16/3 ≈ 5.333."
+  },
+  {
+    "question_id": 4826,
+    "score": 0,
+    "input_tokens": 2210,
+    "output_tokens": 337,
+    "llm_raw_answer": "(G): Eighteenth-century France"
+  },
+  {
+    "question_id": 1963,
+    "score": 0,
+    "input_tokens": 1469,
+    "output_tokens": 1232,
+    "llm_raw_answer": "(F) statute of frauds"
+  },
+  {
+    "question_id": 467,
+    "score": 0,
+    "input_tokens": 1016,
+    "output_tokens": 3342,
+    "llm_raw_answer": "(D): $195"
+  },
+  {
+    "question_id": 3025,
+    "score": 0,
+    "input_tokens": 1414,
+    "output_tokens": 505,
+    "llm_raw_answer": "Answer: (I)\n\nReasoning:\n- For a diploid locus with n alleles, number of genotypes = n(n + 1)/2.\n- ABO (n=6): 6×7/2 = 21 genotypes\n- Rh (n=8): 8×9/2 = 36 genotypes\n- MN (n=4): 4×5/2 = 10 genotypes\n- Total combinations (independent loci) = 21 × 36 × 10 = 7,560"
+  },
+  {
+    "question_id": 2571,
+    "score": 1,
+    "input_tokens": 940,
+    "output_tokens": 307,
+    "llm_raw_answer": "A: Let's think step by step. The bystander effect shows helping is most likely when fewer people are present; with only one bystander, diffusion of responsibility is minimal. The answer is (E)."
+  },
+  {
+    "question_id": 10083,
+    "score": 1,
+    "input_tokens": 1217,
+    "output_tokens": 2167,
+    "llm_raw_answer": "A: For an achromatic prism pair, A_c (n_cF − n_cC) = A_f (n_fF − n_fC). \nΔn_c = 1.5233 − 1.5146 = 0.0087; Δn_f = 1.6385 − 1.6224 = 0.0161.\nSo A_f = 10° × (0.0087/0.0161) ≈ 5.40°. The answer is (F)."
+  },
+  {
+    "question_id": 8849,
+    "score": 1,
+    "input_tokens": 1729,
+    "output_tokens": 1701,
+    "llm_raw_answer": "Let's think step by step. For standard Brownian motion, E[exp(i W(t))] = exp(-t/2). Hence M(t) = exp(i W(t)) / E[exp(i W(t))] = exp(i W(t) + t/2), which is an exponential martingale (verify via Itô’s formula: the drift cancels). So yes, it is a martingale.\n\nThe answer is (B)."
+  },
+  {
+    "question_id": 11284,
+    "score": 0,
+    "input_tokens": 955,
+    "output_tokens": 148,
+    "llm_raw_answer": "(D) good is identical to a natural property."
+  },
+  {
+    "question_id": 9146,
+    "score": 1,
+    "input_tokens": 1135,
+    "output_tokens": 875,
+    "llm_raw_answer": "A: Let's think step by step. The electrostatic force magnitude between two charges is F = k q1 q2 / r^2. Here q = e/3, so:\n\nF = k (e/3)^2 / r^2\n= (8.99e9) * (1.602e-19 / 3)^2 / (2.6e-15)^2\n≈ 3.8 N.\n\nThe answer is (D)."
+  },
+  {
+    "question_id": 7111,
+    "score": 0,
+    "input_tokens": 1140,
+    "output_tokens": 444,
+    "llm_raw_answer": "(F): Wage = Marginal revenue product of labor.\n\nExplanation: A competitive firm hires labor up to the point where the value/marginal revenue product of labor equals the wage (since in a competitive input market, marginal factor cost equals the wage)."
+  },
+  {
+    "question_id": 7661,
+    "score": 0,
+    "input_tokens": 1142,
+    "output_tokens": 1003,
+    "llm_raw_answer": "(D): 4\n\nReason: Marginal products (tons): 15, 10, 8, 5, 4. Marginal revenue product at $10/ton: $150, $100, $80, $50, $40. With wage = $50, hire up to where MRP ≥ wage: the 4th worker has MRP = $50; the 5th has $40 < $50. Hence, hire 4."
+  },
+  {
+    "question_id": 8070,
+    "score": 0,
+    "input_tokens": 1730,
+    "output_tokens": 1808,
+    "llm_raw_answer": "[1, 1]"
+  },
+  {
+    "question_id": 4285,
+    "score": 0,
+    "input_tokens": 1507,
+    "output_tokens": 599,
+    "llm_raw_answer": "(D): pH is 4, pOH is 4"
+  },
+  {
+    "question_id": 11853,
+    "score": 0,
+    "input_tokens": 1221,
+    "output_tokens": 2632,
+    "llm_raw_answer": "Let's think step by step.\n\n- Tube diameter: D = 0.902 in = 0.902/12 = 0.0752 ft\n- Velocity: V = 7 ft/s\n- Water properties at ~66°F (≈19°C): ν ≈ 1.1×10^-5 ft^2/s, Pr ≈ 7, k ≈ 0.346 Btu hr^-1 ft^-1 F^-1\n\nRe = V D / ν ≈ (7)(0.0752)/(1.1e-5) ≈ 4.8×10^4 → turbulent\n\nUse Dittus–Boelter (heating): Nu = 0.023 Re^0.8 Pr^0.4\nNu ≈ 0.023 × (4.8e4)^0.8 × 7^0.4 ≈ ~280\n\nh = Nu k / D ≈ (280)(0.346)/0.0752 ≈ 1.27×10^3 Btu hr^-1 ft^-2 F^-1\n\nClosest option: 1267 Btu hr^-1 ft^-2 F^-1\n\nAnswer: (F)"
+  },
+  {
+    "question_id": 7851,
+    "score": 0,
+    "input_tokens": 1678,
+    "output_tokens": 442,
+    "llm_raw_answer": "(D) f(c) = f(d)\n\nReason: For a linear function with nonzero slope, distinct inputs give distinct outputs. Since c < d, we must have f(c) ≠ f(d), so equality must be false."
+  },
+  {
+    "question_id": 4258,
+    "score": 0,
+    "input_tokens": 1554,
+    "output_tokens": 730,
+    "llm_raw_answer": "Answer: (F)\n\nReason: ESR frequency ν = (g μB/h) B. For an organic radical g ≈ 2, and μB/h ≈ 13.996 GHz/T, so ν ≈ 2 × 13.996 × B ≈ 28.0 GHz/T × 1000 T = 2.8 × 10^13 Hz."
+  },
+  {
+    "question_id": 9009,
+    "score": 0,
+    "input_tokens": 1780,
+    "output_tokens": 745,
+    "llm_raw_answer": "(B): S(n) is not true for any n <= n0\n\nReason: Since S(k) ⇒ S(k+1), its contrapositive is ¬S(k+1) ⇒ ¬S(k). Given ¬S(n0), it follows ¬S(n0−1), ¬S(n0−2), …, so S(n) is false for all n ≤ n0. We cannot conclude anything about n > n0."
+  },
+  {
+    "question_id": 1178,
+    "score": 0,
+    "input_tokens": 1457,
+    "output_tokens": 1927,
+    "llm_raw_answer": "(D) The grantor's sons are not protected by the recording statute.\n\nReason: The recording statute protects only subsequent purchasers who pay value and take without notice. The sons took by gift (not for value), so they are not bona fide purchasers and cannot defeat the brother’s prior unrecorded deed."
+  },
+  {
+    "question_id": 2172,
+    "score": 0,
+    "input_tokens": 939,
+    "output_tokens": 397,
+    "llm_raw_answer": "(E): Japanese"
+  },
+  {
+    "question_id": 5252,
+    "score": 0,
+    "input_tokens": 814,
+    "output_tokens": 461,
+    "llm_raw_answer": "(H): Lithium"
+  },
+  {
+    "question_id": 7003,
+    "score": 0,
+    "input_tokens": 1167,
+    "output_tokens": 937,
+    "llm_raw_answer": "(A)\n\nReason: Desired money balances = 5 weeks of expenditure = (5/52) × 1600 ≈ 153.846 billion."
+  },
+  {
+    "question_id": 10686,
+    "score": 0,
+    "input_tokens": 1367,
+    "output_tokens": 482,
+    "llm_raw_answer": "(D): Several different classes (sets) of registers\n\nExplanation: \n- Obstacles to aggressive pipelining include condition codes set by many instructions (introducing flag dependencies), variable-length instruction encoding (complicating fetch/decode), and operations with widely varying latencies (disrupting uniform pipeline flow).\n- Having multiple register classes is common (e.g., separate integer and FP registers) and does not inherently hinder integer pipeline design."
+  },
+  {
+    "question_id": 8576,
+    "score": 0,
+    "input_tokens": 1679,
+    "output_tokens": 508,
+    "llm_raw_answer": "Answer: (H)\n\nReason: By the Mean Value Theorem,\nf(0) = f(3) − ∫_0^3 f'(t) dt.\nSince f'(t) ≥ −1, we have ∫_0^3 f'(t) dt ≥ −3, so\nf(0) ≤ 5 − (−3) = 8.\nThis bound is attained by f'(x) = −1 (e.g., f(x) = 8 − x), so the greatest possible value is 8."
+  },
+  {
+    "question_id": 757,
+    "score": 0,
+    "input_tokens": 926,
+    "output_tokens": 206,
+    "llm_raw_answer": "(F) Durable goods"
+  },
+  {
+    "question_id": 1334,
+    "score": 0,
+    "input_tokens": 1478,
+    "output_tokens": 1228,
+    "llm_raw_answer": "(C)"
+  },
+  {
+    "question_id": 9636,
+    "score": 0,
+    "input_tokens": 1064,
+    "output_tokens": 142,
+    "llm_raw_answer": "(C): the same"
+  },
+  {
+    "question_id": 9217,
+    "score": 0,
+    "input_tokens": 1061,
+    "output_tokens": 286,
+    "llm_raw_answer": "(I): Solar eclipse. When the Moon’s shadow falls on Earth, we see a solar eclipse."
+  },
+  {
+    "question_id": 5618,
+    "score": 0,
+    "input_tokens": 825,
+    "output_tokens": 205,
+    "llm_raw_answer": "(J): Victoria"
+  },
+  {
+    "question_id": 6397,
+    "score": 0,
+    "input_tokens": 1104,
+    "output_tokens": 1692,
+    "llm_raw_answer": "(A) — Fecal loading of the colon produces a palpable, indentable mass."
+  },
+  {
+    "question_id": 1014,
+    "score": 0,
+    "input_tokens": 1614,
+    "output_tokens": 1757,
+    "llm_raw_answer": "(D): prevail, because the vineyard has no other access to the public highway.\n\nExplanation: The original express easement was extinguished by merger when the farmer came to own both the dominant (vineyard) and servient (orange grove) estates. However, when the farmer later severed the parcels by conveying the vineyard to the investor, an easement by necessity arose to prevent the vineyard from being landlocked."
+  },
+  {
+    "question_id": 6621,
+    "score": 0,
+    "input_tokens": 1122,
+    "output_tokens": 1036,
+    "llm_raw_answer": "(B)"
+  },
+  {
+    "question_id": 11278,
+    "score": 0,
+    "input_tokens": 980,
+    "output_tokens": 332,
+    "llm_raw_answer": "(G)"
+  },
+  {
+    "question_id": 7696,
+    "score": 0,
+    "input_tokens": 1715,
+    "output_tokens": 463,
+    "llm_raw_answer": "(G): False, True"
+  },
+  {
+    "question_id": 10104,
+    "score": 1,
+    "input_tokens": 1119,
+    "output_tokens": 334,
+    "llm_raw_answer": "Let's think step by step. In double-slit interference, the fringe separation is proportional to the wavelength: Δy ∝ λ. Doubling the frequency halves the wavelength (λ = c/f), so the fringe separation halves. Starting from 1.0 mm, it becomes 0.5 mm. The answer is (E)."
+  },
+  {
+    "question_id": 2118,
+    "score": 0,
+    "input_tokens": 1104,
+    "output_tokens": 140,
+    "llm_raw_answer": "(J)"
+  },
+  {
+    "question_id": 7446,
+    "score": 0,
+    "input_tokens": 1128,
+    "output_tokens": 220,
+    "llm_raw_answer": "(A) It would rise more quickly for negative disturbances than for positive ones of the same magnitude"
+  },
+  {
+    "question_id": 11655,
+    "score": 0,
+    "input_tokens": 1143,
+    "output_tokens": 322,
+    "llm_raw_answer": "Let's think step by step. Entropy H = -∑ p log2 p.\n\n- For two messages with p = 1/4: each contributes 0.25 × 2 = 0.5 bits → total 1.0 bits.\n- For four messages with p = 1/8: each contributes 0.125 × 3 = 0.375 bits → total 1.5 bits.\n\nTotal entropy = 1.0 + 1.5 = 2.5 bits/message.\n\nAnswer: (I) 2.50 bits/message."
+  },
+  {
+    "question_id": 9859,
+    "score": 0,
+    "input_tokens": 1157,
+    "output_tokens": 2398,
+    "llm_raw_answer": "(H): 1.000323\n\nReasoning (concise):\n- For fringes of equal inclination (telescope focused at infinity), a shift of one fringe for a pressure change ΔP implies 2 t Δn = λ at normal incidence, so Δn = λ / (2 t).\n- λ = 5461 Å = 5.461×10^-5 cm; t = 1.01 cm ⇒ Δn ≈ 5.461×10^-5 / (2.02) ≈ 2.70×10^-5 for ΔP = 6.46 cm Hg.\n- dn/dP ≈ 2.70×10^-5 / 6.46 ≈ 4.18×10^-6 per cm Hg.\n- At P = 77 cm Hg: n − 1 ≈ 4.18×10^-6 × 77 ≈ 3.22×10^-4 ⇒ n ≈ 1.000322 ≈ 1.000323."
+  },
+  {
+    "question_id": 4247,
+    "score": 0,
+    "input_tokens": 1432,
+    "output_tokens": 969,
+    "llm_raw_answer": "(J): 3p\n\nReason: For a given photon energy, the ejected electron’s kinetic energy (and thus velocity) is higher when its binding energy is lower. The least tightly bound electrons in chlorine are the outer valence 3p electrons, so they will be ejected with the highest velocity."
+  },
+  {
+    "question_id": 3311,
+    "score": 0,
+    "input_tokens": 1452,
+    "output_tokens": 195,
+    "llm_raw_answer": "Answer: (F)\n\nExplanation: Radioactive isotopes can be incorporated as tracers into molecules to label them, allowing researchers to follow metabolic pathways, measure reaction rates (e.g., via pulse-chase experiments, autoradiography), and track complex biochemical processes in cells and organisms."
+  },
+  {
+    "question_id": 1647,
+    "score": 0,
+    "input_tokens": 1293,
+    "output_tokens": 1055,
+    "llm_raw_answer": "(F): Yes, because the state has an interest in ensuring that teachers understand and can teach American values."
+  },
+  {
+    "question_id": 4131,
+    "score": 0,
+    "input_tokens": 1432,
+    "output_tokens": 976,
+    "llm_raw_answer": "(B): 0.79"
+  },
+  {
+    "question_id": 9114,
+    "score": 0,
+    "input_tokens": 1030,
+    "output_tokens": 333,
+    "llm_raw_answer": "(A): violet"
+  },
+  {
+    "question_id": 6828,
+    "score": 0,
+    "input_tokens": 1136,
+    "output_tokens": 528,
+    "llm_raw_answer": "(B): A lower discount rate"
+  },
+  {
+    "question_id": 4078,
+    "score": 0,
+    "input_tokens": 1497,
+    "output_tokens": 579,
+    "llm_raw_answer": "(D): 186 pm, 496 kJ/mol\n\nReason: Sodium is to the left of magnesium in the same period, so it has a larger atomic radius and a lower first ionization energy. The known values align closely with 186 pm and ~496 kJ/mol."
+  },
+  {
+    "question_id": 11041,
+    "score": 0,
+    "input_tokens": 936,
+    "output_tokens": 205,
+    "llm_raw_answer": "(I): killing"
+  },
+  {
+    "question_id": 8776,
+    "score": 0,
+    "input_tokens": 1715,
+    "output_tokens": 660,
+    "llm_raw_answer": "(A)\n\nReason: In an abelian group, the operation is commutative, so (g o h)^2 = (g o h) o (g o h) = g o h o g o h = g o g o h o h = g^2 o h^2. None of the other statements must hold for every abelian group."
+  },
+  {
+    "question_id": 8979,
+    "score": 0,
+    "input_tokens": 1797,
+    "output_tokens": 199,
+    "llm_raw_answer": "(J): Follow up with those that did not return the survey to encourage them to respond.\n\nReason: Nonresponse can introduce bias. The best practice is to try to increase the response rate by contacting nonrespondents, rather than analyzing only the 48 returns or replacing the nonrespondents with new selections."
+  },
+  {
+    "question_id": 9852,
+    "score": 0,
+    "input_tokens": 1157,
+    "output_tokens": 814,
+    "llm_raw_answer": "Answer: (G)\n\nExplanation (brief):\nFor a uniformly charged disk, the axial field is E(z) = (σ/2ε0)[1 − z/√(z^2 + R^2)]. At the surface center (z = 0), E(0) = σ/(2ε0). Setting E(z) = (1/2)E(0) gives 1 − z/√(z^2 + R^2) = 1/2 ⇒ z/√(z^2 + R^2) = 1/2 ⇒ 3z^2 = R^2 ⇒ z = R/√3. With R = 0.600 m, z ≈ 0.600/1.732 ≈ 0.346 m."
+  },
+  {
+    "question_id": 2523,
+    "score": 0,
+    "input_tokens": 967,
+    "output_tokens": 271,
+    "llm_raw_answer": "(D): the symbolic function"
+  },
+  {
+    "question_id": 476,
+    "score": 0,
+    "input_tokens": 1189,
+    "output_tokens": 396,
+    "llm_raw_answer": "(H)"
+  },
+  {
+    "question_id": 5000,
+    "score": 0,
+    "input_tokens": 1949,
+    "output_tokens": 552,
+    "llm_raw_answer": "(I): Homo erectus\n\nMany researchers propose H. floresiensis descended from local H. erectus populations and underwent island dwarfism on Flores."
+  },
+  {
+    "question_id": 6135,
+    "score": 0,
+    "input_tokens": 1016,
+    "output_tokens": 271,
+    "llm_raw_answer": "(J) Homosexual males"
+  },
+  {
+    "question_id": 3595,
+    "score": 0,
+    "input_tokens": 1448,
+    "output_tokens": 276,
+    "llm_raw_answer": "Answer: (E) 19.6 g\n\nExplanation:\n- Moles = M × V = 0.100 mol/L × 2.00 L = 0.200 mol\n- Mass = moles × molar mass = 0.200 × 98.1 g/mol = 19.62 g ≈ 19.6 g"
+  },
+  {
+    "question_id": 185,
+    "score": 0,
+    "input_tokens": 969,
+    "output_tokens": 1112,
+    "llm_raw_answer": "(B): $4.30\n\nReasoning:\n- Simple (add-on) interest over 15 months: Interest = 60 × 0.06 × (15/12) = $4.50\n- Total to repay = 60 + 4.50 = $64.50\n- Equal monthly payments = 64.50 / 15 = $4.30"
+  },
+  {
+    "question_id": 3481,
+    "score": 0,
+    "input_tokens": 1361,
+    "output_tokens": 859,
+    "llm_raw_answer": "(C) By using operant conditioning and observing the dog's response to different sound frequencies."
+  },
+  {
+    "question_id": 3439,
+    "score": 0,
+    "input_tokens": 1442,
+    "output_tokens": 582,
+    "llm_raw_answer": "(A): The frequency of the action potential increases.\n\nReason: Action potentials are all-or-none events; their amplitude (strength) does not scale with stimulus intensity. Stronger or more frequent stimuli are encoded by increasing the firing rate (frequency) of action potentials, up to limits set by refractory periods."
+  },
+  {
+    "question_id": 11306,
+    "score": 0,
+    "input_tokens": 1322,
+    "output_tokens": 5653,
+    "llm_raw_answer": "(I): 530 oz-ft, 29 amperes"
+  },
+  {
+    "question_id": 11422,
+    "score": 0,
+    "input_tokens": 1328,
+    "output_tokens": 3504,
+    "llm_raw_answer": "Answer: (F)\n\nReason (brief):\n- ωc = 5000 rad/s → fc = ωc/(2π) ≈ 795.8 Hz\n- m(t) = 20 cos(5t) → ωm = 5 rad/s → fm = ωm/(2π) ≈ 0.7958 Hz\n- β = 10 → Δf = β fm ≈ 7.958 Hz\n- Carson’s rule: BW ≈ 2(Δf + fm) ≈ 2(7.958 + 0.7958) ≈ 17.51 Hz\n- Among the options, this corresponds to (F): Bandwidth 17.51 Hz, with listed sidebands 778.3 Hz and 813.3 Hz."
+  },
+  {
+    "question_id": 1025,
+    "score": 0,
+    "input_tokens": 1427,
+    "output_tokens": 717,
+    "llm_raw_answer": "(D): the defendant didn't know what was in the package.\n\nReason: Possession of a controlled substance generally requires knowing (willful) possession of the substance and awareness of its illicit nature. If he lacked knowledge of the contents, the mens rea is missing. Seizure was lawful under plain view, so warrant-based defenses fail."
+  },
+  {
+    "question_id": 6020,
+    "score": 0,
+    "input_tokens": 1090,
+    "output_tokens": 588,
+    "llm_raw_answer": "(A)"
+  },
+  {
+    "question_id": 12070,
+    "score": 0,
+    "input_tokens": 1110,
+    "output_tokens": 1488,
+    "llm_raw_answer": "(D): 68.5%\n\nReasoning:\n- Assume lighting load at unity power factor, so 5 kVA → 5 kW at full load.\n- Full load for 1.5 h: output = 5 × 1.5 = 7.5 kWh; copper loss = 0.2 × 1.5 = 0.3 kWh.\n- Half load for 1.5 h: output = 2.5 × 1.5 = 3.75 kWh; copper loss = (0.5^2 × 0.2) × 1.5 = 0.05 × 1.5 = 0.075 kWh.\n- Iron loss (constant) = 0.2 kW × 24 h = 4.8 kWh.\n- Total output energy = 7.5 + 3.75 = 11.25 kWh.\n- Total losses = 4.8 + 0.3 + 0.075 = 5.175 kWh.\n- Total input = 11.25 + 5.175 = 16.425 kWh.\n- All-day efficiency = 11.25 / 16.425 ≈ 68.5%."
+  },
+  {
+    "question_id": 11612,
+    "score": 0,
+    "input_tokens": 1125,
+    "output_tokens": 987,
+    "llm_raw_answer": "(C) U = (1/2) ∫_V H · B dv"
+  },
+  {
+    "question_id": 1324,
+    "score": 0,
+    "input_tokens": 1305,
+    "output_tokens": 848,
+    "llm_raw_answer": "(B) False pretenses."
+  },
+  {
+    "question_id": 10560,
+    "score": 0,
+    "input_tokens": 1412,
+    "output_tokens": 399,
+    "llm_raw_answer": "(F): True, True"
+  },
+  {
+    "question_id": 2479,
+    "score": 0,
+    "input_tokens": 972,
+    "output_tokens": 716,
+    "llm_raw_answer": "(I)"
+  },
+  {
+    "question_id": 10854,
+    "score": 0,
+    "input_tokens": 912,
+    "output_tokens": 268,
+    "llm_raw_answer": "(B)"
+  },
+  {
+    "question_id": 2762,
+    "score": 0,
+    "input_tokens": 944,
+    "output_tokens": 462,
+    "llm_raw_answer": "(B) conjunctive"
+  },
+  {
+    "question_id": 7860,
+    "score": 0,
+    "input_tokens": 1648,
+    "output_tokens": 340,
+    "llm_raw_answer": "(E): 0\n\nReason: csc x − cot x = (1/sin x) − (cos x/sin x) = (1 − cos x)/sin x = [2 sin^2(x/2)]/[2 sin(x/2) cos(x/2)] = tan(x/2) → 0 as x → 0."
+  },
+  {
+    "question_id": 4512,
+    "score": 0,
+    "input_tokens": 1402,
+    "output_tokens": 332,
+    "llm_raw_answer": "(D) Arsenic-doped silicon\n\nExplanation: Doping silicon (group 14) with a group 15 element like arsenic introduces extra electrons (donors), creating an n-type semiconductor. Boron- or zinc-doped silicon are p-type (acceptors), and pure materials listed are intrinsic unless doped."
+  },
+  {
+    "question_id": 3847,
+    "score": 0,
+    "input_tokens": 1587,
+    "output_tokens": 1432,
+    "llm_raw_answer": "(D): 19 % Zn\n\nReasoning:\n- Moles of precipitate: 0.969 g / 342.6 g·mol⁻¹ = 0.002829 mol Zn2Fe(CN)6\n- Each mole contains 2 mol Zn → moles Zn = 2 × 0.002829 = 0.005658 mol\n- Mass of Zn = 0.005658 mol × 65.4 g·mol⁻¹ = 0.370 g\n- Percent Zn in 2.00 g sample = (0.370 / 2.00) × 100% = 18.5% ≈ 19%"
+  },
+  {
+    "question_id": 8068,
+    "score": 1,
+    "input_tokens": 1658,
+    "output_tokens": 188,
+    "llm_raw_answer": "Let's think step by step. Choose 2 men from 6 and 3 women from 8:\nC(6,2) × C(8,3) = 15 × 56 = 840.\nThe answer is (I)."
+  },
+  {
+    "question_id": 7049,
+    "score": 0,
+    "input_tokens": 1119,
+    "output_tokens": 492,
+    "llm_raw_answer": "(E): An increase in the price of tubas\n\nExplanation: Higher output prices raise the marginal revenue product of tuba makers, shifting labor demand right and increasing wages."
+  },
+  {
+    "question_id": 1995,
+    "score": 0,
+    "input_tokens": 1007,
+    "output_tokens": 469,
+    "llm_raw_answer": "(G): brain damage, intellectual disability, or emotional disturbance"
+  },
+  {
+    "question_id": 9290,
+    "score": 1,
+    "input_tokens": 1087,
+    "output_tokens": 414,
+    "llm_raw_answer": "Let's think step by step. The work done against friction is W = F_friction × d, where F_friction = μ m g.\n- m g = 150 × 9.8 = 1470 N\n- F_friction = 0.30 × 1470 = 441 N\n- W = 441 × 10 = 4410 J\n\nThe answer is (I)."
+  },
+  {
+    "question_id": 1589,
+    "score": 0,
+    "input_tokens": 1480,
+    "output_tokens": 1433,
+    "llm_raw_answer": "(D) not guilty, because there was no true agreement between the parties."
+  },
+  {
+    "question_id": 8966,
+    "score": 0,
+    "input_tokens": 1696,
+    "output_tokens": 340,
+    "llm_raw_answer": "Answer: (I)\n\nReason: Chebyshev gives P(|X−33| ≥ 10) ≤ Var / 10^2 = 16/100 = 0.16, so P(23 < X < 43) = P(|X−33| < 10) ≥ 1 − 0.16 = 0.84."
+  },
+  {
+    "question_id": 2461,
+    "score": 0,
+    "input_tokens": 1195,
+    "output_tokens": 552,
+    "llm_raw_answer": "(H): If a psychological attribute is genetically influenced, then identical twins are more likely to share this attribute than are fraternal twins and other siblings."
+  },
+  {
+    "question_id": 12239,
+    "score": 0,
+    "input_tokens": 1102,
+    "output_tokens": 2692,
+    "llm_raw_answer": "Answer: (G) 69°C\n\nReason (concise):\n- Dew point condition for an ideal binary vapor at pressure P: sum[y_i P / P_i^sat(T)] = 1.\n- Using Antoine equations for benzene and n-pentane around 60–80°C:\n  - At 70°C: sum ≈ 0.965 (<1), so T is slightly lower.\n  - At 69°C: sum ≈ 0.996 (~1).\n- Interpolation gives T ≈ 68.9°C, i.e., about 69°C."
+  },
+  {
+    "question_id": 3519,
+    "score": 1,
+    "input_tokens": 1402,
+    "output_tokens": 481,
+    "llm_raw_answer": "Let's think step by step. In many birds, including terns, courtship feeding (male presenting a fish) demonstrates the male’s ability to provision a mate and future chicks, reduces aggression, strengthens pair bonds, and can stimulate hormonal changes that prepare the female for egg production. More broadly, courtship helps with species and sex identification, synchronization of reproductive readiness, and reducing aggression so mating can occur. The answer is (G)."
+  },
+  {
+    "question_id": 12157,
+    "score": 0,
+    "input_tokens": 1152,
+    "output_tokens": 1640,
+    "llm_raw_answer": "Answer: (D) 93.5%\n\nBrief solution:\n- Load power (output) = Vt × IL = 230 × 800 = 184,000 W\n- For long-shunt generator: Ia = IL + Ish = 800 + 12 = 812 A\n- Armature copper loss = Ia^2 Ra = 812^2 × 0.007 ≈ 4,615 W\n- Series field copper loss = IL^2 Rs = 800^2 × 0.002 = 1,280 W\n- Shunt field loss = Vt × Ish = 230 × 12 = 2,760 W\n- Stray losses = 5,500 W\n- Total losses ≈ 4,615 + 1,280 + 2,760 + 5,500 = 14,155 W\n- Efficiency = Output / (Output + Losses) ≈ 184,000 / (184,000 + 14,155) ≈ 92.9% ≈ 93.5%"
+  },
+  {
+    "question_id": 10340,
+    "score": 0,
+    "input_tokens": 1137,
+    "output_tokens": 2064,
+    "llm_raw_answer": "(D): 345.0"
+  },
+  {
+    "question_id": 1163,
+    "score": 0,
+    "input_tokens": 1432,
+    "output_tokens": 736,
+    "llm_raw_answer": "(D): No, because the landscaper had no reasonable alternative but to yield to the mechanic's wrongful threat."
+  },
+  {
+    "question_id": 5681,
+    "score": 0,
+    "input_tokens": 842,
+    "output_tokens": 271,
+    "llm_raw_answer": "(G) 69 billion"
+  },
+  {
+    "question_id": 10613,
+    "score": 0,
+    "input_tokens": 1392,
+    "output_tokens": 567,
+    "llm_raw_answer": "(H): 0\n\nReason: Every tree on n > 1 vertices has at least two leaves (vertices of degree 1), so it's impossible to have a tree with no vertices of degree 1 or 2."
+  },
+  {
+    "question_id": 4335,
+    "score": 0,
+    "input_tokens": 1484,
+    "output_tokens": 633,
+    "llm_raw_answer": "Answer: (B)\n\nReason: pH = 2.0 ⇒ [H+] = 1.0×10^-2 M. For HA ⇌ H+ + A−:\n[A−] = 1.0×10^-2 M and [HA] = 0.060 − 0.010 = 0.050 M.\nKa = ([H+][A−])/[HA] = (1.0×10^-2)^2 / 0.050 = 2.0×10^-3."
+  },
+  {
+    "question_id": 6195,
+    "score": 0,
+    "input_tokens": 1025,
+    "output_tokens": 208,
+    "llm_raw_answer": "(A): Meat and Dairy products"
+  },
+  {
+    "question_id": 2265,
+    "score": 0,
+    "input_tokens": 1045,
+    "output_tokens": 2125,
+    "llm_raw_answer": "(G): ethical"
+  },
+  {
+    "question_id": 586,
+    "score": 0,
+    "input_tokens": 1191,
+    "output_tokens": 736,
+    "llm_raw_answer": "(F)\n\nExplanation:\n- Manager’s commission: 4% of $28,600 = $1,144 (to Gafney)\n- Interest: 6% of $40,000 = $2,400 (Gafney); 6% of $50,000 = $3,000 (Medina)\n- Remainder: $28,600 − $1,144 − ($2,400 + $3,000) = $22,056, split equally = $11,028 each\n\nTotals:\n- Gafney: $1,144 + $2,400 + $11,028 = $14,572\n- Medina: $3,000 + $11,028 = $14,028"
+  },
+  {
+    "question_id": 7938,
+    "score": 0,
+    "input_tokens": 1725,
+    "output_tokens": 2185,
+    "llm_raw_answer": "(J): True, True\n\nReason:\n- Statement 1: True by the Riemann rearrangement theorem. Since ∑a_i converges but ∑|a_i| diverges (conditional convergence), there exists a rearrangement summing to any prescribed real number, in particular 4.\n- Statement 2: True. Take X = ℝ with the discrete metric (diameter 1, hence bounded), Y = ℝ with the usual metric, and f = identity. Then f is continuous, but f(X) = ℝ is not bounded, so f(X) is not “closed and bounded.”"
+  },
+  {
+    "question_id": 640,
+    "score": 0,
+    "input_tokens": 988,
+    "output_tokens": 1232,
+    "llm_raw_answer": "(G) 1.51"
+  },
+  {
+    "question_id": 4352,
+    "score": 0,
+    "input_tokens": 1491,
+    "output_tokens": 571,
+    "llm_raw_answer": "Answer: (G) 524 K\n\nReason:\n- Population ratio: N_upper/N_lower = exp(-ΔE/kT) = 1/3 ⇒ ΔE/(kT) = ln 3\n- Convert 400 cm^-1 to temperature units: ΔE/k = (hc/k)·ν~ = 1.4388 K·cm × 400 cm^-1 ≈ 575 K\n- T = (ΔE/k)/ln 3 ≈ 575 / 1.0986 ≈ 524 K"
+  },
+  {
+    "question_id": 9406,
+    "score": 1,
+    "input_tokens": 1102,
+    "output_tokens": 420,
+    "llm_raw_answer": "Let's think step by step. For an isolated spherical conductor, the surface electric field is E = V/R. To avoid breakdown in air, E must not exceed the dielectric strength, E_max = 3 × 10^6 V/m. Thus V/R ≤ E_max ⇒ R ≥ V/E_max = (10^6 V)/(3 × 10^6 V/m) = 1/3 m. The answer is (B)."
+  },
+  {
+    "question_id": 7629,
+    "score": 0,
+    "input_tokens": 1177,
+    "output_tokens": 967,
+    "llm_raw_answer": "(A): Decreases it by $9 million\n\nReason: The $1m withdrawal reduces bank reserves, causing up to a $10m contraction in deposits (with a 10% reserve ratio). Currency held by the public rises by $1m, so net money supply falls by $9m."
+  },
+  {
+    "question_id": 1810,
+    "score": 0,
+    "input_tokens": 1305,
+    "output_tokens": 1116,
+    "llm_raw_answer": "(I): Yes, if the dominant intent of Congress was that the tax would produce revenue."
+  },
+  {
+    "question_id": 10058,
+    "score": 0,
+    "input_tokens": 1082,
+    "output_tokens": 338,
+    "llm_raw_answer": "(J): cold to hot without external energy"
+  },
+  {
+    "question_id": 3729,
+    "score": 0,
+    "input_tokens": 1496,
+    "output_tokens": 1161,
+    "llm_raw_answer": "(C): 272.8 K\n\nReason (brief): Using Clapeyron, dT = T·ΔV·ΔP/ΔHfus. With ρice = 0.92, ρwater = 1.00 g/cm³, ΔV = (18/1.00 − 18/0.92) ≈ −1.565 cm³/mol = −1.565×10⁻⁶ m³/mol; T ≈ 273.15 K; ΔP = 50 bar = 5×10⁶ Pa; ΔHfus ≈ 6.01 kJ/mol. Then ΔT ≈ (273.15)(−1.565×10⁻⁶)(5×10⁶)/6010 ≈ −0.36 K, so Tm ≈ 273.15 − 0.36 ≈ 272.8 K."
+  },
+  {
+    "question_id": 6692,
+    "score": 0,
+    "input_tokens": 1178,
+    "output_tokens": 669,
+    "llm_raw_answer": "(I): Foramen ovale\n\nReason: The sensory loss over the mandible/chin and anterior tongue indicates injury to the mandibular division of the trigeminal nerve (V3), which carries general sensation from these areas via the inferior alveolar and lingual nerves. V3 exits the skull through the foramen ovale, which opens into the infratemporal fossa—consistent with the fracture sites."
+  },
+  {
+    "question_id": 2682,
+    "score": 0,
+    "input_tokens": 1132,
+    "output_tokens": 908,
+    "llm_raw_answer": "(H)"
+  },
+  {
+    "question_id": 1976,
+    "score": 1,
+    "input_tokens": 1469,
+    "output_tokens": 719,
+    "llm_raw_answer": "A: Let's think step by step. Evidence that a party destroyed relevant evidence is admissible to show consciousness of liability (spoliation). It is not hearsay, not collateral, and its probative value is not substantially outweighed by unfair prejudice. The weight of such testimony is for the jury to decide. The answer is (E)."
+  },
+  {
+    "question_id": 9449,
+    "score": 0,
+    "input_tokens": 1154,
+    "output_tokens": 5823,
+    "llm_raw_answer": "(J): 350 m to the east\n\nBriefly: The Coriolis deflection (east-west) for a shot fired due south at latitude φ is approximately x ≈ Ω sinφ v_h T^2, where v_h = v0 cosθ, T ≈ 2 v0 sinθ / g, and Ω = 7.29×10^-5 s^-1. Plugging v0 = 800 m/s, θ = 37°, φ = 50° S gives x ≈ 3.5×10^2 m east."
+  },
+  {
+    "question_id": 8445,
+    "score": 0,
+    "input_tokens": 1706,
+    "output_tokens": 722,
+    "llm_raw_answer": "(A): 0.93\n\nReason: Let X ~ N(200, 5²). We want P(188 < X < 194 | X < 194) = P(188 < X < 194) / P(X < 194).\nStandardize: z-values are (188−200)/5 = −2.4 and (194−200)/5 = −1.2.\nSo the ratio is [Φ(−1.2) − Φ(−2.4)] / Φ(−1.2) ≈ (0.115 − 0.0082) / 0.115 ≈ 0.93."
+  },
+  {
+    "question_id": 10819,
+    "score": 0,
+    "input_tokens": 1089,
+    "output_tokens": 461,
+    "llm_raw_answer": "(J)"
+  },
+  {
+    "question_id": 6923,
+    "score": 0,
+    "input_tokens": 1288,
+    "output_tokens": 814,
+    "llm_raw_answer": "Answer: (B)\n\nReasoning:\n- Cost-minimizing condition: MPPL / w = MPPK / r.\n- Given MPPL = 2 and w = 4 ⇒ MPPL/w = 2/4 = 0.5. With r = 1, MPPK must be 0.5.\n- Total cost to produce one unit using 3 workers and 7 units of capital: 3*$4 + 7*$1 = $19."
+  },
+  {
+    "question_id": 8234,
+    "score": 0,
+    "input_tokens": 1753,
+    "output_tokens": 510,
+    "llm_raw_answer": "B. Mary at the 64th percentile means 64% scored below her; Pam at the 56th percentile means 56% scored below her. The difference is 8%, so 8% of test takers scored between Pam and Mary."
+  },
+  {
+    "question_id": 94,
+    "score": 0,
+    "input_tokens": 990,
+    "output_tokens": 1040,
+    "llm_raw_answer": "(J): $280.30"
+  },
+  {
+    "question_id": 12236,
+    "score": 0,
+    "input_tokens": 1198,
+    "output_tokens": 1424,
+    "llm_raw_answer": "(D)\n\nReason: A single, lossless quarter-wave transformer with real characteristic impedance Z0t transforms ZL to Zin = Z0t^2 / ZL. If ZL is complex (150 + j40 Ω), Zin remains complex for any real Z0t, so it cannot perfectly match a real 20 Ω source. You’d first need to make the load real (e.g., add a series capacitor of –j40 Ω), then a quarter-wave transformer with Z0t = √(20×150) ≈ 54.8 Ω would work. Option F is incorrect because –j40 Ω is capacitive, not inductive."
+  },
+  {
+    "question_id": 11583,
+    "score": 0,
+    "input_tokens": 1130,
+    "output_tokens": 1430,
+    "llm_raw_answer": "(D): 0.5964 psia\n\nReason: From the given masses, the ideal-gas partial pressure would be about 3.89 psia, which exceeds the saturation pressure at 85°F. Thus the mixture would be saturated with liquid present, and the vapor partial pressure equals the saturation pressure at 85°F, ≈0.5964 psia."
+  },
+  {
+    "question_id": 5934,
+    "score": 0,
+    "input_tokens": 840,
+    "output_tokens": 784,
+    "llm_raw_answer": "(E): White Southerners"
+  },
+  {
+    "question_id": 573,
+    "score": 0,
+    "input_tokens": 922,
+    "output_tokens": 206,
+    "llm_raw_answer": "(I): Exhibitions"
+  },
+  {
+    "question_id": 6205,
+    "score": 0,
+    "input_tokens": 1021,
+    "output_tokens": 589,
+    "llm_raw_answer": "(F): Frequency"
+  },
+  {
+    "question_id": 1250,
+    "score": 0,
+    "input_tokens": 1507,
+    "output_tokens": 1100,
+    "llm_raw_answer": "(A)"
+  },
+  {
+    "question_id": 8179,
+    "score": 0,
+    "input_tokens": 1657,
+    "output_tokens": 207,
+    "llm_raw_answer": "(I): 2047"
+  },
+  {
+    "question_id": 359,
+    "score": 0,
+    "input_tokens": 940,
+    "output_tokens": 270,
+    "llm_raw_answer": "(I): Green Marketing"
+  },
+  {
+    "question_id": 2651,
+    "score": 0,
+    "input_tokens": 1040,
+    "output_tokens": 345,
+    "llm_raw_answer": "(D): the employee’s beliefs about the value of rewards provided for successful performance"
+  },
+  {
+    "question_id": 9834,
+    "score": 1,
+    "input_tokens": 1085,
+    "output_tokens": 926,
+    "llm_raw_answer": "A: Let's think step by step. Heat lost by 0.25 kg water cooling from 25°C to 0°C equals heat gained by ice warming from −20°C to 0°C and melting: \n0.25·4186·25 = m[2100·20 + 334000] ⇒ m ≈ 0.070 kg = 70 g. The answer is (C)."
+  },
+  {
+    "question_id": 7833,
+    "score": 0,
+    "input_tokens": 1646,
+    "output_tokens": 2180,
+    "llm_raw_answer": "Answers: (B), (C), (F), (H), (J)\n\nReason (brief): For n = ∏ p_i^{a_i}, the number of abelian groups of order n up to isomorphism equals ∏ p(a_i), where p(k) is the partition number. Since p(1)=1 and p(2)=2, getting exactly 2 requires exactly one prime with exponent 2 and all others (if any) with exponent 1. Among the options, these are n = 4, 9, 25, 12, 20."
+  },
+  {
+    "question_id": 82,
+    "score": 0,
+    "input_tokens": 927,
+    "output_tokens": 207,
+    "llm_raw_answer": "(J): Heuristics"
+  },
+  {
+    "question_id": 3019,
+    "score": 0,
+    "input_tokens": 1400,
+    "output_tokens": 645,
+    "llm_raw_answer": "Answer: (G)\n\nExplanation:\n- Most algae are photosynthetic autotrophs; they produce their own food using light and chlorophyll.\n- Fungi are heterotrophs; they secrete enzymes and absorb nutrients from organic matter (as decomposers, parasites, or mutualists)."
+  },
+  {
+    "question_id": 9977,
+    "score": 1,
+    "input_tokens": 1095,
+    "output_tokens": 449,
+    "llm_raw_answer": "A: The apparent shift through a plate is t(1 − 1/n). With n = 1.5, shift = t/3. Set t/3 = 5/6 → t = 2.5 inches. The answer is (F)."
+  },
+  {
+    "question_id": 9586,
+    "score": 1,
+    "input_tokens": 1037,
+    "output_tokens": 376,
+    "llm_raw_answer": "Let's think step by step. Earth is the only planet in the solar system known to have active plate tectonics today. Venus and Mars show tectonic features but lack confirmed, ongoing plate tectonics. The answer is (G)."
+  },
+  {
+    "question_id": 7564,
+    "score": 0,
+    "input_tokens": 1239,
+    "output_tokens": 211,
+    "llm_raw_answer": "(A) Increases — Appreciate — Decreases"
+  },
+  {
+    "question_id": 11424,
+    "score": 0,
+    "input_tokens": 1220,
+    "output_tokens": 9500,
+    "llm_raw_answer": "A: (I) 34.26 Btu/hr-ft^2-°F"
+  },
+  {
+    "question_id": 10661,
+    "score": 0,
+    "input_tokens": 1458,
+    "output_tokens": 399,
+    "llm_raw_answer": "(G): True, True"
+  },
+  {
+    "question_id": 11890,
+    "score": 0,
+    "input_tokens": 1092,
+    "output_tokens": 80,
+    "llm_raw_answer": "(F): 160 µF"
+  },
+  {
+    "question_id": 1834,
+    "score": 0,
+    "input_tokens": 1417,
+    "output_tokens": 842,
+    "llm_raw_answer": "(E) admissible, because it is based on firsthand knowledge.\n\nThe best evidence rule applies when a party seeks to prove the contents of a writing. Here, the supervisor is testifying from his own observations, not to prove what the log books say. Therefore, his testimony is admissible if he has personal knowledge."
+  },
+  {
+    "question_id": 5330,
+    "score": 0,
+    "input_tokens": 876,
+    "output_tokens": 143,
+    "llm_raw_answer": "(A): 1500"
+  },
+  {
+    "question_id": 1048,
+    "score": 0,
+    "input_tokens": 1368,
+    "output_tokens": 1174,
+    "llm_raw_answer": "(C): unenforceable, because it is violative of the statute of frauds. Under UCC §2-209, a modification needs no consideration but must satisfy the Statute of Frauds if, as modified, the contract is within it. The price increase to $11 (total over $500) required a signed writing, and here the modification was only oral."
+  },
+  {
+    "question_id": 3803,
+    "score": 0,
+    "input_tokens": 1526,
+    "output_tokens": 2458,
+    "llm_raw_answer": "Answer: (A) 4.738 × 10^3 kg/m^3\n\nReason:\nUse ρ = (Z · M)/(NA · a^3)\n- Z = 3 (given)\n- M (Ca) = 40.078 g/mol = 0.040078 kg/mol\n- a = 3.48 Å = 3.48 × 10^-10 m ⇒ a^3 = (3.48 × 10^-10)^3 = 4.2144 × 10^-29 m^3\n- Mass per cell = (Z·M)/NA = (3 × 0.040078)/6.022×10^23 ≈ 1.996 × 10^-25 kg\n- ρ = (1.996 × 10^-25 kg)/(4.2144 × 10^-29 m^3) ≈ 4.738 × 10^3 kg/m^3\n\nSo the correct option is (A)."
+  },
+  {
+    "question_id": 2264,
+    "score": 0,
+    "input_tokens": 1011,
+    "output_tokens": 468,
+    "llm_raw_answer": "(G): improving the health status and satisfaction of patients"
+  },
+  {
+    "question_id": 3703,
+    "score": 0,
+    "input_tokens": 1498,
+    "output_tokens": 417,
+    "llm_raw_answer": "(G): The valence electron shell becomes more shielded with increasing atomic number, thus reducing electronegativity."
+  },
+  {
+    "question_id": 7561,
+    "score": 0,
+    "input_tokens": 1214,
+    "output_tokens": 725,
+    "llm_raw_answer": "(G): 25% $750 M = 4"
+  },
+  {
+    "question_id": 9338,
+    "score": 0,
+    "input_tokens": 1198,
+    "output_tokens": 339,
+    "llm_raw_answer": "Answer: (J) 4.0 J\n\nReason: The work done by the wind is W = F · d = (2 î − 6 ĵ) · (−3 î) = −6 J. By the work–energy theorem, K_final = K_initial + W = 10 J − 6 J = 4 J."
+  },
+  {
+    "question_id": 6584,
+    "score": 0,
+    "input_tokens": 1025,
+    "output_tokens": 436,
+    "llm_raw_answer": "(E): VLDL\n\nVLDL is secreted by the liver and carries primarily endogenous triglycerides, but it also contains dietary-derived lipids taken up by the liver from chylomicron remnants."
+  },
+  {
+    "question_id": 10707,
+    "score": 0,
+    "input_tokens": 1958,
+    "output_tokens": 1548,
+    "llm_raw_answer": "(E)"
+  },
+  {
+    "question_id": 596,
+    "score": 0,
+    "input_tokens": 992,
+    "output_tokens": 784,
+    "llm_raw_answer": "(F) $2.20"
+  },
+  {
+    "question_id": 4733,
+    "score": 0,
+    "input_tokens": 1947,
+    "output_tokens": 595,
+    "llm_raw_answer": "(H): 5,000 B.P."
+  },
+  {
+    "question_id": 4935,
+    "score": 0,
+    "input_tokens": 1917,
+    "output_tokens": 1676,
+    "llm_raw_answer": "(E)"
+  },
+  {
+    "question_id": 1737,
+    "score": 0,
+    "input_tokens": 1518,
+    "output_tokens": 662,
+    "llm_raw_answer": "(B) The defendant's failure to act was not voluntary."
+  },
+  {
+    "question_id": 2276,
+    "score": 0,
+    "input_tokens": 1006,
+    "output_tokens": 206,
+    "llm_raw_answer": "(H): cohort effect"
+  },
+  {
+    "question_id": 6728,
+    "score": 0,
+    "input_tokens": 1104,
+    "output_tokens": 844,
+    "llm_raw_answer": "(I)"
+  },
+  {
+    "question_id": 8791,
+    "score": 1,
+    "input_tokens": 1686,
+    "output_tokens": 104,
+    "llm_raw_answer": "$-14 + 18 - 6 + 7 = 5$, so there is a $5 profit. The answer is (G)."
+  },
+  {
+    "question_id": 12006,
+    "score": 0,
+    "input_tokens": 1126,
+    "output_tokens": 455,
+    "llm_raw_answer": "(B): 10 volts\n\nReason: Induced emf = N dΦ/dt = N A dB/dt. With N=1, A=5 m^2, dB/dt=2 Wb/m^2/s, emf = 5×2 = 10 V."
+  },
+  {
+    "question_id": 344,
+    "score": 1,
+    "input_tokens": 1217,
+    "output_tokens": 755,
+    "llm_raw_answer": "Let's think step by step. Use simple interest I = P × r × t, with 60 days as 60/360 = 1/6 year.\n\n- Ms. Atlas: 1800 × 0.06 × (1/6) = $18\n- Mr. Johnson: 2400 × 0.05 × 3 = $360\n- Mr. Breakman: 7000 × 0.065 × 4 = $1,820\n\nThe answer is (I)."
+  },
+  {
+    "question_id": 7894,
+    "score": 0,
+    "input_tokens": 1685,
+    "output_tokens": 527,
+    "llm_raw_answer": "(F): False, True"
+  },
+  {
+    "question_id": 11808,
+    "score": 0,
+    "input_tokens": 1349,
+    "output_tokens": 2572,
+    "llm_raw_answer": "(F)"
+  },
+  {
+    "question_id": 1878,
+    "score": 0,
+    "input_tokens": 1398,
+    "output_tokens": 728,
+    "llm_raw_answer": "(E) No, because exigent circumstances justified the officers' entry."
+  },
+  {
+    "question_id": 7883,
+    "score": 0,
+    "input_tokens": 1709,
+    "output_tokens": 2520,
+    "llm_raw_answer": "(B): 0.6749\n\nExplanation (brief): In Example 5.6-4, Y is the sum of n=4 i.i.d. Uniform(0,1) variables (Irwin–Hall distribution). Using the exact CDF on the intervals [1,2] and [3,4], we get\nP(1.7 ≤ Y ≤ 3.2) = F(3.2) − F(1.7) ≈ 0.98293 − 0.30799 = 0.67494.\nThe normal approximation (mean 2, sd sqrt(1/3)) gives about 0.68, which is close."
+  },
+  {
+    "question_id": 5430,
+    "score": 0,
+    "input_tokens": 885,
+    "output_tokens": 912,
+    "llm_raw_answer": "(H) as civil liberties violations"
+  },
+  {
+    "question_id": 11527,
+    "score": 0,
+    "input_tokens": 1568,
+    "output_tokens": 15963,
+    "llm_raw_answer": "(I): N/A\n\nReason: For a full-pitch (and assuming no special chording/distribution factors), the open-circuit EMF harmonic ratios follow the flux density harmonic ratios. From B(x) = 100 sin(πx/τ) − 14 sin(3πx/τ) − 20 sin(5πx/τ) + 1 sin(7πx/τ), we get:\n- E3/E1 = 14/100 = 0.14\n- E5/E1 = 20/100 = 0.20\n- E7/E1 = 1/100 = 0.01\n\nThese values are not among the given choices."
+  },
+  {
+    "question_id": 7695,
+    "score": 0,
+    "input_tokens": 1724,
+    "output_tokens": 620,
+    "llm_raw_answer": "(I): False, False\n\n- Statement 1 is false: a direct product of cyclic groups need not be cyclic (e.g., Z_2 × Z_2 is not cyclic; Z_m × Z_n is cyclic iff gcd(m, n) = 1).\n- Statement 2 is false: |D_3 × D_4| = 6 × 8 = 48, while |D_12| = 24, so they cannot be isomorphic."
+  },
+  {
+    "question_id": 4928,
+    "score": 0,
+    "input_tokens": 1926,
+    "output_tokens": 317,
+    "llm_raw_answer": "(B): The tribe had a complex system of inherited social statuses.\n\nExplanation: The lavish grave goods with young children at Sungir’ suggest they held high status not earned through life achievements, indicating ascribed (inherited) social rank and social stratification."
+  }
+]
