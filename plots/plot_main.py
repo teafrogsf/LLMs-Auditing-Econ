@@ -26,7 +26,8 @@ def plot_histogram(num_provider, provider_results, choices=CHOICES, save_path=RE
         ('avg_cost', 'Average Cost'),
         ('avg_price', 'Average Price'),
         ('avg_reward', 'Average Reward'),
-        ('avg_profit', 'Average Profit'),
+        ('provider_utility', 'Average Provider Utility'),
+        ('user_utility', 'Average User Utility'),
     ]
 
     data_by_metric = {
@@ -34,7 +35,7 @@ def plot_histogram(num_provider, provider_results, choices=CHOICES, save_path=RE
         for key, _ in metrics
     }
 
-    fig, axes = plt.subplots(2, 2, figsize=(14, 10), sharex=True)
+    fig, axes = plt.subplots(3, 2, figsize=(14, 12), sharex=True)
     axes = axes.flatten()
 
     x = np.arange(len(choices))
@@ -58,6 +59,10 @@ def plot_histogram(num_provider, provider_results, choices=CHOICES, save_path=RE
                         xytext=(0, 3),
                         textcoords="offset points",
                         ha='center', va='bottom', fontsize=9)
+
+    # Hide any extra subplot if grid is larger than metrics
+    if len(axes) > len(metrics):
+        axes[-1].set_visible(False)
 
     fig.suptitle(f"Provider {num_provider + 1} Performance by Strategy", fontsize=16, y=0.98)
 
@@ -87,7 +92,8 @@ if __name__ == '__main__':
         provider_cost = {k: [] for k in CHOICES}
         provider_reward = {k: [] for k in CHOICES}
         provider_price = {k: [] for k in CHOICES}
-        provider_profit = {k: [] for k in CHOICES} 
+        provider_utility = {k: [] for k in CHOICES} 
+        user_utility = {k: [] for k in CHOICES}
         provider_results = {k: {} for k in CHOICES}
         for strategy in CHOICES:
             all_scenarios = list(itertools.product(CHOICES, repeat=num_others))
@@ -104,13 +110,14 @@ if __name__ == '__main__':
                 provider_cost[strategy].append(result['providers'][i]['total_cost']) 
                 provider_price[strategy].append(result['providers'][i]['total_price']) 
                 provider_reward[strategy].append(result['providers'][i]['total_reward']) 
-                provider_profit[strategy].append(result['providers'][i]['profit']) 
+                provider_utility[strategy].append(result['providers'][i]['provider_utility']) 
+                user_utility[strategy].append(result['providers'][i]['user_utility']) 
 
             provider_results[strategy]['avg_cost'] =  np.mean(provider_cost[strategy])
             provider_results[strategy]['avg_price'] =  np.mean(provider_price[strategy])
             provider_results[strategy]['avg_reward'] =  np.mean(provider_reward[strategy])
-            provider_results[strategy]['avg_profit'] =  np.mean(provider_profit[strategy])
-
+            provider_results[strategy]['provider_utility'] =  np.mean(provider_utility[strategy])
+            provider_results[strategy]['user_utility'] =  np.mean(user_utility[strategy])
 
         plot_histogram(i, provider_results)
 

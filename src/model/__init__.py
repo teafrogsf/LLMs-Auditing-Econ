@@ -13,6 +13,7 @@ load_dotenv()
 
 
 MODEL_PRICING = {
+    "claude-4-0": {"input": 3/1_000_000, "output": 15/1_000_000},
     "gpt-4o": {"input": 2.5/1_000_000, "output": 10/1_000_000},
     "gpt-4": {"input": 30/1_000_000, "output": 60/1_000_000},
     "gpt-4o-mini": {"input": 0.15/1_000_000, "output": 0.6/1_000_000},

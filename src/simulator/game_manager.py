@@ -128,8 +128,15 @@ class GameManager:
     def phase2_exploration(self):
         early_stop_flag = False
         # Todo: 下面这和 p_i 是哪个 i
-        threshold = self.second_utility - self.M * (self.reward_param + self.L*self.providers[self.best_provider_idx].get_max_pi())
+        pi_max = self.providers[self.best_provider_idx].get_max_pi()
+        threshold = self.second_utility - self.M * (self.reward_param + self.L * pi_max) / 20
+        self.logger.log(
+            f"threshold calc -> second_utility={self.second_utility:.6f}, M={self.M:.6f}, "
+            f"reward_param={self.reward_param:.6f}, L={self.L:.6f}, best_provider_idx={self.best_provider_idx}, "
+            f"max_pi={pi_max:.6f}, threshold={threshold:.6f}"
+        )
         R = int(max(0, self.T - (max(self.delta_1, self.delta_2) + 3)*self.B*self.K))
+        self.logger.log(R)
         nums_remain_tasks = min(R, self.T - self.t)
         self.logger.log(f"  计划委托{nums_remain_tasks}次，阈值：{threshold:.4f}")
         delegation_count = 0
@@ -153,8 +160,11 @@ class GameManager:
 
     def phase2_incentive(self):
         for i in range(self.num_providers):
+            
             if i == self.best_provider_idx:
+                self.logger.log('不奖励了')
                 continue
+            self.logger.log(f'delegate {self.B} times for provider {i}')
             for _ in range(self.B):
                 self._delegate_task(i, phase=3)
     
@@ -167,13 +177,16 @@ class GameManager:
 
             delta = self.delta_1 + math.log(self.providers[i].get_avg_reward()) - math.log(avg_tau) - avg_tau / self.L
             if delta > 0:
+                self.logger.log(f'delegate {self.B} times for provider {i}')
                 num_delegations = int(delta) * self.B
                 for _ in range(num_delegations):
                     self._delegate_task(i, phase=4)
                 
                 frac_part = delta - int(delta)
                 if random.random() < frac_part:
+                    
                     num_delegations = min(self.B, self.T - self.t)
+                    self.logger.log(f'delegate {num_delegations} times for provider {i}')
                     for _ in range(num_delegations):
                         self._delegate_task(i, phase=4)
 
