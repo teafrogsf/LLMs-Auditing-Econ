@@ -1,8 +1,10 @@
 import json
+from tkinter import NO
 import numpy as np
 import math
 import os
 from typing import Dict, List
+from src.model import MODEL_PRICING
 from src.simulator.provider import ProviderManager
 from src.utils import Logger
 import random
@@ -14,14 +16,15 @@ class GameManager:
     providers: List[ProviderManager]
     def __init__(self, game_config):
         self.game_config = game_config
-        self.B = game_config['B']
-        self.T = game_config['num_tasks']
-        self.M = game_config['M']
-        self.K = game_config['K']
-        self.reward_coff = game_config["reward_param"]
+        self.B = int(game_config['B'])
+        self.T = int(game_config['num_tasks'])
+        self.M = float(game_config['M'])
+        self.K = int(game_config['K'])
+        self.reward_param = float(game_config["reward_param"])
         self.output_dir = game_config['output_dir']
         self.task_ids = json.load(open(game_config["task_ids_path"]))[:self.T]
         self.t = 0
+        self.L = None
         self.delta_1 = None
         self.delta_2 = None
         self.best_utility = None
@@ -51,8 +54,23 @@ class GameManager:
     def _init_providers(self):
         self.providers = []
         for provider_config in self.game_config['providers']:
-            provider_config['reward_param'] = self.reward_coff
+            provider_config['reward_param'] = self.reward_param
             self.providers.append(ProviderManager(provider_config))
+        self.L = max([provider.get_priori_max_tokens() for provider in self.providers])
+        miu_rs = []
+        miu_ls = []
+
+        for provider in self.providers:
+            priori_model_info = provider.get_priori_model_info()
+            miu_rs.extend([priori_model_info[model]['avg_reward'] for model in priori_model_info])
+            miu_ls.extend([priori_model_info[model]['avg_tokens'] for model in priori_model_info])
+
+        self.miu_r = min(miu_rs)
+        self.miu_l = max(miu_ls)
+
+        self.delta_1 = -math.log(self.miu_r) + math.log(self.miu_l) + self.miu_l / self.L + 1
+        self.delta_2 = math.log(self.reward_param)
+
         
         self.provider_avg_info ={
             "avg_rewards": None,
@@ -66,11 +84,12 @@ class GameManager:
 
     def _delegate_task(self, provider_idx, phase, R=None):
         if self.t >= self.T:
-            raise IndexError(f'self.t > self.T')
+            return False
         task_id = self.task_ids[self.t]
         result = self.providers[provider_idx].run_task(task_id, phase, self.second_utility, R)
         self.delegation_history.append(result)
         self.t += 1
+        return True
 
     def phase1_exploration(self):
         """
@@ -108,7 +127,8 @@ class GameManager:
     
     def phase2_exploration(self):
         early_stop_flag = False
-        threshold = self.second_utility - self.M
+        # Todo: 下面这和 p_i 是哪个 i
+        threshold = self.second_utility - self.M * (self.reward_param + self.L*self.providers[self.best_provider_idx].get_max_pi())
         R = int(max(0, self.T - (max(self.delta_1, self.delta_2) + 3)*self.B*self.K))
         nums_remain_tasks = min(R, self.T - self.t)
         self.logger.log(f"  计划委托{nums_remain_tasks}次，阈值：{threshold:.4f}")
@@ -143,25 +163,21 @@ class GameManager:
             if self.t >= self.T:
                 return
             
-            avg_reward = self.providers[i].get_avg_reward()
-            avg_bar_u = avg_reward - self.M
-            if avg_bar_u <= 0:
-                self.logger.log(f"provider {i}的回报差值{avg_bar_u:.4f} <= 0，跳过")
-                continue
+            avg_tau = self.providers[i].get_avg_output_tokens()
 
-            utility = self.delta_1 + math.log(avg_bar_u)
-            if utility >= 0:
-                num_delegations = int(utility) * self.B
+            delta = self.delta_1 + math.log(self.providers[i].get_avg_reward()) - math.log(avg_tau) - avg_tau / self.L
+            if delta > 0:
+                num_delegations = int(delta) * self.B
                 for _ in range(num_delegations):
                     self._delegate_task(i, phase=4)
-
                 
-                frac_part = utility - int(utility)
-                num_delegations = min(self.B, self.T - self.t)
+                frac_part = delta - int(delta)
                 if random.random() < frac_part:
+                    num_delegations = min(self.B, self.T - self.t)
                     for _ in range(num_delegations):
                         self._delegate_task(i, phase=4)
-    
+
+
 
     def _get_result(self):
         general_results = {

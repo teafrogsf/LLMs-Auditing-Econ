@@ -1,3 +1,4 @@
+from audioop import avg
 import random
 import numpy as np
 from src.utils import load_jsonl
@@ -8,13 +9,16 @@ class ProviderManager:
         self.id = config['id']
         self.models = config['models']
         self.strategy = config['strategy']
-        self.eta = config['eta']
-        self.reward_param = config['reward_param']
+        self.eta = float(config['eta'])
+        self.reward_param = float(config['reward_param'])
+        self.priori_max_tokens = 0
         self.task_history = []
         self.cost_hisotry = []
         self.price_history = []
+        self.output_tokens_history = []
         self.utility_history = []
         self.reward_history = []
+        self.priori_model_info = {}
         self.cumulative_reward = 0
         self._load_local_records()
         self._init_models_info()
@@ -22,16 +26,41 @@ class ProviderManager:
  
 
     def _init_models_info(self):
-        self.best_model = max(self.models, key=lambda x: MODEL_PRICING[x]['input'] + MODEL_PRICING[x]['output'])
-        self.best_model_price = MODEL_PRICING[self.best_model]
-        self.worst_model = min(self.models, key=lambda x: MODEL_PRICING[x]['input'] + MODEL_PRICING[x]['output'])
-        self.worst_model_price = MODEL_PRICING[self.worst_model]
+        self.models = sorted(self.models, key=lambda x: MODEL_PRICING[x]['input'] + MODEL_PRICING[x]['output'], reverse=True)
+        
+        for model in self.models:
+            records = self.records[model]
+            rewards = np.array([item['score'] for item in records]) * self.reward_param
+
+            output_tokens = np.array([item['output_tokens'] for item in records])
+            # print(records)
+            # print(rewards)
+            # print(output_tokens)
+            # exit()
+            prices = np.array([item['input_tokens']*MODEL_PRICING[model]['input'] + item['output_tokens']*MODEL_PRICING[model]['output'] for item in records])
+            max_output_tokens = max(output_tokens)
+            if self.priori_max_tokens < max_output_tokens:
+                self.priori_max_tokens = max_output_tokens
+
+            model_info = {
+                'avg_utility': (rewards - prices).mean(),
+                'avg_tokens': output_tokens.mean(),
+                'avg_reward': rewards.mean(),
+                'max_output_tokens': max_output_tokens
+            }
+            self.priori_model_info[model] = model_info
+
 
     def _load_local_records(self):
         self.records = {}
         for model in self.models:
-            self.records[model] = load_jsonl(f'data/local_records/{model}_test_result.jsonl')
+            self.records[model] = load_jsonl(f'data/local_records/nlgraph/{model}_test_result.jsonl')
+    
+    def get_priori_max_tokens(self):
+        return self.priori_max_tokens
 
+    def get_priori_model_info(self):
+        return self.priori_model_info
 
     def get_money(self, result, model):
         model_price = MODEL_PRICING[model]
@@ -40,39 +69,35 @@ class ProviderManager:
     def select_model(self, phase, second_utility, R):
         
         if self.strategy == 'honest':
-            return self.best_model
+            return self.models[0]
         elif self.strategy == 'worst':
-            return self.worst_model
+            return self.models[-1]
         elif self.strategy == 'random':
             return random.choice(self.models)
         elif self.strategy == 'ours':
             if phase == 1:
-                model_used = self.best_model
+                model_used = self.models[0]
             elif phase == 2:
-                if R is None:
-                    raise ValueError(f"our strategy R is None")
-                if second_utility is None:
-                    raise ValueError(f"our strategy R is None")
-                threshold = R * second_utility
-                if self.cumulative_reward < threshold:
-                    model_used = self.best_model
+                for model in self.models[::-1]:
+                    if self.priori_model_info[model]['avg_utility'] > second_utility:
+                        return model
                 else:
-                    model_used = self.worst_model
+                    return self.models[0]
             else:
-                model_used = self.worst_model              
+                model_used = self.models[-1]              
         elif self.strategy == 'h1w2':
             if phase == 1:
-                model_used = self.best_model
+                model_used = self.models[0]
             else:
-                model_used = self.worst_model
+                model_used = self.models[-1]
             
         elif self.strategy == 'w1h2':
             if phase == 1:
-                model_used = self.worst_model
+                model_used = self.models[-1]
             elif phase == 2:
-                model_used = self.best_model
+                model_used = self.models[0]
             else:
-                model_used = self.worst_model
+                model_used = self.models[-1]
         
         else:
             raise ValueError(f'No stragety named {self.strategy}')
@@ -80,12 +105,17 @@ class ProviderManager:
         return model_used
 
 
+    def get_max_pi(self):
+        return MODEL_PRICING[self.models[0]]['output']
+
     def run_task(self, task_id, phase, second_utility=None, R=None):
-        model_used = self.select_model(phase, second_utility, R)            
+        model_used = self.select_model(phase, second_utility, R)    
         result = self.records[model_used][task_id]
-        price = self.get_money(result, self.best_model)
+   
+        price = self.get_money(result, self.models[0])
         cost = self.get_money(result, model_used) * self.eta
         reward = self.reward_param * result['score']
+       
         utility = reward - price
         result['model'] = model_used
         result['price'] = price
@@ -100,6 +130,8 @@ class ProviderManager:
         self.price_history.append(price)
         self.utility_history.append(utility)
         self.reward_history.append(reward) 
+        self.output_tokens_history.append(result['output_tokens'])
+
         return result
 
     def get_avg_utility(self):
@@ -111,15 +143,16 @@ class ProviderManager:
     def get_recent_avg_utility(self, k):
         return np.mean(self.utility_history[-k:])
     
-
-
+    def get_avg_output_tokens(self):
+        return np.mean(self.output_tokens_history)
+    
     def get_results(self):
         num_delegations = len(self.task_history)
         total_price = sum(self.price_history)
         total_reward = sum(self.reward_history)
         total_cost = sum(self.cost_hisotry)
         avg_reward = np.mean(self.reward_history)
-        profit = total_reward - total_price
+        user_utility = total_reward - total_price
         total_input_token = sum([item['input_tokens'] for item in self.task_history])
         total_output_token = sum([item['output_tokens'] for item in self.task_history])
         total_tokens = total_input_token + total_output_token
@@ -130,7 +163,7 @@ class ProviderManager:
             'total_reward': total_reward,
             'total_cost': total_cost,
             'avg_reward': avg_reward,  
-            'profit': profit,
+            'user_utility': user_utility,
             'provider_utility': provider_utility,
             'total_prompt_tokens': total_input_token,   
             'total_completion_tokens': total_output_token,
