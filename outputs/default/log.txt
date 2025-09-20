@@ -2,35 +2,35 @@
 {
   "num_tasks": 1000,
   "epsilon": 0.3,
-  "reward_param": "1e-1",
+  "reward_param": 5,
   "task_ids_path": "data/task_ids_shuffled.json",
   "providers": [
     {
       "id": 0,
       "models": [
-        "o3-mini",
-        "deepseek-r1",
-        "deepseek-v3"
+        "claude-4-0",
+        "gpt-4o",
+        "gpt-35-turbo"
       ],
-      "eta": 0.4
+      "eta": 0.5
     },
     {
       "id": 1,
       "models": [
-        "o1",
-        "qwen-max",
+        "claude-4-0",
+        "gpt-4o",
         "gpt-35-turbo"
       ],
-      "eta": 0.6
+      "eta": 0.5
     },
     {
       "id": 2,
       "models": [
-        "gpt-4",
+        "claude-4-0",
         "gpt-4o",
-        "gpt-4o-mini"
+        "gpt-35-turbo"
       ],
-      "eta": 0.2
+      "eta": 0.5
     }
   ],
   "B": 63,

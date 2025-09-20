@@ -1,46 +1,46 @@
 {
   "total_time": 1000,
-  "total_delegations": 1000,
+  "total_delegations": 425,
   "best_provider_idx": 0,
   "providers": [
     {
-      "delegations": 441,
-      "total_price": 4.660879300000001,
-      "total_reward": 20.700947239919287,
-      "total_cost": 1.1674235200000027,
-      "avg_reward": 0.04694092344652898,
-      "profit": 16.040067939919286,
-      "provider_utility": 0.6969281999999979,
-      "total_prompt_tokens": 1070739,
-      "total_completion_tokens": 791606,
-      "total_tokens": 1862345,
-      "avg_tokens_per_delegation": 4223.004535147393
-    },
-    {
-      "delegations": 433,
-      "total_price": 295.3067849999999,
-      "total_reward": 28.706833439818293,
-      "total_cost": 177.18407099999982,
-      "avg_reward": 0.0662975368125131,
-      "profit": -266.5999515601816,
-      "provider_utility": 1.1368683772161603e-13,
-      "total_prompt_tokens": 1052999,
-      "total_completion_tokens": 4658530,
-      "total_tokens": 5711529,
-      "avg_tokens_per_delegation": 13190.598152424942
+      "delegations": 173,
+      "total_price": 2.363064000000001,
+      "total_reward": 285.4039698583385,
+      "total_cost": 0.72460875,
+      "avg_reward": 1.6497339298169857,
+      "user_utility": 283.0409058583385,
+      "provider_utility": 0.45692325000000045,
+      "total_prompt_tokens": 446103,
+      "total_completion_tokens": 68317,
+      "total_tokens": 514420,
+      "avg_tokens_per_delegation": 2973.526011560694
     },
     {
       "delegations": 126,
-      "total_price": 10.927620000000006,
-      "total_reward": 5.583993440471051,
-      "total_cost": 2.185524000000001,
-      "avg_reward": 0.044317408257706754,
-      "profit": -5.343626559528955,
-      "provider_utility": 4.440892098500626e-16,
-      "total_prompt_tokens": 304554,
-      "total_completion_tokens": 29850,
-      "total_tokens": 334404,
-      "avg_tokens_per_delegation": 2654.0
+      "total_price": 2.4741779999999993,
+      "total_reward": 335.3445477726052,
+      "total_cost": 1.2370889999999997,
+      "avg_reward": 2.661464664861945,
+      "user_utility": 332.8703697726052,
+      "provider_utility": 0.0,
+      "total_prompt_tokens": 359766,
+      "total_completion_tokens": 92992,
+      "total_tokens": 452758,
+      "avg_tokens_per_delegation": 3593.3174603174602
+    },
+    {
+      "delegations": 126,
+      "total_price": 2.4952049999999995,
+      "total_reward": 340.8707369354903,
+      "total_cost": 1.2476024999999997,
+      "avg_reward": 2.7053233090118267,
+      "user_utility": 338.3755319354903,
+      "provider_utility": 0.0,
+      "total_prompt_tokens": 364320,
+      "total_completion_tokens": 93483,
+      "total_tokens": 457803,
+      "avg_tokens_per_delegation": 3633.3571428571427
     }
   ]
 }
