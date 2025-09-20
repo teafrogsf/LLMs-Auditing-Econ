@@ -1,6 +1,6 @@
 num_tasks: 1000
 epsilon: 0.3
-reward_param: 5
+reward_param: 10
 task_ids_path: data/task_ids_shuffled.json
 providers:
   - id: 0

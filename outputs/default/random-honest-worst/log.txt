@@ -2,13 +2,13 @@
 Delegate provider0 63 Times
 Delegate provider1 63 Times
 Delegate provider2 63 Times
-{'avg_rewards': [1.6245525184511629, 2.693045367901712, 1.001191584488647], 'avg_utilities': [1.6091824708321152, 2.6732184631398077, 0.9914141082981707]}
-δ1=3.0166, δ2=0.9833
-  阶段1完成，最佳服务商：1，平均效用：2.6732
-  第二好效用：1.6092
-threshold calc -> second_utility=1.609182, M=1.007942, reward_param=5.000000, L=1647.000000, best_provider_idx=1, max_pi=0.000015, threshold=1.355952
+{'avg_rewards': [3.2491050369023258, 5.386090735803424, 2.002383168977294], 'avg_utilities': [3.2337349892832776, 5.366263831041521, 1.9926056927868172]}
+δ1=2.3185, δ2=1.6801
+  阶段1完成，最佳服务商：1，平均效用：5.3663
+  第二好效用：3.2337
+threshold calc -> second_utility=3.233735, M=1.007942, reward_param=10.000000, L=1647.000000, best_provider_idx=1, max_pi=0.000015, threshold=2.728519
 0
-  计划委托0次，阈值：1.3560
+  计划委托0次，阈值：2.7285
 bonust B times for best
 delegate 63 times for provider 0
 不奖励了

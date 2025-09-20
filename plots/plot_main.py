@@ -28,6 +28,7 @@ def plot_histogram(num_provider, provider_results, choices=CHOICES, save_path=RE
         ('avg_reward', 'Average Reward'),
         ('provider_utility', 'Average Provider Utility'),
         ('user_utility', 'Average User Utility'),
+        ('delegations', 'Average Delegations'),
     ]
 
     data_by_metric = {
@@ -95,6 +96,7 @@ if __name__ == '__main__':
         provider_utility = {k: [] for k in CHOICES} 
         user_utility = {k: [] for k in CHOICES}
         provider_results = {k: {} for k in CHOICES}
+        provider_delegations = {k: [] for k in CHOICES}
         for strategy in CHOICES:
             all_scenarios = list(itertools.product(CHOICES, repeat=num_others))
             for idx, item in enumerate(all_scenarios):
@@ -112,13 +114,13 @@ if __name__ == '__main__':
                 provider_reward[strategy].append(result['providers'][i]['total_reward']) 
                 provider_utility[strategy].append(result['providers'][i]['provider_utility']) 
                 user_utility[strategy].append(result['providers'][i]['user_utility']) 
-
+                provider_delegations[strategy].append(result['providers'][i]['delegations'])
             provider_results[strategy]['avg_cost'] =  np.mean(provider_cost[strategy])
             provider_results[strategy]['avg_price'] =  np.mean(provider_price[strategy])
             provider_results[strategy]['avg_reward'] =  np.mean(provider_reward[strategy])
             provider_results[strategy]['provider_utility'] =  np.mean(provider_utility[strategy])
             provider_results[strategy]['user_utility'] =  np.mean(user_utility[strategy])
-
+            provider_results[strategy]['delegations'] =  np.mean(provider_delegations[strategy])
         plot_histogram(i, provider_results)
 
 
