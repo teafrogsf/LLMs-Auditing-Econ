@@ -12,3 +12,23 @@ $$
 - $\mu_i^r$: 每一个模型期望的输出长度
 - $p_i$: 供应商提供的价格表，price per token
 
+## 流程
+
+### Phase one: Exploration phase
+
+均匀的给每一个供应商 $B$ 次委托，计算每一个供应商的平均 reward，平均 output_tokens，平均 utility，计算方法如下：
+
+
+计算每一个供应商的 utility，计算平均记作 $u_i$，对于单个供应商，$u_i$ 的计算公式如下:
+
+$$
+u = \sum_{j=1}^{B}\frac{1}{B} (\text{reward\_param} * \text{score}_j - \text{price})
+$$
+
+
+## 不诚信
+
+### model 不诚信
+
+供应商的应该怎么做：使用较差的模型来回复，但是报价报最高。
+这里有一个很抽象的点

@@ -11,6 +11,37 @@ import random
 
 
 
+class ToyModel:
+    def __init__(self, config) -> None:
+        self.score_mu = float(config['score_mu'])
+        self.score_sigma = float(config['score_sigma'])
+        self.token_mu = float(config['token_mu'])
+        self.token_sigma = float(config['token_sigma'])
+        self.price = float(config['price'])
+        self.reward_param = float(config['reward_param'])
+        self.utility_mu = self.reward_param * self.score_mu - self.token_mu * self.price
+
+    def generate(self, sample):
+        """
+        sample:
+        {
+            "id": int,
+            "input_tokens": int
+        }
+        """
+        score = random.gauss(self.score_mu, self.score_sigma)
+        output_tokens_float = abs(random.gauss(self.token_mu, self.token_sigma))
+        output_tokens = max(50, int(round(output_tokens_float)))  
+
+        return {
+            "id": sample["id"],
+            "input_tokens": sample["input_tokens"],
+            "score": score,
+            "output_tokens": output_tokens
+        }
+
+
+
 class GameManager:
     game_config: Dict
     providers: List[ProviderManager]
@@ -20,6 +51,7 @@ class GameManager:
         self.T = int(game_config['num_tasks'])
         self.M = float(game_config['M'])
         self.K = int(game_config['K'])
+        self.gamma = float(game_config['gamma'])
         self.reward_param = float(game_config["reward_param"])
         self.output_dir = game_config['output_dir']
         self.task_ids = json.load(open(game_config["task_ids_path"]))[:self.T]
@@ -47,8 +79,6 @@ class GameManager:
         self.logger = Logger(self.output_dir, log_path)
         
 
-
-        
 
 
     def _init_providers(self):
@@ -129,7 +159,7 @@ class GameManager:
         early_stop_flag = False
         # Todo: 下面这和 p_i 是哪个 i
         pi_max = self.providers[self.best_provider_idx].get_max_pi()
-        threshold = self.second_utility - self.M * (self.reward_param + self.L * pi_max) / 20
+        threshold = self.second_utility - self.M * (self.reward_param + self.L * pi_max) / self.gamma
         self.logger.log(
             f"threshold calc -> second_utility={self.second_utility:.6f}, M={self.M:.6f}, "
             f"reward_param={self.reward_param:.6f}, L={self.L:.6f}, best_provider_idx={self.best_provider_idx}, "
@@ -199,8 +229,10 @@ class GameManager:
             'best_provider_idx': self.best_provider_idx,
             'providers': []
         }
-        for provider in self.providers:
-            general_results['providers'].append(provider.get_results())
+        for i in range(self.K):
+            provider_result = self.provider_hi
+            
+            general_results['providers'].append()
 
         json.dump(general_results, open(os.path.join(self.output_dir, 'result.json'), 'w'), indent=2)
         return general_results
