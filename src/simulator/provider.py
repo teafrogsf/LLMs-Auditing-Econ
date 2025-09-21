@@ -33,10 +33,6 @@ class ProviderManager:
             rewards = np.array([item['score'] for item in records]) * self.reward_param
 
             output_tokens = np.array([item['output_tokens'] for item in records])
-            # print(records)
-            # print(rewards)
-            # print(output_tokens)
-            # exit()
             prices = np.array([item['input_tokens']*MODEL_PRICING[model]['input'] + item['output_tokens']*MODEL_PRICING[model]['output'] for item in records])
             max_output_tokens = max(output_tokens)
             if self.priori_max_tokens < max_output_tokens:

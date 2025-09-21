@@ -6,12 +6,13 @@ import yaml
 import numpy as np
 from pathlib import Path
 import matplotlib.pyplot as plt
+import argparse
 
 CHOICES = ['honest', 'ours', 'worst', 'random', 'h1w2', 'w1h2']
-RESULTS_PATH = Path('outputs/default')
-CONFIG_PATH = Path('config/default.yaml')
+# RESULTS_PATH = Path('outputs/default')
+# CONFIG_PATH = Path('config/default.yaml')
 
-def plot_histogram(num_provider, provider_results, choices=CHOICES, save_path=RESULTS_PATH / 'figs'):
+def plot_histogram(num_provider, provider_results, save_path, choices=CHOICES):
     os.makedirs(save_path, exist_ok=True)
 
     try:
@@ -81,15 +82,22 @@ def plot_histogram(num_provider, provider_results, choices=CHOICES, save_path=RE
     plt.close(fig)
 
 if __name__ == '__main__':
+    paser = argparse.ArgumentParser()
+    paser.add_argument('--config', type=str, default='config/toy_game/default.yaml')
+    args = paser.parse_args()
+    CONFIG_PATH = Path(args.config)
+    RESULTS_PATH = Path(args.config.replace('.yaml', "").replace('config', 'outputs'))
     scenarios = list(itertools.product(CHOICES, repeat=3))
     config = yaml.safe_load(open(CONFIG_PATH))
 
-    print(config)
+
 
     num_providers = len(config['providers'])
     num_others = num_providers - 1
 
+
     for i in range(num_providers):
+
         provider_cost = {k: [] for k in CHOICES}
         provider_reward = {k: [] for k in CHOICES}
         provider_price = {k: [] for k in CHOICES}
@@ -112,8 +120,8 @@ if __name__ == '__main__':
                 provider_cost[strategy].append(result['providers'][i]['total_cost']) 
                 provider_price[strategy].append(result['providers'][i]['total_price']) 
                 provider_reward[strategy].append(result['providers'][i]['total_reward']) 
-                provider_utility[strategy].append(result['providers'][i]['provider_utility']) 
-                user_utility[strategy].append(result['providers'][i]['user_utility']) 
+                provider_utility[strategy].append(result['providers'][i]['total_provider_utility']) 
+                user_utility[strategy].append(result['providers'][i]['total_user_utility']) 
                 provider_delegations[strategy].append(result['providers'][i]['delegations'])
             provider_results[strategy]['avg_cost'] =  np.mean(provider_cost[strategy])
             provider_results[strategy]['avg_price'] =  np.mean(provider_price[strategy])
@@ -121,7 +129,7 @@ if __name__ == '__main__':
             provider_results[strategy]['provider_utility'] =  np.mean(provider_utility[strategy])
             provider_results[strategy]['user_utility'] =  np.mean(user_utility[strategy])
             provider_results[strategy]['delegations'] =  np.mean(provider_delegations[strategy])
-        plot_histogram(i, provider_results)
+        plot_histogram(i, provider_results, save_path=RESULTS_PATH / 'figs')
 
 
             

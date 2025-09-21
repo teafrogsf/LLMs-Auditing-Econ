@@ -1,7 +1,8 @@
 num_tasks: 1000
 epsilon: 0.3
-reward_param: 10
+reward_param: 3
 task_ids_path: data/task_ids_shuffled.json
+gamma: 2
 providers:
   - id: 0
     models: ["claude-4-0","gpt-4o","gpt-35-turbo"]

@@ -1,0 +1,74 @@
+num_tasks: 10000
+epsilon: 0.3
+gamma: 3
+reward_param: 20
+input_tokens_mu: 500
+input_tokens_gamma: 70
+L: 2000
+providers:
+  - id: 0
+    num_models: 3
+    eta: 0.4
+    models:
+      - name: good
+        score_mu: 0.92
+        score_sigma: 0.05
+        token_mu: 900
+        token_sigma: 135
+        token_price: 0.00055
+      - name: medium
+        score_mu: 0.80
+        score_sigma: 0.06
+        token_mu: 700
+        token_sigma: 105
+        token_price: 0.00050
+      - name: weak
+        score_mu: 0.5
+        score_sigma: 0.08
+        token_mu: 500
+        token_sigma: 90
+        token_price: 0.00045
+  - id: 1
+    num_models: 3
+    eta: 0.4
+    models:
+      - name: good
+        score_mu: 0.85
+        score_sigma: 0.07
+        token_mu: 950
+        token_sigma: 140
+        token_price: 0.00060
+      - name: medium
+        score_mu: 0.70
+        score_sigma: 0.08
+        token_mu: 750
+        token_sigma: 120
+        token_price: 0.00055
+      - name: weak
+        score_mu: 0.60
+        score_sigma: 0.10
+        token_mu: 550
+        token_sigma: 100
+        token_price: 0.00050
+  - id: 2
+    num_models: 3
+    eta: 0.4
+    models:
+      - name: good
+        score_mu: 0.85
+        score_sigma: 0.07
+        token_mu: 950
+        token_sigma: 140
+        token_price: 0.00060
+      - name: medium
+        score_mu: 0.70
+        score_sigma: 0.08
+        token_mu: 750
+        token_sigma: 120
+        token_price: 0.00055
+      - name: weak
+        score_mu: 0.60
+        score_sigma: 0.10
+        token_mu: 550
+        token_sigma: 100
+        token_price: 0.00050
