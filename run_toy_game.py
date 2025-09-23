@@ -6,7 +6,7 @@ import argparse
 import os
 import math
 import itertools
-from src.simulator.toy_game_manager import ToyGameManager
+from src.simulator.toy_game_manager import GameManager
 from src.utils import Logger
 
 
@@ -30,8 +30,8 @@ def init_config(path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', '-c', type=str, default='./config/toy_game/default.yaml')
-    parser.add_argument('--output-dir', type=str, default='./outputs/toy_game/default')
+    parser.add_argument('--config', '-c', type=str, default='config/toy_game/default.yaml')
+    parser.add_argument('--output-dir', type=str, default='./outputs/toy_game/v1')
     parser.add_argument('--debug', action='store_true', default=False)
     args = parser.parse_args()
 
@@ -50,19 +50,20 @@ def main():
     ### step3: hyper para init
     config = init_config(args.config)
     logger.log('='*20+'Config'+"="*20)
+ 
     logger.log(json.dumps(config, indent=2))
 
     ### step4: scenarios making
-    MODEL_CHOICES = ['honest', 'ours', 'worst', 'random', 'h1w2', 'w1h2']
-    scenarios = list(itertools.product(MODEL_CHOICES, repeat=3))
+    MODEL_CHOICES = list(range(10))
+    scenarios = [(item, 0, 0) for item in range(10)]
     
     logger.log(f'{len(scenarios)}')
     for sc in scenarios:
         logger.log(f'run {sc}')
-        config['output_dir'] = os.path.join(args.output_dir, "-".join(sc))
+        config['output_dir'] = os.path.join(args.output_dir, "-".join([str(item) for item in sc]))
         for i in range(len(config['providers'])):
             config['providers'][i]['strategy'] = sc[i]
-        toy_manager = ToyGameManager(config)
+        toy_manager = GameManager(config)
         toy_manager.run_game()
     
 
