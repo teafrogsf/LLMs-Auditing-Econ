@@ -1,7 +1,7 @@
-num_tasks: 20000
+num_tasks: 10000
 epsilon: 0.3
 gamma: 2
-reward_param: 3
+reward_param: 5
 input_tokens_mu: 500
 input_tokens_gamma: 70
 L: 1500
