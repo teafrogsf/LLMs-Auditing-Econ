@@ -1,7 +1,7 @@
-num_tasks: 10000
+num_tasks: 20000
 epsilon: 0.3
 gamma: 2
-reward_param: 0.1
+reward_param: 0.5
 
 providers:
   - id: 0
