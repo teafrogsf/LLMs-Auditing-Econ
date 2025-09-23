@@ -47,14 +47,16 @@ class RealModel:
         self.model_cost_mu = self.output_tokens_mu * self.output_token_price
         self.task_records = load_records(f'data/local_records/nlgraph_new/{self.model_name}_test_result.jsonl')
 
-    def generate(self, task_id, L=0):
+    def generate(self, task_id, L):
         task_result = self.task_records[task_id]
 
 
         score = task_result['score']
         input_tokens = task_result['input_tokens']
         output_tokens = task_result['output_tokens']
-        
+        if output_tokens > L:
+            score = output_tokens / L * score
+            output_tokens = L
         real_price = input_tokens * self.input_token_price + output_tokens * self.output_token_price
         cost = real_price * self.eta
         return {
@@ -272,7 +274,8 @@ class GameManager:
                 }
             )
         # exit()
-        self.L = max([provider.max_tokens for provider in self.providers])
+        self.L = max([provider.max_tokens for provider in self.providers]) 
+        self.logger.log(f'L: {self.L}')
                 
         min_mu_r = min(mu_r)
         max_mu_l = max(mu_l)
@@ -325,7 +328,7 @@ class GameManager:
         self.logger.log(f"  第二好效用：{self.second_user_utility:.4f}")
 
     def phase2_exploitation(self):
-        pi_max = max([max([m.output_token_price for m in p.models]) for p in self.providers])
+        pi_max = self.providers[self.best_provider_idx].models[0].output_token_price
         threshold = self.second_user_utility - self.M * (self.reward_param + self.L * pi_max) / self.gamma
         delta_3 = 0
         for i in range(self.K):
