@@ -231,7 +231,7 @@ class GameManager:
         self.logger.log(game_config)
         self.gamma = float(game_config.get('gamma', 1.0))
         self.reward_param = float(game_config['reward_param'])
-        self.task_ids = json.load(open('data/task_ids_shuffled.json'))
+        self.task_ids = list(range(self.T))
 
 
         self.t = 0
@@ -333,7 +333,7 @@ class GameManager:
         self.logger.log(f"  第二好效用：{self.second_user_utility:.4f}")
 
     def phase2_exploitation(self):
-        pi_max = max([max([m.output_token_price for m in p.models]) for p in self.providers])
+        pi_max = self.providers[self.best_provider_idx].models[0].output_token_price
         threshold = self.second_user_utility - self.M * (self.reward_param + self.L * pi_max) / self.gamma
         delta_3 = 0
         for i in range(self.K):

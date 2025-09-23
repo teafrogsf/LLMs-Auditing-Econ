@@ -226,7 +226,8 @@ class GameManager:
         self.gamma = float(game_config.get('gamma', 1.0))
         self.reward_param = float(game_config['reward_param'])
         self.task_ids = json.load(open('data/task_ids_shuffled.json'))
-
+        self.task_ids = self.task_ids * 10
+        random.shuffle(self.task_ids)
 
         self.t = 0
         self.L = None
