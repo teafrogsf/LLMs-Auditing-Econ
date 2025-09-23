@@ -8,13 +8,14 @@ from concurrent.futures import ThreadPoolExecutor, as_completed, wait, FIRST_COM
 from collections import deque
 from src.nl_graph.max_flow_solver import translate, evaluate
 
-DATA_PATH = 'data/max_flow_graphs_local.json'
-SAVE_PATH = 'data/claude-4-0_test_result.json'
+DATA_PATH = 'data/nl/max_flow_graphs_new.json'
+SAVE_PATH = 'data/claude-4-0_test_result_new.json'
 
 
 
 def load_tasks(path=DATA_PATH):
     data = json.load(open(path))
+    data = [v for _,v in data.items()]
     tasks = []
     for idx, graph_info in enumerate(data):
         graph_data = json.loads(graph_info['graph'])
@@ -25,7 +26,7 @@ def load_tasks(path=DATA_PATH):
    
 
         tasks.append({
-            "id": idx,
+            "id": idx + 1000,
             "G": G,
             "q": q,
             "correct_answer": correct_answer}
@@ -65,11 +66,11 @@ if __name__ == '__main__':
     
     results = json.load(open(SAVE_PATH)) if os.path.exists(SAVE_PATH) else []
     idx_done = [item["id"] for item in results]
-    
+    print(idx_done)
     
     total_tasks = len(tasks)
     print(f"Total tasks: {total_tasks}")
-    pending = [(i, t) for i, t in enumerate(tasks) if i not in idx_done]
+    pending = [(i, t) for i, t in enumerate(tasks, start=1000) if i not in idx_done]
     print(f"Already done: {len(idx_done)}; To run: {len(pending)}")
     if pending:
         max_workers = 4

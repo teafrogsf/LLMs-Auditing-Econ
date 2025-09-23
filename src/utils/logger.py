@@ -13,7 +13,7 @@ class Logger(object):
         print ('Logging to file: ', self.path)
         
     def setup_file_logger(self):
-        self.hdlr = logging.FileHandler(self.path, 'w+')
+        self.hdlr = logging.FileHandler(self.path, 'w')
         self.logger.addHandler(self.hdlr) 
         self.logger.setLevel(logging.INFO)
 

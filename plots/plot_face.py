@@ -33,9 +33,9 @@ def plot(data, save_path):
     plt.xticks(rotation=45, ha='right')
     
     # Add value labels on top of bars
-    for bar, value in zip(bars, utilities):
-        plt.text(bar.get_x() + bar.get_width()/2, bar.get_height() + max(utilities)*0.01,
-                f'{value:.2f}', ha='center', va='bottom', fontweight='bold')
+    # for bar, value in zip(bars, utilities):
+        # plt.text(bar.get_x() + bar.get_width()/2, bar.get_height() + max(utilities)*0.01,
+        #         f'{value:.2f}', ha='center', va='bottom', fontweight='bold')
     
     # Add grid for better readability
     plt.grid(axis='y', alpha=0.3, linestyle='--')
@@ -52,19 +52,20 @@ def plot(data, save_path):
     
     print(f"Plot saved to: {save_path}")
 
-results_dir = [ ROOT / item for item in os.listdir(ROOT) if item.startswith('honest')]
+
 for stragety in CHOICES:
-    results_dir_temp = [item for item in results_dir if item.name.split('-')[-2]==stragety]
+    results_dir = [ ROOT / item for item in os.listdir(ROOT) if item.startswith(stragety)]
+    # results_dir_temp = [item for item in results_dir if item.name.split('-')[-2]==stragety]
     
 
     
     data = {}
-    for sc in results_dir_temp:
+    for sc in results_dir:
         sc_name = sc.name
         print(sc_name)
         result_path = sc / 'result.json'
         result = json.load(open(result_path))
         # print(result)
-        data[sc_name] = result['providers'][1]['total_provider_utility']
+        data[sc_name] = result['providers'][0]['total_provider_utility']
     
-    plot(data, save_path=f'outputs/toy_game/default/figs/provider2/{stragety}.pdf')
+    plot(data, save_path=f'outputs/toy_game/default/figs/provider1/{stragety}.pdf')

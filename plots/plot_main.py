@@ -8,7 +8,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import argparse
 
-CHOICES = ['honest', 'ours', 'worst', 'random', 'h1w2', 'w1h2']
+CHOICES = [str(item) for item in list(range(10))]
 # RESULTS_PATH = Path('outputs/default')
 # CONFIG_PATH = Path('config/default.yaml')
 
@@ -24,9 +24,6 @@ def plot_histogram(num_provider, provider_results, save_path, choices=CHOICES):
     strategy_colors = [cmap(i % 10) for i in range(len(choices))]
 
     metrics = [
-        ('avg_cost', 'Average Cost'),
-        ('avg_price', 'Average Price'),
-        ('avg_reward', 'Average Reward'),
         ('provider_utility', 'Average Provider Utility'),
         ('user_utility', 'Average User Utility'),
         ('delegations', 'Average Delegations'),
@@ -37,7 +34,7 @@ def plot_histogram(num_provider, provider_results, save_path, choices=CHOICES):
         for key, _ in metrics
     }
 
-    fig, axes = plt.subplots(3, 2, figsize=(14, 12), sharex=True)
+    fig, axes = plt.subplots(1, 3, figsize=(14, 5), sharex=True)
     axes = axes.flatten()
 
     x = np.arange(len(choices))
@@ -49,7 +46,8 @@ def plot_histogram(num_provider, provider_results, save_path, choices=CHOICES):
         ax.set_title(metric_label, fontsize=14, pad=10)
         ax.set_ylabel(metric_label, fontsize=12)
         ax.set_xticks(x)
-        ax.set_xticklabels([c for c in choices], rotation=25, ha='right', fontsize=11)
+        # Strategies are 0-based in folders; display 1-based labels in plots
+        ax.set_xticklabels([str(int(c) + 1) for c in choices], rotation=25, ha='right', fontsize=11)
         ax.tick_params(axis='y', labelsize=11)
         ax.margins(y=0.2)
 
@@ -70,7 +68,7 @@ def plot_histogram(num_provider, provider_results, save_path, choices=CHOICES):
 
     # Shared legend for strategies
     from matplotlib.patches import Patch
-    legend_handles = [Patch(facecolor=strategy_colors[i], edgecolor='black', label=choices[i])
+    legend_handles = [Patch(facecolor=strategy_colors[i], edgecolor='black', label=str(int(choices[i]) + 1))
                       for i in range(len(choices))]
     fig.legend(handles=legend_handles, loc='lower center', ncol=min(6, len(choices)), frameon=False,
                bbox_to_anchor=(0.5, 0.0), fontsize=11)
@@ -84,10 +82,11 @@ def plot_histogram(num_provider, provider_results, save_path, choices=CHOICES):
 if __name__ == '__main__':
     paser = argparse.ArgumentParser()
     paser.add_argument('--config', type=str, default='config/toy_game/default.yaml')
+    paser.add_argument('--output-dir', type=str, default='outputs/toy_game/v1')
     args = paser.parse_args()
     CONFIG_PATH = Path(args.config)
-    RESULTS_PATH = Path(args.config.replace('.yaml', "").replace('config', 'outputs'))
-    scenarios = list(itertools.product(CHOICES, repeat=3))
+    RESULTS_PATH = Path(args.output_dir)
+    scenarios = [f'{item}-0-0' for item in CHOICES]
     config = yaml.safe_load(open(CONFIG_PATH))
 
 
@@ -96,7 +95,7 @@ if __name__ == '__main__':
     num_others = num_providers - 1
 
 
-    for i in range(num_providers):
+    for i in range(1):
 
         provider_cost = {k: [] for k in CHOICES}
         provider_reward = {k: [] for k in CHOICES}
@@ -106,13 +105,13 @@ if __name__ == '__main__':
         provider_results = {k: {} for k in CHOICES}
         provider_delegations = {k: [] for k in CHOICES}
         for strategy in CHOICES:
-            all_scenarios = list(itertools.product(CHOICES, repeat=num_others))
-            for idx, item in enumerate(all_scenarios):
-                item = list(item)
-                item.insert(i, strategy)
-                all_scenarios[idx] = "-".join(item)
+            all_scenarios = [f'{strategy}-0-0']
+            # for idx, item in enumerate(all_scenarios):
+            #     item = list(item)
+            #     item.insert(i, strategy)
+            #     all_scenarios[idx] = "-".join(item)
 
-
+            print(all_scenarios)
             results = [json.load(open(RESULTS_PATH / item / 'result.json')) for item in all_scenarios]
 
             
