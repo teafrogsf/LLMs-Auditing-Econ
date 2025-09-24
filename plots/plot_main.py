@@ -81,8 +81,8 @@ def plot_histogram(num_provider, provider_results, save_path, choices=CHOICES):
 
 if __name__ == '__main__':
     paser = argparse.ArgumentParser()
-    paser.add_argument('--config', type=str, default='config/toy_game/default.yaml')
-    paser.add_argument('--output-dir', type=str, default='outputs/toy_game/v1')
+    paser.add_argument('--config', type=str, default='config/nl_graph/default.yaml')
+    paser.add_argument('--output-dir', type=str, default='outputs/nl_graph/v5')
     args = paser.parse_args()
     CONFIG_PATH = Path(args.config)
     RESULTS_PATH = Path(args.output_dir)

@@ -55,6 +55,9 @@ def main():
 
     ### step4: scenarios making
     MODEL_CHOICES = list(range(10))
+    # num_providers = len(config['providers'])
+    # strategy_choices = [MODEL_CHOICES] * num_providers
+    # scenarios = list(itertools.product(*strategy_choices))
     scenarios = [(item, 0, 0) for item in range(10)]
     
     logger.log(f'{len(scenarios)}')

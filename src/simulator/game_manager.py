@@ -281,9 +281,9 @@ class GameManager:
         min_mu_r = min(mu_r)
         max_mu_l = max(mu_l)
         self.logger.log(f"min_mu_r={min_mu_r:.4f}, max_mu_l={max_mu_l:.4f}, L: {self.L}")
-        self.delta_1 = -math.log(min_mu_r) + math.log(max_mu_l) + max_mu_l / self.L + 1
+        # self.delta_1 = -math.log(min_mu_r) + math.log(max_mu_l) + max_mu_l / self.L + 1
+        self.delta_1 = -math.log(min(mu_r_l)) + max(mu_l) / self.L + 1
         self.delta_2 = math.log(self.reward_param)
-        # self.delta_1 = -math.log(min(mu_r_l)) + max(mu_l) / self.L + 1
         
         
         self.logger.log(f"delta_1={self.delta_1:.4f}, delta_2={self.delta_2:.4f}")
@@ -411,7 +411,21 @@ class GameManager:
                 self.logger.log(f'provider {i}: 被委托了{delegation_count}次: 收了provider_utility:{phase3_sum_provider_utility if delegation_count>0 else 0}')
 
                 frac_part = delta - int(delta)
-                if random.random() < frac_part:
+            
+                direct_delegations = int(self.B * frac_part)
+                direct_delegations = min(direct_delegations, self.T - self.t)
+
+                delegation_count = 0
+                for _ in range(direct_delegations):
+                    self._delegate_task(i, phase=4)
+                    delegation_count += 1
+                if delegation_count > 0:
+                    phase3_sum_provider_utility = np.sum(self.providers_his[i]['provider_utility'][-delegation_count:])
+                    self.logger.log(f'provider {i} 被委托了{delegation_count}次: 收了provider_utility:{phase3_sum_provider_utility}')
+                
+
+                remaining_frac = self.B * frac_part - int(self.B * frac_part)
+                if random.random() < remaining_frac and self.t < self.T:
                     num_delegations = min(self.B, self.T - self.t)
                     delegation_count = 0
                     for _ in range(num_delegations):
