@@ -75,7 +75,7 @@ provider-3-medium:
 provider-3-weak:
   score_mu: 0.65
   score_sigma: 0
-  output_tokens_mu: 1350
+  output_tokens_mu: 700
   output_tokens_sigma: 0
   max_output_tokens: 1500
   input_token_price: 0.0005
