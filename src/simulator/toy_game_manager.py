@@ -408,8 +408,12 @@ class GameManager:
             delta_3 += math.log(avg_v) - math.log(avg_tau) - avg_tau / self.L
 
         # R = int(max(0, self.T - (max(self.delta_1, self.delta_2) + 3) * self.B * self.K))
+        self.logger.log(f'delta_1 = {self.delta_1}')
+        self.logger.log(f'delta_2 = {self.delta_2}')
         self.logger.log(f'delta_3 = {delta_3}')
+        
         R = self.T - ((self.delta_1 +3) * self.K + self.delta_2 + delta_3)*self.B
+        self.logger.log(f'R = T - ((delta_1 + 3) * K + delta_2 + delta_3) * B = {self.T} - (({self.delta_1} + 3) * {self.K} + {self.delta_2} + {delta_3}) * {self.B} = {R}')
         R = int(R)
         nums_remain_tasks = min(R, self.T - self.t)
         self.logger.log(f"  计划委托{(max(self.delta_1, self.delta_2) + 3) * self.B * self.K}次，阈值：{threshold:.4f}")
