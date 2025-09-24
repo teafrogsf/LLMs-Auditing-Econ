@@ -4,8 +4,8 @@ provider-1-good:
   output_tokens_mu: 1000
   output_tokens_sigma: 0
   max_output_tokens: 1500
-  input_token_price: 0.06
-  output_token_price: 0.06
+  input_token_price: 0.0006
+  output_token_price: 0.0006
 
 provider-1-medium:
   score_mu: 0.85
@@ -13,8 +13,8 @@ provider-1-medium:
   output_tokens_mu: 900
   output_tokens_sigma: 0
   max_output_tokens: 1500
-  input_token_price: 0.05
-  output_token_price: 0.05
+  input_token_price: 0.0005
+  output_token_price: 0.0005
 
 provider-1-weak:
   score_mu: 0.6
@@ -22,8 +22,8 @@ provider-1-weak:
   output_tokens_mu: 800
   output_tokens_sigma: 0
   max_output_tokens: 1500
-  input_token_price: 0.04
-  output_token_price: 0.04
+  input_token_price: 0.0004
+  output_token_price: 0.0004
   
 
 provider-2-good:
@@ -32,8 +32,8 @@ provider-2-good:
   output_tokens_mu: 950
   output_tokens_sigma: 0
   max_output_tokens: 1500
-  input_token_price: 0.055
-  output_token_price: 0.055
+  input_token_price: 0.00055
+  output_token_price: 0.00055
 
 provider-2-medium:
   score_mu: 0.7
@@ -41,8 +41,8 @@ provider-2-medium:
   output_tokens_mu: 900
   output_tokens_sigma: 0
   max_output_tokens: 1500
-  input_token_price: 0.05
-  output_token_price: 0.05
+  input_token_price: 0.0005
+  output_token_price: 0.0005
   
 
 provider-2-weak:
@@ -51,8 +51,8 @@ provider-2-weak:
   output_tokens_mu: 850
   output_tokens_sigma: 0
   max_output_tokens: 1500
-  input_token_price: 0.045
-  output_token_price: 0.045
+  input_token_price: 0.00045
+  output_token_price: 0.00045
 
 provider-3-good:
   score_mu: 0.75
@@ -60,8 +60,8 @@ provider-3-good:
   output_tokens_mu: 900
   output_tokens_sigma: 0
   max_output_tokens: 1500
-  input_token_price: 0.05
-  output_token_price: 0.05
+  input_token_price: 0.0005
+  output_token_price: 0.0005
 
 provider-3-medium:
   score_mu: 0.7
@@ -69,17 +69,17 @@ provider-3-medium:
   output_tokens_mu: 850
   output_tokens_sigma: 0
   max_output_tokens: 1500
-  input_token_price: 0.045
-  output_token_price: 0.045
+  input_token_price: 0.00045
+  output_token_price: 0.00045
 
 provider-3-weak:
   score_mu: 0.65
   score_sigma: 0
-  output_tokens_mu: 700
+  output_tokens_mu: 1350
   output_tokens_sigma: 0
   max_output_tokens: 1500
-  input_token_price: 0.04
-  output_token_price: 0.04
+  input_token_price: 0.0005
+  output_token_price: 0.0005
 
 
 
