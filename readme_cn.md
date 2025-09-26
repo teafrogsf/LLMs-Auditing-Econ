@@ -32,3 +32,9 @@ $$
 
 供应商的应该怎么做：使用较差的模型来回复，但是报价报最高。
 这里有一个很抽象的点
+
+## 9.25 更改
+1. 为 `game manager` 添加了更多的 log 输出
+2. 更改了 `lie_run_model` 方法的模型选择逻辑：当所有模型的utility都高于second benst utility时，选择provider utility最大的模型，而不是直接选择最差的模型
+3. 更改了 `phase 3` 的委托逻辑，现在为：首先直接委托 $ B * int(delta) $ 次；其次委托 $\left \lfloor  B*(delta - int(delta))\right \rfloor$,在此将 $delta - int(delta)$ 命名为frac_part; 最后以B * frac_part - int(self.B * frac_part) 概率进行1次委托
+4. 将nl文件夹下的数据更换成2000条的数据（未改文件名，只换了内容）

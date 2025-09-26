@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 outputs
+# Ignore contents of outputs/nl_graph but keep the folder structure
+outputs/nl_graph/*
+!outputs/nl_graph/*/
+!outputs/nl_graph/*/.gitkeep
 # Distribution / packaging
 .Python
 build/
@@ -215,3 +219,4 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+

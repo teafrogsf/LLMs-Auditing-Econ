@@ -1,18 +1,18 @@
 num_tasks: 50000
 epsilon: 0.3
-gamma: 100
-reward_param: 1.9
+gamma: 11
+reward_param: 2
 
 providers:
   - id: 0
     num_models: 3
-    eta: 0.999
-    models: [o4-mini, o3-mini, gpt-4o-mini]
+    eta: 0.9
+    models: [gpt-4.1, claude-4-0, gpt-4o-mini]
   - id: 1
     num_models: 3
-    eta: 0.9999
-    models: [gpt-4.1, claude-4-0, gpt-4o-mini]
+    eta: 0.9
+    models: [o4-mini, o3-mini, gpt-4o-mini]
   - id: 2
     num_models: 3
-    eta: 0.9999
+    eta: 0.9
     models: [o1-mini, deepseek-r1, gpt-4o-mini]
