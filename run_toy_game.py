@@ -31,7 +31,7 @@ def init_config(path):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', '-c', type=str, default='config/toy_game/default.yaml')
-    parser.add_argument('--output-dir', type=str, default='./outputs/toy_game/v1')
+    parser.add_argument('--output-dir', type=str, default='./outputs/toy_game/vtest')
     parser.add_argument('--debug', action='store_true', default=False)
     args = parser.parse_args()
 
@@ -54,8 +54,10 @@ def main():
     logger.log(json.dumps(config, indent=2))
 
     ### step4: scenarios making
-    MODEL_CHOICES = list(range(10))
-    scenarios = [(item, 0, 0) for item in range(10)]
+    MODEL_CHOICES = list(range(11))
+    # scenarios = [(item, 0, 0) for item in range(11)]
+    scenarios = list(itertools.product(MODEL_CHOICES, repeat=3))
+    print(scenarios)
     
     logger.log(f'{len(scenarios)}')
     for sc in scenarios:

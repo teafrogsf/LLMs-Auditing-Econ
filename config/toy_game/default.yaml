@@ -1,20 +1,20 @@
-num_tasks: 10000
+num_tasks: 1000000
 epsilon: 0.3
-gamma: 5
+gamma: 50
 reward_param: 5
-input_tokens_mu: 500
-input_tokens_gamma: 70
+input_tokens_mu: 0
+input_tokens_gamma: 0
 L: 1500
 providers:
   - id: 0
     num_models: 3
-    eta: 1
-    models: [provider-1-good, provider-1-medium, provider-1-weak]
+    eta: 0.9
+    models: [provider-1-good, provider-1-mid, provider-1-weak]
   - id: 1
     num_models: 3
-    eta: 1
-    models: [provider-2-good, provider-2-medium, provider-2-weak]
+    eta: 0.9
+    models: [provider-2-good, provider-2-mid, provider-2-weak]
   - id: 2
     num_models: 3
-    eta: 1
-    models: [provider-3-good, provider-3-medium, provider-3-weak]
+    eta: 0.9
+    models: [provider-3-good, provider-3-mid, provider-3-weak]
