@@ -8,7 +8,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import argparse
 
-CHOICES = [str(item) for item in list(range(11))]
+CHOICES = [str(item) for item in list(range(6))]
+LEGEND_LABELS = ["ours", "honest", "dishonest-model", "dishonest-token", "dishonest-all", "ours-honest-token"]
 
 
 def plot_histogram(num_provider, provider_results, save_path, choices=CHOICES):
@@ -43,12 +44,12 @@ def plot_histogram(num_provider, provider_results, save_path, choices=CHOICES):
         y_vals = data_by_metric[metric_key]
         bars = ax.bar(x, y_vals, color=strategy_colors, edgecolor='black', linewidth=0.6)
 
-        ax.set_title(metric_label, fontsize=14, pad=10)
-        ax.set_ylabel(metric_label, fontsize=12)
+        ax.set_title(metric_label, fontsize=16, pad=10)
+        ax.set_ylabel(metric_label, fontsize=14)
         ax.set_xticks(x)
         # Strategies are 0-based in folders; display 1-based labels in plots
-        ax.set_xticklabels([str(int(c) + 1) for c in choices], rotation=25, ha='right', fontsize=11)
-        ax.tick_params(axis='y', labelsize=11)
+        ax.set_xticklabels([f"{LEGEND_LABELS[i]}" for i in range(len(choices))], rotation=45, ha='right', fontsize=13)
+        ax.tick_params(axis='y', labelsize=13)
         ax.margins(y=0.2)
 
         # Annotate bar values
@@ -64,16 +65,16 @@ def plot_histogram(num_provider, provider_results, save_path, choices=CHOICES):
     if len(axes) > len(metrics):
         axes[-1].set_visible(False)
 
-    fig.suptitle(f"Provider {num_provider + 1} Performance by Strategy", fontsize=16, y=0.98)
+    fig.suptitle(f"Provider {num_provider + 1} Performance by Strategy", fontsize=18, y=0.98)
 
     # Shared legend for strategies
     from matplotlib.patches import Patch
-    legend_handles = [Patch(facecolor=strategy_colors[i], edgecolor='black', label=str(int(choices[i]) + 1))
+    legend_handles = [Patch(facecolor=strategy_colors[i], edgecolor='black', label=LEGEND_LABELS[i])
                       for i in range(len(choices))]
-    fig.legend(handles=legend_handles, loc='lower center', ncol=min(6, len(choices)), frameon=False,
-               bbox_to_anchor=(0.5, 0.0), fontsize=11)
+    fig.legend(handles=legend_handles, loc='lower center', ncol=3, frameon=False,
+               bbox_to_anchor=(0.5, 0.01), fontsize=12)
 
-    fig.tight_layout(rect=[0.02, 0.10, 1, 0.95])
+    fig.tight_layout(rect=[0.02, 0.08, 1, 0.95])
 
     outfile = save_path / f"provider_{num_provider + 1}.pdf"
     fig.savefig(outfile, format='pdf', dpi=300, bbox_inches='tight')

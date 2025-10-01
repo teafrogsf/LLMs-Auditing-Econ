@@ -1,10 +1,10 @@
 num_tasks: 1000000
 epsilon: 0.3
-gamma: 50
+gamma: 2
 reward_param: 5
-input_tokens_mu: 0
-input_tokens_gamma: 0
-L: 1500
+input_token_mu: 500
+input_token_sigma: 50
+
 providers:
   - id: 0
     num_models: 3
