@@ -180,7 +180,7 @@ class Provider:
                     exp_model_pro_utility = model_pro_u
                     exp_model_idx = idx
                     exp_lie_add = int(lie_addition)
-                    break
+                    
                 # 假设这一步已经选出来了
                 
             self.logger.log(f'lie model is {exp_model_idx}')
