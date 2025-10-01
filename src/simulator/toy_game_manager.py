@@ -1,23 +1,18 @@
 
-
-
-
 import json
 import math
 import os
 import random
-from sys import path_hooks
 from typing import Dict, List
 import numpy as np
 import yaml
-
-from dev_temp.get_model_info import input_token_price, input_tokens
-
 from src.utils import Logger
+from src.simulator.utils import ProviderHisotryManager
+
 from pathlib import Path
 
-ITEM_RECORDS = ['tokens','input_tokens','output_tokens','price','cost',
-                    'reward', 'user_utility', 'provider_utility',]
+ITEM_RECORDS = ['tokens','input_tokens','output_tokens', 'reported_output_tokens',  'reported_price', 'costs',
+                    'rewards', 'user_utility', 'provider_utility',]
 
 STRAGETY = [
     ['honest', 'honest', 'honest', 'honest'],
@@ -26,19 +21,26 @@ STRAGETY = [
     ['honest', 'lie_model', 'lie_all', 'lie_all'],
     ['honest', 'lie_token', 'lie_all', 'lie_all'],
     ['honest', 'lie_all', 'lie_all', 'lie_all'],
-    ['lie_ours', 'lie_ours', 'lie_all', 'lie_all'],
-    ['lie_ours', 'lie_model', 'lie_all', 'lie_all'],
-    ['lie_ours', 'lie_token', 'lie_all', 'lie_all'],
-    ['lie_ours', 'lie_all', 'lie_all', 'lie_all']
+    ['honest', 'lie_second_model', 'lie_all', 'lie_all'],
+    ['honest', 'lie_second_all', 'lie_all', 'lie_all'],
+    ['lie_second_model', 'lie_ours', 'lie_all', 'lie_all'],
+    ['lie_second_model', 'lie_second_model', 'lie_all', 'lie_all'],
+    ['lie_second_model', 'lie_second_all', 'lie_all', 'lie_all']
+    
 ]
 
 MODEL_CONFIG = yaml.safe_load(open('config/toy_game/model_config.yaml'))
 
+def sample_batch_int(mu, sigma, batch_size):
+    return np.rint(np.abs(np.random.normal(mu, sigma, size=batch_size))).astype(int)
+
 def load_records(path):
     return [json.loads(item) for item in open(path).readlines()]
 
+   
 class RealModel:
     def __init__(self, config) -> None:
+        self.id = None
         self.model_name = config['model_name']
         self.score_mu = float(config['score_mu'])
         self.score_sigma = float(config['score_sigma'])
@@ -53,24 +55,28 @@ class RealModel:
         self.utility_mu = self.reward_param * self.score_mu - self.output_tokens_mu * self.output_token_price
         self.model_cost_mu = self.output_tokens_mu * self.output_token_price
 
-    def generate(self, _, L):
+    def generate(self, _, L, batch_size):
         
-        input_tokens = int(abs(random.gauss(1000, 50)))
-        score = max(0, min(1, random.gauss(self.score_mu, self.score_sigma)))
-        output_tokens_float = abs(random.gauss(self.output_tokens_mu, self.output_tokens_sigma))
-        output_tokens = min(max(50, int(round(output_tokens_float))), L)
-        tokens = input_tokens + output_tokens
-        # cost = (input_tokens + output_tokens) * self.token_price * self.eta
+        input_tokens = np.zeros(batch_size)
 
-        real_price = input_tokens * self.input_token_price + output_tokens *  self.output_token_price
-        cost = real_price * self.eta
+        scores = np.abs(np.random.normal(self.score_mu, self.score_sigma, size=batch_size))
+        scores = np.clip(scores, 0 ,1)
+        rewards = scores * self.reward_param
+
+
+        output_tokens = sample_batch_int(self.output_tokens_mu, self.output_tokens_sigma, batch_size)
+        output_tokens = np.clip(output_tokens, 50, L)
+
+        cost = (input_tokens * self.input_token_price + output_tokens * self.output_token_price) * self.eta
+    
+
         return {
+            "model_id": self.id,
             "tokens": input_tokens + output_tokens,
             "input_tokens": input_tokens,
             "output_tokens": output_tokens,
-            "reward": score * self.reward_param,
-            "cost": cost,
-            "real_price": real_price
+            "rewards": rewards,
+            "costs": cost,
         }
 
 
@@ -84,6 +90,7 @@ class Provider:
         self.num_models = len(config['models'])
         self.eta = float(config['eta'])
         self.strategy = int(config['strategy'])
+        # self.reward_scale = config['reward_scale']
         # self.token_factor = config['token_factor']
         models = []
         for model in config['models']:
@@ -92,9 +99,12 @@ class Provider:
             model_config['reward_param'] = config['reward_param']
             model_config['eta'] = self.eta
             models.append(RealModel(model_config))
+
         # model_index_list = list(range(len(models)))
 
         models = sorted(models, key=lambda x: x.utility_mu, reverse=True)
+        for idx, model in enumerate(models):
+            model.id = idx
         self.models = models
 
         # models_cost = [model.model_cost_mu for model in models]
@@ -124,142 +134,104 @@ class Provider:
         self.logger.log(f'Provider strategy schedule: {STRAGETY[self.strategy]}')
     
     
-    def honset_run(self, task_id, L):
-        model_run_result = self.models[0].generate(task_id, L)
-        model_run_result['true_output_tokens'] = model_run_result['output_tokens']
-        price = model_run_result['input_tokens'] * self.models[0].input_token_price + \
-            model_run_result['output_tokens'] * self.models[0].output_token_price
-        real_price = model_run_result['real_price']
-        
-        user_utility = model_run_result['reward'] - price
-        model_run_result['price'] = price
-        model_run_result['user_utility'] = user_utility
-        model_run_result['provider_utility'] = self.eta * (price  -  real_price)
+    def honset_run(self, task_id, L, batch_size):
+        model_run_result = self.models[0].generate(task_id, L, batch_size)
+        model_run_result['reported_output_tokens'] = model_run_result['output_tokens']
+        model_run_result['reported_model_id'] = model_run_result['model_id']
         return model_run_result
-    
-    def lie_run_model(self, real_model_idx, task_id, L):
-        model_run_result = self.models[real_model_idx].generate(task_id, L)
-        model_run_result['true_output_tokens'] = model_run_result['output_tokens']
 
-        price = model_run_result['input_tokens'] * self.max_input_token_price+ \
-            model_run_result['output_tokens'] * self.max_output_token_price
-        user_utility = model_run_result['reward'] - price
-        model_run_result['price'] = price
-        model_run_result['user_utility'] = user_utility
-        model_run_result['provider_utility'] = self.eta * (price  -  model_run_result['real_price'])
+    
+    def lie_run(self, real_model_idx, task_id, L, batch_size, reported_model_id, token_lie_add):
+        model_run_result = self.models[real_model_idx].generate(task_id, L, batch_size)
+        model_run_result['reported_output_tokens'] = np.clip(model_run_result['output_tokens'] + token_lie_add, None, L)
+        model_run_result['reported_model_id'] = reported_model_id
         return model_run_result
-    
-    def lie_run_tokens(self, task_id, L):
-        model_run_result = self.models[0].generate(task_id, L)
-        model_run_result['true_output_tokens'] = model_run_result['output_tokens']
-        reported_tokens = L
-        model_run_result['output_tokens'] = reported_tokens
-        model_run_result['tokens'] = reported_tokens + model_run_result['input_tokens']
-
-
-        price = model_run_result['input_tokens'] * self.models[0].input_token_price + \
-            reported_tokens * self.models[0].output_token_price
         
 
-        user_utility = model_run_result['reward'] - price
-        model_run_result['price'] = price
-        model_run_result['user_utility'] = user_utility
-        model_run_result['provider_utility'] = self.eta * (price  -  model_run_result['real_price'])
-        return model_run_result
-
-    
-    def lie_run_all(self, task_id, L):
-        model_run_result = self.models[-1].generate(task_id, L)
-        model_run_result['true_output_tokens'] = model_run_result['output_tokens']
-        reproted_tokens = L
-        model_run_result['output_tokens'] = reproted_tokens
-        model_run_result['tokens'] = model_run_result['input_tokens'] + reproted_tokens
-
-        price = model_run_result['input_tokens'] * self.max_input_token_price+ \
-             self.max_output_token_price *  reproted_tokens
-
-        user_utility = model_run_result['reward'] - price
-        provider_utility = self.eta * (price  - model_run_result['real_price'])
-        model_run_result['price'] = price
-        model_run_result['user_utility'] = user_utility
-        model_run_result['provider_utility'] = provider_utility
-        return model_run_result
-         
-
-    def run_task(self, task_id, phase, L, second_utility=None):
+    def run_task(self, task_id, phase, L, second_utility=None, batch_size=1):
         strategy = STRAGETY[self.strategy][phase-1]
-        selected_model_idx = None
-        selected_model_name = None
-        reported_output_token_price = None
-        reported_input_token_price = None
+        # print(strategy)
         if strategy == 'honest':
-            selected_model_idx = 0
-            selected_model_name = self.models[0].model_name
-            reported_output_token_price = self.models[0].output_token_price
-            reported_input_token_price = self.models[0].input_token_price
-            result = self.honset_run(task_id, L)
+            result = self.honset_run(task_id, L, batch_size)
             
         elif strategy == 'lie_all':
-            selected_model_idx = -1
-            selected_model_name = self.models[-1].model_name
-            reported_output_token_price = self.max_output_token_price
-            reported_input_token_price = self.max_input_token_price
-            result = self.lie_run_all(task_id, L)
+            real_model_id = self.num_models - 1
+            reported_model_id = 0
+            token_lie_add = L
+            result = self.lie_run(real_model_id, task_id, L, batch_size, reported_model_id, token_lie_add)
         
+        # todo first phase
         elif strategy == 'lie_ours':
             if second_utility is None:
-                    selected_model_idx = 1
-                    selected_model_name = self.models[1].model_name if len(self.models) > 1 else self.models[0].model_name
-                    reported_output_token_price = self.max_output_token_price
-                    reported_input_token_price = self.max_input_token_price
-                    result = self.lie_run_model(1, task_id, L)
-            else:
-                for idx, model in enumerate(self.models[::-1]):
-                    if model.utility_mu > second_utility:
-                        selected_model_idx = self.num_models-idx-1
-                        selected_model_name = self.models[selected_model_idx].model_name
-                        reported_output_token_price = self.max_output_token_price
-                        reported_input_token_price = self.max_input_token_price
-                        result = self.lie_run_model(self.num_models-idx-1, task_id, L)
-                        break
-                else:
-                    selected_model_idx = 0
-                    selected_model_name = self.models[0].model_name
-                    reported_output_token_price = self.models[0].output_token_price
-                    reported_input_token_price = self.models[0].input_token_price
-                    result = self.honset_run(task_id, L)
+                raise ValueError(f'second utility should not be None')
+            exp_model_idx = 0
+            exp_model_pro_utility = 0
+            exp_lie_add = 0
+
+            for idx, model in enumerate(self.models):
+                if model.utility_mu < second_utility:
+                    continue
+
+                lie_addition = (model.score_mu * model.reward_param - second_utility)/self.max_output_token_price - model.output_tokens_mu
+                model_pro_u = self.max_output_token_price* (max(L, model.output_tokens_mu+ lie_addition)) - model.output_tokens_mu * model.output_token_price
+
+
+                if exp_model_pro_utility < model_pro_u:
+                    exp_model_pro_utility = model_pro_u
+                    exp_model_idx = idx
+                    exp_lie_add = int(lie_addition)
+                    break
+                # 假设这一步已经选出来了
+                
+            self.logger.log(f'lie model is {exp_model_idx}')
+            self.logger.log(f'lie_addition is {exp_lie_add}')
+            result = self.lie_run(exp_model_idx, task_id, L, batch_size, 0, exp_lie_add)
+
 
         elif strategy == 'lie_model':
-            selected_model_idx = -1
-            selected_model_name = self.models[-1].model_name
-            reported_output_token_price = self.max_output_token_price
-            reported_input_token_price = self.max_input_token_price
-            result = self.lie_run_model(-1, task_id, L)
+            result = self.lie_run(-1, task_id, L, batch_size, 0, 0)
+        
+        elif strategy == 'lie_second_model':
+            result = self.lie_run(1, task_id, L, batch_size, 0, 0)
+        
+        elif strategy == 'lie_second_all':
+            result = self.lie_run(1, task_id, L, batch_size, 0, L)
         
         elif strategy == 'lie_token':
-            selected_model_idx = 0
-            selected_model_name = self.models[0].model_name
-            reported_output_token_price = self.models[0].output_token_price
-            reported_input_token_price = self.models[0].input_token_price
-            result = self.lie_run_tokens(task_id, L)
+            result = self.lie_run(0, task_id, L, batch_size, 0, L)
 
-        
         else:
             raise ValueError(f'{self.strategy} is not supported!')
+
+        # print([key for key in result])
+        result['batch_size'] = batch_size
+        reported_model_id = result['reported_model_id']
+        reported_output_tokens = result['reported_output_tokens']
+        input_tokens = result['input_tokens']
+        rewards = result['rewards']
+        costs = result['costs']
+        reported_input_token_price = self.models[reported_model_id].input_token_price
+        reported_output_token_price = self.models[reported_model_id].output_token_price
         
-        # enrich result with metadata for logging
-        # result['strategy'] = strategy
-        # result['selected_model_name'] = selected_model_name
-        result['reported_output_token_price'] = reported_output_token_price
-        result['reported_input_token_price'] = reported_input_token_price
+        reported_price = input_tokens * reported_input_token_price + reported_output_tokens * reported_output_token_price
+
+        user_utility = rewards - reported_price
+        provider_utility = reported_price * self.eta - costs
+        # print(self.eta)
+
+        result['reported_price'] = reported_price
+        result['user_utility'] = user_utility
+        result['provider_utility'] = provider_utility
+ 
         return result
+
 
 
     
 class GameManager:
     game_config: Dict
     providers: List[Provider]
-
+    providers_his: List[ProviderHisotryManager]
     def __init__(self, game_config: Dict):
         self.game_config = game_config
         self.B = int(game_config['B'])
@@ -270,6 +242,7 @@ class GameManager:
         self._init_output_dir_logger()
         self.logger.log(game_config)
         self.gamma = float(game_config.get('gamma', 1.0))
+        print(self.gamma)
         self.reward_param = float(game_config['reward_param'])
         self.task_ids = list(range(self.T))
 
@@ -279,6 +252,7 @@ class GameManager:
         self.delta_1 = None
         self.delta_2 = None
         self.delta_3 = None
+        # self.delta = None
         self.best_provider_idx = None
         self.second_user_utility = None
         self.providers = []
@@ -305,29 +279,24 @@ class GameManager:
                 mu_l.append(mu_l_i)
                 mu_r_l.append(mu_r_i / mu_l_i)
 
-            self.providers_his.append(
-                {
-                    'tokens':[],
-                    'input_tokens': [],
-                    'output_tokens':[],
-                    'price': [],
-                    'cost': [],
-                    'reward': [],
-                    'real_price': [],
-                    'user_utility': [],
-                    'provider_utility': [],
-                    'delegation_results': []
-                }
-            )
-        # exit()
+            self.providers_his.append(ProviderHisotryManager(provider_config['id']))
+
+    
         self.L = max([provider.max_tokens for provider in self.providers])
                 
-        min_mu_r = min(mu_r)
+        # min_mu_r = min(mu_r)
+        # max_mu_l = max(mu_l)
+        mu_r = np.array(mu_r)
+        mu_l = np.array(mu_l)
         max_mu_l = max(mu_l)
-        self.logger.log(f"min_mu_r={min_mu_r:.4f}, max_mu_l={max_mu_l:.4f}, L: {self.L}")
-        self.delta_1 = -math.log(min_mu_r) + math.log(max_mu_l) + max_mu_l / self.L + 1
+        mu_r_div_mu_l = mu_r / mu_l
+
+        min_murl = min(mu_r_div_mu_l)
+
+        # self.logger.log(f"min_mu_r={min_mu_r:.4f}, max_mu_l={max_mu_l:.4f}, L: {self.L}")
+        self.delta_1 = -math.log(min_murl)  + max_mu_l / self.L + 1
         self.delta_2 = math.log(self.reward_param)
-        # self.delta_1 = -math.log(min(mu_r_l)) + max(mu_l) / self.L + 1
+
         
         
         self.logger.log(f"delta_1={self.delta_1:.4f}, delta_2={self.delta_2:.4f}")
@@ -339,61 +308,50 @@ class GameManager:
         self.logger.log(f'log to file {log_path}, logger name is {self.output_dir.name}')
         
 
-    def _delegate_task(self, provider_idx: int, phase: int):
+    def _delegate_task(self, provider_idx: int, phase: int, batch_size: int, log_flag=False):
+        if log_flag:
+            self.logger.log(f'Delegate provider {provider_idx} {batch_size} tasks.')
+
         if self.t >= self.T:
             return None
         task_id = self.task_ids[self.t]
-        result = self.providers[provider_idx].run_task(task_id, phase, self.L, self.second_user_utility)
-        # append results into history, creating lists for unseen keys
-        for key in result:
-            if key not in self.providers_his[provider_idx]:
-                self.providers_his[provider_idx][key] = []
-            self.providers_his[provider_idx][key].append(result[key])
-        self.providers_his[provider_idx]['delegation_results'].append(result)
-        self.providers_his[provider_idx]['avg_user_utility'] = np.mean(self.providers_his[provider_idx]['user_utility'])
-
-        self.t += 1
+        result = self.providers[provider_idx].run_task(task_id, phase, self.L, self.second_user_utility, batch_size)
+        
+        self.providers_his[provider_idx].append(result)
+        self.t += batch_size
         return True
 
 
     def log_provider_info(self):
         for i in range(self.K):
-            provider_his = self.providers_his[i]
-            self.logger.log(f'\n\n====================Provider-{i} History Info:==================')
-            for key in provider_his:
-                if key == 'delegation_results':
-                    continue
-                elif key.startswith('avg'):
-                    continue
-                else:
-                    # print(key)
-
-                    self.logger.log(f'{key}: {sum(provider_his[key])}\t avg_{key}: {np.mean(provider_his[key])}')
-            
+            self.providers_his[i].log_info(self.logger)
+      
 
     def phase1_exploration(self):
 
         self.logger.log('='*20+f'Stage1: Delegate each provider {self.B} Times'+ '='*20)
         for i in range(len(self.providers)):
-            for _ in range(self.B):
-                self._delegate_task(provider_idx=i, phase=1)
+            self._delegate_task(i, 1, self.B, True)
 
 
-        sorted_provider_idx = sorted(list(range(self.K)), key=lambda idx: self.providers_his[idx]['avg_user_utility'])
+        sorted_provider_idx = sorted(list(range(self.K)), key=lambda idx: self.providers_his[idx].get_avg_user_utility())
         self.logger.log(f"Providers sorted by avg_user_utility: {sorted_provider_idx}")
+
         for i in range(self.K):
-            his = self.providers_his[i]
-            avg_provider_utility = float(np.mean(his['provider_utility'])) if his['provider_utility'] else 0.0
-            self.logger.log(f"Provider {i} avg_user_utility: {his['avg_user_utility']:.4f}")
+            avg_provider_utility = self.providers_his[i].get_avg_provider_utility()
+            avg_user_utility = self.providers_his[i].get_avg_user_utility()
+
+            self.logger.log(f"Provider {i} avg_user_utility: {avg_user_utility:.4f}")
             self.logger.log(f"Provider {i} avg_provider_utility: {avg_provider_utility:.4f}")
+        
         self.best_provider_idx = sorted_provider_idx[-1]
         second_provider_idx = sorted_provider_idx[-2]
        
-        best_user_utility = self.providers_his[self.best_provider_idx]['avg_user_utility']
-        self.second_user_utility = self.providers_his[second_provider_idx]['avg_user_utility']
+        best_user_utility = self.providers_his[self.best_provider_idx].get_avg_user_utility()
+        self.second_user_utility = self.providers_his[second_provider_idx].get_avg_user_utility()
 
         self.logger.log(f"  阶段1完成，最佳服务商：{self.best_provider_idx}，平均效用：{best_user_utility:.4f}")
-        self.logger.log(f"  第二好效用：{self.second_user_utility:.4f}")
+        self.logger.log(f"  第二好服务商{second_provider_idx}\t 第二好效用：{self.second_user_utility:.4f}")
 
     def phase2_exploitation(self):
         pi_max = self.providers[self.best_provider_idx].models[0].output_token_price
@@ -402,8 +360,9 @@ class GameManager:
         for i in range(self.K):
             if i == self.best_provider_idx:
                 continue
-            avg_v = np.mean(self.providers_his[i]['reward'])
-            avg_tau = np.mean(self.providers_his[i]['output_tokens'])
+            avg_v = self.providers_his[i].get_avg_v(self.B)
+            avg_tau = self.providers_his[i].get_avg_tau(self.B)
+
             self.logger.log(f"Phase2 delta_3 components | provider {i}: avg_reward={avg_v:.4f}, avg_output_tokens={avg_tau:.2f}")
             delta_3 += math.log(avg_v) - math.log(avg_tau) - avg_tau / self.L
 
@@ -416,39 +375,44 @@ class GameManager:
         self.logger.log(f'R = T - ((delta_1 + 3) * K + delta_2 + delta_3) * B = {self.T} - (({self.delta_1} + 3) * {self.K} + {self.delta_2} + {delta_3}) * {self.B} = {R}')
         R = int(R)
         nums_remain_tasks = min(R, self.T - self.t)
-        self.logger.log(f"  计划委托{(max(self.delta_1, self.delta_2) + 3) * self.B * self.K}次，阈值：{threshold:.4f}")
         self.logger.log(f"  计划委托{nums_remain_tasks}次，阈值：{threshold:.4f}")
-        delegation_count = 0
+
         early_stop_flag = False
         phase2_sum_provider_utility = 0
-        for _ in range(nums_remain_tasks):
+        self._delegate_task(self.best_provider_idx, phase=2, batch_size=self.B)
+        nums_remain_tasks = nums_remain_tasks - self.B
+        remain_batch_delegation_nums = nums_remain_tasks // self.B
+        last_num = nums_remain_tasks % self.B
+        delegation_count = self.B
+
+        for _ in range(remain_batch_delegation_nums):
             if self.t >= self.T:
                 break
-            self._delegate_task(self.best_provider_idx, phase=2)
-            delegation_count += 1
-            if delegation_count >= self.B:
-
-                phase2_avg_user_utility = np.mean(self.providers_his[self.best_provider_idx]['user_utility'][-delegation_count:])
-                # phase2_sum_user_utility = np.sum(self.providers_his[self.best_provider_idx]['user_utility'][-delegation_count:])
-                # phase2_avg_provider_utility = np.mean(self.providers_his[self.best_provider_idx]['provider_utility'][-delegation_count:])
-                phase2_sum_provider_utility = np.sum(self.providers_his[self.best_provider_idx]['provider_utility'][-delegation_count:])
-
-                if phase2_avg_user_utility < threshold:
+            
+            self._delegate_task(self.best_provider_idx, phase=2, batch_size=self.B)
+            delegation_count += self.B
+            phase2_avg_user_utility = self.providers_his[self.best_provider_idx].get_recent_user_utility(delegation_count)
+            
+            if phase2_avg_user_utility < threshold:
                     
-                    early_stop_flag = True
-                    self.logger.log(f"  早停触发：最近{delegation_count}次平均用户效用 {phase2_avg_user_utility:.4f} < 阈值 {threshold:.4f}")
-                    break
-        # self.logger.log(f"  在{delegation_count}次委托后停止，最近平均utility：{phase2_avg_user_utility:.4f} < {threshold:.4f}")
+                early_stop_flag = True
+                self.logger.log(f"  早停触发：最近{delegation_count}次平均用户效用 {phase2_avg_user_utility:.4f} < 阈值 {threshold:.4f}")
+                break
+        else:
+            self._delegate_task(self.best_provider_idx, phase=2, batch_size=last_num)
+            delegation_count += last_num
+            
+        phase2_sum_provider_utility = np.sum(self.providers_his[self.best_provider_idx].get_recent_sum_provider_utility(delegation_count))
 
         self.logger.log(f"  在{delegation_count}次委托后停止，总provider_utility：{phase2_sum_provider_utility:.4f}")
         if not early_stop_flag:
 
             if self.t < self.T:
-                delegation_count = 0 
-                for _ in range(min(self.B, self.T - self.t)):
-                    self._delegate_task(provider_idx=self.best_provider_idx, phase=3)
-                    delegation_count += 1
-                phase2_sum_provider_utility = np.sum(self.providers_his[self.best_provider_idx]['provider_utility'][-delegation_count:])
+                bonust_batch = min(self.B, self.T - self.t)
+                # print(f"bonust_batch: {bonust_batch}")
+                self._delegate_task(provider_idx=self.best_provider_idx, phase=3, batch_size=bonust_batch)
+                delegation_count = bonust_batch
+                phase2_sum_provider_utility = np.sum(self.providers_his[self.best_provider_idx].get_recent_sum_provider_utility(delegation_count))
                 self.logger.log(f" 奖励在{delegation_count}次委托后停止，总provider utility：{phase2_sum_provider_utility:.4f}")
 
 
@@ -458,42 +422,41 @@ class GameManager:
             if i == self.best_provider_idx:
                 continue
 
-            for _ in range(self.B):
-                self._delegate_task(i, phase=3)
+
+            self._delegate_task(i, phase=3, batch_size=self.B, log_flag=True)
 
     def phase3_utility_based(self):
         for i in range(self.K):
             if self.t >= self.T:
                 return
-            avg_reward = np.mean(self.providers_his[i]['reward'])
-            avg_output_tokens = np.mean(self.providers_his[i]['output_tokens'])
-            
-            delta = self.delta_1 + math.log(avg_reward) - math.log(avg_output_tokens) - avg_output_tokens / self.L
+            avg_reward = self.providers_his[i].get_avg_v(self.B)
+            avg_output_tokens = self.providers_his[i].get_avg_tau(self.B)
+            self.logger.log(f'for provider {i}: log_avg_reward={math.log(avg_reward)}, log_avg_output_tokens={math.log(avg_output_tokens)}, avg_output_tokens/L = {avg_output_tokens/self.L}, L={self.L}')
+            self.logger.log(f'delta_1={self.delta_1}')
+            delta = self.delta_1 + math.log(avg_reward) - math.log(avg_output_tokens) - (avg_output_tokens / self.L)
+
+            self.providers_his[i].set_delta(delta)
             self.logger.log(f'for provider {i}: avg_reward:{avg_reward}, avg_output_tokens: {avg_output_tokens}, delta: {delta}')
             self.logger.log(f"delta: {delta}")
             if delta > 0:
                 
-                num_delegations = int(delta) * self.B
+                num_delegations = int(delta * self.B)
                 num_delegations = min(self.T- self.t, num_delegations)
                 self.logger.log(f'provider {i}: 计划委托次数 {num_delegations} (整数部分)')
 
                 delegation_count = 0
-                for _ in range(num_delegations):
-                    self._delegate_task(i, phase=4)
-                    delegation_count += 1
-                
-                phase3_sum_provider_utility = np.sum(self.providers_his[i]['provider_utility'][-delegation_count:])
+                self._delegate_task(i, phase=4, batch_size=num_delegations)
+                delegation_count = num_delegations
+                phase3_sum_provider_utility = np.sum(self.providers_his[i].get_recent_sum_provider_utility(num_delegations))
+
                 self.logger.log(f'provider {i}: 被委托了{delegation_count}次: 收了provider_utility:{phase3_sum_provider_utility if delegation_count>0 else 0}')
 
-                frac_part = delta - int(delta)
+                frac_part = delta * self.B - num_delegations
                 if random.random() < frac_part:
-                    num_delegations = min(self.B, self.T - self.t)
+                    num_delegations = min(1, self.T - self.t)
                     self.logger.log(f'provider {i}: 小数部分触发，追加委托 {num_delegations} 次')
-                    delegation_count = 0
-                    for _ in range(num_delegations):
-                        self._delegate_task(i, phase=4)
-                        delegation_count += 1
-                    phase3_sum_provider_utility = np.sum(self.providers_his[i]['provider_utility'][-delegation_count:])
+                    self._delegate_task(i, phase=4, batch_size=num_delegations)
+                    phase3_sum_provider_utility = np.sum(self.providers_his[i].get_recent_sum_provider_utility(num_delegations))
                     self.logger.log(f'狗运：provider {i}  被委托了{delegation_count}次: 收了provider_utility:{phase3_sum_provider_utility if delegation_count>0 else 0} ')
             else:
                 self.logger.log(f'provider {i}: delta<=0，不进行委托')
@@ -506,15 +469,8 @@ class GameManager:
             'providers': []
         }
         for i in range(self.K):
-            provider_result = self.providers_his[i]
-            save_result = {
-                'delegations': len(provider_result['delegation_results']),
-            }
-            for key in ITEM_RECORDS:
-                save_result['total_'+key] = float(np.sum(provider_result[key]))
-            
-            game_result['providers'].append(save_result)
-        self.logger.log(f'Final game result summary: {game_result}')
+            provider_result = self.providers_his[i].get_result()
+            game_result['providers'].append(provider_result)
         json.dump(game_result, open(self.output_dir / 'result.json', 'w'), indent=2)
 
 
@@ -536,6 +492,7 @@ class GameManager:
 
         self.logger.log("\n\n\n"+"="*20+"phase3_utility_based start"+"="*20)
         self.phase3_utility_based()
+        self.log_provider_info()
         self.get_result()
         self.logger.log("\n\n\n"+"="*20+"phase3_utility_based end"+"="*20)
 
