@@ -54,10 +54,11 @@ def main():
     logger.log(json.dumps(config, indent=2))
 
     ### step4: scenarios making
-    MODEL_CHOICES = list(range(11))
+    MODEL_CHOICES = list(range(6))
     # scenarios = [(item, 0, 0) for item in range(11)]
     scenarios = list(itertools.product(MODEL_CHOICES, repeat=3))
     print(scenarios)
+    json.dump(config, open(os.path.join(args.output_dir, 'config.json'), 'w'), indent=2)
     
     logger.log(f'{len(scenarios)}')
     for sc in scenarios:
