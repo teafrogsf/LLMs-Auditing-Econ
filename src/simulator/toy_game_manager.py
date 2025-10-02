@@ -181,8 +181,8 @@ class Provider:
                     exp_lie_add = lie_addition
                     
                 
-            self.logger.log(f'lie model is {exp_model_idx}')
-            self.logger.log(f'lie_addition is {exp_lie_add}')
+            # self.logger.log(f'lie model is {exp_model_idx}')
+            # self.logger.log(f'lie_addition is {exp_lie_add}')
             result = self.lie_run(exp_model_idx, input_tokens, L, batch_size, 0, exp_lie_add)
 
 
@@ -211,8 +211,8 @@ class Provider:
 
                     
                 
-            self.logger.log(f'lie model is {exp_model_idx}')
-            self.logger.log(f'lie_addition is {0}')
+            # self.logger.log(f'lie model is {exp_model_idx}')
+            # self.logger.log(f'lie_addition is {0}')
             result = self.lie_run(exp_model_idx, input_tokens, L, batch_size, 0, 0)
 
         
@@ -268,7 +268,7 @@ class GameManager:
         self.task_ids = list(range(self.T))
         self.input_token_mu = float(game_config['input_token_mu'])
         self.input_token_sigma = float(game_config['input_token_sigma'])
-
+        self.R = None
         self.t = 0
         self.L = None
         self.delta_1 = None
@@ -398,7 +398,9 @@ class GameManager:
         R = self.T - ((self.delta_1 +3) * self.K + self.delta_2 + delta_3)*self.B
         self.logger.log(f'R = T - ((delta_1 + 3) * K + delta_2 + delta_3) * B = {self.T} - (({self.delta_1} + 3) * {self.K} + {self.delta_2} + {delta_3}) * {self.B} = {R}')
         R = int(R)
+        
         nums_remain_tasks = min(R, self.T - self.t)
+        self.R = nums_remain_tasks
         self.logger.log(f"  计划委托{nums_remain_tasks}次，阈值：{threshold:.4f}")
      
         early_stop_flag = False
@@ -490,12 +492,16 @@ class GameManager:
             'total_time': self.T,
             'total_delegations': self.t,
             'best_provider_idx': self.best_provider_idx,
+            'R': self.R,
+            'B': self.B,
             'providers': []
         }
         for i in range(self.K):
             provider_result = self.providers_his[i].get_result()
             game_result['providers'].append(provider_result)
         json.dump(game_result, open(self.output_dir / 'result.json', 'w'), indent=2)
+
+        return game_result
 
 
 
@@ -517,6 +523,6 @@ class GameManager:
         self.logger.log("\n\n\n"+"="*20+"phase3_utility_based start"+"="*20)
         self.phase3_utility_based()
         self.log_provider_info()
-        self.get_result()
+     
         self.logger.log("\n\n\n"+"="*20+"phase3_utility_based end"+"="*20)
-
+        return self.get_result()
