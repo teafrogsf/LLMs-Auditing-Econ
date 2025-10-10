@@ -1,0 +1,26 @@
+num_tasks: 1000000
+epsilon: 0.3
+gamma: 5
+reward_param: 6.0
+providers:
+- id: 0
+  num_models: 3
+  eta: 1.0
+  models:
+  - o3-mini
+  - gpt-5-medium
+  - gpt-5-high
+- id: 1
+  num_models: 3
+  eta: 1.0
+  models:
+  - gpt-4o
+  - gpt-4
+  - o1
+- id: 2
+  num_models: 3
+  eta: 1.0
+  models:
+  - gpt-5-medium
+  - gpt-5-high
+  - o3-mini
