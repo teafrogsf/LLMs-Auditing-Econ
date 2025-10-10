@@ -27,8 +27,10 @@ MODEL_PRICING = {
     "o4-mini": {"input": 4/1_000_000, "output": 16/1_000_000}
 }
 
-model_result_path = [record_path / item for item in os.listdir(record_path) if not item.startswith('.')]
+model_result_path = [record_path / item for item in os.listdir(record_path) if  item.endswith('.jsonl')]
 L = 0
+
+
 for path in model_result_path:
     model_name = path.name.split('_')[0]
     results = [json.loads(item) for item in open(path).readlines()]
@@ -36,30 +38,27 @@ for path in model_result_path:
     
     scores = [item['score'] for item in results]
     output_tokens = [item['output_tokens'] for item in results]
-    input_tokens = [item['input_tokens'] for item in results]
+
 
     score_mu = float(np.mean(scores))
     output_tokens_mu = float(np.mean(output_tokens))
-    input_tokens_mu = float(np.mean(input_tokens))
     max_output_tokens = max(output_tokens)
     input_token_price = MODEL_PRICING[model_name]['input']
     output_token_price = MODEL_PRICING[model_name]['output']
 
-    price_mu = input_tokens_mu * input_token_price + output_tokens_mu * output_token_price
-    user_utility_mu = 5 * score_mu - price_mu
+    price_mu = output_tokens_mu * output_token_price
+    # user_utility_mu = 5 * score_mu - price_mu
     model_info[model_name] = {
         'score_mu': score_mu,
         'output_tokens_mu': output_tokens_mu,
         'input_token_price': input_token_price,
         'output_token_price': output_token_price,
         'max_output_tokens': max_output_tokens,
-        'input_tokens_mu': input_tokens_mu,
         'price_mu': price_mu,
-        'user_utility_mu': user_utility_mu
     }
 
 
-print(sorted([model for model in model_info], key=lambda x: model_info[x]['user_utility_mu'], reverse=True))
+# print(sorted([model for model in model_info], key=lambda x: model_info[x]['user_utility_mu'], reverse=True))
 print(sorted([model for model in model_info], key=lambda x: model_info[x]['price_mu'], reverse=True))
 print(sorted([model for model in model_info], key=lambda x: model_info[x]['output_token_price'], reverse=True))
 

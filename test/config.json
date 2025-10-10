@@ -1,0 +1,42 @@
+{
+  "gamma": 3.0,
+  "reward_param": 1.0,
+  "providers": [
+    {
+      "id": 0,
+      "num_models": 3,
+      "eta": 0.9,
+      "models": [
+        "gpt-5-high",
+        "deepseek-r1",
+        "gpt-5-medium"
+      ]
+    },
+    {
+      "id": 1,
+      "num_models": 3,
+      "eta": 0.9,
+      "models": [
+        "o3-mini",
+        "o1-mini",
+        "deepseek-r1"
+      ]
+    },
+    {
+      "id": 2,
+      "num_models": 3,
+      "eta": 0.9,
+      "models": [
+        "claude-4-0",
+        "o1-mini",
+        "deepseek-r1"
+      ]
+    }
+  ],
+  "path": "config/nl_graph/yuhan1.yaml",
+  "eps": 0.3,
+  "num_tasks": 1000000.0,
+  "B": 3981,
+  "K": 3,
+  "M": 0.23637291771156435
+}

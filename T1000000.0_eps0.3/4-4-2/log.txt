@@ -1,0 +1,286 @@
+log to file T1000000.0_eps0.3/4-4-2/log.txt, logger name is 4-4-2
+{'gamma': 3.0, 'reward_param': 1.0, 'providers': [{'id': 0, 'num_models': 3, 'eta': 0.9, 'models': ['gpt-5-high', 'deepseek-r1', 'gpt-5-medium'], 'strategy': 4, 'reward_param': 1.0}, {'id': 1, 'num_models': 3, 'eta': 0.9, 'models': ['o3-mini', 'o1-mini', 'deepseek-r1'], 'strategy': 4, 'reward_param': 1.0}, {'id': 2, 'num_models': 3, 'eta': 0.9, 'models': ['claude-4-0', 'o1-mini', 'deepseek-r1'], 'strategy': 2, 'reward_param': 1.0}], 'path': './config/nl_graph/yuhan1.yaml', 'eps': 0.3, 'num_tasks': 1000000.0, 'B': 3981, 'K': 3, 'M': 0.23637291771156435, 'output_dir': 'T1000000.0_eps0.3/4-4-2'}
+init provider 0
+['gpt-5-medium', 'gpt-5-high', 'deepseek-r1']
+init provider 1
+['o3-mini', 'o1-mini', 'deepseek-r1']
+init provider 2
+['o1-mini', 'claude-4-0', 'deepseek-r1']
+L is 38058
+delta_1=11.1958, delta_2=0.0000
+====================Stage1: Delegate each provider 3981 Times====================
+Delegate provider 0 3981 tasks.
+Delegate provider 1 3981 tasks.
+Delegate provider 2 3981 tasks.
+Providers sorted by avg_user_utility: [0, 1, 2]
+Provider 0 avg_user_utility: 0.1615
+Provider 0 avg_provider_utility: 0.3213
+Provider 1 avg_user_utility: 0.3690
+Provider 1 avg_provider_utility: 0.1293
+Provider 2 avg_user_utility: 0.5960
+Provider 2 avg_provider_utility: 0.0000
+  阶段1完成，最佳服务商：2，平均效用：0.5960
+  第二好服务商1	 第二好效用：0.3690
+
+
+
+====================phase1_exploration end====================
+
+
+====================Provider-0 History Info:==================
+total output_tokens: 42916306.0
+avg output_tokens: 10780.282843506657
+total reported_output_tokens: 151508898.0
+avg reported_output_tokens: 38058.0
+total reported_price: 1515.0889800000004
+avg reported_price: 0.3805800000000001
+total costs: 84.588039126
+avg costs: 0.02124793748455162
+total rewards: 2158.181090554659
+avg rewards: 0.542120344273966
+total user_utility: 643.0921105546586
+avg user_utility: 0.161540344273966
+total provider_utility: 1278.9920428740002
+avg provider_utility: 0.32127406251544843
+
+
+====================Provider-1 History Info:==================
+total output_tokens: 43236480.0
+avg output_tokens: 10860.70836473248
+total reported_output_tokens: 151508898.0
+avg reported_output_tokens: 38058.0
+total reported_price: 666.6391512
+avg reported_price: 0.1674552
+total costs: 85.21910208
+avg costs: 0.021406456186887718
+total rewards: 2135.4395773702026
+avg rewards: 0.5364078315423769
+total user_utility: 1468.8004261702022
+avg user_utility: 0.36895263154237684
+total provider_utility: 514.7561340000001
+avg provider_utility: 0.1293032238131123
+
+
+====================Provider-2 History Info:==================
+total output_tokens: 15540391.0
+avg output_tokens: 3903.640040190907
+total reported_output_tokens: 15540391.0
+avg reported_output_tokens: 3903.640040190907
+total reported_price: 68.3777204
+avg reported_price: 0.01717601617683999
+total costs: 61.539948360000004
+avg costs: 0.015458414559155993
+total rewards: 2441.1881053222205
+avg rewards: 0.613209772751123
+total user_utility: 2372.8103849222207
+avg user_utility: 0.596033756574283
+total provider_utility: 0.0
+avg provider_utility: 0.0
+
+
+
+====================phase2_exploitation start====================
+后面的东西是：0.09198493064051265
+Phase2 delta_3 components | provider 0: avg_reward=0.5421, avg_output_tokens=38058.00
+Phase2 delta_3 components | provider 1: avg_reward=0.5364, avg_output_tokens=38058.00
+delta_1 = 11.195840192374956
+delta_2 = 0.0
+delta_3 = -24.328860973997546
+R = T - ((delta_1 + 3) * K + delta_2 + delta_3) * B = 1000000 - ((11.195840192374956 + 3) * 3 + 0.0 + -24.328860973997546) * 3981 = 927312.2761199501
+  计划委托927312次，阈值：0.2770
+  在927312次委托后停止，总provider_utility：19980.3175
+ 奖励在3981次委托后停止，总provider utility：515.0094
+
+
+
+====================phase2_exploitation end====================
+
+
+====================Provider-0 History Info:==================
+total output_tokens: 42916306.0
+avg output_tokens: 10780.282843506657
+total reported_output_tokens: 151508898.0
+avg reported_output_tokens: 38058.0
+total reported_price: 1515.0889800000004
+avg reported_price: 0.3805800000000001
+total costs: 84.588039126
+avg costs: 0.02124793748455162
+total rewards: 2158.181090554659
+avg rewards: 0.542120344273966
+total user_utility: 643.0921105546586
+avg user_utility: 0.161540344273966
+total provider_utility: 1278.9920428740002
+avg provider_utility: 0.32127406251544843
+
+
+====================Provider-1 History Info:==================
+total output_tokens: 43236480.0
+avg output_tokens: 10860.70836473248
+total reported_output_tokens: 151508898.0
+avg reported_output_tokens: 38058.0
+total reported_price: 666.6391512
+avg reported_price: 0.1674552
+total costs: 85.21910208
+avg costs: 0.021406456186887718
+total rewards: 2135.4395773702026
+avg rewards: 0.5364078315423769
+total user_utility: 1468.8004261702022
+avg user_utility: 0.36895263154237684
+total provider_utility: 514.7561340000001
+avg provider_utility: 0.1293032238131123
+
+
+====================Provider-2 History Info:==================
+total output_tokens: 10104056897.0
+avg output_tokens: 10803.312074322605
+total reported_output_tokens: 10212457791.0
+avg reported_output_tokens: 10919.214894244895
+total reported_price: 44934.8142804
+avg reported_price: 0.04804454553467754
+total costs: 19946.005981685994
+avg costs: 0.021326377063497964
+total rewards: 502799.0542221118
+avg rewards: 0.537595457825313
+total user_utility: 457864.2399417118
+avg user_utility: 0.4895509122906355
+total provider_utility: 20495.32687067401
+avg provider_utility: 0.021913713917711825
+
+
+
+====================phase2_incentive start====================
+====================Stage2 Incentive: Delegate non-best providers 3981 Times each====================
+Delegate provider 0 3981 tasks.
+Delegate provider 1 3981 tasks.
+
+
+====================Provider-0 History Info:==================
+total output_tokens: 85758513.0
+avg output_tokens: 10770.976262245667
+total reported_output_tokens: 303017796.0
+avg reported_output_tokens: 38058.0
+total reported_price: 3030.177960000001
+avg reported_price: 0.3805800000000001
+total costs: 169.03002912299996
+avg costs: 0.021229594212886206
+total rewards: 4326.9629392673405
+avg rewards: 0.5434517632840167
+total user_utility: 1296.7849792673396
+avg user_utility: 0.16287176328401654
+total provider_utility: 2558.1301348770003
+avg provider_utility: 0.3212924057871138
+
+
+====================Provider-1 History Info:==================
+total output_tokens: 86275068.0
+avg output_tokens: 10835.853805576488
+total reported_output_tokens: 303017796.0
+avg reported_output_tokens: 38058.0
+total reported_price: 1333.2783024
+avg reported_price: 0.1674552
+total costs: 170.048159028
+avg costs: 0.02135746785079126
+total rewards: 4261.959395194068
+avg rewards: 0.535287540215281
+total user_utility: 2928.681092794068
+avg user_utility: 0.36783234021528105
+total provider_utility: 1029.902313132
+avg provider_utility: 0.12935221214920875
+
+
+====================Provider-2 History Info:==================
+total output_tokens: 10104056897.0
+avg output_tokens: 10803.312074322605
+total reported_output_tokens: 10212457791.0
+avg reported_output_tokens: 10919.214894244895
+total reported_price: 44934.8142804
+avg reported_price: 0.04804454553467754
+total costs: 19946.005981685994
+avg costs: 0.021326377063497964
+total rewards: 502799.0542221118
+avg rewards: 0.537595457825313
+total user_utility: 457864.2399417118
+avg user_utility: 0.4895509122906355
+total provider_utility: 20495.32687067401
+avg provider_utility: 0.021913713917711825
+
+
+
+====================phase2_incentive end====================
+
+
+
+====================phase3_utility_based start====================
+for provider 0: log_avg_reward=-0.612267264783306, log_avg_output_tokens=10.546866590861953, avg_output_tokens/L = 1.0, L=38058
+delta_1=11.195840192374956
+for provider 0: avg_reward:0.542120344273966, avg_output_tokens: 38058.0, delta: -0.9632936632703029
+delta: -0.9632936632703029
+provider 0: delta<=0，不进行委托
+for provider 1: log_avg_reward=-0.622860527490336, log_avg_output_tokens=10.546866590861953, avg_output_tokens/L = 1.0, L=38058
+delta_1=11.195840192374956
+for provider 1: avg_reward:0.5364078315423769, avg_output_tokens: 38058.0, delta: -0.9738869259773324
+delta: -0.9738869259773324
+provider 1: delta<=0，不进行委托
+for provider 2: log_avg_reward=-0.4890481948134927, log_avg_output_tokens=8.26966474046209, avg_output_tokens/L = 0.10257081402572145, L=38058
+delta_1=11.195840192374956
+for provider 2: avg_reward:0.613209772751123, avg_output_tokens: 3903.640040190907, delta: 2.3345564430736516
+delta: 2.3345564430736516
+provider 2: 计划委托次数 9293 (整数部分)
+provider 2: 被委托了9293次: 收了provider_utility:1202.821325406
+provider 2: 小数部分触发，追加委托 1 次
+狗运：provider 2  被委托了9293次: 收了provider_utility:0.12942090900000003 
+
+
+====================Provider-0 History Info:==================
+total output_tokens: 85758513.0
+avg output_tokens: 10770.976262245667
+total reported_output_tokens: 303017796.0
+avg reported_output_tokens: 38058.0
+total reported_price: 3030.177960000001
+avg reported_price: 0.3805800000000001
+total costs: 169.03002912299996
+avg costs: 0.021229594212886206
+total rewards: 4326.9629392673405
+avg rewards: 0.5434517632840167
+total user_utility: 1296.7849792673396
+avg user_utility: 0.16287176328401654
+total provider_utility: 2558.1301348770003
+avg provider_utility: 0.3212924057871138
+
+
+====================Provider-1 History Info:==================
+total output_tokens: 86275068.0
+avg output_tokens: 10835.853805576488
+total reported_output_tokens: 303017796.0
+avg reported_output_tokens: 38058.0
+total reported_price: 1333.2783024
+avg reported_price: 0.1674552
+total costs: 170.048159028
+avg costs: 0.02135746785079126
+total rewards: 4261.959395194068
+avg rewards: 0.535287540215281
+total user_utility: 2928.681092794068
+avg user_utility: 0.36783234021528105
+total provider_utility: 1029.902313132
+avg provider_utility: 0.12935221214920875
+
+
+====================Provider-2 History Info:==================
+total output_tokens: 10204384152.0
+avg output_tokens: 10803.228726783038
+total reported_output_tokens: 10566168843.0
+avg reported_output_tokens: 11186.244762685164
+total reported_price: 46491.1429092
+avg reported_price: 0.049219476955814724
+total costs: 20143.751001290995
+avg costs: 0.021325887602894653
+total rewards: 507819.78534149285
+avg rewards: 0.5376212039170212
+total user_utility: 461328.6424322929
+avg user_utility: 0.48840172696120654
+total provider_utility: 21698.277616989006
+avg provider_utility: 0.022971641657338598
+
+
+
+====================phase3_utility_based end====================

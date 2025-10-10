@@ -1,4 +1,0 @@
-====================Stage1: Delegate each provider B Times====================
-Delegate provider0 63 Times
-Delegate provider1 63 Times
-Delegate provider2 63 Times
