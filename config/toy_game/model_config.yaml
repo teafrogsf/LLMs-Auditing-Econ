@@ -1,26 +1,26 @@
 provider-1-good:
   score_mu: 0.9
-  score_sigma: 0
+  score_sigma: 0.05
   output_tokens_mu: 1000
-  output_tokens_sigma: 0
+  output_tokens_sigma: 50
   max_output_tokens: 5000
   input_token_price: 0.0005
   output_token_price: 0.0005
 
 provider-1-mid:
   score_mu: 0.6
-  score_sigma: 0
+  score_sigma: 0.05
   output_tokens_mu: 900
-  output_tokens_sigma: 0
+  output_tokens_sigma: 50
   max_output_tokens: 5000
   input_token_price: 0.0004
   output_token_price: 0.0004
 
 provider-1-weak:
   score_mu: 0.5
-  score_sigma: 0
+  score_sigma: 0.05
   output_tokens_mu: 800
-  output_tokens_sigma: 0
+  output_tokens_sigma: 50
   max_output_tokens: 5000
   input_token_price: 0.0003
   output_token_price: 0.0003
@@ -28,27 +28,27 @@ provider-1-weak:
 
 provider-2-good:
   score_mu: 0.6
-  score_sigma: 0
+  score_sigma: 0.05
   output_tokens_mu: 1000
-  output_tokens_sigma: 0
+  output_tokens_sigma: 50
   max_output_tokens: 5000
   input_token_price: 0.0005
   output_token_price: 0.0005
 
 provider-2-mid:
   score_mu: 0.5
-  score_sigma: 0
+  score_sigma: 0.05
   output_tokens_mu: 900
-  output_tokens_sigma: 0
+  output_tokens_sigma: 50
   max_output_tokens: 5000
   input_token_price: 0.0004
   output_token_price: 0.0004
 
 provider-2-weak:
   score_mu: 0.4
-  score_sigma: 0
+  score_sigma: 0.05
   output_tokens_mu: 800
-  output_tokens_sigma: 0
+  output_tokens_sigma: 50
   max_output_tokens: 5000
   input_token_price: 0.0003
   output_token_price: 0.0003
@@ -56,27 +56,27 @@ provider-2-weak:
 
 provider-3-good:
   score_mu: 0.7
-  score_sigma: 0
+  score_sigma: 0.05
   output_tokens_mu: 1000
-  output_tokens_sigma: 0
+  output_tokens_sigma: 50
   max_output_tokens: 5000
   input_token_price: 0.0005
   output_token_price: 0.0005
 
 provider-3-mid:
   score_mu: 0.5
-  score_sigma: 0
+  score_sigma: 0.05
   output_tokens_mu: 900
-  output_tokens_sigma: 0
+  output_tokens_sigma: 50
   max_output_tokens: 5000
   input_token_price: 0.0004
   output_token_price: 0.0004
 
 provider-3-weak:
   score_mu: 0.4
-  score_sigma: 0
+  score_sigma: 0.05
   output_tokens_mu: 800
-  output_tokens_sigma: 0
+  output_tokens_sigma: 50
   max_output_tokens: 5000
   input_token_price: 0.0003
   output_token_price: 0.0003

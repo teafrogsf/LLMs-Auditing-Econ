@@ -1,0 +1,48 @@
+{
+  "total_time": 1000000,
+  "total_delegations": 956311,
+  "best_provider_idx": 0,
+  "R": 914408,
+  "delta1": 11.195840192374956,
+  "delta2": 0.0,
+  "delta3": null,
+  "M": 0.23637291771156435,
+  "providers": [
+    {
+      "delegations": 931236,
+      "delta": 2.226933017803784,
+      "total_input_tokens": 2156719820.0,
+      "total_output_tokens": 6238944181.0,
+      "total_reported_output_tokens": 6588792989.0,
+      "total_reported_price": 68583.82966500003,
+      "total_costs": 57569.821275222,
+      "total_rewards": 917218.0820310141,
+      "total_user_utility": 848634.2523660142,
+      "total_provider_utility": 4155.625423278001
+    },
+    {
+      "delegations": 7962,
+      "delta": -0.9946208049671466,
+      "total_input_tokens": 18221334.0,
+      "total_output_tokens": 86153674.0,
+      "total_reported_output_tokens": 303017796.0,
+      "total_reported_price": 1353.3217697999999,
+      "total_costs": 172.104779538,
+      "total_rewards": 4178.918272833674,
+      "total_user_utility": 2825.596503033674,
+      "total_provider_utility": 1045.884813282
+    },
+    {
+      "delegations": 17113,
+      "delta": 2.2987479313717643,
+      "total_input_tokens": 39822197.0,
+      "total_output_tokens": 158077905.0,
+      "total_reported_output_tokens": 515197305.0,
+      "total_reported_price": 2310.6725587,
+      "total_costs": 355.69236627,
+      "total_rewards": 9409.35409794147,
+      "total_user_utility": 7098.68153924147,
+      "total_provider_utility": 1723.9129365600002
+    }
+  ]
+}

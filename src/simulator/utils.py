@@ -10,8 +10,7 @@ class ProviderHisotryManager:
         self.avg_tau = None
         self.data = {
             'model_id': [],
-            'reported_model_id': [],
-            'input_tokens': np.array([]) ,             # 真实的
+            'reported_model_id': [],       # 真实的
             'output_tokens':np.array([]),             # 真实的
             'reported_output_tokens': np.array([]),   # 汇报的
             'reported_price': np.array([]),           # 汇报的
@@ -24,7 +23,7 @@ class ProviderHisotryManager:
             'delta': None
             }
 
-        self.iter_key = ['input_tokens','output_tokens', 'reported_output_tokens',  'reported_price', 'costs',
+        self.iter_key = ['output_tokens', 'reported_output_tokens',  'reported_price', 'costs',
                     'rewards', 'user_utility', 'provider_utility',]
     
     def append(self, result):
@@ -83,7 +82,7 @@ class ProviderHisotryManager:
         return float(np.sum(self.data['provider_utility'][-k:]))
 
     def get_delegation_nums(self):
-        return len(self.data['input_tokens'])
+        return len(self.data['output_tokens'])
 
     
     def get_result(self):
