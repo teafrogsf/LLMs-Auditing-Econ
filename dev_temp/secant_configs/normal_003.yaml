@@ -1,0 +1,26 @@
+num_tasks: 1000000
+epsilon: 0.3
+gamma: 5
+reward_param: 1.0
+providers:
+- id: 0
+  num_models: 3
+  eta: 0.9
+  models:
+  - deepseek-r1
+  - gpt-5-medium
+  - o3-mini
+- id: 1
+  num_models: 3
+  eta: 0.9
+  models:
+  - o1-mini
+  - claude-4-0
+  - deepseek-r1
+- id: 2
+  num_models: 3
+  eta: 0.9
+  models:
+  - gpt-4
+  - gpt-4o
+  - o1
