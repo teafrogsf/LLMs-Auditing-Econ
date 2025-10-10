@@ -1,144 +1,39 @@
 claude-4-0:
-  input_token_price: 3.0e-06
-  input_tokens_mu: 2708.442
   max_output_tokens: 1553
   output_token_price: 1.5e-05
   output_tokens_mu: 737.482
-  price_mu: 0.019187556
+  price_mu: 0.01106223
   score_mu: 0.5752562632679845
-  user_utility_mu: 2.857093760339923
 deepseek-r1:
-  input_token_price: 1.4e-07
-  input_tokens_mu: 2286.535
   max_output_tokens: 17627
   output_token_price: 2.1899999999999998e-06
   output_tokens_mu: 10833.1335
-  price_mu: 0.024044677264999998
+  price_mu: 0.023724562364999997
   score_mu: 0.5374994397769133
-  user_utility_mu: 2.663452521619566
-deepseek-v3:
-  input_token_price: 7.0e-08
-  input_tokens_mu: 2284.535
-  max_output_tokens: 4096
-  output_token_price: 1.1e-06
-  output_tokens_mu: 678.069
-  price_mu: 0.00090579335
-  score_mu: 0.4324909783525688
-  user_utility_mu: 2.161549098412844
-gpt-35-turbo:
-  input_token_price: 5.0e-07
-  input_tokens_mu: 2288.535
-  max_output_tokens: 1688
-  output_token_price: 1.5e-06
-  output_tokens_mu: 171.033
-  price_mu: 0.001400817
-  score_mu: 0.20187553580336426
-  user_utility_mu: 1.0079768620168212
-gpt-4:
-  input_token_price: 3.0e-05
-  input_tokens_mu: 2288.535
-  max_output_tokens: 1076
-  output_token_price: 6.0e-05
-  output_tokens_mu: 236.256
-  price_mu: 0.08283141
-  score_mu: 0.400422560675795
-  user_utility_mu: 1.9192813933789752
-gpt-4.1:
-  input_token_price: 3.0e-06
-  input_tokens_mu: 2291.2575
-  max_output_tokens: 5116
-  output_token_price: 1.2e-05
-  output_tokens_mu: 1487.84
-  price_mu: 0.024727852499999998
-  score_mu: 0.6625860697799205
-  user_utility_mu: 3.288202496399603
-gpt-4o:
-  input_token_price: 2.5e-06
-  input_tokens_mu: 2288.535
-  max_output_tokens: 1647
-  output_token_price: 1.0e-05
-  output_tokens_mu: 569.046
-  price_mu: 0.011411797500000001
-  score_mu: 0.3372251430189699
-  user_utility_mu: 1.6747139175948493
-gpt-4o-mini:
-  input_token_price: 1.5e-07
-  input_tokens_mu: 2288.7825
-  max_output_tokens: 1312
-  output_token_price: 6.0e-07
-  output_tokens_mu: 530.0745
-  price_mu: 0.0006613620749999999
-  score_mu: 0.3168407466315356
-  user_utility_mu: 1.5835423710826781
+
 gpt-5-high:
-  input_token_price: 1.25e-06
-  input_tokens_mu: 2306.0755
   max_output_tokens: 37320
   output_token_price: 1.0e-05
   output_tokens_mu: 7010.0305
-  price_mu: 0.07298289937500001
+  price_mu: 0.070100305
   score_mu: 0.9922689280268833
-  user_utility_mu: 4.888361740759416
-gpt-5-low:
-  input_token_price: 1.25e-06
-  input_tokens_mu: 2326.9185
-  max_output_tokens: 36165
-  output_token_price: 1.0e-05
-  output_tokens_mu: 6374.862
-  price_mu: 0.066657268125
-  score_mu: 0.9838338732591475
-  user_utility_mu: 4.852512098170738
+
 gpt-5-medium:
-  input_token_price: 1.25e-06
-  input_tokens_mu: 2316.9565
   max_output_tokens: 38058
   output_token_price: 1.0e-05
   output_tokens_mu: 6635.639
-  price_mu: 0.069252585625
+  price_mu: 0.06635639
   score_mu: 0.9912244493848982
-  user_utility_mu: 4.8868696612994915
-o1:
-  input_token_price: 1.5e-05
-  input_tokens_mu: 2287.535
-  max_output_tokens: 36650
-  output_token_price: 6.0e-05
-  output_tokens_mu: 10383.6895
-  price_mu: 0.657334395
-  score_mu: 0.6264253835197653
-  user_utility_mu: 2.4747925225988268
+
 o1-mini:
-  input_token_price: 1.1e-06
-  input_tokens_mu: 2453.504
   max_output_tokens: 11739
   output_token_price: 4.4e-06
   output_tokens_mu: 3857.731
-  price_mu: 0.019672870800000002
+  price_mu: 0.016974016400000003
   score_mu: 0.592180303108145
-  user_utility_mu: 2.9412286447407245
 o3-mini:
-  input_token_price: 1.1e-06
-  input_tokens_mu: 2287.535
   max_output_tokens: 27132
   output_token_price: 4.4e-06
   output_tokens_mu: 8354.085
-  price_mu: 0.0392742625
+  price_mu: 0.036757974
   score_mu: 0.7787893123421102
-  user_utility_mu: 3.854672299210551
-o4-mini:
-  input_token_price: 4.0e-06
-  input_tokens_mu: 2287.535
-  max_output_tokens: 36260
-  output_token_price: 1.6e-05
-  output_tokens_mu: 6164.581
-  price_mu: 0.107783436
-  score_mu: 0.8141259220894561
-  user_utility_mu: 3.9628461744472805
-qwen-max:
-  input_token_price: 1.6000000000000001e-06
-  input_tokens_mu: 2450.091
-  max_output_tokens: 3686
-  output_token_price: 6.4000000000000006e-06
-  output_tokens_mu: 655.8875
-  price_mu: 0.0081178256
-  score_mu: 0.36038663782984326
-  user_utility_mu: 1.7938153635492162
